@@ -1,0 +1,1079 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Code2,
+  Cpu,
+  Layers,
+  CheckCircle2,
+  Database,
+  Cloud,
+  Terminal,
+  ShieldCheck,
+  TrendingUp,
+  Zap,
+  ArrowRight,
+  Sparkles,
+  Eye,
+  LineChart
+} from "lucide-react";
+import { SectionDivider } from "../components/SectionDivider";
+
+// ==========================================
+// CUSTOM OFFICIAL BRAND SVG ICONS
+// ==========================================
+const ReactIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="8" fill="#61DAFB" />
+    <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(0 50 50)" />
+    <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(60 50 50)" />
+    <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(120 50 50)" />
+  </svg>
+);
+
+const NextjsIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="46" fill="#000000" stroke="#333" strokeWidth="2" />
+    <path d="M72 70L42 34H36V66H41V42.5L68 73.5C70 72.3 71 71.2 72 70Z" fill="white" />
+    <rect x="58" y="34" width="5" height="32" fill="white" />
+  </svg>
+);
+
+const TypeScriptIcon = () => (
+  <svg className="w-8 h-8 rounded-lg overflow-hidden" viewBox="0 0 100 100" fill="none">
+    <rect width="100" height="100" fill="#3178C6" />
+    <text x="90" y="85" fill="white" fontSize="42" fontWeight="bold" fontFamily="sans-serif" textAnchor="end">TS</text>
+  </svg>
+);
+
+const TailwindIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M26 50C26 38 35.5 32.5 44.5 32.5C56.5 32.5 59.5 41.5 68.5 41.5C74.5 41.5 80 37 80 32.5C80 44.5 70.5 50 61.5 50C49.5 50 46.5 41 37.5 41C31.5 41 26 45.5 26 50Z" fill="#38BDF8" />
+    <path d="M14 62.5C14 50.5 23.5 45 32.5 45C44.5 45 47.5 54 56.5 54C62.5 54 68 49.5 68 45C68 57 58.5 62.5 49.5 62.5C37.5 62.5 34.5 53.5 25.5 53.5C19.5 53.5 14 58 14 62.5Z" fill="#06B6D4" />
+  </svg>
+);
+
+const NodejsIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M48 22.5L25 35.5V62L48 75L71 62V35.5L48 22.5Z" stroke="#339933" strokeWidth="4" strokeLinejoin="round" />
+    <path d="M48 22.5L25 35.5V62L48 75V22.5Z" fill="#339933" opacity="0.1" />
+    <path d="M48 40V65" stroke="#339933" strokeWidth="5" strokeLinecap="round" />
+    <circle cx="48" cy="32" r="3" fill="#339933" />
+  </svg>
+);
+
+const PythonIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M50 12C38 12 37 17 37 23.5V31.5H50V33.5H30.5C23.5 33.5 19 37.5 19 49C19 60.5 23.5 64.5 30.5 64.5H35.5V58.5C35.5 50.5 41.5 44.5 49.5 44.5H62.5V36.5C62.5 24.5 58.5 12 50 12Z" fill="#3776AB" />
+    <path d="M50 88C62 88 63 83 63 76.5V68.5H50V66.5H69.5C76.5 66.5 81 62.5 81 51C81 39.5 76.5 35.5 69.5 35.5H64.5V41.5C64.5 49.5 58.5 55.5 50.5 55.5H37.5V63.5C37.5 75.5 41.5 88 50 88Z" fill="#FFE052" />
+    <circle cx="44" cy="21" r="2.5" fill="white" />
+    <circle cx="56" cy="79" r="2.5" fill="black" />
+  </svg>
+);
+
+const DjangoIcon = () => (
+  <svg className="w-8 h-8 rounded-lg overflow-hidden" viewBox="0 0 100 100" fill="none">
+    <rect width="100" height="100" fill="#092E20" />
+    <text x="50" y="65" fill="#0FEE90" fontSize="56" fontWeight="bold" fontFamily="serif" textAnchor="middle">d</text>
+  </svg>
+);
+
+const FastApiIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="44" stroke="#009688" strokeWidth="4" />
+    <path d="M52 24L32 50H48L44 76L68 44H50L52 24Z" fill="#009688" />
+  </svg>
+);
+
+const ExpressIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="44" fill="#353535" />
+    <text x="50" y="58" fill="white" fontSize="28" fontWeight="bold" fontFamily="monospace" textAnchor="middle">Ex</text>
+  </svg>
+);
+
+const FlutterIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M55 18L73 36L46 63L28 45L55 18Z" fill="#02569B" />
+    <path d="M46 63L64 81L46 99L28 81L46 63Z" fill="#0175C2" />
+    <path d="M46 63L64 45L73 54L55 72L46 63Z" fill="#13B9FD" />
+  </svg>
+);
+
+const ReactNativeIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="6" fill="#00D8FF" />
+    <ellipse cx="50" cy="50" rx="38" ry="12" stroke="#00D8FF" strokeWidth="3.5" transform="rotate(30 50 50)" />
+    <ellipse cx="50" cy="50" rx="38" ry="12" stroke="#00D8FF" strokeWidth="3.5" transform="rotate(90 50 50)" />
+    <ellipse cx="50" cy="50" rx="38" ry="12" stroke="#00D8FF" strokeWidth="3.5" transform="rotate(150 50 50)" />
+  </svg>
+);
+
+const FirebaseIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M22 75L50 20L60 40L22 75Z" fill="#FFC229" />
+    <path d="M78 75L50 20L58 36L78 75Z" fill="#FFA000" />
+    <path d="M22 75L50 88L78 75L60 40L50 50L22 75Z" fill="#F44336" />
+  </svg>
+);
+
+const OpenAiIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M50 28C44 28 39 31 36 36C33 33 28 32 24 35C20 38 19 44 22 48C18 51 17 57 20 61C23 65 29 66 33 63C36 67 41 69 46 67C49 71 55 72 59 69C63 66 64 60 61 56C65 53 66 47 63 43C60 39 54 38 50 41C47 37 42 35 37 37" stroke="#10A37F" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="50" cy="50" r="4" fill="#10A37F" />
+  </svg>
+);
+
+const LangChainIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <rect x="25" y="35" width="30" height="30" rx="8" stroke="#38BDF8" strokeWidth="5" transform="rotate(-15 40 50)" />
+    <rect x="45" y="35" width="30" height="30" rx="8" stroke="#10A37F" strokeWidth="5" transform="rotate(15 60 50)" />
+  </svg>
+);
+
+const PostgreSQLIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M50 16C31.5 16 22 28.5 22 43.5C22 56 31 66.5 41 71.5L34 82H45L51 72.5C59.5 73.5 68 70 73 62C78 54 78 41 78 32.5C78 24 71.5 16 50 16Z" stroke="#336791" strokeWidth="4.5" strokeLinejoin="round" />
+    <path d="M38 34C35 34 32 37 32 41C32 45 35 48 38 48" stroke="#336791" strokeWidth="4" />
+  </svg>
+);
+
+const MongodbIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M50 12C50 12 32 32 32 54C32 68 41 76 50 88C50 88 50 82 50 78" stroke="#47A248" strokeWidth="4.5" strokeLinecap="round" />
+    <path d="M50 12C50 12 68 32 68 54C68 68 59 76 50 88" stroke="#47A248" strokeWidth="4.5" strokeLinecap="round" />
+    <path d="M50 28V68" stroke="#3F3F3F" strokeWidth="4" />
+  </svg>
+);
+
+const AwsIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M22 62C27 68 37 72 50 72C63 72 73 68 78 62" stroke="#FF9900" strokeWidth="5.5" strokeLinecap="round" />
+    <path d="M74 61L81 67L79 56L74 61Z" fill="#FF9900" />
+    <text x="50" y="50" fill="white" fontSize="26" fontWeight="extrabold" fontFamily="sans-serif" textAnchor="middle">AWS</text>
+  </svg>
+);
+
+const DockerIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <rect x="22" y="44" width="12" height="12" rx="2" fill="#2496ED" />
+    <rect x="38" y="44" width="12" height="12" rx="2" fill="#2496ED" />
+    <rect x="54" y="44" width="12" height="12" rx="2" fill="#2496ED" />
+    <rect x="38" y="28" width="12" height="12" rx="2" fill="#2496ED" />
+    <path d="M14 62C24 62 26 52 48 52C70 52 72 62 86 62C86 72 74 78 50 78C26 78 14 72 14 62Z" fill="#2496ED" />
+  </svg>
+);
+
+const RedisIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M18 30L50 16L82 30L50 44L18 30Z" fill="#DC382D" stroke="#A81C14" strokeWidth="2" />
+    <path d="M18 48L50 34L82 48L50 62L18 48Z" fill="#DC382D" stroke="#A81C14" strokeWidth="2" />
+    <path d="M18 66L50 52L82 66L50 80L18 66Z" fill="#DC382D" stroke="#A81C14" strokeWidth="2" />
+  </svg>
+);
+
+export default function TechStack() {
+  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+
+  // Ecosystem nodes layout data (angles in radians, radii)
+  const nodes = [
+    { name: "React", icon: <ReactIcon />, angle: 0, color: "#61DAFB", desc: "Interactive Frontend Framework" },
+    { name: "Node.js", icon: <NodejsIcon />, angle: (2 * Math.PI) / 11, color: "#339933", desc: "Scalable Event-Driven APIs" },
+    { name: "Python", icon: <PythonIcon />, angle: (4 * Math.PI) / 11, color: "#3776AB", desc: "Data Operations & AI Scripting" },
+    { name: "Django", icon: <DjangoIcon />, angle: (6 * Math.PI) / 11, color: "#092E20", desc: "Rapid Secure Backend Admin" },
+    { name: "FastAPI", icon: <FastApiIcon />, angle: (8 * Math.PI) / 11, color: "#009688", desc: "Ultra-fast Modern Python APIs" },
+    { name: "Flutter", icon: <FlutterIcon />, angle: (10 * Math.PI) / 11, color: "#02569B", desc: "Cross-platform Mobile UI Engine" },
+    { name: "PostgreSQL", icon: <PostgreSQLIcon />, angle: (12 * Math.PI) / 11, color: "#336791", desc: "Robust Relational ACID Storage" },
+    { name: "MongoDB", icon: <MongodbIcon />, angle: (14 * Math.PI) / 11, color: "#47A248", desc: "Flexible Dynamic Document Store" },
+    { name: "Docker", icon: <DockerIcon />, angle: (16 * Math.PI) / 11, color: "#2496ED", desc: "Immutable Isolated Containers" },
+    { name: "AWS", icon: <AwsIcon />, angle: (18 * Math.PI) / 11, color: "#FF9900", desc: "Resilient Global Cloud Hosting" },
+    { name: "OpenAI", icon: <OpenAiIcon />, angle: (20 * Math.PI) / 11, color: "#10A37F", desc: "Advanced LLM Integration Hub" }
+  ];
+
+  return (
+    <div className="bg-[#FAF7FF] min-h-screen text-[#475569] font-body overflow-x-hidden relative">
+      {/* Background radial soft shapes */}
+      <div className="absolute top-0 right-0 w-[50%] aspect-square bg-[radial-gradient(circle_at_center,rgba(123,47,247,0.03)_0%,transparent_65%)] pointer-events-none z-0" />
+      <div className="absolute top-[20%] left-0 w-[45%] aspect-square bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.02)_0%,transparent_65%)] pointer-events-none z-0" />
+
+      {/* HERO SECTION */}
+      <section className="relative pt-32 pb-24 overflow-hidden bg-[#FAF7FF]">
+        {/* Animated Particles background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          {[...Array(15)].map((_, i) => {
+            const rand1 = ((i * 17) % 100) / 100;
+            const rand2 = ((i * 23) % 100) / 100;
+            const rand3 = ((i * 29) % 100) / 100;
+            const rand4 = ((i * 31) % 100) / 100;
+            const rand5 = ((i * 41) % 100) / 100;
+            return (
+            <motion.div
+              key={i}
+              className="absolute w-2.5 h-2.5 rounded-full"
+              style={{
+                backgroundColor: i % 2 === 0 ? "#7B2FF7" : "#9333EA",
+                opacity: 0.15,
+                left: `${rand1 * 100}%`,
+                top: `${rand2 * 100}%`
+              }}
+              animate={{
+                y: [0, -120, 0],
+                x: [0, rand3 * 60 - 30, 0],
+                scale: [0.8, 1.2, 0.8]
+              }}
+              transition={{
+                duration: 6 + rand4 * 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: rand5 * 4
+              }}
+            />
+          )})}
+        </div>
+
+        <div className="container relative z-10 max-w-[1300px] mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-6">
+              Our Capabilities
+            </span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-[#0F172A] tracking-tight leading-tight mb-6 max-w-4xl mx-auto">
+              Our Technology Stack
+            </h1>
+            <p className="text-lg leading-relaxed text-[#475569] max-w-2xl mx-auto mb-8">
+              We leverage modern technologies, cloud infrastructure, and AI-powered solutions to build scalable, secure, and beautiful digital products.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* SECTION 1: TECHNOLOGY ECOSYSTEM NETWORK */}
+      <section className="py-24 bg-white relative">
+        <div className="container max-w-[1200px] mx-auto px-6 relative z-10">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+              Ecosystem Hub
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
+              Interactive Synergy Network
+            </h2>
+            <p className="text-[#475569] text-base">
+              Hover over the technology nodes to see how they connect to ViyanInfo.
+            </p>
+          </div>
+
+          {/* Interactive Network Diagram */}
+          <div className="relative w-full aspect-square max-w-[650px] mx-auto flex items-center justify-center select-none">
+            {/* SVG Connecting Lines with dashes flowing to center */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 600 600">
+              <defs>
+                <radialGradient id="g-glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#7B2FF7" stopOpacity="0.1" />
+                  <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <circle cx="300" cy="300" r="280" fill="url(#g-glow)" />
+              {nodes.map((node, i) => {
+                const x = 300 + 220 * Math.cos(node.angle);
+                const y = 300 + 220 * Math.sin(node.angle);
+                const isHovered = hoveredNode === node.name;
+                return (
+                  <g key={i}>
+                    {/* Connection line */}
+                    <motion.line
+                      x1="300"
+                      y1="300"
+                      x2={x}
+                      y2={y}
+                      stroke={isHovered ? node.color : "rgba(147, 51, 234, 0.15)"}
+                      strokeWidth={isHovered ? "3.5" : "2"}
+                      strokeDasharray="6, 6"
+                      animate={isHovered ? { strokeDashoffset: [0, -36] } : { strokeDashoffset: [0, -20] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    />
+                    {/* Flow particle */}
+                    <motion.circle
+                      r="4"
+                      fill={node.color}
+                      animate={{
+                        cx: [x, 300],
+                        cy: [y, 300],
+                        opacity: [0, 1, 0]
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeOut",
+                        delay: i * 0.25
+                      }}
+                    />
+                  </g>
+                );
+              })}
+            </svg>
+
+            {/* Central VIYANINFO Node */}
+            <motion.div
+              animate={{ scale: [0.97, 1.03, 0.97] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute w-32 h-32 rounded-full bg-gradient-to-tr from-[#7B2FF7] to-[#9333EA] flex flex-col items-center justify-center text-white z-20 shadow-xl border border-white/20"
+            >
+              <div className="absolute inset-0 rounded-full bg-[#7B2FF7]/20 animate-ping pointer-events-none" />
+              <span className="text-sm font-display font-black tracking-widest uppercase">VIYAN</span>
+              <span className="text-[10px] font-mono tracking-widest text-purple-200">SYSTEMS</span>
+            </motion.div>
+
+            {/* Orbiting Tech Nodes */}
+            {nodes.map((node, i) => {
+              const x = 300 + 220 * Math.cos(node.angle);
+              const y = 300 + 220 * Math.sin(node.angle);
+              const isHovered = hoveredNode === node.name;
+
+              return (
+                <div
+                  key={i}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 z-10"
+                  style={{ left: `${(x / 600) * 100}%`, top: `${(y / 600) * 100}%` }}
+                >
+                  <motion.div
+                    onMouseEnter={() => setHoveredNode(node.name)}
+                    onMouseLeave={() => setHoveredNode(null)}
+                    whileHover={{ scale: 1.15 }}
+                    animate={{
+                      y: [0, Math.sin(i * 45) * 6, 0],
+                      x: [0, Math.cos(i * 45) * 6, 0]
+                    }}
+                    transition={{
+                      duration: 4 + (i % 3),
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className={`w-16 h-16 rounded-2xl bg-white shadow-md border flex items-center justify-center cursor-pointer transition-all duration-300 relative ${
+                      isHovered ? "shadow-lg" : "border-slate-200"
+                    }`}
+                    style={{
+                      boxShadow: isHovered ? `0 10px 25px -5px ${node.color}25, 0 0 15px ${node.color}15` : "0 4px 6px -1px rgb(0 0 0 / 0.05)",
+                      borderColor: isHovered ? node.color : "rgb(226, 232, 240)"
+                    }}
+                  >
+                    {node.icon}
+
+                    {/* Tooltip Hover Overlay */}
+                    <AnimatePresence>
+                      {isHovered && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute bottom-20 w-44 bg-slate-900 border border-slate-800 text-white rounded-xl p-3 shadow-xl pointer-events-none z-30 leading-tight"
+                        >
+                          <span className="block text-xs font-extrabold" style={{ color: node.color }}>
+                            {node.name}
+                          </span>
+                          <span className="text-[10px] text-slate-400 mt-1 block">
+                            {node.desc}
+                          </span>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* SECTION 2: FRONTEND TECHNOLOGIES */}
+      <section className="py-24 bg-[#FAF7FF] relative">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[#06B6D4] text-xs font-semibold uppercase tracking-wider mb-4">
+              User Interfaces
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
+              Frontend Development Stack
+            </h2>
+            <p className="text-base text-[#475569]">
+              We configure responsive, accessible, and fast web layers mapping to premium interface criteria.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                name: "React",
+                icon: <ReactIcon />,
+                color: "#61DAFB",
+                bg: "bg-[#61DAFB]/5 border-[#61DAFB]/20",
+                level: "Expertise: Principal",
+                usage: "ViyanInfo ERP Platform, Client Portal UIs",
+                desc: "High-performance SPA library utilizing component hierarchies, custom hook pipelines, and virtual state bindings."
+              },
+              {
+                name: "Next.js",
+                icon: <NextjsIcon />,
+                color: "#000000",
+                bg: "bg-black/5 border-black/10",
+                level: "Expertise: Architect",
+                usage: "Public Landing Pages, SEO Blogs",
+                desc: "Server-side rendering, static generation, React Server Components (RSC), and edge-routing file structures."
+              },
+              {
+                name: "TypeScript",
+                icon: <TypeScriptIcon />,
+                color: "#3178C6",
+                bg: "bg-[#3178C6]/5 border-[#3178C6]/20",
+                level: "Expertise: Strict Standard",
+                usage: "All In-House Modules",
+                desc: "Static type-safety audits, strict null checks, generic interface systems, and type declarations."
+              },
+              {
+                name: "Tailwind CSS",
+                icon: <TailwindIcon />,
+                color: "#06B6D4",
+                bg: "bg-[#06B6D4]/5 border-[#06B6D4]/20",
+                level: "Expertise: Expert Utility",
+                usage: "Component Libraries, Design Tokens",
+                desc: "CSS-first utility compiling, responsive grid columns, design token variables, and lightweight production bundles."
+              }
+            ].map((tech, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ y: -8 }}
+                className={`p-8 rounded-3xl border bg-white shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between`}
+              >
+                <div>
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border ${tech.bg}`}>
+                    {tech.icon}
+                  </div>
+                  <h3 className="text-xl font-display font-bold text-[#0F172A] mb-3">{tech.name}</h3>
+                  <p className="text-xs text-slate-500 mb-4 leading-relaxed">{tech.desc}</p>
+                </div>
+                <div className="border-t border-slate-100 pt-4 mt-4 text-[10px] font-mono">
+                  <div className="flex justify-between mb-1">
+                    <span className="text-slate-400">Level:</span>
+                    <span className="font-extrabold text-[#7B2FF7]">{tech.level}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-400">Usage:</span>
+                    <span className="text-slate-700 text-right truncate max-w-[120px]">{tech.usage}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* SECTION 3: BACKEND TECHNOLOGIES */}
+      <section className="py-24 bg-white relative">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Left Column content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5 text-left"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[#10B981] text-xs font-semibold uppercase tracking-wider mb-4">
+                Core Engines
+              </span>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] mb-6 tracking-tight">
+                Backend Infrastructure
+              </h2>
+              <p className="text-[#475569] leading-relaxed mb-6">
+                Our servers are configured for zero-downtime scalability, using light event loops, clean database queries, and modular API structures.
+              </p>
+              <div className="space-y-4">
+                <div className="flex gap-3 items-start">
+                  <div className="p-1 bg-[#339933]/10 text-[#339933] rounded">
+                    <Zap className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-sm font-bold text-slate-800">API Speed Latency</span>
+                    <span className="text-xs text-slate-500">Fast database query execution with Redis data caches.</span>
+                  </div>
+                </div>
+                <div className="flex gap-3 items-start">
+                  <div className="p-1 bg-[#3776AB]/10 text-[#3776AB] rounded">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-sm font-bold text-slate-800">Strict Auth Rules</span>
+                    <span className="text-xs text-slate-500">JWT security keys and scoped RBAC verification protocols.</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column grid cards */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { name: "Node.js", icon: <NodejsIcon />, color: "#339933", desc: "Non-blocking event loop framework compiling scalable web network servers." },
+                { name: "Python", icon: <PythonIcon />, color: "#3776AB", desc: "Flexible processing script engine handling calculations and data pipelines." },
+                { name: "Django", icon: <DjangoIcon />, color: "#092E20", desc: "MVT clean framework configured with an integrated SQL administration panel." },
+                { name: "FastAPI", icon: <FastApiIcon />, color: "#009688", desc: "Teal lighting-fast Python REST router generating auto OpenAPI docs." },
+                { name: "Express", icon: <ExpressIcon />, color: "#353535", desc: "Minimalist and flexible Node.js web application framework for robust APIs." }
+              ].map((tech, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex gap-4 items-start text-left"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                    {tech.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-display font-extrabold text-[#0F172A] text-lg mb-1">{tech.name}</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">{tech.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* SECTION 4: MOBILE DEVELOPMENT */}
+      <section className="py-24 bg-[#FAF7FF] relative">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Left Column: Visual Mockup */}
+            <div className="lg:col-span-6 flex justify-center order-2 lg:order-1 relative">
+              {/* Floating ambient elements */}
+              <div className="absolute w-60 h-60 bg-[#02569B]/10 rounded-full blur-2xl top-[-20px] left-[-20px] pointer-events-none" />
+              <div className="absolute w-44 h-44 bg-[#00D8FF]/10 rounded-full blur-xl bottom-[-10px] right-[-10px] pointer-events-none" />
+
+              {/* High Fidelity Phone Vector Screen */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative w-[280px] h-[550px] bg-slate-900 rounded-[40px] p-3 shadow-2xl border-4 border-slate-800"
+              >
+                {/* Speaker/Camera notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-xl z-20 flex items-center justify-center">
+                  <div className="w-12 h-1 bg-slate-800 rounded-full mb-1" />
+                </div>
+
+                {/* Inner Screen */}
+                <div className="w-full h-full bg-[#FAF7FF] rounded-[32px] overflow-hidden p-4 relative flex flex-col justify-between pt-8">
+                  {/* Dashboard header mock */}
+                  <div>
+                    <div className="flex justify-between items-center mb-6">
+                      <div>
+                        <span className="block text-[8px] font-mono text-slate-400">Welcome Back</span>
+                        <span className="text-xs font-bold text-slate-800">Flutter App</span>
+                      </div>
+                      <div className="w-6 h-6 rounded-full bg-[#02569B] text-white text-[8px] font-bold flex items-center justify-center">V</div>
+                    </div>
+
+                    {/* Chart visual mock */}
+                    <div className="bg-white rounded-xl p-3 shadow-3xs border border-slate-100 mb-4">
+                      <div className="flex justify-between mb-2">
+                        <span className="text-[7px] text-slate-400">Weekly Health</span>
+                        <span className="text-[8px] font-bold text-[#02569B]">+12.4%</span>
+                      </div>
+                      <div className="h-12 w-full flex items-end gap-1 pb-1">
+                        {[40, 60, 30, 80, 50, 90, 70].map((h, i) => (
+                          <div
+                            key={i}
+                            className="bg-[#02569B] rounded-xs flex-1"
+                            style={{ height: `${h}%`, opacity: 0.3 + (h / 100) * 0.7 }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Feature badges list */}
+                    <div className="space-y-2">
+                      <div className="bg-white rounded-lg p-2.5 border border-slate-100 flex justify-between items-center">
+                        <span className="text-[8px] font-extrabold text-slate-700">Database Sync</span>
+                        <span className="text-[7px] bg-[#FFC229]/20 text-[#FFA000] px-1.5 py-0.5 rounded font-mono font-bold">Firebase</span>
+                      </div>
+                      <div className="bg-white rounded-lg p-2.5 border border-slate-100 flex justify-between items-center">
+                        <span className="text-[8px] font-extrabold text-slate-700">Native Speed</span>
+                        <span className="text-[7px] bg-[#00D8FF]/20 text-[#00D8FF] px-1.5 py-0.5 rounded font-mono font-bold">C++ Native</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Navigation bar mock */}
+                  <div className="bg-white rounded-full p-2 border border-slate-100 flex justify-around items-center">
+                    <div className="w-5 h-5 rounded-full bg-[#02569B]/10 flex items-center justify-center text-[#02569B]">
+                      <Code2 className="w-3 h-3" />
+                    </div>
+                    <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                      <Cpu className="w-3 h-3" />
+                    </div>
+                    <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                      <Database className="w-3 h-3" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Column: Text and Cards */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-6 text-left order-1 lg:order-2"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-[#3B82F6] text-xs font-semibold uppercase tracking-wider mb-4">
+                Mobile Platforms
+              </span>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] mb-6 tracking-tight">
+                Native & Cross-Platform Engines
+              </h2>
+              <p className="text-[#475569] leading-relaxed mb-10">
+                We engineer mobile applications that feel fluid, responsive, and compile directly to ARM assembly layers.
+              </p>
+
+              <div className="space-y-6">
+                {[
+                  { name: "Flutter", icon: <FlutterIcon />, color: "#02569B", label: "Dart Compiled Core", desc: "Fluid rendering engine delivering 120Hz interface redraws." },
+                  { name: "React Native", icon: <ReactNativeIcon />, color: "#00D8FF", label: "Bridge Native Modules", desc: "Cross-platform execution leveraging existing React logic pipelines." },
+                  { name: "Firebase", icon: <FirebaseIcon />, color: "#FFC229", label: "NoSQL DB / Cloud Functions", desc: "Real-time key-value database sync, secure serverless auth." }
+                ].map((tech, idx) => (
+                  <div key={idx} className="flex gap-4 items-start p-5 rounded-2xl bg-white border border-slate-200/60 shadow-2xs">
+                    <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                      {tech.icon}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-display font-extrabold text-[#0F172A]">{tech.name}</span>
+                        <span className="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 uppercase">{tech.label}</span>
+                      </div>
+                      <p className="text-xs text-slate-500">{tech.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* SECTION 5: AI & AUTOMATION */}
+      <section className="py-24 bg-white relative">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20 text-[#EC4899] text-xs font-semibold uppercase tracking-wider mb-4">
+              Intelligence Layers
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
+              AI & Workflow Automation
+            </h2>
+            <p className="text-base text-[#475569]">
+              We build custom intelligence modules, utilizing large language models and vector data databases.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            {[
+              { name: "OpenAI", icon: <OpenAiIcon />, color: "#10A37F", badge: "GPT-4o / Embeddings", desc: "Contextual processing engines, custom fine-tunes." },
+              { name: "LangChain", icon: <LangChainIcon />, color: "#10A37F", badge: "LLM Orchestrator", desc: "Agentic toolchains, sequence maps, and memory variables." },
+              { name: "RAG Systems", icon: <Cpu className="w-8 h-8 text-pink-500" />, color: "#EC4899", badge: "Retrieval Augmented", desc: "Semantic context injection directly matching internal document vaults." },
+              { name: "Vector Databases", icon: <Database className="w-8 h-8 text-cyan-500" />, color: "#06B6D4", badge: "Qdrant / Pinecone", desc: "Fast cosine distance search on high-dimension coordinate embeddings." },
+              { name: "AI Automation", icon: <Sparkles className="w-8 h-8 text-amber-500" />, color: "#F59E0B", badge: "Workflow Pipelines", desc: "Autonomous cron scheduling agentic chains mapping to webhooks." }
+            ].map((tech, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="p-6 rounded-2xl bg-[#FAF7FF] border border-slate-200/80 shadow-3xs hover:shadow-2xs transition-shadow text-left flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-white border border-slate-100 flex items-center justify-center mb-6 shadow-3xs">
+                    {tech.icon}
+                  </div>
+                  <h4 className="font-display font-extrabold text-[#0F172A] mb-1">{tech.name}</h4>
+                  <span className="text-[8px] font-mono font-black text-pink-600 block mb-3 uppercase tracking-wider">{tech.badge}</span>
+                  <p className="text-xs text-slate-500 leading-relaxed">{tech.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* SECTION 6: DATABASE & CLOUD ARCHITECTURE */}
+      <section className="py-24 bg-[#FAF7FF] relative">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Left: Text */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5 text-left"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-[#FF9900] text-xs font-semibold uppercase tracking-wider mb-4">
+                Cloud Architectures
+              </span>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] mb-6 tracking-tight">
+                Databases & Cloud Hosting
+              </h2>
+              <p className="text-[#475569] leading-relaxed mb-8">
+                We engineer scalable cloud architecture paths, running data pipelines, container pods, and distributed databases safely.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-4 rounded-xl bg-white border border-slate-200 text-left">
+                  <span className="block text-[8px] font-mono text-slate-400 uppercase">Load Balancers</span>
+                  <span className="text-base font-extrabold text-slate-800">AWS ALB</span>
+                </div>
+                <div className="p-4 rounded-xl bg-white border border-slate-200 text-left">
+                  <span className="block text-[8px] font-mono text-slate-400 uppercase">Deployment</span>
+                  <span className="text-base font-extrabold text-slate-800">Docker Compose</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right: Architecture visualization diagram */}
+            <div className="lg:col-span-7 flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="w-full bg-white border border-slate-200/80 rounded-3xl p-8 shadow-sm relative overflow-hidden"
+              >
+                {/* SVG Visual Flow Schematic */}
+                <div className="relative h-64 w-full flex items-center justify-center">
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 500 240">
+                    {/* Flows paths */}
+                    <path d="M 50,120 L 150,120 M 230,120 L 330,80 M 230,120 L 330,160 M 390,80 L 450,120 M 390,160 L 450,120" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4,4" />
+                    
+                    {/* Dynamic flow particles */}
+                    <motion.circle r="3" fill="#FF9900" animate={{ cx: [50, 150], cy: [120, 120] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} />
+                    <motion.circle r="3" fill="#2496ED" animate={{ cx: [230, 330], cy: [120, 80] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 0.5 }} />
+                    <motion.circle r="3" fill="#336791" animate={{ cx: [230, 330], cy: [120, 160] }} transition={{ duration: 2.8, repeat: Infinity, ease: "linear", delay: 1 }} />
+                  </svg>
+
+                  {/* Node 1: Client Request */}
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 shadow-3xs">
+                      <Terminal className="w-5 h-5" />
+                    </div>
+                    <span className="text-[8px] font-mono mt-1 text-slate-400">Client UI</span>
+                  </div>
+
+                  {/* Node 2: Load Balancer (Docker Pod) */}
+                  <div className="absolute left-[150px] top-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div className="w-14 h-14 rounded-2xl bg-[#2496ED]/5 border border-[#2496ED]/30 flex items-center justify-center text-[#2496ED] shadow-2xs">
+                      <DockerIcon />
+                    </div>
+                    <span className="text-[8px] font-mono mt-1 text-[#2496ED] font-extrabold">Docker Container</span>
+                  </div>
+
+                  {/* Node 3: PostgreSQL Database */}
+                  <div className="absolute right-[130px] top-4 flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-xl bg-[#336791]/5 border border-[#336791]/20 flex items-center justify-center text-[#336791] shadow-3xs">
+                      <PostgreSQLIcon />
+                    </div>
+                    <span className="text-[8px] font-mono mt-1 text-slate-500">Postgres Relational</span>
+                  </div>
+
+                  {/* Node 4: Redis Cache */}
+                  <div className="absolute right-[130px] bottom-4 flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-xl bg-[#DC382D]/5 border border-[#DC382D]/20 flex items-center justify-center text-[#DC382D] shadow-3xs">
+                      <RedisIcon />
+                    </div>
+                    <span className="text-[8px] font-mono mt-1 text-slate-500">Redis Cache Memory</span>
+                  </div>
+
+                  {/* Node 5: AWS Cloud Hosting */}
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div className="w-14 h-14 rounded-2xl bg-[#FF9900]/5 border border-[#FF9900]/30 flex items-center justify-center text-[#FF9900] shadow-2xs">
+                      <AwsIcon />
+                    </div>
+                    <span className="text-[8px] font-mono mt-1 text-[#FF9900] font-extrabold">AWS Virtual Node</span>
+                  </div>
+                </div>
+
+                {/* Subtext info */}
+                <div className="flex justify-around items-center border-t border-slate-100 pt-6 mt-4">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#47A248]" />
+                    <span className="text-[9px] font-mono font-bold text-slate-500">MongoDB Clusters</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#FF9900]" />
+                    <span className="text-[9px] font-mono font-bold text-slate-500">AWS VPC Security</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* SECTION 7: DEVELOPMENT PROCESS ROADMAP */}
+      <section className="py-24 bg-white relative">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-20">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+              Sprint Roadmap
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
+              Our Development Lifecycle
+            </h2>
+            <p className="text-base text-[#475569]">
+              How we translate code designs into production-ready software solutions.
+            </p>
+          </div>
+
+          {/* Horizontal Roadmap Timeline */}
+          <div className="relative w-full overflow-x-auto pt-4 pb-12 select-none min-w-[700px]">
+            {/* Connecting progress line */}
+            <div className="absolute top-14 left-12 right-12 h-1 bg-slate-100 z-0">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.8, ease: "easeInOut" }}
+                className="h-full bg-gradient-to-r from-[#7B2FF7] via-[#3B82F6] to-[#06B6D4]"
+              />
+            </div>
+
+            {/* Steps Row */}
+            <div className="relative z-10 grid grid-cols-6 gap-4">
+              {[
+                { name: "Discovery", color: "#7B2FF7", icon: <Eye className="w-5 h-5" />, desc: "Understand goals, requirements, user needs, and scoping parameters." },
+                { name: "Design", color: "#9333EA", icon: <Layers className="w-5 h-5" />, desc: "Mockups, interactive visual flows, prototyping, and layout systems." },
+                { name: "Development", color: "#3B82F6", icon: <Code2 className="w-5 h-5" />, desc: "Compile clean database queries, build responsive pages, and set up routing." },
+                { name: "Testing", color: "#06B6D4", icon: <CheckCircle2 className="w-5 h-5" />, desc: "Deploy unit testing logic, automated UI tests, and load audits." },
+                { name: "Deployment", color: "#10B981", icon: <Cloud className="w-5 h-5" />, desc: "Spin up isolated Docker containers on AWS servers securely." },
+                { name: "Monitoring", color: "#F59E0B", icon: <LineChart className="w-5 h-5" />, desc: "Track error instances, memory logs, and sync status hooks." }
+              ].map((step, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.15 }}
+                  className="flex flex-col items-center text-center px-3"
+                >
+                  {/* Container for step bubble and index label */}
+                  <div className="relative">
+                    {/* Step bubble */}
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      className="w-12 h-12 rounded-full bg-white border-2 flex items-center justify-center shadow-sm relative z-10 cursor-pointer"
+                      style={{
+                        borderColor: step.color,
+                        color: step.color
+                      }}
+                    >
+                      {step.icon}
+                    </motion.div>
+                    
+                    {/* Index label */}
+                    <span className="absolute -top-1.5 -right-1.5 text-[8px] font-mono font-extrabold text-white bg-slate-900 w-5 h-5 rounded-full flex items-center justify-center shadow-3xs z-20 pointer-events-none">
+                      {idx + 1}
+                    </span>
+                  </div>
+
+                  {/* Title & Desc */}
+                  <h4 className="font-display font-extrabold text-[#0F172A] text-sm mt-4 mb-2">{step.name}</h4>
+                  <p className="text-[10px] text-slate-500 leading-normal max-w-[140px] mx-auto">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* SECTION 8: WHY OUR STACK (BENTO GRID) */}
+      <section className="py-24 bg-[#FAF7FF] relative">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+              Benefits
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
+              Why Our Technology Stack?
+            </h2>
+            <p className="text-base text-[#475569]">
+              We curate tools engineered for execution speed, scale bounds, and security parameters.
+            </p>
+          </div>
+
+          {/* Bento grid layout */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 max-w-5xl mx-auto">
+            {/* Bento Card 1: Performance (Col span 7) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-2xs md:col-span-7 text-left flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-6">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">Performance Absolute</h3>
+                <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                  We build with light frameworks, compiled architectures, and asset compressions. Your page loading speeds remain under 15ms.
+                </p>
+              </div>
+              <div className="text-[9px] font-mono text-blue-600 font-extrabold uppercase bg-blue-500/5 p-3 rounded-xl border border-blue-500/10">
+                Performance Target: 99+ PageSpeed Score
+              </div>
+            </motion.div>
+
+            {/* Bento Card 2: Scalability (Col span 5) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-2xs md:col-span-5 text-left flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-purple-500/10 text-[#7B2FF7] flex items-center justify-center mb-6">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">Scale Bounds</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  Distributed cluster containers balancing request loads dynamically to prevent outages under heavy usage.
+                </p>
+              </div>
+              <div className="text-[9px] font-mono text-[#7B2FF7] font-extrabold uppercase bg-purple-500/5 p-3 rounded-xl border border-purple-500/10 mt-6">
+                Elastic Scaling Enabled
+              </div>
+            </motion.div>
+
+            {/* Bento Card 3: Security (Col span 5) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-2xs md:col-span-5 text-left flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-6">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">Vulnerability Auditing</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  Continuous security scans, SSL protection keys, JWT auth headers, and strict database query controls.
+                </p>
+              </div>
+              <div className="text-[9px] font-mono text-emerald-600 font-extrabold uppercase bg-emerald-500/5 p-3 rounded-xl border border-emerald-500/10 mt-6">
+                ISO Compliance Standardized
+              </div>
+            </motion.div>
+
+            {/* Bento Card 4: Innovation (Col span 7) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-2xs md:col-span-7 text-left flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-500 flex items-center justify-center mb-6">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">AI Powered Innovation</h3>
+                <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                  We integrate semantic vector indexing databases and LLM model prompts directly into core backend software.
+                </p>
+              </div>
+              <div className="text-[9px] font-mono text-orange-500 font-extrabold uppercase bg-orange-500/5 p-3 rounded-xl border border-orange-500/10">
+                Cognitive Agents Support
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* CTA SECTION */}
+      <section className="py-24 bg-[#FAF7FF] relative">
+        <div className="container max-w-[1000px] mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="p-8 md:p-12 rounded-3xl bg-gradient-to-tr from-[#7B2FF7] to-[#9333EA] text-center text-white relative overflow-hidden shadow-xl"
+          >
+            {/* Ambient background particles */}
+            <div className="absolute inset-0 pointer-events-none opacity-20">
+              <div className="absolute w-80 h-80 bg-white rounded-full blur-3xl top-[-100px] left-[-100px]" />
+              <div className="absolute w-80 h-80 bg-white rounded-full blur-3xl bottom-[-100px] right-[-100px]" />
+            </div>
+
+            <span className="relative z-10 inline-block px-3 py-1 rounded-full bg-white/20 border border-white/30 text-xs font-mono font-extrabold tracking-wider uppercase mb-6">
+              Connect With Us
+            </span>
+            <h2 className="relative z-10 text-4xl sm:text-5xl font-display font-black tracking-tight mb-4">
+              Build With Modern Technology
+            </h2>
+            <p className="relative z-10 text-lg text-purple-100 max-w-xl mx-auto mb-10">
+              Let's create scalable, secure software powered by the latest technologies.
+            </p>
+
+            <div className="relative z-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="/contact"
+                className="w-full sm:w-auto px-8 py-4 bg-white text-[#7B2FF7] font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-md hover:bg-slate-50 transition-colors flex items-center justify-center gap-2"
+              >
+                Start Project <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="/contact"
+                className="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-extrabold text-xs uppercase tracking-wider rounded-xl transition-colors"
+              >
+                Schedule Consultation
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
