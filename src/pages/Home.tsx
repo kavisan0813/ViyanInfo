@@ -27,6 +27,12 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const dashRef = useRef<HTMLImageElement>(null);
   const flowerRef = useRef<HTMLImageElement>(null);
+  const heroBgLayerRef = useRef<HTMLDivElement>(null);
+  const heroBgBlobRef = useRef<HTMLDivElement>(null);
+  const servicesSectionRef = useRef<HTMLElement>(null);
+  const servicesTrackRef = useRef<HTMLDivElement>(null);
+  const servicesBlob1Ref = useRef<HTMLDivElement>(null);
+  const servicesBlob2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Force a ScrollTrigger sort and refresh shortly after mount to ensure correct layout/height calculations
@@ -34,6 +40,57 @@ export default function Home() {
       ScrollTrigger.sort();
       ScrollTrigger.refresh();
     }, 600);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Ambient Particle Burst on Load
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = setTimeout(() => {
+      if (!heroRef.current) return;
+      const container = heroRef.current;
+      const particles: HTMLDivElement[] = [];
+
+      for (let i = 0; i < 24; i++) {
+        const p = document.createElement("div");
+        const size = Math.random() * 4 + 4; // 4-8px
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.borderRadius = "50%";
+        p.style.backgroundColor = "var(--color-violet-glow, #a78bfa)";
+        p.style.position = "absolute";
+        p.style.left = `50%`;
+        p.style.top = `50%`;
+        p.style.pointerEvents = "none";
+        p.style.zIndex = "5";
+        container.appendChild(p);
+        particles.push(p);
+
+        gsap.fromTo(
+          p,
+          { x: 0, y: 0, opacity: 0, scale: 0 },
+          {
+            x: (Math.random() - 0.5) * 600, // ±300px
+            y: (Math.random() - 0.5) * 600,
+            opacity: 0, // fromTo handles 0->1->0 via keyframes
+            scale: 0,   // handled by keyframes
+            duration: 0.8,
+            ease: "power2.out",
+            delay: Math.random() * 0.2, // Stagger effect
+            keyframes: [
+              { opacity: 0, scale: 0, duration: 0 },
+              { opacity: 1, scale: 1.5, duration: 0.4 },
+              { opacity: 0, scale: 0, duration: 0.4 },
+            ],
+            onComplete: () => {
+              if (p.parentNode) p.parentNode.removeChild(p);
+            },
+          }
+        );
+      }
+    }, 1500);
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -47,10 +104,7 @@ export default function Home() {
       mm.add("(min-width: 769px)", () => {
         // --- Hero Entrance ---
         const badge = ".hero-badge";
-        const h1Lines = gsap.utils.toArray<HTMLElement>(
-          ".line-inner",
-          heroContentRef.current,
-        );
+        const words = gsap.utils.toArray<HTMLElement>(".word-inner", heroContentRef.current);
         const subtitle = ".hero-subtitle";
         const ctaButtons = gsap.utils.toArray<HTMLElement>(
           ".hero-cta",
@@ -64,13 +118,23 @@ export default function Home() {
           scale: 0.9,
           duration: 1,
           delay: 0.5,
-        })
-          .from(
-            h1Lines,
-            { y: "110%", duration: 1.3, stagger: 0.1, ease: "expo.out" },
+        });
+
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          tl.from(
+            words,
+            { y: "120%", rotateX: -40, opacity: 0, stagger: 0.06, ease: "expo.out", duration: 1.3 },
             "-=0.7",
-          )
-          .from(subtitle, { y: 30, opacity: 0, duration: 0.9 }, "-=0.7")
+          );
+        } else {
+          tl.from(
+            words,
+            { opacity: 0, y: 20, duration: 1, stagger: 0.1 },
+            "-=0.7",
+          );
+        }
+
+        tl.from(subtitle, { y: 30, opacity: 0, duration: 0.9 }, "-=0.7")
           .from(
             ctaButtons,
             { y: 25, opacity: 0, stagger: 0.1, duration: 0.8 },
@@ -106,20 +170,41 @@ export default function Home() {
           ease: "sine.inOut",
         });
 
-        // Mouse Parallax
+        // Mouse Parallax (Lusion-inspired layered movement)
         const handleMouseMove = (e: MouseEvent) => {
-          const x = (e.clientX / window.innerWidth - 0.5) * 30;
-          const y = (e.clientY / window.innerHeight - 0.5) * 30;
-          gsap.to(dashRef.current, {
-            x: x,
-            y: y,
-            duration: 1,
+          // Normalized cursor coordinates (-0.5 to 0.5)
+          const x = e.clientX / window.innerWidth - 0.5;
+          const y = e.clientY / window.innerHeight - 0.5;
+
+          // Background Layer: 10px movement
+          gsap.to(heroBgLayerRef.current, {
+            x: x * 20, // max 10px each way
+            y: y * 20,
+            duration: 1.5,
             ease: "power2.out",
           });
+
+          // Middle Layer (flower): 20px movement
           gsap.to(flowerRef.current, {
-            x: -x * 1.5,
-            y: -y * 1.5,
-            duration: 1,
+            x: -x * 40,
+            y: -y * 40,
+            duration: 1.2,
+            ease: "power2.out",
+          });
+
+          // Foreground Layer (dash): 30px movement
+          gsap.to(dashRef.current, {
+            x: x * 60,
+            y: y * 60,
+            duration: 0.8,
+            ease: "power2.out",
+          });
+
+          // Background Blobs tracking cursor slightly
+          gsap.to(heroBgBlobRef.current, {
+            x: x * 100,
+            y: y * 100,
+            duration: 2,
             ease: "power2.out",
           });
         };
@@ -137,8 +222,8 @@ export default function Home() {
       // MOBILE ANIMATIONS (< 769px)
       mm.add("(max-width: 768px)", () => {
         const badge = ".hero-badge";
-        const h1Lines = gsap.utils.toArray<HTMLElement>(
-          ".line-inner",
+        const words = gsap.utils.toArray<HTMLElement>(
+          ".word-inner",
           heroContentRef.current,
         );
         const ctaButtons = gsap.utils.toArray<HTMLElement>(
@@ -149,11 +234,95 @@ export default function Home() {
         const tl = gsap.timeline();
         tl.from(badge, { opacity: 0, duration: 0.5 })
           .from(
-            h1Lines,
-            { opacity: 0, y: 20, duration: 0.8, stagger: 0.1 },
+            words,
+            { opacity: 0, y: 20, duration: 0.8, stagger: 0.05 },
             "-=0.2",
           )
           .from(ctaButtons, { opacity: 0, duration: 0.5 }, "-=0.3");
+      });
+
+      // HORIZONTAL SCROLL FOR SERVICES
+      mm.add("(min-width: 1024px)", () => {
+        if (servicesSectionRef.current && servicesTrackRef.current) {
+          // Calculate max scrollable distance
+          const getScrollAmount = () => -(servicesTrackRef.current!.scrollWidth - window.innerWidth);
+
+          const cards = gsap.utils.toArray<HTMLElement>('.service-card', servicesTrackRef.current);
+          
+          // Pinned ScrollTrigger animation with dynamic scaling
+          gsap.to(servicesTrackRef.current, {
+            x: getScrollAmount,
+            ease: "none",
+            scrollTrigger: {
+              trigger: servicesSectionRef.current,
+              pin: true,
+              scrub: 1,
+              start: "top top",
+              end: () => `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
+              invalidateOnRefresh: true,
+              onUpdate: () => {
+                const centerX = window.innerWidth / 2;
+                cards.forEach(card => {
+                  const rect = card.getBoundingClientRect();
+                  const cardCenter = rect.left + rect.width / 2;
+                  const distance = Math.abs(centerX - cardCenter);
+                  const maxDist = window.innerWidth * 0.6;
+                  
+                  // Scale from 0.9 to 1 based on distance
+                  let scale = 1 - (distance / maxDist) * 0.15;
+                  if (scale < 0.9) scale = 0.9;
+                  if (scale > 1) scale = 1;
+                  
+                  // Rotation slightly based on distance to center
+                  let rotateY = ((cardCenter - centerX) / maxDist) * 10;
+                  if (rotateY > 5) rotateY = 5;
+                  if (rotateY < -5) rotateY = -5;
+                  
+                  // Glow opacity
+                  let glowOpacity = 1 - (distance / (rect.width * 0.8));
+                  if (glowOpacity < 0) glowOpacity = 0;
+                  if (glowOpacity > 1) glowOpacity = 1;
+
+                  gsap.set(card, { 
+                    scale: scale,
+                    rotationY: rotateY,
+                    transformPerspective: 1000
+                  });
+                  
+                  const glow = card.querySelector('.dynamic-glow') as HTMLElement;
+                  if (glow) {
+                    gsap.set(glow, { opacity: glowOpacity * 0.5 }); // subtle active glow
+                  }
+                });
+              }
+            }
+          });
+
+          // Parallax background blobs
+          gsap.to(servicesBlob1Ref.current, {
+            x: -300,
+            y: 100,
+            ease: "none",
+            scrollTrigger: {
+              trigger: servicesSectionRef.current,
+              start: "top top",
+              end: () => `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
+              scrub: 1.5,
+            }
+          });
+
+          gsap.to(servicesBlob2Ref.current, {
+            x: 300,
+            y: -100,
+            ease: "none",
+            scrollTrigger: {
+              trigger: servicesSectionRef.current,
+              start: "top top",
+              end: () => `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
+              scrub: 2,
+            }
+          });
+        }
       });
     }, containerRef);
 
@@ -167,9 +336,11 @@ export default function Home() {
         ref={heroRef}
         className="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center overflow-hidden pt-8 pb-16 bg-[#F8F5FF]"
       >
-        {/* Soft Ambient Background */}
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top_left,rgba(240,230,255,0.6)_0%,transparent_60%)]"></div>
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(220,200,255,0.4)_0%,transparent_60%)]"></div>
+        {/* Soft Ambient Background - Mouse Reactive */}
+        <div ref={heroBgBlobRef} className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[radial-gradient(circle,rgba(240,230,255,0.6)_0%,transparent_60%)]"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[radial-gradient(circle,rgba(220,200,255,0.4)_0%,transparent_60%)]"></div>
+        </div>
 
         {/* Dot Grid Pattern in Top-Right Corner */}
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(#C084FC_1.5px,transparent_1.5px)] [bg-size:24px_24px] opacity-[0.15] pointer-events-none z-0 mask-image:radial-gradient(ellipse_at_center,black_0%,transparent_70%)]"></div>
@@ -190,18 +361,22 @@ export default function Home() {
               </div>
 
               <h1 className="text-[clamp(34px,4.5vw,56px)] font-display font-bold text-[#1F1430] leading-[1.1] tracking-tight mb-6">
-                <div className="flex gap-[0.3em] overflow-hidden">
-                  <div className="line-inner">We</div>
-                  <div className="line-inner">Engineer</div>
-                </div>
-                <div className="flex gap-[0.3em] overflow-hidden">
-                  <div className="line-inner text-[#9333ea]">Digital</div>
-                  <div className="line-inner text-[#9333ea]">Excellence</div>
-                </div>
-                <div className="flex gap-[0.3em] overflow-hidden">
-                  <div className="line-inner">From</div>
-                  <div className="line-inner">Day</div>
-                  <div className="line-inner">One.</div>
+                <div className="flex gap-[0.3em] flex-wrap" style={{ perspective: "1000px" }}>
+                  {[
+                    { text: "We", color: "" },
+                    { text: "Engineer", color: "" },
+                    { text: "Digital", color: "text-[#9333ea]" },
+                    { text: "Excellence", color: "text-[#9333ea]" },
+                    { text: "From", color: "" },
+                    { text: "Day", color: "" },
+                    { text: "One.", color: "" },
+                  ].map((wordObj, i) => (
+                    <span key={i} className="inline-block overflow-hidden pb-2" style={{ transformStyle: "preserve-3d" }}>
+                      <span className={`word-inner inline-block ${wordObj.color}`} style={{ transformOrigin: "bottom center" }}>
+                        {wordObj.text}
+                      </span>
+                    </span>
+                  ))}
                 </div>
               </h1>
 
@@ -230,20 +405,27 @@ export default function Home() {
             <div className="lg:col-span-7 w-full flex justify-end relative select-none mt-16 lg:mt-0 pb-12">
               {/* Main Dashboard Wrapper */}
               <div className="relative w-full max-w-[820px] lg:translate-x-[40px]">
-                {/* Premium 3D Translucent Flower Backdrop Image */}
+                {/* Layer 1: Parallax Background Layer */}
+                <div 
+                  ref={heroBgLayerRef} 
+                  className="absolute left-[50px] top-[50px] w-[90%] h-[90%] bg-gradient-to-tr from-purple-100 to-[#F8F5FF] rounded-[40px] z-0 shadow-xl opacity-60"
+                  style={{ transform: "rotate(-3deg)" }}
+                ></div>
+
+                {/* Layer 2: Premium 3D Translucent Flower Backdrop Image */}
                 <img
                   ref={flowerRef}
                   src={flowerImg}
                   alt="Translucent Flower Decor"
-                  className="absolute left-[-120px] bottom-[-100px] w-[540px] h-auto pointer-events-none z-0 opacity-90 object-contain"
+                  className="absolute left-[-120px] bottom-[-100px] w-[540px] h-auto pointer-events-none z-10 opacity-90 object-contain"
                 />
 
-                {/* Dashboard Image */}
+                {/* Layer 3: Dashboard Image (Foreground) */}
                 <img
                   ref={dashRef}
                   src={dashboardImg}
                   alt="Dashboard Showcase"
-                  className="w-full h-auto object-contain z-10 relative rounded-2xl"
+                  className="w-full h-auto object-contain z-20 relative rounded-2xl"
                 />
               </div>
             </div>
@@ -306,15 +488,34 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="relative group p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_10px_30px_rgba(123,47,247,0.03)] hover:shadow-[0_20px_40px_rgba(123,47,247,0.08)] transition-all duration-300"
+                onMouseEnter={(e) => {
+                  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                  const currentCard = e.currentTarget;
+                  const allCards = gsap.utils.toArray<HTMLElement>('.stat-card');
+                  const siblings = allCards.filter(card => card !== currentCard);
+                  
+                  gsap.to(siblings, { y: -6, scale: 0.97, duration: 0.3 });
+                  gsap.to(currentCard, { filter: "brightness(1.15)", y: -8, scale: 1.02, duration: 0.2 });
+                }}
+                onMouseLeave={() => {
+                  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                  const allCards = gsap.utils.toArray<HTMLElement>('.stat-card');
+                  
+                  gsap.to(allCards, { y: 0, scale: 1, filter: "brightness(1)", duration: 0.3 });
+                }}
+                className="stat-card relative group p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_10px_30px_rgba(123,47,247,0.03)] hover:shadow-[0_20px_40px_rgba(123,47,247,0.08)]"
               >
-                {/* Glow background effect */}
+                {/* Persistent Subtle Pulse Glow */}
                 <div
-                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${stat.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+                  className={`absolute -inset-4 rounded-3xl bg-gradient-to-br ${stat.borderGlow} opacity-[0.15] blur-xl animate-pulse pointer-events-none z-0`}
+                ></div>
+                
+                {/* Hover Glow background effect */}
+                <div
+                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${stat.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0`}
                 ></div>
                 <div
-                  className={`absolute -inset-px rounded-3xl bg-gradient-to-br ${stat.borderGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-xs`}
+                  className={`absolute -inset-px rounded-3xl bg-gradient-to-br ${stat.borderGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-xs z-0`}
                 ></div>
 
                 <div className="relative z-10 flex flex-col items-center text-center">
@@ -343,22 +544,27 @@ export default function Home() {
       <SectionDivider />
 
       {/* SECTION 2: OUR SERVICES */}
-      <section className="relative py-24 bg-[#FAF7FF] overflow-hidden">
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+      <section ref={servicesSectionRef} className="relative py-24 lg:py-0 lg:h-screen lg:flex lg:items-center bg-[#FAF7FF] overflow-hidden">
+        {/* Parallax Blobs */}
+        <div ref={servicesBlob1Ref} className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-purple-300/30 rounded-full blur-[120px] pointer-events-none"></div>
+        <div ref={servicesBlob2Ref} className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-indigo-300/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div className="w-full relative z-10">
+          <div className="container lg:pl-[5%] xl:pl-[10%] lg:pr-12 text-center lg:text-left mb-12 lg:mb-16">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
               What We Do
             </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[#0F172A] tracking-tight mb-6">
               Our Services
             </h2>
-            <p className="text-lg text-[#475569] max-w-readable mx-auto">
+            <p className="text-lg text-[#475569] max-w-xl mx-auto lg:mx-0">
               We construct high-performing digital solutions using modern
               engineering workflows and state-of-the-art architectures.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="w-full overflow-hidden pb-12 pt-4">
+            <div ref={servicesTrackRef} className="flex flex-col lg:flex-row flex-nowrap gap-8 px-6 lg:px-[5%] xl:px-[10%] lg:w-max">
             {[
               {
                 title: "Custom Software Development",
@@ -439,56 +645,9 @@ export default function Home() {
                 path: "/internship",
               },
             ].map((service, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.05 }}
-                whileHover={{ y: -8 }}
-                className="group relative p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_30px_rgba(123,47,247,0.02)] hover:shadow-[0_20px_40px_rgba(123,47,247,0.06)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
-              >
-                {/* Gradient border */}
-                <div
-                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradientBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
-                ></div>
-
-                <div>
-                  <div
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.bg} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300`}
-                  >
-                    {service.icon}
-                  </div>
-                  <span
-                    className={`text-[10px] uppercase tracking-widest ${service.tagColor} font-bold font-mono`}
-                  >
-                    {service.tag}
-                  </span>
-                  <h3 className="text-2xl font-display font-bold text-[#0F172A] mt-2 mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-[#475569] text-[15px] leading-relaxed mb-6">
-                    {service.desc}
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-purple-500/5 flex items-center justify-between">
-                  <Link
-                    to={service.path}
-                    className={`text-sm font-semibold ${service.learnMoreColor} flex items-center gap-1 group-hover:gap-2 transition-all`}
-                  >
-                    Learn More <ChevronRight className="w-4 h-4" />
-                  </Link>
-                  <div
-                    className={`w-8 h-8 rounded-full ${service.btnBg} opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center`}
-                  >
-                    <span
-                      className={`w-1.5 h-1.5 rounded-full ${service.btnDot}`}
-                    ></span>
-                  </div>
-                </div>
-              </motion.div>
+              <HorizontalTiltCard key={idx} service={service} idx={idx} />
             ))}
+            </div>
           </div>
         </div>
       </section>
@@ -1113,27 +1272,8 @@ export default function Home() {
             <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-400/20 blur-3xl animate-[float-y_15s_ease-in-out_infinite] pointer-events-none"></div>
             <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-400/20 blur-3xl animate-[float-y_12s_ease-in-out_infinite] pointer-events-none"></div>
 
-            {/* Floating CSS particles */}
-            {Array.from({ length: 20 }).map((_, i) => {
-              const rand1 = ((i * 13) % 100) / 100;
-              const rand2 = ((i * 27) % 100) / 100;
-              const rand3 = ((i * 31) % 100) / 100;
-              const rand4 = ((i * 37) % 100) / 100;
-              return (
-                <div
-                  key={i}
-                  className={`absolute bg-white/30 rounded-full pointer-events-none animate-[float-y_${10 + (i % 5)}s_ease-in-out_infinite]`}
-                  style={{
-                    width: `${rand1 * 6 + 2}px`,
-                    height: `${rand1 * 6 + 2}px`,
-                    top: `${rand2 * 100}%`,
-                    left: `${rand3 * 100}%`,
-                    animationDelay: `${i * 0.7}s`,
-                    opacity: rand4 * 0.5 + 0.1,
-                  }}
-                ></div>
-              );
-            })}
+            {/* Floating CSS particles with mouse repulsion */}
+            <CTAParticles />
 
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(15,23,42,0.15)_100%)] pointer-events-none"></div>
 
@@ -1149,16 +1289,20 @@ export default function Home() {
                 engineering and design teams.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center items-center relative z-20">
                 <Link to="/contact" className="w-full sm:w-auto">
-                  <button className="w-full sm:w-auto px-8 py-4 bg-white text-[#7B2FF7] font-bold text-sm rounded-xl shadow-lg hover:bg-purple-50 hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer">
-                    Start Your Project
-                  </button>
+                  <MagneticButton>
+                    <button className="w-full sm:w-auto px-8 py-4 bg-white text-[#7B2FF7] font-bold text-sm rounded-xl shadow-lg hover:bg-purple-50 hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer pointer-events-auto">
+                      Start Your Project
+                    </button>
+                  </MagneticButton>
                 </Link>
                 <Link to="/contact" className="w-full sm:w-auto">
-                  <button className="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-sm rounded-xl hover:bg-white/20 hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer">
-                    Schedule Call
-                  </button>
+                  <MagneticButton>
+                    <button className="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-sm rounded-xl hover:bg-white/20 hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer pointer-events-auto">
+                      Schedule Call
+                    </button>
+                  </MagneticButton>
                 </Link>
               </div>
             </div>
@@ -1282,6 +1426,208 @@ function TestimonialCarousel() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function HorizontalTiltCard({ service, idx }: { service: any; idx: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseEnter = () => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (cardRef.current) {
+      // Keep existing Y movement along with rotateY/X
+      gsap.to(cardRef.current, { rotateY: 8, rotateX: -4, scale: 1.03, y: -4, duration: 0.4, ease: "power2.out" });
+      
+      const glow = cardRef.current.querySelector('.dynamic-glow') as HTMLElement;
+      if (glow) {
+        gsap.to(glow, { opacity: 0.5, duration: 0.4 });
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (cardRef.current) {
+      gsap.to(cardRef.current, { rotateY: 0, rotateX: 0, scale: 1, y: 0, duration: 0.4, ease: "elastic.out(1, 0.4)" });
+      
+      const glow = cardRef.current.querySelector('.dynamic-glow') as HTMLElement;
+      if (glow) {
+        gsap.to(glow, { opacity: 0, duration: 0.4 });
+      }
+    }
+  };
+
+  return (
+    <div className="service-card shrink-0" style={{ perspective: "1000px" }}>
+      <motion.div
+        ref={cardRef}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: idx * 0.1 }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+        className="group relative w-full lg:w-[400px] h-full p-8 rounded-3xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[0_8px_30px_rgba(123,47,247,0.02)] hover:shadow-[0_20px_50px_rgba(123,47,247,0.08)] transition-all duration-500 flex flex-col justify-between overflow-hidden cursor-pointer"
+      >
+        {/* Dynamic Background Glow */}
+        <div
+          className="dynamic-glow absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none z-0 mix-blend-multiply"
+          style={{ backgroundImage: `radial-gradient(circle at center, ${service.tagColor.replace('text-', 'bg-').replace(/\[|\]/g, '')}30, transparent 70%)` }}
+        />
+
+      {/* Gradient border pseudo-inset */}
+      <div 
+        className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradientBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10`}
+      />
+
+      <div className="relative z-20" style={{ transform: "translateZ(30px)" }}>
+        <div
+          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.bg} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500`}
+        >
+          {service.icon}
+        </div>
+        <span
+          className={`text-[10px] uppercase tracking-widest ${service.tagColor} font-bold font-mono`}
+        >
+          {service.tag}
+        </span>
+        <h3 className="text-2xl font-display font-bold text-[#0F172A] mt-2 mb-3">
+          {service.title}
+        </h3>
+        <p className="text-[#475569] text-[15px] leading-relaxed mb-6">
+          {service.desc}
+        </p>
+      </div>
+
+      <div className="relative z-20 pt-4 border-t border-purple-500/10 flex items-center justify-between" style={{ transform: "translateZ(20px)" }}>
+        <Link
+          to={service.path}
+          className={`text-sm font-semibold ${service.learnMoreColor} flex items-center gap-1 group-hover:gap-2 transition-all`}
+        >
+          Learn More <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+        </Link>
+        <div
+          className={`w-8 h-8 rounded-full ${service.btnBg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center`}
+        >
+          <span
+            className={`w-1.5 h-1.5 rounded-full ${service.btnDot}`}
+          ></span>
+        </div>
+      </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function CTAParticles() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const container = containerRef.current;
+    
+    // Create particles
+    const particles = Array.from({ length: 30 }).map(() => {
+      const el = document.createElement("div");
+      const size = Math.random() * 6 + 2;
+      el.className = "absolute bg-white/40 rounded-full pointer-events-none z-0";
+      el.style.width = `${size}px`;
+      el.style.height = `${size}px`;
+      el.style.left = `${Math.random() * 100}%`;
+      el.style.top = `${Math.random() * 100}%`;
+      container.appendChild(el);
+      
+      // Floating animation
+      gsap.to(el, {
+        y: `+=${Math.random() * 100 - 50}`,
+        x: `+=${Math.random() * 100 - 50}`,
+        duration: Math.random() * 5 + 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+      
+      return el;
+    });
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      particles.forEach(p => {
+        const pRect = p.getBoundingClientRect();
+        const pX = pRect.left - rect.left + pRect.width / 2;
+        const pY = pRect.top - rect.top + pRect.height / 2;
+        
+        const distX = pX - mouseX;
+        const distY = pY - mouseY;
+        const distance = Math.sqrt(distX * distX + distY * distY);
+        
+        // Repel if within 150px
+        if (distance < 150) {
+          const angle = Math.atan2(distY, distX);
+          const force = (150 - distance) / 150;
+          const pushX = Math.cos(angle) * force * 50;
+          const pushY = Math.sin(angle) * force * 50;
+          
+          gsap.to(p, {
+            x: `+=${pushX}`,
+            y: `+=${pushY}`,
+            duration: 0.5,
+            ease: "power2.out"
+          });
+        }
+      });
+    };
+
+    container.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      container.removeEventListener("mousemove", handleMouseMove);
+      particles.forEach(p => p.remove());
+    };
+  }, []);
+
+  return <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-auto" />;
+}
+
+function MagneticButton({ children, className }: { children: React.ReactNode, className?: string }) {
+  const buttonRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    gsap.to(buttonRef.current, {
+      x: x * 0.4,
+      y: y * 0.4,
+      duration: 0.8,
+      ease: "power3.out"
+    });
+  };
+
+  const handleMouseLeave = () => {
+    if (!buttonRef.current) return;
+    gsap.to(buttonRef.current, {
+      x: 0,
+      y: 0,
+      duration: 0.8,
+      ease: "elastic.out(1, 0.3)"
+    });
+  };
+
+  return (
+    <div 
+      ref={buttonRef} 
+      onMouseMove={handleMouseMove} 
+      onMouseLeave={handleMouseLeave}
+      className={`inline-block w-full sm:w-auto ${className || ""}`}
+    >
+      {children}
     </div>
   );
 }

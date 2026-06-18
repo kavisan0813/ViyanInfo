@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useLayoutEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Code,
   Globe,
@@ -20,6 +22,7 @@ import {
 } from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
 import { CTABlock } from "../components/CTABlock";
+import "../components/ExpertiseSection.css";
 import "../index.css";
 
 // Abstract illustration of students collaborating
@@ -114,6 +117,15 @@ const StudentsCollaborationIllustration = () => (
 
 export default function Internships() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [activeIdx, setActiveIdx] = useState<number>(0);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"],
+  });
+  
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   const roadmapStages = [
     {
@@ -231,204 +243,8 @@ export default function Internships() {
 
       <SectionDivider />
 
-      {/* PROGRAMS SECTION */}
-      <section id="programs" className="py-24 bg-[#FAF7FF] relative">
-        <div className="container max-w-[1200px] mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-              Training Tracks
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
-              Our Internship Programs
-            </h2>
-            <p className="text-lg text-[#475569]">
-              Choose from 5 industry-mapped development and design
-              specializations.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            {[
-              {
-                title: "Python Development",
-                icon: (
-                  <Code className="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
-                ),
-                desc: "Learn scripting, backend frameworks (Django/FastAPI), SQL database queries, and algorithmic problem-solving.",
-                accent: "#3B82F6",
-                glowColor: "rgba(59, 130, 246, 0.18)",
-                glowBlob: "rgba(59, 130, 246, 0.15)",
-                iconBgDefault: "rgba(59, 130, 246, 0.1)",
-                iconBgHover:
-                  "linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)",
-              },
-              {
-                title: "Full Stack Development",
-                icon: (
-                  <Globe className="w-6 h-6 text-[#7B2FF7] group-hover:text-white transition-colors duration-300" />
-                ),
-                desc: "Master frontend components (React/TypeScript) and connect them to secure REST APIs and structured servers.",
-                accent: "#7B2FF7",
-                glowColor: "rgba(123, 47, 247, 0.18)",
-                glowBlob: "rgba(123, 47, 247, 0.15)",
-                iconBgDefault: "rgba(123, 47, 247, 0.1)",
-                iconBgHover:
-                  "linear-gradient(135deg, #7B2FF7 0%, #6366F1 100%)",
-              },
-              {
-                title: "AI & Machine Learning",
-                icon: (
-                  <Brain className="w-6 h-6 text-[#EC4899] group-hover:text-white transition-colors duration-300" />
-                ),
-                desc: "Integrate LLM API endpoints, compile Retrieval Augmented Generation (RAG) frameworks, and build model pipelines.",
-                accent: "#EC4899",
-                glowColor: "rgba(236, 72, 153, 0.18)",
-                glowBlob: "rgba(236, 72, 153, 0.15)",
-                iconBgDefault: "rgba(236, 72, 153, 0.1)",
-                iconBgHover:
-                  "linear-gradient(135deg, #EC4899 0%, #D946EF 100%)",
-              },
-              {
-                title: "Data Science",
-                icon: (
-                  <Database className="w-6 h-6 text-[#06B6D4] group-hover:text-white transition-colors duration-300" />
-                ),
-                desc: "Query data warehouses, compile predictive analytics models, and build visual insight dashboards.",
-                accent: "#06B6D4",
-                glowColor: "rgba(6, 182, 212, 0.18)",
-                glowBlob: "rgba(6, 182, 212, 0.15)",
-                iconBgDefault: "rgba(6, 182, 212, 0.1)",
-                iconBgHover:
-                  "linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)",
-              },
-              {
-                title: "UI/UX Design",
-                icon: (
-                  <Palette className="w-6 h-6 text-[#F59E0B] group-hover:text-white transition-colors duration-300" />
-                ),
-                desc: "Master research methods, wireframes, user flows, high-fidelity prototypes, and component visual UI assets.",
-                accent: "#F59E0B",
-                glowColor: "rgba(245, 158, 11, 0.18)",
-                glowBlob: "rgba(245, 158, 11, 0.15)",
-                iconBgDefault: "rgba(245, 158, 11, 0.1)",
-                iconBgHover:
-                  "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
-              },
-            ].map((program, idx) => (
-              <div key={idx} className="relative group">
-                {/* Background glow blob behind card */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl blur-2xl pointer-events-none opacity-0"
-                  style={{
-                    background: program.glowBlob,
-                  }}
-                  variants={{
-                    hover: {
-                      opacity: 0.15,
-                    },
-                  }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                />
-
-                {/* Card Container */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.08 }}
-                  whileHover="hover"
-                  variants={{
-                    hover: {
-                      y: -8,
-                      boxShadow: `0 20px 40px ${program.glowColor}`,
-                    },
-                  }}
-                  style={{
-                    backgroundColor: "#FFFFFF",
-                    borderColor: "transparent",
-                    borderWidth: "1px",
-                    borderStyle: "solid",
-                  }}
-                  className="p-8 rounded-3xl shadow-xs transition-all duration-300 flex flex-col justify-between h-full relative z-10 overflow-hidden"
-                >
-                  {/* Inside gradient hover overlay (like home page services) */}
-                  <div
-                    className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                    style={{
-                      backgroundImage: `linear-gradient(135deg, ${program.accent}1a, ${program.accent}05)`,
-                    }}
-                  />
-
-                  <div>
-                    {/* Icon container */}
-                    <motion.div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"
-                      style={{
-                        background: program.iconBgDefault,
-                      }}
-                      variants={{
-                        hover: {
-                          background: program.iconBgHover,
-                          scale: 1.08,
-                          rotate: 2,
-                        },
-                      }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                      }}
-                    >
-                      {program.icon}
-                    </motion.div>
-
-                    {/* Title */}
-                    <motion.h3
-                      className="text-xl font-display font-semibold text-[#0F172A] mb-3"
-                      variants={{
-                        hover: {
-                          fontWeight: 700,
-                          color: "#000000",
-                        },
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {program.title}
-                    </motion.h3>
-
-                    {/* Description */}
-                    <p className="text-sm leading-relaxed text-[#475569] mb-6">
-                      {program.desc}
-                    </p>
-                  </div>
-
-                  {/* Footer Line */}
-                  <div className="pt-4 border-t border-purple-500/5">
-                    <motion.span
-                      className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 block"
-                      style={{ textShadow: "0 0 0px transparent" }}
-                      variants={{
-                        hover: {
-                          color: program.accent,
-                          letterSpacing: "0.15em",
-                          textShadow: `0 0 8px ${program.accent}40`,
-                        },
-                      }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                      }}
-                    >
-                      Interactive Track
-                    </motion.span>
-                  </div>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* PROGRAMS SECTION — LUSION CARD FLIP */}
+      <InternshipExpertiseSection />
 
       <SectionDivider />
 
@@ -513,10 +329,10 @@ export default function Internships() {
         <div className="container max-w-[1000px] mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-20">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-              Our Journey
+              Learning Journey
             </span>
             <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
-              Program Flow Roadmap
+              Your Learning Journey
             </h2>
             <p className="text-lg text-[#475569]">
               How we guide you from application to certification.
@@ -524,43 +340,56 @@ export default function Internships() {
           </div>
 
           {/* Roadmap timeline structure */}
-          <div className="relative">
-            {/* Center connector line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-[#E9D5FF] -translate-x-1/2 z-0"></div>
+          <div ref={timelineRef} className="relative pb-12">
+            {/* Center connector line background */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-[#E9D5FF]/50 -translate-x-1/2 z-0"></div>
+            {/* Animated progress line */}
+            <motion.div 
+              className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#7B2FF7] to-[#EC4899] -translate-x-1/2 z-0 origin-top"
+              style={{ scaleY: lineHeight }}
+            />
 
             <div className="space-y-12">
               {roadmapStages.map((flow, idx) => {
                 const isHovered = hoveredIdx === idx;
+                const isActive = activeIdx === idx;
+                const isHighlighted = isHovered || isActive;
 
                 return (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, margin: "-150px" }}
+                    onViewportEnter={() => setActiveIdx(idx)}
                     transition={{ duration: 0.6 }}
                     className={`flex flex-col md:flex-row relative z-10 ${idx % 2 === 0 ? "md:flex-row-reverse" : ""}`}
                     onMouseEnter={() => setHoveredIdx(idx)}
                     onMouseLeave={() => setHoveredIdx(null)}
                   >
                     {/* Glowing Bullet Node */}
-                    <div
-                      className="absolute left-8 md:left-1/2 top-6 w-8 h-8 rounded-full bg-white -translate-x-1/2 flex items-center justify-center shadow-md z-20 transition-all duration-300"
+                    <motion.div
+                      animate={{
+                        scale: isHighlighted ? 1.25 : 1,
+                        boxShadow: isHighlighted ? `0 0 20px ${flow.color}` : "none",
+                      }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="absolute left-8 md:left-1/2 top-6 w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-md z-20"
                       style={{
                         border: `4px solid ${flow.color}`,
-                        boxShadow: isHovered
-                          ? `0 0 16px ${flow.color}`
-                          : "none",
-                        transform: isHovered
-                          ? "translateX(-50%) scale(1.25)"
-                          : "translateX(-50%)",
+                        x: "-50%",
                       }}
                     >
-                      <span
+                      <motion.span
+                        animate={{ 
+                          scale: isActive ? [1, 1.5, 1] : 1,
+                          opacity: isActive ? [1, 0.5, 1] : 1
+                        }}
+                        transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
                         className="w-1.5 h-1.5 rounded-full"
                         style={{ backgroundColor: flow.color }}
                       />
-                    </div>
+                    </motion.div>
 
                     {/* Card container */}
                     <div className="w-full md:w-1/2 pl-16 md:pl-0 md:px-12 text-left">
@@ -573,10 +402,10 @@ export default function Internships() {
                         }}
                         className="p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-xs hover:shadow-xl transition-all duration-500 relative group overflow-hidden"
                         style={{
-                          boxShadow: isHovered
+                          boxShadow: isHighlighted
                             ? `0 20px 40px ${flow.shadowColor}`
-                            : "none",
-                          borderColor: isHovered
+                            : "0 4px 6px -1px rgba(0,0,0,0.05)",
+                          borderColor: isHighlighted
                             ? `${flow.color}30`
                             : "rgba(255, 255, 255, 0.6)",
                         }}
@@ -592,7 +421,7 @@ export default function Internships() {
                         {/* Floating Icon */}
                         <motion.div
                           animate={
-                            isHovered
+                            isHighlighted
                               ? {
                                   y: [-4, 4, -4],
                                   scale: 1.08,
@@ -604,7 +433,7 @@ export default function Internships() {
                                 }
                           }
                           transition={{
-                            repeat: isHovered ? Infinity : 0,
+                            repeat: isHighlighted ? Infinity : 0,
                             duration: 3,
                             ease: "easeInOut",
                           }}
@@ -616,7 +445,7 @@ export default function Internships() {
                         <span
                           className="text-4xl font-mono font-black mb-2 block transition-colors duration-300"
                           style={{
-                            color: isHovered ? flow.color : `${flow.color}30`,
+                            color: isHighlighted ? flow.color : `${flow.color}30`,
                           }}
                         >
                           {flow.step}
@@ -715,63 +544,83 @@ export default function Internships() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left max-w-5xl mx-auto">
-            {[
-              {
-                text: "The Python program at ViyanInfo was incredibly structured. I committed API endpoints that are being used in production today.",
-                name: "Rahul Verma",
-                role: "Software Developer, HCL",
-                track: "Python Track",
-              },
-              {
-                text: "Mastering React and TypeScript during the full-stack internship helped me pass my technical evaluations and land a frontend engineer role.",
-                name: "Anjali K.",
-                role: "Frontend Engineer, Cognizant",
-                track: "Full Stack Track",
-              },
-              {
-                text: "Building real LLM chat agents gave me the practical portfolio I needed. Mentors corrected my architecture in every PR review.",
-                name: "Vikram Sen",
-                role: "Associate AI Developer, TCS",
-                track: "AI & ML Track",
-              },
-            ].map((story, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="p-8 rounded-3xl bg-white border border-gray-200/80 hover:shadow-[0_15px_30px_rgba(123,47,247,0.08)] transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex gap-1 mb-6">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star
-                        key={s}
-                        className="w-4 h-4 fill-amber-400 text-amber-400"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-sm italic leading-relaxed text-[#475569] mb-6">
-                    "{story.text}"
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
+          <div className="overflow-hidden w-full relative group">
+            {/* Edge Gradients for smooth fade in/out */}
+            <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
+            
+            <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
+              {[
+                {
+                  text: "The Python program at ViyanInfo was incredibly structured. I committed API endpoints that are being used in production today.",
+                  name: "Rahul Verma",
+                  role: "Software Developer, HCL",
+                  track: "Python Track",
+                },
+                {
+                  text: "Mastering React and TypeScript during the full-stack internship helped me pass my technical evaluations and land a frontend engineer role.",
+                  name: "Anjali K.",
+                  role: "Frontend Engineer, Cognizant",
+                  track: "Full Stack Track",
+                },
+                {
+                  text: "Building real LLM chat agents gave me the practical portfolio I needed. Mentors corrected my architecture in every PR review.",
+                  name: "Vikram Sen",
+                  role: "Associate AI Developer, TCS",
+                  track: "AI & ML Track",
+                },
+                {
+                  text: "The Python program at ViyanInfo was incredibly structured. I committed API endpoints that are being used in production today.",
+                  name: "Rahul Verma",
+                  role: "Software Developer, HCL",
+                  track: "Python Track",
+                },
+                {
+                  text: "Mastering React and TypeScript during the full-stack internship helped me pass my technical evaluations and land a frontend engineer role.",
+                  name: "Anjali K.",
+                  role: "Frontend Engineer, Cognizant",
+                  track: "Full Stack Track",
+                },
+                {
+                  text: "Building real LLM chat agents gave me the practical portfolio I needed. Mentors corrected my architecture in every PR review.",
+                  name: "Vikram Sen",
+                  role: "Associate AI Developer, TCS",
+                  track: "AI & ML Track",
+                },
+              ].map((story, idx) => (
+                <div
+                  key={idx}
+                  className="w-[350px] shrink-0 mx-4 p-8 rounded-3xl bg-white border border-gray-200/80 hover:shadow-[0_15px_30px_rgba(123,47,247,0.08)] transition-all duration-300 flex flex-col justify-between whitespace-normal"
+                >
                   <div>
-                    <h4 className="font-display font-bold text-[#0F172A] text-sm">
-                      {story.name}
-                    </h4>
-                    <span className="text-xs text-[#7B2FF7] font-semibold">
-                      {story.role}
+                    <div className="flex gap-1 mb-6">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star
+                          key={s}
+                          className="w-4 h-4 fill-amber-400 text-amber-400"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-sm italic leading-relaxed text-[#475569] mb-6">
+                      "{story.text}"
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
+                    <div>
+                      <h4 className="font-display font-bold text-[#0F172A] text-sm">
+                        {story.name}
+                      </h4>
+                      <span className="text-xs text-[#7B2FF7] font-semibold">
+                        {story.role}
+                      </span>
+                    </div>
+                    <span className="px-2.5 py-1 rounded-full bg-purple-500/5 text-[#7B2FF7] font-mono text-[9px] font-bold uppercase tracking-wider">
+                      {story.track}
                     </span>
                   </div>
-                  <span className="px-2.5 py-1 rounded-full bg-purple-500/5 text-[#7B2FF7] font-mono text-[9px] font-bold uppercase tracking-wider">
-                    {story.track}
-                  </span>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -804,9 +653,16 @@ export default function Internships() {
           >
             {/* Inner background card */}
             <div className="bg-[#15173A] rounded-[32px] p-8 sm:p-12 text-left relative overflow-hidden flex flex-col justify-between aspect-video min-h-[380px] text-white">
+              {/* Shimmer Light Sweep */}
+              <motion.div 
+                className="absolute top-0 bottom-0 w-32 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg] z-50 pointer-events-none"
+                animate={{ left: ["-100%", "200%"] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }}
+              />
+
               {/* Certificate decorations */}
-              <div className="absolute right-0 top-0 w-[300px] h-[300px] rounded-full bg-purple-500/10 blur-3xl pointer-events-none"></div>
-              <div className="absolute left-[-50px] bottom-[-50px] w-[200px] h-[200px] rounded-full bg-amber-500/5 blur-2xl pointer-events-none"></div>
+              <div className="absolute right-0 top-0 w-[300px] h-[300px] rounded-full bg-purple-500/10 blur-3xl pointer-events-none z-0"></div>
+              <div className="absolute left-[-50px] bottom-[-50px] w-[200px] h-[200px] rounded-full bg-amber-500/5 blur-2xl pointer-events-none z-0"></div>
 
               {/* Header */}
               <div className="flex justify-between items-start border-b border-white/10 pb-6 mb-6">
@@ -868,6 +724,284 @@ export default function Internships() {
         subtitle="Submit your application to secure a spot in our next internship cohort. Cohorts begin quarterly."
         primaryLabel="Apply Now"
       />
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   LUSION "AREA OF EXPERTISE" – ALL CARDS VISIBLE,
+   SIMULTANEOUS SCROLL-DRIVEN FLIP
+   ───────────────────────────────────────── */
+const expertisePrograms = [
+  {
+    title: "Python Development",
+    icon: Code,
+    accent: "#3B82F6",
+    gradient: "linear-gradient(135deg, #EFF6FF, #DBEAFE)", // Light Blue
+    iconBg: "rgba(59, 130, 246, 0.1)",
+    skills: ["Django", "FastAPI", "PostgreSQL", "Algorithms", "REST APIs"],
+  },
+  {
+    title: "Full Stack Development",
+    icon: Globe,
+    accent: "#7B2FF7",
+    gradient: "linear-gradient(135deg, #F5F3FF, #EDE9FE)", // Light Purple
+    iconBg: "rgba(123, 47, 247, 0.1)",
+    skills: ["React", "TypeScript", "Node.js", "Next.js", "Tailwind"],
+  },
+  {
+    title: "AI & Machine Learning",
+    icon: Brain,
+    accent: "#EC4899",
+    gradient: "linear-gradient(135deg, #FDF2F8, #FCE7F3)", // Light Pink
+    iconBg: "rgba(236, 72, 153, 0.1)",
+    skills: ["OpenAI", "LangChain", "RAG", "HuggingFace", "Automation"],
+  },
+  {
+    title: "Data Science",
+    icon: Database,
+    accent: "#06B6D4",
+    gradient: "linear-gradient(135deg, #ECFEFF, #CFFAFE)", // Light Cyan
+    iconBg: "rgba(6, 182, 212, 0.1)",
+    skills: ["Pandas", "Scikit-Learn", "Tableau", "SQL", "Power BI"],
+  },
+  {
+    title: "UI/UX Design",
+    icon: Palette,
+    accent: "#F59E0B",
+    gradient: "linear-gradient(135deg, #FFFBEB, #FEF3C7)", // Light Amber
+    iconBg: "rgba(245, 158, 11, 0.1)",
+    skills: ["Figma", "Wireframing", "Prototyping", "User Research", "Design Systems"],
+  },
+];
+
+function InternshipExpertiseSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const cardInners = gsap.utils.toArray(
+      section.querySelectorAll(".expertise-card-inner")
+    ) as HTMLElement[];
+
+    if (cardInners.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      // Heading mask reveal
+      gsap.from(".expertise-heading", {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+        },
+      });
+
+      // The main scroll-driven flip timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=3000",
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      // All cards flip simultaneously with staggered offsets
+      // This is the core Lusion feel — each card starts its flip
+      // slightly after the previous one (i * 0.15)
+      cardInners.forEach((cardInner, i) => {
+        tl.to(
+          cardInner,
+          {
+            rotateY: 180,
+            rotateX: -6,
+            z: 100,
+            duration: 1,
+            ease: "none",
+          },
+          i * 0.15
+        );
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      id="programs"
+      ref={sectionRef}
+      className="expertise-section"
+    >
+      <div className="expertise-viewport">
+        {/* Heading */}
+        <div className="expertise-heading">
+          <span className="label">Training Tracks</span>
+          <h2>Our Internship Programs</h2>
+          <p>Choose from 5 industry-mapped development and design specializations.</p>
+        </div>
+
+        {/* All cards visible in a row */}
+        <div className="expertise-cards-row">
+          {expertisePrograms.map((program, idx) => {
+            const IconComp = program.icon;
+            return (
+              <div key={idx} className="expertise-card">
+                <div className="expertise-card-inner">
+                  {/* FRONT FACE — Icon + Title */}
+                  <div className="expertise-card-front">
+                    <div
+                      className="card-icon"
+                      style={{ background: program.iconBg }}
+                    >
+                      <IconComp className="w-8 h-8" style={{ color: program.accent }} />
+                    </div>
+                    <h3>{program.title}</h3>
+                    <span className="card-label" style={{ color: program.accent }}>
+                      Interactive Track
+                    </span>
+                  </div>
+
+                  {/* BACK FACE — Skills list */}
+                  <div
+                    className="expertise-card-back"
+                    style={{ background: program.gradient }}
+                  >
+                    <span className="back-title">{program.title}</span>
+                    <ul>
+                      {program.skills.map((skill, sIdx) => (
+                        <li key={sIdx}>{skill}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TiltProgramCard({ program, delay }: { program: any, delay: number }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Normalize to -1 to 1
+    const xPct = (x / rect.width - 0.5) * 2;
+    const yPct = (y / rect.height - 0.5) * 2;
+    
+    // Max tilt 8 degrees
+    setTilt({ x: -yPct * 8, y: xPct * 8 });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setTilt({ x: 0, y: 0 });
+  };
+
+  return (
+    <div className="relative group" style={{ perspective: "1000px" }}>
+      {/* Background glow blob behind card */}
+      <motion.div
+        className="absolute inset-0 rounded-3xl blur-2xl pointer-events-none"
+        style={{ background: program.glowBlob }}
+        animate={{ opacity: isHovered ? 0.15 : 0 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      />
+
+      {/* Card Container */}
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: delay }}
+        animate={{
+          rotateX: tilt.x,
+          rotateY: tilt.y,
+          y: isHovered ? -8 : 0,
+          boxShadow: isHovered ? `0 20px 40px ${program.glowColor}` : "0 4px 6px -1px rgba(0, 0, 0, 0.05)",
+        }}
+        style={{
+          backgroundColor: "#FFFFFF",
+          borderColor: isHovered ? `${program.accent}30` : "transparent",
+          borderWidth: "1px",
+          borderStyle: "solid",
+          transformStyle: "preserve-3d",
+        }}
+        className="p-8 rounded-3xl shadow-xs transition-colors duration-300 flex flex-col justify-between h-full relative z-10 overflow-hidden"
+      >
+        {/* Inside gradient hover overlay */}
+        <div
+          className="absolute inset-0 rounded-3xl transition-opacity duration-300 pointer-events-none"
+          style={{
+            opacity: isHovered ? 1 : 0,
+            backgroundImage: `linear-gradient(135deg, ${program.accent}1a, ${program.accent}05)`,
+          }}
+        />
+
+        <div style={{ transform: "translateZ(30px)" }}>
+          {/* Icon container */}
+          <motion.div
+            className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300"
+            style={{
+              background: isHovered ? program.iconBgHover : program.iconBgDefault,
+              scale: isHovered ? 1.08 : 1,
+              rotate: isHovered ? 2 : 0,
+            }}
+          >
+            {program.icon}
+          </motion.div>
+
+          {/* Title */}
+          <h3
+            className="text-xl font-display font-semibold mb-3 transition-colors duration-300"
+            style={{ color: isHovered ? "#000000" : "#0F172A", fontWeight: isHovered ? 700 : 600 }}
+          >
+            {program.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-sm leading-relaxed text-[#475569] mb-6">
+            {program.desc}
+          </p>
+        </div>
+
+        {/* Footer Line */}
+        <div className="pt-4 border-t border-purple-500/5" style={{ transform: "translateZ(20px)" }}>
+          <span
+            className="text-xs font-mono font-bold uppercase tracking-wider block transition-all duration-300"
+            style={{ 
+              color: isHovered ? program.accent : "#94a3b8",
+              letterSpacing: isHovered ? "0.15em" : "0.05em",
+              textShadow: isHovered ? `0 0 8px ${program.accent}40` : "none"
+            }}
+          >
+            Interactive Track
+          </span>
+        </div>
+      </motion.div>
     </div>
   );
 }

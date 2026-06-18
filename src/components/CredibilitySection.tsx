@@ -38,6 +38,43 @@ export function CredibilitySection() {
         },
         "-=0.6",
       );
+
+      // --- Magnetic Hover ---
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const section = sectionRef.current;
+        const dots = gsap.utils.toArray<HTMLElement>(".credibility-dot");
+        
+        if (section) {
+          section.addEventListener("mousemove", (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            dots.forEach(dot => {
+              const rect = dot.getBoundingClientRect();
+              const dotCenterX = rect.left + rect.width / 2;
+              const dotCenterY = rect.top + rect.height / 2;
+              
+              const distX = mouseX - dotCenterX;
+              const distY = mouseY - dotCenterY;
+              const distance = Math.sqrt(distX * distX + distY * distY);
+              
+              // 60px radius for pull effect
+              if (distance < 60) {
+                // The closer we are, the stronger the pull
+                const pullX = distX * 0.4;
+                const pullY = distY * 0.4;
+                gsap.to(dot, { x: pullX, y: pullY, duration: 0.3, ease: "power2.out", overwrite: "auto" });
+              } else {
+                gsap.to(dot, { x: 0, y: 0, duration: 0.4, ease: "elastic.out(1, 0.3)", overwrite: "auto" });
+              }
+            });
+          });
+
+          section.addEventListener("mouseleave", () => {
+            gsap.to(dots, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)", overwrite: "auto" });
+          });
+        }
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -71,7 +108,7 @@ export function CredibilitySection() {
                   key={idx}
                   className="credibility-list-item flex items-center space-x-3 group"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-(--color-text-accent) group-hover:scale-150 transition-transform"></div>
+                  <div className="credibility-dot w-1.5 h-1.5 rounded-full bg-(--color-text-accent) group-hover:scale-150 transition-transform"></div>
                   <span className="text-text-primary font-medium text-lg">
                     {item}
                   </span>

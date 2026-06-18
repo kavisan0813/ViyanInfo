@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   Sparkles,
@@ -11,9 +12,14 @@ import {
   UserCheck,
   ArrowRight,
 } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TechBadge } from "../components/TechBadge";
 import { CTABlock } from "../components/CTABlock";
 import { SectionDivider } from "../components/SectionDivider";
+import "../components/DesignPillarsFlip.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Premium Interactive Design Board & Wireframe SVG Illustration
 const DesignBoardIllustration = () => (
@@ -113,6 +119,159 @@ const DesignBoardIllustration = () => (
   </div>
 );
 
+/* ─────────────────────────────────────────
+   LUSION 3D FLIP — Design Pillars
+   ───────────────────────────────────────── */
+
+const designPillars = [
+  {
+    title: "User Research",
+    icon: Search,
+    accent: "#F59E0B",
+    backGradient: "linear-gradient(135deg, #FFFBEB, #FEF3C7)",
+    iconBg: "rgba(245, 158, 11, 0.1)",
+    description:
+      "Perform comprehensive interviews, mapping custom personas, and finding layout friction zones to align design specs.",
+    tags: "Personas • User Testing • Surveys",
+  },
+  {
+    title: "Wireframing",
+    icon: Layers,
+    accent: "#7B2FF7",
+    backGradient: "linear-gradient(135deg, #F5F3FF, #EDE9FE)",
+    iconBg: "rgba(123, 47, 247, 0.1)",
+    description:
+      "Drafting structural screen maps and navigation hierarchies to establish clean page logic before visual design.",
+    tags: "Low-fi Mockups • User Flows • Miro",
+  },
+  {
+    title: "UI Design",
+    icon: Palette,
+    accent: "#EC4899",
+    backGradient: "linear-gradient(135deg, #FDF2F8, #FCE7F3)",
+    iconBg: "rgba(236, 72, 153, 0.1)",
+    description:
+      "Applying premium typographic structures, grid alignments, customized SVGs, and consistent color pallets in Figma.",
+    tags: "Figma • Visual Styling • Vectors",
+  },
+  {
+    title: "UX Optimization",
+    icon: Eye,
+    accent: "#06B6D4",
+    backGradient: "linear-gradient(135deg, #ECFEFF, #CFFAFE)",
+    iconBg: "rgba(6, 182, 212, 0.1)",
+    description:
+      "Refining checkout steps, form completions, and interaction states to remove user friction and improve retention.",
+    tags: "Heuristics • Friction Audits • Analytics",
+  },
+  {
+    title: "Design Systems",
+    icon: Settings,
+    accent: "#10B981",
+    backGradient: "linear-gradient(135deg, #ECFDF5, #D1FAE5)",
+    iconBg: "rgba(16, 185, 129, 0.1)",
+    description:
+      "Building modular, component-based Figma libraries and styleguides to coordinate design changes and developer handoffs.",
+    tags: "Figma Tokens • Component Kits",
+  },
+];
+
+function DesignPillarsFlip() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(
+        ".dp-card-inner"
+      ) as HTMLElement[];
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=3000",
+          scrub: true,
+          pin: true,
+        },
+      });
+
+      cards.forEach((card, i) => {
+        tl.to(
+          card,
+          {
+            rotateY: 180,
+            rotateX: -6,
+            z: 100,
+            duration: 1,
+          },
+          i * 0.15
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="dp-section">
+      <div className="dp-viewport">
+        {/* Heading */}
+        <div className="dp-heading">
+          <span className="dp-label">Our Process Layers</span>
+          <h2>Human-Centered Design Pillars</h2>
+          <p>
+            We design modular layouts starting from user research all the way up
+            to system codebases.
+          </p>
+        </div>
+
+        {/* Cards row */}
+        <div className="dp-cards-row">
+          {designPillars.map((pillar, idx) => {
+            const IconComp = pillar.icon;
+            return (
+              <div key={idx} className="dp-card">
+                <div className="dp-card-inner">
+                  {/* FRONT — Minimal: icon + title */}
+                  <div className="dp-card-front">
+                    <div
+                      className="dp-card-icon"
+                      style={{ background: pillar.iconBg }}
+                    >
+                      <IconComp
+                        size={28}
+                        color={pillar.accent}
+                        strokeWidth={1.8}
+                      />
+                    </div>
+                    <h3>{pillar.title}</h3>
+                    <span
+                      className="dp-card-label"
+                      style={{ color: pillar.accent }}
+                    >
+                      Design Pillar
+                    </span>
+                  </div>
+
+                  {/* BACK — Description + Tags */}
+                  <div
+                    className="dp-card-back"
+                    style={{ background: pillar.backGradient }}
+                  >
+                    <span className="dp-back-title">{pillar.title}</span>
+                    <p className="dp-back-desc">{pillar.description}</p>
+                    <div className="dp-back-tags">{pillar.tags}</div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function UiUxDesign() {
   return (
     <div className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden">
@@ -161,134 +320,8 @@ export default function UiUxDesign() {
 
       <SectionDivider />
 
-      {/* DESIGN SPECIALIZATION PILLARS (5 Sections/Cards) */}
-      <section className="py-24 bg-white border-y border-slate-100">
-        <div className="container max-w-[1200px] mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-20">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-amber-50 border border-amber-100 text-[#F59E0B] text-xs font-semibold uppercase tracking-wider mb-4">
-              Our Process Layers
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight mb-4">
-              Human-Centered Design Pillars
-            </h2>
-            <p className="text-base sm:text-lg text-slate-500">
-              We design modular layouts starting from user research all the way up to system codebases.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            {/* User Research */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-amber-50 text-[#F59E0B] flex items-center justify-center mb-6 border border-amber-100">
-                  <Search className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">User Research</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Perform comprehensive interviews, mapping custom personas, and finding layout friction zones to align design specs.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                Personas • User Testing • Surveys
-              </div>
-            </motion.div>
-
-            {/* Wireframing */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-amber-50 text-[#F59E0B] flex items-center justify-center mb-6 border border-amber-100">
-                  <Layers className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">Wireframing</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Drafting structural screen maps and navigation hierarchies to establish clean page logic before visual design.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                Low-fi Mockups • User Flows • Miro
-              </div>
-            </motion.div>
-
-            {/* UI Design */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-amber-50 text-[#F59E0B] flex items-center justify-center mb-6 border border-amber-100">
-                  <Palette className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">UI Design</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Applying premium typographic structures, grid alignments, customized SVGs, and consistent color pallets in Figma.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                Figma • Visual Styling • Vectors
-              </div>
-            </motion.div>
-
-            {/* UX Optimization */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-amber-50 text-[#F59E0B] flex items-center justify-center mb-6 border border-amber-100">
-                  <Eye className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">UX Optimization</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Refining checkout steps, form completions, and interaction states to remove user friction and improve retention.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                Heuristics • Friction Audits • Analytics
-              </div>
-            </motion.div>
-
-            {/* Design Systems */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-amber-50 text-[#F59E0B] flex items-center justify-center mb-6 border border-amber-100">
-                  <Settings className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">Design Systems</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Building modular, component-based Figma libraries and styleguides to coordinate design changes and developer handoffs.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                Figma Tokens • Component Kits
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      {/* DESIGN SPECIALIZATION PILLARS — Lusion 3D Flip */}
+      <DesignPillarsFlip />
 
       {/* BENEFITS SECTION */}
       <section className="py-24 bg-slate-50">

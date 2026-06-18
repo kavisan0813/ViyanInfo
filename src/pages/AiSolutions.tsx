@@ -1,4 +1,7 @@
+import { useLayoutEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Brain,
   Sparkles,
@@ -16,6 +19,7 @@ import {
 import { TechBadge } from "../components/TechBadge";
 import { CTABlock } from "../components/CTABlock";
 import { SectionDivider } from "../components/SectionDivider";
+import "../components/AINetwork.css";
 
 // Premium Interactive Neural Network & Workflow SVG Illustration
 const NeuralNetworkIllustration = () => (
@@ -131,7 +135,218 @@ const NeuralNetworkIllustration = () => (
   </div>
 );
 
+
+
+const aiNetworkCards = [
+  {
+    icon: MessageSquare,
+    title: "AI Chatbots",
+    desc: "Context-aware assistants integrated with your database schema to provide instant, human-grade customer support.",
+    tags: "GPT-4o • Custom System Prompts",
+    x: 0,
+    y: -280,
+    color: "#EC4899",
+    tagBg: "rgba(236, 72, 153, 0.08)",
+  },
+  {
+    icon: Workflow,
+    title: "Business Automation",
+    desc: "Automate redundant manual administrative operations with smart background agents linking different API hooks.",
+    tags: "LangGraph • Auto-schedulers",
+    x: -266,
+    y: -86,
+    color: "#10B981",
+    tagBg: "rgba(16, 185, 129, 0.08)",
+  },
+  {
+    icon: Search,
+    title: "RAG Systems",
+    desc: "Retrieval-Augmented Generation matching semantic searches against vector stores for highly accurate document lookups.",
+    tags: "Pinecone • Qdrant • Embeddings",
+    x: 266,
+    y: -86,
+    color: "#06B6D4",
+    tagBg: "rgba(6, 182, 212, 0.08)",
+  },
+  {
+    icon: BarChart3,
+    title: "Predictive Analytics",
+    desc: "Compile structural regression and classification algorithms to identify user trends and predict database metrics.",
+    tags: "Scikit-Learn • Trend Forecasting",
+    x: -165,
+    y: 226,
+    color: "#7B2FF7",
+    tagBg: "rgba(123, 47, 247, 0.08)",
+  },
+  {
+    icon: Cpu,
+    title: "LLM Integration",
+    desc: "Connect OpenAI, Claude and open-source models into business systems for intelligent automation.",
+    tags: "OpenAI • Claude • HuggingFace",
+    x: 165,
+    y: 226,
+    color: "#F97316",
+    tagBg: "rgba(249, 115, 22, 0.08)",
+  },
+];
+
+const AINetwork = () => {
+  const [activeCard, setActiveCard] = useState<string | null>(null);
+
+  return (
+    <section className="ai-network-section">
+      {/* Header */}
+      <div className="ai-network-header">
+        <span className="ai-net-label">AI Capabilities</span>
+        <h2>Custom Artificial Intelligence Systems</h2>
+        <p>
+          We design specialized workflows using modern large language models and
+          vector storage pipelines.
+        </p>
+      </div>
+
+      {/* Absolute Centered Coordinate System */}
+      <div className="network-center-system">
+        
+        {/* SVG Orbit Circle — pentagon-aligned */}
+        <svg className="network-svg-absolute" width="800" height="800" viewBox="-400 -400 800 800">
+          <circle cx="0" cy="0" r="280" className="network-circle" />
+          {/* Connection lines from center to each node */}
+          {aiNetworkCards.map((card, i) => (
+            <line
+              key={`line-${i}`}
+              x1="0"
+              y1="0"
+              x2={card.x}
+              y2={card.y}
+              stroke={card.color}
+              strokeWidth="1.5"
+              strokeDasharray="4,4"
+              opacity="0.3"
+            />
+          ))}
+          {/* Center dot */}
+          <circle cx="0" cy="0" r="8" fill="#7B2FF7" opacity="0.2" />
+          <circle cx="0" cy="0" r="4" fill="#7B2FF7" opacity="0.8" />
+
+          {/* Animated data particles */}
+          {aiNetworkCards.map((card, i) => (
+            <circle
+              key={`particle-${i}`}
+              r="3.5"
+              fill={card.color}
+              style={{ filter: `drop-shadow(0 0 6px ${card.color})` }}
+            >
+              <animate
+                attributeName="cx"
+                values={`0; ${card.x}`}
+                dur="3s"
+                begin={`${i * 0.6}s`}
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="cy"
+                values={`0; ${card.y}`}
+                dur="3s"
+                begin={`${i * 0.6}s`}
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="opacity"
+                values="0; 1; 1; 0"
+                keyTimes="0; 0.2; 0.8; 1"
+                dur="3s"
+                begin={`${i * 0.6}s`}
+                repeatCount="indefinite"
+              />
+            </circle>
+          ))}
+        </svg>
+
+        {/* Network Nodes */}
+        {aiNetworkCards.map((card) => {
+          const Icon = card.icon;
+          const isExpanded = activeCard === card.title;
+
+          return (
+            <div
+              key={card.title}
+              className={`ai-node ${isExpanded ? "expanded" : ""}`}
+              style={{
+                top: `${card.y}px`,
+                left: `${card.x}px`,
+                borderColor: isExpanded
+                ? `${card.color}30`
+                : "rgba(0,0,0,0.06)",
+              boxShadow: isExpanded
+                ? `0 25px 80px ${card.color}20`
+                : "0 10px 40px rgba(0,0,0,0.05)",
+            }}
+            onMouseEnter={() => setActiveCard(card.title)}
+            onMouseLeave={() => setActiveCard(null)}
+          >
+            <div
+              className="icon-box"
+              style={{
+                color: card.color,
+                background: card.tagBg,
+              }}
+            >
+              <Icon size={24} />
+            </div>
+
+            <h3>{card.title}</h3>
+
+            {isExpanded && (
+              <div className="card-details">
+                <p>{card.desc}</p>
+                <span
+                  style={{
+                    background: card.tagBg,
+                    color: card.color,
+                  }}
+                >
+                  {card.tags}
+                </span>
+              </div>
+            )}
+          </div>
+        );
+        })}
+      </div>
+    </section>
+  );
+};
+
 export default function AiSolutions() {
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray(".case-study-card").forEach((card: any) => {
+        gsap.fromTo(
+          card,
+          {
+            scale: 0.85,
+            opacity: 0.5
+          },
+          {
+            scale: 1,
+            opacity: 1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top center",
+              end: "bottom center",
+              scrub: true
+            }
+          }
+        );
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden">
       
@@ -179,134 +394,8 @@ export default function AiSolutions() {
 
       <SectionDivider />
 
-      {/* AI SERVICE PILLARS (5 Sections/Cards) */}
-      <section className="py-24 bg-white border-y border-slate-100">
-        <div className="container max-w-[1200px] mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-20">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-pink-50 border border-pink-100 text-[#EC4899] text-xs font-semibold uppercase tracking-wider mb-4">
-              AI Capabilities
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight mb-4">
-              Custom Artificial Intelligence Systems
-            </h2>
-            <p className="text-base sm:text-lg text-slate-500">
-              We design specialized workflows using modern large language models and vector storage pipelines.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            {/* AI Chatbots */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-pink-50 text-[#EC4899] flex items-center justify-center mb-6 border border-pink-100">
-                  <MessageSquare className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">AI Chatbots</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Context-aware assistants integrated with your database schema to provide instant, human-grade customer support.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                GPT-4o • Custom System Prompts
-              </div>
-            </motion.div>
-
-            {/* Business Automation */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-pink-50 text-[#EC4899] flex items-center justify-center mb-6 border border-pink-100">
-                  <Workflow className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">Business Automation</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Automate redundant manual administrative operations with smart background agents linking different API hooks.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                LangGraph • Auto-schedulers
-              </div>
-            </motion.div>
-
-            {/* Predictive Analytics */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-pink-50 text-[#EC4899] flex items-center justify-center mb-6 border border-pink-100">
-                  <BarChart3 className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">Predictive Analytics</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Compile structural regression and classification algorithms to identify user trends and predict database metrics.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                Scikit-Learn • Trend Forecasting
-              </div>
-            </motion.div>
-
-            {/* LLM Integration */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-pink-50 text-[#EC4899] flex items-center justify-center mb-6 border border-pink-100">
-                  <Cpu className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">LLM Integration</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Connect open-source and proprietary models (OpenAI, Anthropic, LLaMA) directly into your website's database layers.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                OpenAI • Claude API • HuggingFace
-              </div>
-            </motion.div>
-
-            {/* RAG Systems */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-pink-50 text-[#EC4899] flex items-center justify-center mb-6 border border-pink-100">
-                  <Search className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-slate-900 mb-3">RAG Systems</h3>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6">
-                  Retrieval-Augmented Generation matching semantic searches against vector stores for highly accurate document lookups.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                Pinecone • Qdrant • Embeddings
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      {/* AI CAPABILITIES — Neural Network Layout */}
+      <AINetwork />
 
       {/* BENEFITS SECTION */}
       <section className="py-24 bg-slate-50">
@@ -386,13 +475,8 @@ export default function AiSolutions() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left max-w-4xl mx-auto">
             {/* Case 1: AI Assistant */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(236, 72, 153, 0.06)" }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full transition-all duration-300 group"
+            <div
+              className="case-study-card p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full group hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(236,72,153,0.06)]"
             >
               <div>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-2 block">
@@ -411,16 +495,11 @@ export default function AiSolutions() {
                   View Case Study <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Case 2: Automation Platform */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(236, 72, 153, 0.06)" }}
-              className="p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full transition-all duration-300 group"
+            <div
+              className="case-study-card p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full group hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(236,72,153,0.06)]"
             >
               <div>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-2 block">
@@ -439,7 +518,7 @@ export default function AiSolutions() {
                   View Case Study <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

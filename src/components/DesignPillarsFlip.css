@@ -1,0 +1,277 @@
+/* ─────────────────────────────────────────
+   LUSION "DESIGN PILLARS" CARD FLIP
+   Pinned scroll · Simultaneous staggered flip
+   ───────────────────────────────────────── */
+
+.dp-section {
+  position: relative;
+  background: #FAF7FF;
+  overflow: hidden;
+}
+
+/* ── Viewport (GSAP pins this) ── */
+.dp-viewport {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 24px;
+}
+
+/* ── Heading ── */
+.dp-heading {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.dp-label {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  background: rgba(255, 237, 198, 0.6);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  color: #F59E0B;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-family: var(--font-mono, "Space Mono", monospace);
+}
+
+.dp-heading h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  color: #0F172A;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-family: var(--font-display, "Sora", sans-serif);
+}
+
+.dp-heading p {
+  font-size: 15px;
+  color: #64748B;
+  margin-top: 10px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* ── Cards row — force horizontal, no wrap ── */
+.dp-cards-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  perspective: 3000px;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1300px;
+}
+
+/* ── Single card ── */
+.dp-card {
+  width: 240px;
+  min-width: 240px;
+  height: 340px;
+  flex-shrink: 0;
+}
+
+.dp-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ── Card faces ── */
+.dp-card-front,
+.dp-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 24px;
+  box-sizing: border-box;
+}
+
+/* ── Front face — Minimal ── */
+.dp-card-front {
+  background: white;
+  border: 1px solid rgba(245, 158, 11, 0.06);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.04),
+    0 16px 40px rgba(245, 158, 11, 0.04);
+}
+
+.dp-card-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.dp-card-front h3 {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #0F172A;
+  font-family: var(--font-display, "Sora", sans-serif);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.dp-card-label {
+  margin-top: 14px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: var(--font-mono, "Space Mono", monospace);
+  opacity: 0.5;
+}
+
+/* ── Back face (Light Theme) ── */
+.dp-card-back {
+  transform: rotateY(180deg);
+  color: #0F172A;
+  justify-content: flex-start;
+  padding-top: 36px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.dp-back-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  opacity: 0.85;
+  font-family: var(--font-mono, "Space Mono", monospace);
+  text-align: center;
+}
+
+.dp-back-desc {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: #334155;
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 0 4px;
+}
+
+.dp-back-tags {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94A3B8;
+  text-align: center;
+  letter-spacing: 0.5px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  width: 100%;
+}
+
+/* ── Responsive: medium screens ── */
+@media (max-width: 1100px) {
+  .dp-cards-row {
+    gap: 16px;
+  }
+
+  .dp-card {
+    width: 200px;
+    min-width: 200px;
+    height: 300px;
+  }
+
+  .dp-card-front h3 {
+    font-size: 17px;
+  }
+
+  .dp-back-desc {
+    font-size: 12px;
+  }
+}
+
+/* ── Responsive: small screens ── */
+@media (max-width: 768px) {
+  .dp-cards-row {
+    gap: 12px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
+
+  .dp-card {
+    width: 180px;
+    min-width: 180px;
+    height: 270px;
+  }
+
+  .dp-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+
+  .dp-card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .dp-card-front h3 {
+    font-size: 15px;
+  }
+
+  .dp-card-label {
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+
+  .dp-back-title {
+    font-size: 10px;
+    margin-bottom: 14px;
+  }
+
+  .dp-back-desc {
+    font-size: 11px;
+    margin-bottom: 16px;
+  }
+
+  .dp-back-tags {
+    font-size: 9px;
+    padding-top: 12px;
+  }
+
+  .dp-heading h2 {
+    font-size: 28px;
+  }
+
+  .dp-heading {
+    margin-bottom: 28px;
+  }
+
+  .dp-heading p {
+    font-size: 13px;
+  }
+}

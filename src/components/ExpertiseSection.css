@@ -1,0 +1,267 @@
+/* ─────────────────────────────────────────
+   LUSION "AREA OF EXPERTISE" CARD FLIP
+   All cards visible · Simultaneous flip · Scroll-driven
+   ───────────────────────────────────────── */
+
+.expertise-section {
+  position: relative;
+  background: #FAF7FF;
+  overflow: hidden;
+}
+
+/* ── Viewport (GSAP pins this) ── */
+.expertise-viewport {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 24px;
+}
+
+/* ── Heading ── */
+.expertise-heading {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.expertise-heading .label {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  background: rgba(233, 213, 255, 0.6);
+  border: 1px solid #E9D5FF;
+  color: #7B2FF7;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-family: var(--font-mono, "Space Mono", monospace);
+}
+
+.expertise-heading h2 {
+  font-size: clamp(36px, 5vw, 64px);
+  color: #0F172A;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-family: var(--font-display, "Sora", sans-serif);
+}
+
+.expertise-heading p {
+  font-size: 15px;
+  color: #64748B;
+  margin-top: 10px;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* ── Cards row — force horizontal, no wrap ── */
+.expertise-cards-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  perspective: 3000px;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1300px;
+}
+
+/* ── Single card ── */
+.expertise-card {
+  width: 240px;
+  min-width: 240px;
+  height: 350px;
+  flex-shrink: 0;
+}
+
+.expertise-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ── Card faces ── */
+.expertise-card-front,
+.expertise-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 24px;
+  box-sizing: border-box;
+}
+
+/* ── Front face ── */
+.expertise-card-front {
+  background: white;
+  border: 1px solid rgba(123, 47, 247, 0.06);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.04),
+    0 16px 40px rgba(123, 47, 247, 0.04);
+}
+
+.expertise-card-front .card-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.expertise-card-front h3 {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #0F172A;
+  font-family: var(--font-display, "Sora", sans-serif);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.expertise-card-front .card-label {
+  margin-top: 14px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: var(--font-mono, "Space Mono", monospace);
+  opacity: 0.5;
+}
+
+/* ── Back face (Light Theme) ── */
+.expertise-card-back {
+  transform: rotateY(180deg);
+  color: #0F172A;
+  justify-content: flex-start;
+  padding-top: 40px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.expertise-card-back .back-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  opacity: 0.85;
+  font-family: var(--font-mono, "Space Mono", monospace);
+  text-align: center;
+}
+
+.expertise-card-back ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.expertise-card-back ul li {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.expertise-card-back ul li:last-child {
+  border-bottom: none;
+}
+
+/* ── Responsive: medium screens ── */
+@media (max-width: 1100px) {
+  .expertise-cards-row {
+    gap: 16px;
+  }
+
+  .expertise-card {
+    width: 200px;
+    min-width: 200px;
+    height: 300px;
+  }
+
+  .expertise-card-front h3 {
+    font-size: 16px;
+  }
+}
+
+/* ── Responsive: small screens ── */
+@media (max-width: 768px) {
+  .expertise-cards-row {
+    gap: 12px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
+
+  .expertise-card {
+    width: 170px;
+    min-width: 170px;
+    height: 260px;
+  }
+
+  .expertise-card-front .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+  }
+
+  .expertise-card-front .card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .expertise-card-front h3 {
+    font-size: 14px;
+  }
+
+  .expertise-card-front .card-label {
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+
+  .expertise-card-back .back-title {
+    font-size: 10px;
+    margin-bottom: 16px;
+  }
+
+  .expertise-card-back ul li {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+
+  .expertise-heading h2 {
+    font-size: 32px;
+  }
+
+  .expertise-heading {
+    margin-bottom: 30px;
+  }
+
+  .expertise-heading p {
+    font-size: 14px;
+  }
+}

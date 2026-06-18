@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -317,57 +317,7 @@ export default function ServicesOverview() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, idx) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative p-8 rounded-3xl bg-white border border-[#E9D5FF]/50 shadow-[0_8px_30px_rgba(123,47,247,0.02)] hover:shadow-[0_20px_40px_rgba(123,47,247,0.08)] transition-all duration-500 flex flex-col justify-between text-left overflow-hidden"
-              >
-                {/* Background glow on hover */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-[0.04] transition-opacity duration-500 pointer-events-none z-0"
-                  style={{ backgroundImage: `radial-gradient(circle at top left, ${service.accentColor}, transparent 70%)` }}
-                />
-
-                {/* Gradient border effect using pseudo inset */}
-                <div 
-                  className="absolute inset-0 rounded-3xl border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20"
-                  style={{ borderColor: `${service.accentColor}33` }}
-                />
-
-                <div className="relative z-10">
-                  <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 ${service.bgClass} ${service.borderClass}`}>
-                    <service.icon className={`w-8 h-8 transition-colors duration-300 ${service.colorClass}`} />
-                  </div>
-                  <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-[#475569] leading-relaxed mb-6">
-                    {service.desc}
-                  </p>
-
-                  <div className="space-y-2.5 mb-8">
-                    {service.features.map((feature, fIdx) => (
-                      <div
-                        key={fIdx}
-                        className="flex items-start gap-2 text-[13px] text-[#475569]"
-                      >
-                        <Check className={`w-4 h-4 ${service.colorClass} mt-0.5 shrink-0`} />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Link to={service.link} className="relative z-10">
-                  <button className={`w-full py-3 rounded-xl bg-white border border-[#E9D5FF] text-sm font-semibold text-[#0F172A] transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer ${service.hoverTextClass} group-hover:border-[${service.accentColor}]/30`}>
-                    Learn More <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </button>
-                </Link>
-              </motion.div>
+              <ServiceCard key={service.id} service={service} idx={idx} />
             ))}
           </div>
         </div>
@@ -625,5 +575,100 @@ export default function ServicesOverview() {
         </div>
       </section>
     </div>
+  );
+}
+
+function ServiceCard({ service, idx }: { service: any; idx: number }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Normalize to -1 to 1
+    const xPct = (x / rect.width - 0.5) * 2;
+    const yPct = (y / rect.height - 0.5) * 2;
+    
+    // Max tilt 8 degrees
+    setTilt({ x: -yPct * 8, y: xPct * 8 });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+    setIsHovered(false);
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: idx * 0.1 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      animate={{ rotateX: tilt.x, rotateY: tilt.y, scale: isHovered ? 1.02 : 1 }}
+      style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+      className="group relative p-8 rounded-3xl bg-white border border-[#E9D5FF]/50 shadow-[0_8px_30px_rgba(123,47,247,0.02)] hover:shadow-[0_20px_40px_rgba(123,47,247,0.08)] transition-all duration-500 flex flex-col justify-between text-left overflow-hidden cursor-pointer"
+    >
+      {/* Background glow on hover */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-[0.04] transition-opacity duration-500 pointer-events-none z-0"
+        style={{ backgroundImage: `radial-gradient(circle at center, ${service.accentColor}, transparent 70%)` }}
+      />
+
+      {/* Light sweep animation */}
+      <div className="absolute inset-0 overflow-hidden z-10 rounded-3xl pointer-events-none">
+        <motion.div 
+          initial={{ left: "-100%" }}
+          animate={{ left: isHovered ? "200%" : "-100%" }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          className="absolute top-[-50%] w-[50%] h-[200%] bg-gradient-to-r from-transparent via-white/50 to-transparent -rotate-45" 
+        />
+      </div>
+
+      {/* Gradient border effect using pseudo inset */}
+      <div 
+        className="absolute inset-0 rounded-3xl border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20"
+        style={{ borderColor: `${service.accentColor}33` }}
+      />
+
+      <div className="relative z-30" style={{ transform: "translateZ(30px)" }}>
+        <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 ${service.bgClass} ${service.borderClass}`}>
+          <service.icon className={`w-8 h-8 transition-colors duration-300 ${service.colorClass}`} />
+        </div>
+        <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">
+          {service.title}
+        </h3>
+        <p className="text-sm text-[#475569] leading-relaxed mb-6">
+          {service.desc}
+        </p>
+
+        <div className="space-y-2.5 mb-8">
+          {service.features.map((feature: string, fIdx: number) => (
+            <div
+              key={fIdx}
+              className="flex items-start gap-2 text-[13px] text-[#475569]"
+            >
+              <Check className={`w-4 h-4 ${service.colorClass} mt-0.5 shrink-0`} />
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="relative z-30" style={{ transform: "translateZ(20px)" }}>
+        <Link to={service.link}>
+          <button className={`w-full py-3 rounded-xl bg-white border border-[#E9D5FF] text-sm font-semibold text-[#0F172A] transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer ${service.hoverTextClass} group-hover:border-[${service.accentColor}]/30`}>
+            Learn More <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </button>
+        </Link>
+      </div>
+    </motion.div>
   );
 }
