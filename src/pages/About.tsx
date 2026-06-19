@@ -1,4 +1,6 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
+import { onHoverBurst } from "../utils/particleBurst";
+import { glitchText } from "../utils/charGlitch";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
@@ -430,19 +432,37 @@ export default function About() {
 
   const [activeFounder, setActiveFounder] = useState(0);
   const [scrollVal, setScrollVal] = useState(0);
+  const activeFounderRef = useRef(0);
+
+  const foundersData = useMemo(() => [
+    { name: "Rithick" },
+    { name: "Peter" },
+    { name: "Narendhiran" },
+  ], []);
 
   useEffect(() => {
-    return scrollYProgress.onChange((val) => {
+    return scrollYProgress.on("change", (val) => {
       setScrollVal(val);
+      let nextFounder = 0;
       if (val < 0.25) {
-        setActiveFounder(0);
+        nextFounder = 0;
       } else if (val < 0.55) {
-        setActiveFounder(1);
+        nextFounder = 1;
       } else {
-        setActiveFounder(2);
+        nextFounder = 2;
       }
+
+      if (nextFounder !== activeFounderRef.current) {
+        activeFounderRef.current = nextFounder;
+        const nameEl = document.querySelector<HTMLElement>(
+          `#founder-name-${nextFounder}`,
+        );
+        if (nameEl) glitchText(nameEl, foundersData[nextFounder].name, 400, 8);
+      }
+
+      setActiveFounder(nextFounder);
     });
-  }, [scrollYProgress]);
+  }, [scrollYProgress, foundersData]);
 
   const getFounderStyle = (idx: number, progress: number) => {
     let opacity = 0;
@@ -498,19 +518,10 @@ export default function About() {
         opacity = p;
         y = 80 * (1 - p);
         scale = 0.95 + 0.05 * p;
-      } else if (progress <= 0.8) {
+      } else {
         opacity = 1;
         y = 0;
         scale = 1;
-      } else if (progress <= 0.95) {
-        const p = (progress - 0.8) / 0.15; // 0 -> 1
-        opacity = 1 - p;
-        y = -80 * p;
-        scale = 1 - 0.05 * p;
-      } else {
-        opacity = 0;
-        y = -80;
-        scale = 0.95;
       }
     }
 
@@ -599,7 +610,10 @@ export default function About() {
               </p>
               <div className="flex gap-4">
                 <Link to="/contact">
-                  <button className="px-6 py-3.5 bg-[#7B2FF7] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg hover:bg-[#9333EA] transition-colors cursor-pointer">
+                  <button
+                    onMouseEnter={onHoverBurst}
+                    className="px-6 py-3.5 bg-[#7B2FF7] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg hover:bg-[#9333EA] transition-colors cursor-pointer"
+                  >
                     Contact Our Team
                   </button>
                 </Link>
@@ -621,9 +635,9 @@ export default function About() {
       <SectionDivider />
 
       {/* STATS SECTION */}
-      <section className="py-16 bg-[#FAF7FF] relative">
+      <section className="py-20 bg-[#FAF7FF] relative">
         <div className="container max-w-[1200px] mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
             {[
               {
                 val: "6+",
@@ -656,7 +670,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`p-6 rounded-2xl border ${stat.bg} backdrop-blur-md text-center`}
+                className={`p-8 rounded-2xl border ${stat.bg} backdrop-blur-md text-center`}
               >
                 <span
                   className={`block text-4xl sm:text-5xl font-display font-extrabold ${stat.color} mb-2`}
@@ -995,7 +1009,7 @@ export default function About() {
       <SectionDivider />
 
       {/* SCROLL STORYTELLING FOUNDERS SECTION */}
-      <section ref={sectionRef} className="relative h-[500vh] bg-[#FAF7FF]">
+      <section ref={sectionRef} className="relative h-[350vh] bg-[#FAF7FF]">
         <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
           <div className="container max-w-[1200px] mx-auto px-6 h-full flex flex-col justify-center relative">
             {/* Section Header (Fades out when scrolling) */}
@@ -1084,7 +1098,10 @@ export default function About() {
                       >
                         {founder.role}
                       </span>
-                      <h3 className="text-4xl sm:text-5xl font-display font-extrabold text-[#0F172A] tracking-tight mb-4">
+                      <h3
+                        id={`founder-name-${idx}`}
+                        className="text-4xl sm:text-5xl font-display font-extrabold text-[#0F172A] tracking-tight mb-4"
+                      >
                         {founder.name}
                       </h3>
                       <p className="text-base sm:text-lg leading-relaxed text-[#475569] mb-6 max-w-xl">
@@ -1160,7 +1177,9 @@ export default function About() {
         </div>
       </section>
 
-      <SectionDivider />
+      <div className="relative z-30 bg-[#FAF7FF]">
+        <SectionDivider />
+      </div>
 
       {/* FINAL CTA */}
       <CTABlock

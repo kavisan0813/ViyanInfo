@@ -18,10 +18,68 @@ import { SectionDivider } from "../components/SectionDivider";
 import inventryImg from "../assets/inventry.webp";
 import emsImg from "../assets/ems.webp";
 import flowerImg from "../assets/sakura.webp";
-import dashboardImg from "../assets/intro.jpeg";
+import dashboardImg from "../assets/intro.png";
 import { motion } from "framer-motion";
+import { burst } from "../utils/particleBurst";
+import astronautImg from "../assets/Astronaut.webp";
+import saturnImg from "../assets/Saturn.webp";
 
 export default function Home() {
+  const ctaContainerRef = useRef<HTMLDivElement>(null);
+  const astronautRef = useRef<HTMLImageElement>(null);
+  const saturnRef = useRef<HTMLImageElement>(null);
+
+  const handleCtaMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ctaContainerRef.current) return;
+    const rect = ctaContainerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const moveX = (x - rect.width / 2) * 0.05;
+    const moveY = (y - rect.height / 2) * 0.05;
+
+    if (astronautRef.current) {
+      gsap.to(astronautRef.current, {
+        x: moveX,
+        y: moveY,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    }
+
+    if (saturnRef.current) {
+      gsap.to(saturnRef.current, {
+        x: moveX * 0.8,
+        y: moveY * 0.8,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+    }
+  };
+
+  const handleCtaMouseLeave = () => {
+    if (astronautRef.current) {
+      gsap.to(astronautRef.current, {
+        x: 0,
+        y: 0,
+        duration: 1,
+        ease: "elastic.out(1, 0.3)",
+      });
+    }
+
+    if (saturnRef.current) {
+      gsap.to(saturnRef.current, {
+        x: 0,
+        y: 0,
+        duration: 1.2,
+        ease: "elastic.out(1, 0.3)",
+      });
+    }
+  };
+
+  const onHoverBurst = (e: React.MouseEvent<HTMLElement>) => {
+    burst(e.currentTarget);
+  };
   const heroRef = useRef<HTMLElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -74,7 +132,7 @@ export default function Home() {
             x: (Math.random() - 0.5) * 600, // ±300px
             y: (Math.random() - 0.5) * 600,
             opacity: 0, // fromTo handles 0->1->0 via keyframes
-            scale: 0,   // handled by keyframes
+            scale: 0, // handled by keyframes
             duration: 0.8,
             ease: "power2.out",
             delay: Math.random() * 0.2, // Stagger effect
@@ -86,7 +144,7 @@ export default function Home() {
             onComplete: () => {
               if (p.parentNode) p.parentNode.removeChild(p);
             },
-          }
+          },
         );
       }
     }, 1500);
@@ -104,7 +162,10 @@ export default function Home() {
       mm.add("(min-width: 769px)", () => {
         // --- Hero Entrance ---
         const badge = ".hero-badge";
-        const words = gsap.utils.toArray<HTMLElement>(".word-inner", heroContentRef.current);
+        const words = gsap.utils.toArray<HTMLElement>(
+          ".word-inner",
+          heroContentRef.current,
+        );
         const subtitle = ".hero-subtitle";
         const ctaButtons = gsap.utils.toArray<HTMLElement>(
           ".hero-cta",
@@ -123,7 +184,14 @@ export default function Home() {
         if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           tl.from(
             words,
-            { y: "120%", rotateX: -40, opacity: 0, stagger: 0.06, ease: "expo.out", duration: 1.3 },
+            {
+              y: "120%",
+              rotateX: -40,
+              opacity: 0,
+              stagger: 0.06,
+              ease: "expo.out",
+              duration: 1.3,
+            },
             "-=0.7",
           );
         } else {
@@ -134,12 +202,11 @@ export default function Home() {
           );
         }
 
-        tl.from(subtitle, { y: 30, opacity: 0, duration: 0.9 }, "-=0.7")
-          .from(
-            ctaButtons,
-            { y: 25, opacity: 0, stagger: 0.1, duration: 0.8 },
-            "-=0.6",
-          );
+        tl.from(subtitle, { y: 30, opacity: 0, duration: 0.9 }, "-=0.7").from(
+          ctaButtons,
+          { y: 25, opacity: 0, stagger: 0.1, duration: 0.8 },
+          "-=0.6",
+        );
 
         // --- Hero Scroll Exit ---
         gsap.to(heroContentRef.current, {
@@ -245,10 +312,14 @@ export default function Home() {
       mm.add("(min-width: 1024px)", () => {
         if (servicesSectionRef.current && servicesTrackRef.current) {
           // Calculate max scrollable distance
-          const getScrollAmount = () => -(servicesTrackRef.current!.scrollWidth - window.innerWidth);
+          const getScrollAmount = () =>
+            -(servicesTrackRef.current!.scrollWidth - window.innerWidth);
 
-          const cards = gsap.utils.toArray<HTMLElement>('.service-card', servicesTrackRef.current);
-          
+          const cards = gsap.utils.toArray<HTMLElement>(
+            ".service-card",
+            servicesTrackRef.current,
+          );
+
           // Pinned ScrollTrigger animation with dynamic scaling
           gsap.to(servicesTrackRef.current, {
             x: getScrollAmount,
@@ -258,44 +329,47 @@ export default function Home() {
               pin: true,
               scrub: 1,
               start: "top top",
-              end: () => `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
+              end: () =>
+                `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
               invalidateOnRefresh: true,
               onUpdate: () => {
                 const centerX = window.innerWidth / 2;
-                cards.forEach(card => {
+                cards.forEach((card) => {
                   const rect = card.getBoundingClientRect();
                   const cardCenter = rect.left + rect.width / 2;
                   const distance = Math.abs(centerX - cardCenter);
                   const maxDist = window.innerWidth * 0.6;
-                  
+
                   // Scale from 0.9 to 1 based on distance
                   let scale = 1 - (distance / maxDist) * 0.15;
                   if (scale < 0.9) scale = 0.9;
                   if (scale > 1) scale = 1;
-                  
+
                   // Rotation slightly based on distance to center
                   let rotateY = ((cardCenter - centerX) / maxDist) * 10;
                   if (rotateY > 5) rotateY = 5;
                   if (rotateY < -5) rotateY = -5;
-                  
+
                   // Glow opacity
-                  let glowOpacity = 1 - (distance / (rect.width * 0.8));
+                  let glowOpacity = 1 - distance / (rect.width * 0.8);
                   if (glowOpacity < 0) glowOpacity = 0;
                   if (glowOpacity > 1) glowOpacity = 1;
 
-                  gsap.set(card, { 
+                  gsap.set(card, {
                     scale: scale,
                     rotationY: rotateY,
-                    transformPerspective: 1000
+                    transformPerspective: 1000,
                   });
-                  
-                  const glow = card.querySelector('.dynamic-glow') as HTMLElement;
+
+                  const glow = card.querySelector(
+                    ".dynamic-glow",
+                  ) as HTMLElement;
                   if (glow) {
                     gsap.set(glow, { opacity: glowOpacity * 0.5 }); // subtle active glow
                   }
                 });
-              }
-            }
+              },
+            },
           });
 
           // Parallax background blobs
@@ -306,9 +380,10 @@ export default function Home() {
             scrollTrigger: {
               trigger: servicesSectionRef.current,
               start: "top top",
-              end: () => `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
+              end: () =>
+                `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
               scrub: 1.5,
-            }
+            },
           });
 
           gsap.to(servicesBlob2Ref.current, {
@@ -318,9 +393,10 @@ export default function Home() {
             scrollTrigger: {
               trigger: servicesSectionRef.current,
               start: "top top",
-              end: () => `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
+              end: () =>
+                `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
               scrub: 2,
-            }
+            },
           });
         }
       });
@@ -337,20 +413,19 @@ export default function Home() {
         className="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center overflow-hidden pt-8 pb-16 bg-[#F8F5FF]"
       >
         {/* Soft Ambient Background - Mouse Reactive */}
-        <div ref={heroBgBlobRef} className="absolute inset-0 z-0 pointer-events-none">
+        {/* <div
+          ref={heroBgBlobRef}
+          className="absolute inset-0 z-0 pointer-events-none"
+        >
           <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[radial-gradient(circle,rgba(240,230,255,0.6)_0%,transparent_60%)]"></div>
           <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[radial-gradient(circle,rgba(220,200,255,0.4)_0%,transparent_60%)]"></div>
-        </div>
-
-        {/* Dot Grid Pattern in Top-Right Corner */}
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(#C084FC_1.5px,transparent_1.5px)] [bg-size:24px_24px] opacity-[0.15] pointer-events-none z-0 mask-image:radial-gradient(ellipse_at_center,black_0%,transparent_70%)]"></div>
-
+        </div> */}
         {/* Content */}
         <div
           ref={heroContentRef}
-          className="container relative z-10 w-full max-w-[1300px]"
+          className="container-fluid relative z-10 w-full max-w-[1600px]"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center pt-20 lg:pt-0">
+          <div className="flex justify-between gap-12 lg:gap-8 items-center pt-20 lg:pt-0">
             {/* Left Box: Typographic Content (5/12 equivalent) */}
             <div className="lg:col-span-5 text-left flex flex-col items-start pr-4">
               <div className="hero-badge flex items-center gap-2.5 bg-[#F5F0FF] backdrop-blur-md px-4 py-2 rounded-full mb-8 border border-[#E9D5FF] shadow-xs">
@@ -361,7 +436,10 @@ export default function Home() {
               </div>
 
               <h1 className="text-[clamp(34px,4.5vw,56px)] font-display font-bold text-[#1F1430] leading-[1.1] tracking-tight mb-6">
-                <div className="flex gap-[0.3em] flex-wrap" style={{ perspective: "1000px" }}>
+                <div
+                  className="flex gap-[0.3em] flex-wrap"
+                  style={{ perspective: "1000px" }}
+                >
                   {[
                     { text: "We", color: "" },
                     { text: "Engineer", color: "" },
@@ -371,8 +449,15 @@ export default function Home() {
                     { text: "Day", color: "" },
                     { text: "One.", color: "" },
                   ].map((wordObj, i) => (
-                    <span key={i} className="inline-block overflow-hidden pb-2" style={{ transformStyle: "preserve-3d" }}>
-                      <span className={`word-inner inline-block ${wordObj.color}`} style={{ transformOrigin: "bottom center" }}>
+                    <span
+                      key={i}
+                      className="inline-block overflow-hidden pb-2"
+                      style={{ transformStyle: "preserve-3d" }}
+                    >
+                      <span
+                        className={`word-inner inline-block ${wordObj.color}`}
+                        style={{ transformOrigin: "bottom center" }}
+                      >
                         {wordObj.text}
                       </span>
                     </span>
@@ -388,13 +473,19 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                 <Link to="/portfolio" className="hero-cta">
-                  <button className="bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-3.5 rounded-xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer">
+                  <button
+                    onMouseEnter={onHoverBurst}
+                    className="bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-3.5 rounded-xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+                  >
                     Explore Our Work{" "}
                     <span className="text-lg leading-none font-normal">→</span>
                   </button>
                 </Link>
                 <Link to="/contact" className="hero-cta">
-                  <button className="bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-3.5 rounded-xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer">
+                  <button
+                    onMouseEnter={onHoverBurst}
+                    className="bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-3.5 rounded-xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
+                  >
                     Contact Us
                   </button>
                 </Link>
@@ -402,22 +493,16 @@ export default function Home() {
             </div>
 
             {/* Right Box: Coded Premium Glass Dashboard */}
-            <div className="lg:col-span-7 w-full flex justify-end relative select-none mt-16 lg:mt-0 pb-12">
+            <div className="lg:col-span-7 w-full flex justify-end relative select-none mt-16 lg:mt-0">
               {/* Main Dashboard Wrapper */}
-              <div className="relative w-full max-w-[820px] lg:translate-x-[40px]">
-                {/* Layer 1: Parallax Background Layer */}
-                <div 
-                  ref={heroBgLayerRef} 
-                  className="absolute left-[50px] top-[50px] w-[90%] h-[90%] bg-gradient-to-tr from-purple-100 to-[#F8F5FF] rounded-[40px] z-0 shadow-xl opacity-60"
-                  style={{ transform: "rotate(-3deg)" }}
-                ></div>
-
+              <div className="relative w-full lg:translate-x-[40px]">
                 {/* Layer 2: Premium 3D Translucent Flower Backdrop Image */}
                 <img
                   ref={flowerRef}
                   src={flowerImg}
                   alt="Translucent Flower Decor"
-                  className="absolute left-[-120px] bottom-[-100px] w-[540px] h-auto pointer-events-none z-10 opacity-90 object-contain"
+                  style={{ bottom: "0px", left: "-100px" }}
+                  className=" absolute w-[540px] h-auto pointer-events-none z-10 opacity-90 object-contain"
                 />
 
                 {/* Layer 3: Dashboard Image (Foreground) */}
@@ -425,7 +510,7 @@ export default function Home() {
                   ref={dashRef}
                   src={dashboardImg}
                   alt="Dashboard Showcase"
-                  className="w-full h-auto object-contain z-20 relative rounded-2xl"
+                  className="w-full h-auto object-contain z-20 relative rounded-2xl w-[300px]"
                 />
               </div>
             </div>
@@ -436,10 +521,10 @@ export default function Home() {
       <SectionDivider />
 
       {/* SECTION 1: TRUST & ACHIEVEMENTS */}
-      <section className="relative py-24 overflow-hidden bg-[#FAF7FF]">
+      <section className="relative py-28 overflow-hidden bg-[#FAF7FF]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(123,47,247,0.03)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="container relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-x-10 lg:gap-y-8">
             {[
               {
                 val: 6,
@@ -489,19 +574,41 @@ export default function Home() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 onMouseEnter={(e) => {
-                  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                  if (
+                    window.matchMedia("(prefers-reduced-motion: reduce)")
+                      .matches
+                  )
+                    return;
                   const currentCard = e.currentTarget;
-                  const allCards = gsap.utils.toArray<HTMLElement>('.stat-card');
-                  const siblings = allCards.filter(card => card !== currentCard);
-                  
+                  const allCards =
+                    gsap.utils.toArray<HTMLElement>(".stat-card");
+                  const siblings = allCards.filter(
+                    (card) => card !== currentCard,
+                  );
+
                   gsap.to(siblings, { y: -6, scale: 0.97, duration: 0.3 });
-                  gsap.to(currentCard, { filter: "brightness(1.15)", y: -8, scale: 1.02, duration: 0.2 });
+                  gsap.to(currentCard, {
+                    filter: "brightness(1.15)",
+                    y: -8,
+                    scale: 1.02,
+                    duration: 0.2,
+                  });
                 }}
                 onMouseLeave={() => {
-                  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-                  const allCards = gsap.utils.toArray<HTMLElement>('.stat-card');
-                  
-                  gsap.to(allCards, { y: 0, scale: 1, filter: "brightness(1)", duration: 0.3 });
+                  if (
+                    window.matchMedia("(prefers-reduced-motion: reduce)")
+                      .matches
+                  )
+                    return;
+                  const allCards =
+                    gsap.utils.toArray<HTMLElement>(".stat-card");
+
+                  gsap.to(allCards, {
+                    y: 0,
+                    scale: 1,
+                    filter: "brightness(1)",
+                    duration: 0.3,
+                  });
                 }}
                 className="stat-card relative group p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_10px_30px_rgba(123,47,247,0.03)] hover:shadow-[0_20px_40px_rgba(123,47,247,0.08)]"
               >
@@ -509,7 +616,7 @@ export default function Home() {
                 <div
                   className={`absolute -inset-4 rounded-3xl bg-gradient-to-br ${stat.borderGlow} opacity-[0.15] blur-xl animate-pulse pointer-events-none z-0`}
                 ></div>
-                
+
                 {/* Hover Glow background effect */}
                 <div
                   className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${stat.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0`}
@@ -544,10 +651,19 @@ export default function Home() {
       <SectionDivider />
 
       {/* SECTION 2: OUR SERVICES */}
-      <section ref={servicesSectionRef} className="relative py-24 lg:py-0 lg:h-screen lg:flex lg:items-center bg-[#FAF7FF] overflow-hidden">
+      <section
+        ref={servicesSectionRef}
+        className="relative py-24 lg:py-0 lg:h-screen lg:flex lg:items-center bg-[#FAF7FF] overflow-hidden"
+      >
         {/* Parallax Blobs */}
-        <div ref={servicesBlob1Ref} className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-purple-300/30 rounded-full blur-[120px] pointer-events-none"></div>
-        <div ref={servicesBlob2Ref} className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-indigo-300/20 rounded-full blur-[100px] pointer-events-none"></div>
+        <div
+          ref={servicesBlob1Ref}
+          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-purple-300/30 rounded-full blur-[120px] pointer-events-none"
+        ></div>
+        <div
+          ref={servicesBlob2Ref}
+          className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-indigo-300/20 rounded-full blur-[100px] pointer-events-none"
+        ></div>
 
         <div className="w-full relative z-10">
           <div className="container lg:pl-[5%] xl:pl-[10%] lg:pr-12 text-center lg:text-left mb-12 lg:mb-16">
@@ -564,89 +680,92 @@ export default function Home() {
           </div>
 
           <div className="w-full overflow-hidden pb-12 pt-4">
-            <div ref={servicesTrackRef} className="flex flex-col lg:flex-row flex-nowrap gap-8 px-6 lg:px-[5%] xl:px-[10%] lg:w-max">
-            {[
-              {
-                title: "Custom Software Development",
-                icon: <Code2 className="w-8 h-8 text-[#7B2FF7]" />,
-                desc: "Tailored enterprise solutions built from scratch to streamline your business workflows.",
-                tag: "Custom",
-                bg: "from-purple-500/10 to-indigo-500/10",
-                tagColor: "text-[#7B2FF7]",
-                learnMoreColor: "text-[#7B2FF7]",
-                btnBg: "bg-purple-500/5",
-                btnDot: "bg-[#7B2FF7]",
-                gradientBorder: "from-[#7B2FF7]/10 to-[#9333EA]/10",
-                path: "/services",
-              },
-              {
-                title: "Web Application Development",
-                icon: <Globe className="w-8 h-8 text-[#3B82F6]" />,
-                desc: "High-performance React & Next.js applications engineered for scalability and speed.",
-                tag: "Web",
-                bg: "from-blue-500/10 to-indigo-500/10",
-                tagColor: "text-[#3B82F6]",
-                learnMoreColor: "text-[#3B82F6]",
-                btnBg: "bg-blue-500/5",
-                btnDot: "bg-[#3B82F6]",
-                gradientBorder: "from-[#3B82F6]/10 to-blue-500/10",
-                path: "/services/websites",
-              },
-              {
-                title: "Mobile App Development",
-                icon: <Smartphone className="w-8 h-8 text-[#06B6D4]" />,
-                desc: "Native iOS and Android smart applications built with React Native for cross-platform efficiency.",
-                tag: "Mobile",
-                bg: "from-cyan-500/10 to-indigo-500/10",
-                tagColor: "text-[#06B6D4]",
-                learnMoreColor: "text-[#06B6D4]",
-                btnBg: "bg-cyan-500/5",
-                btnDot: "bg-[#06B6D4]",
-                gradientBorder: "from-[#06B6D4]/10 to-cyan-500/10",
-                path: "/services/mobile",
-              },
-              {
-                title: "AI & Automation Solutions",
-                icon: <Brain className="w-8 h-8 text-[#EC4899]" />,
-                desc: "Intelligent workflows, LLM integrations, OpenAI chatbots, and business automation pipelines.",
-                tag: "Artificial Intelligence",
-                bg: "from-pink-500/10 to-indigo-500/10",
-                tagColor: "text-[#EC4899]",
-                learnMoreColor: "text-[#EC4899]",
-                btnBg: "bg-pink-500/5",
-                btnDot: "bg-[#EC4899]",
-                gradientBorder: "from-[#EC4899]/10 to-pink-500/10",
-                path: "/services",
-              },
-              {
-                title: "UI/UX Design",
-                icon: <Palette className="w-8 h-8 text-[#F97316]" />,
-                desc: "Research-driven, gorgeous user interfaces and delightful digital experiences.",
-                tag: "Design",
-                bg: "from-orange-500/10 to-indigo-500/10",
-                tagColor: "text-[#F97316]",
-                learnMoreColor: "text-[#F97316]",
-                btnBg: "bg-orange-500/5",
-                btnDot: "bg-[#F97316]",
-                gradientBorder: "from-[#F97316]/10 to-orange-500/10",
-                path: "/services",
-              },
-              {
-                title: "Internship & Training Programs",
-                icon: <GraduationCap className="w-8 h-8 text-[#10B981]" />,
-                desc: "Empowering the next generation of engineers with hands-on projects and mentorship.",
-                tag: "Education",
-                bg: "from-green-500/10 to-indigo-500/10",
-                tagColor: "text-[#10B981]",
-                learnMoreColor: "text-[#10B981]",
-                btnBg: "bg-green-500/5",
-                btnDot: "bg-[#10B981]",
-                gradientBorder: "from-[#10B981]/10 to-emerald-500/10",
-                path: "/internship",
-              },
-            ].map((service, idx) => (
-              <HorizontalTiltCard key={idx} service={service} idx={idx} />
-            ))}
+            <div
+              ref={servicesTrackRef}
+              className="flex flex-col lg:flex-row flex-nowrap gap-8 px-6 lg:px-[5%] xl:px-[10%] lg:w-max"
+            >
+              {[
+                {
+                  title: "Custom Software Development",
+                  icon: <Code2 className="w-8 h-8 text-[#7B2FF7]" />,
+                  desc: "Tailored enterprise solutions built from scratch to streamline your business workflows.",
+                  tag: "Custom",
+                  bg: "from-purple-500/10 to-indigo-500/10",
+                  tagColor: "text-[#7B2FF7]",
+                  learnMoreColor: "text-[#7B2FF7]",
+                  btnBg: "bg-purple-500/5",
+                  btnDot: "bg-[#7B2FF7]",
+                  gradientBorder: "from-[#7B2FF7]/10 to-[#9333EA]/10",
+                  path: "/services",
+                },
+                {
+                  title: "Web Application Development",
+                  icon: <Globe className="w-8 h-8 text-[#3B82F6]" />,
+                  desc: "High-performance React & Next.js applications engineered for scalability and speed.",
+                  tag: "Web",
+                  bg: "from-blue-500/10 to-indigo-500/10",
+                  tagColor: "text-[#3B82F6]",
+                  learnMoreColor: "text-[#3B82F6]",
+                  btnBg: "bg-blue-500/5",
+                  btnDot: "bg-[#3B82F6]",
+                  gradientBorder: "from-[#3B82F6]/10 to-blue-500/10",
+                  path: "/services/websites",
+                },
+                {
+                  title: "Mobile App Development",
+                  icon: <Smartphone className="w-8 h-8 text-[#06B6D4]" />,
+                  desc: "Native iOS and Android smart applications built with React Native for cross-platform efficiency.",
+                  tag: "Mobile",
+                  bg: "from-cyan-500/10 to-indigo-500/10",
+                  tagColor: "text-[#06B6D4]",
+                  learnMoreColor: "text-[#06B6D4]",
+                  btnBg: "bg-cyan-500/5",
+                  btnDot: "bg-[#06B6D4]",
+                  gradientBorder: "from-[#06B6D4]/10 to-cyan-500/10",
+                  path: "/services/mobile",
+                },
+                {
+                  title: "AI & Automation Solutions",
+                  icon: <Brain className="w-8 h-8 text-[#EC4899]" />,
+                  desc: "Intelligent workflows, LLM integrations, OpenAI chatbots, and business automation pipelines.",
+                  tag: "Artificial Intelligence",
+                  bg: "from-pink-500/10 to-indigo-500/10",
+                  tagColor: "text-[#EC4899]",
+                  learnMoreColor: "text-[#EC4899]",
+                  btnBg: "bg-pink-500/5",
+                  btnDot: "bg-[#EC4899]",
+                  gradientBorder: "from-[#EC4899]/10 to-pink-500/10",
+                  path: "/services",
+                },
+                {
+                  title: "UI/UX Design",
+                  icon: <Palette className="w-8 h-8 text-[#F97316]" />,
+                  desc: "Research-driven, gorgeous user interfaces and delightful digital experiences.",
+                  tag: "Design",
+                  bg: "from-orange-500/10 to-indigo-500/10",
+                  tagColor: "text-[#F97316]",
+                  learnMoreColor: "text-[#F97316]",
+                  btnBg: "bg-orange-500/5",
+                  btnDot: "bg-[#F97316]",
+                  gradientBorder: "from-[#F97316]/10 to-orange-500/10",
+                  path: "/services",
+                },
+                {
+                  title: "Internship & Training Programs",
+                  icon: <GraduationCap className="w-8 h-8 text-[#10B981]" />,
+                  desc: "Empowering the next generation of engineers with hands-on projects and mentorship.",
+                  tag: "Education",
+                  bg: "from-green-500/10 to-indigo-500/10",
+                  tagColor: "text-[#10B981]",
+                  learnMoreColor: "text-[#10B981]",
+                  btnBg: "bg-green-500/5",
+                  btnDot: "bg-[#10B981]",
+                  gradientBorder: "from-[#10B981]/10 to-emerald-500/10",
+                  path: "/internship",
+                },
+              ].map((service, idx) => (
+                <HorizontalTiltCard key={idx} service={service} idx={idx} />
+              ))}
             </div>
           </div>
         </div>
@@ -1259,14 +1378,16 @@ export default function Home() {
 
       <SectionDivider /> */}
 
-      {/* SECTION 11: FINAL CTA */}
       <section className="py-24 bg-[#FAF7FF] relative">
-        <div className="container max-w-[1000px] mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
+            ref={ctaContainerRef}
+            onMouseMove={handleCtaMouseMove}
+            onMouseLeave={handleCtaMouseLeave}
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="p-8 md:p-10 rounded-3xl bg-gradient-to-tr from-[#7B2FF7] via-[#9333EA] to-[#5B21B6] text-center text-white relative overflow-hidden shadow-2xl"
+            className="p-8 md:p-10 rounded-3xl bg-black text-center text-white relative overflow-hidden shadow-2xl"
           >
             {/* Glowing particle blobs */}
             <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-400/20 blur-3xl animate-[float-y_15s_ease-in-out_infinite] pointer-events-none"></div>
@@ -1275,15 +1396,32 @@ export default function Home() {
             {/* Floating CSS particles with mouse repulsion */}
             <CTAParticles />
 
+            {/* Saturn Image floating in top left */}
+            <img
+              ref={saturnRef}
+              src={saturnImg}
+              alt="Saturn"
+              // className="absolute top-2 left-4 md:left-12 w-20 md:w-28 lg:w-32 opacity-70 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_7s_ease-in-out_infinite]"
+              className="absolute opacity-70 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_7s_ease-in-out_infinite] saturnimage"
+            />
+
+            {/* Astronaut Image floating in bottom right */}
+            <img
+              ref={astronautRef}
+              src={astronautImg}
+              alt="Astronaut"
+              className="absolute -bottom-2 right-4 md:right-12 w-24 md:w-32 lg:w-40 opacity-80 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_6s_ease-in-out_infinite] scale-x-[-1]"
+            />
+
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(15,23,42,0.15)_100%)] pointer-events-none"></div>
 
-            <div className="relative z-10 flex flex-col items-center justify-center">
+            <div className="relative z-20 flex flex-col items-center justify-center">
               <span className="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-semibold uppercase tracking-wider mb-6">
                 Let's Partner Up
               </span>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-white tracking-tight leading-tight mb-6">
+              <span className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-tight mb-6">
                 Let's Build Something Amazing Together
-              </h2>
+              </span>
               <p className="text-lg text-purple-100 max-w-xl mx-auto mb-10 leading-relaxed">
                 Transform your ideas into scalable digital products with our
                 engineering and design teams.
@@ -1292,14 +1430,20 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center items-center relative z-20">
                 <Link to="/contact" className="w-full sm:w-auto">
                   <MagneticButton>
-                    <button className="w-full sm:w-auto px-8 py-4 bg-white text-[#7B2FF7] font-bold text-sm rounded-xl shadow-lg hover:bg-purple-50 hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer pointer-events-auto">
+                    <button
+                      onMouseEnter={onHoverBurst}
+                      className="w-full sm:w-auto px-8 py-4 bg-white text-[#7B2FF7] font-bold text-sm rounded-xl shadow-lg hover:bg-purple-50 hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer pointer-events-auto"
+                    >
                       Start Your Project
                     </button>
                   </MagneticButton>
                 </Link>
                 <Link to="/contact" className="w-full sm:w-auto">
                   <MagneticButton>
-                    <button className="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-sm rounded-xl hover:bg-white/20 hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer pointer-events-auto">
+                    <button
+                      onMouseEnter={onHoverBurst}
+                      className="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-sm rounded-xl hover:bg-white/20 hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer pointer-events-auto"
+                    >
                       Schedule Call
                     </button>
                   </MagneticButton>
@@ -1437,9 +1581,18 @@ function HorizontalTiltCard({ service, idx }: { service: any; idx: number }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (cardRef.current) {
       // Keep existing Y movement along with rotateY/X
-      gsap.to(cardRef.current, { rotateY: 8, rotateX: -4, scale: 1.03, y: -4, duration: 0.4, ease: "power2.out" });
-      
-      const glow = cardRef.current.querySelector('.dynamic-glow') as HTMLElement;
+      gsap.to(cardRef.current, {
+        rotateY: 8,
+        rotateX: -4,
+        scale: 1.03,
+        y: -4,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+
+      const glow = cardRef.current.querySelector(
+        ".dynamic-glow",
+      ) as HTMLElement;
       if (glow) {
         gsap.to(glow, { opacity: 0.5, duration: 0.4 });
       }
@@ -1449,9 +1602,18 @@ function HorizontalTiltCard({ service, idx }: { service: any; idx: number }) {
   const handleMouseLeave = () => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (cardRef.current) {
-      gsap.to(cardRef.current, { rotateY: 0, rotateX: 0, scale: 1, y: 0, duration: 0.4, ease: "elastic.out(1, 0.4)" });
-      
-      const glow = cardRef.current.querySelector('.dynamic-glow') as HTMLElement;
+      gsap.to(cardRef.current, {
+        rotateY: 0,
+        rotateX: 0,
+        scale: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "elastic.out(1, 0.4)",
+      });
+
+      const glow = cardRef.current.querySelector(
+        ".dynamic-glow",
+      ) as HTMLElement;
       if (glow) {
         gsap.to(glow, { opacity: 0, duration: 0.4 });
       }
@@ -1474,48 +1636,57 @@ function HorizontalTiltCard({ service, idx }: { service: any; idx: number }) {
         {/* Dynamic Background Glow */}
         <div
           className="dynamic-glow absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none z-0 mix-blend-multiply"
-          style={{ backgroundImage: `radial-gradient(circle at center, ${service.tagColor.replace('text-', 'bg-').replace(/\[|\]/g, '')}30, transparent 70%)` }}
+          style={{
+            backgroundImage: `radial-gradient(circle at center, ${service.tagColor.replace("text-", "bg-").replace(/\[|\]/g, "")}30, transparent 70%)`,
+          }}
         />
 
-      {/* Gradient border pseudo-inset */}
-      <div 
-        className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradientBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10`}
-      />
-
-      <div className="relative z-20" style={{ transform: "translateZ(30px)" }}>
+        {/* Gradient border pseudo-inset */}
         <div
-          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.bg} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500`}
-        >
-          {service.icon}
-        </div>
-        <span
-          className={`text-[10px] uppercase tracking-widest ${service.tagColor} font-bold font-mono`}
-        >
-          {service.tag}
-        </span>
-        <h3 className="text-2xl font-display font-bold text-[#0F172A] mt-2 mb-3">
-          {service.title}
-        </h3>
-        <p className="text-[#475569] text-[15px] leading-relaxed mb-6">
-          {service.desc}
-        </p>
-      </div>
+          className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradientBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10`}
+        />
 
-      <div className="relative z-20 pt-4 border-t border-purple-500/10 flex items-center justify-between" style={{ transform: "translateZ(20px)" }}>
-        <Link
-          to={service.path}
-          className={`text-sm font-semibold ${service.learnMoreColor} flex items-center gap-1 group-hover:gap-2 transition-all`}
-        >
-          Learn More <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-        </Link>
         <div
-          className={`w-8 h-8 rounded-full ${service.btnBg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center`}
+          className="relative z-20"
+          style={{ transform: "translateZ(30px)" }}
         >
+          <div
+            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.bg} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500`}
+          >
+            {service.icon}
+          </div>
           <span
-            className={`w-1.5 h-1.5 rounded-full ${service.btnDot}`}
-          ></span>
+            className={`text-[10px] uppercase tracking-widest ${service.tagColor} font-bold font-mono`}
+          >
+            {service.tag}
+          </span>
+          <h3 className="text-2xl font-display font-bold text-[#0F172A] mt-2 mb-3">
+            {service.title}
+          </h3>
+          <p className="text-[#475569] text-[15px] leading-relaxed mb-6">
+            {service.desc}
+          </p>
         </div>
-      </div>
+
+        <div
+          className="relative z-20 pt-4 border-t border-purple-500/10 flex items-center justify-between"
+          style={{ transform: "translateZ(20px)" }}
+        >
+          <Link
+            to={service.path}
+            className={`text-sm font-semibold ${service.learnMoreColor} flex items-center gap-1 group-hover:gap-2 transition-all`}
+          >
+            Learn More{" "}
+            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+          <div
+            className={`w-8 h-8 rounded-full ${service.btnBg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center`}
+          >
+            <span
+              className={`w-1.5 h-1.5 rounded-full ${service.btnDot}`}
+            ></span>
+          </div>
+        </div>
       </motion.div>
     </div>
   );
@@ -1527,18 +1698,19 @@ function CTAParticles() {
   useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
-    
+
     // Create particles
     const particles = Array.from({ length: 30 }).map(() => {
       const el = document.createElement("div");
       const size = Math.random() * 6 + 2;
-      el.className = "absolute bg-white/40 rounded-full pointer-events-none z-0";
+      el.className =
+        "absolute bg-white/40 rounded-full pointer-events-none z-0";
       el.style.width = `${size}px`;
       el.style.height = `${size}px`;
       el.style.left = `${Math.random() * 100}%`;
       el.style.top = `${Math.random() * 100}%`;
       container.appendChild(el);
-      
+
       // Floating animation
       gsap.to(el, {
         y: `+=${Math.random() * 100 - 50}`,
@@ -1546,54 +1718,72 @@ function CTAParticles() {
         duration: Math.random() * 5 + 5,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
-      
+
       return el;
     });
 
+    let ticking = false;
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const rect = container.getBoundingClientRect();
+          const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
 
-      particles.forEach(p => {
-        const pRect = p.getBoundingClientRect();
-        const pX = pRect.left - rect.left + pRect.width / 2;
-        const pY = pRect.top - rect.top + pRect.height / 2;
-        
-        const distX = pX - mouseX;
-        const distY = pY - mouseY;
-        const distance = Math.sqrt(distX * distX + distY * distY);
-        
-        // Repel if within 150px
-        if (distance < 150) {
-          const angle = Math.atan2(distY, distX);
-          const force = (150 - distance) / 150;
-          const pushX = Math.cos(angle) * force * 50;
-          const pushY = Math.sin(angle) * force * 50;
-          
-          gsap.to(p, {
-            x: `+=${pushX}`,
-            y: `+=${pushY}`,
-            duration: 0.5,
-            ease: "power2.out"
+          particles.forEach((p) => {
+            const pRect = p.getBoundingClientRect();
+            const pX = pRect.left - rect.left + pRect.width / 2;
+            const pY = pRect.top - rect.top + pRect.height / 2;
+
+            const distX = pX - mouseX;
+            const distY = pY - mouseY;
+            const distance = Math.sqrt(distX * distX + distY * distY);
+
+            // Repel if within 150px
+            if (distance < 150) {
+              const angle = Math.atan2(distY, distX);
+              const force = (150 - distance) / 150;
+              const pushX = Math.cos(angle) * force * 50;
+              const pushY = Math.sin(angle) * force * 50;
+
+              gsap.to(p, {
+                x: `+=${pushX}`,
+                y: `+=${pushY}`,
+                duration: 0.5,
+                ease: "power2.out",
+              });
+            }
           });
-        }
-      });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     container.addEventListener("mousemove", handleMouseMove);
     return () => {
       container.removeEventListener("mousemove", handleMouseMove);
-      particles.forEach(p => p.remove());
+      particles.forEach((p) => p.remove());
     };
   }, []);
 
-  return <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-auto" />;
+  return (
+    <div
+      ref={containerRef}
+      className="absolute inset-0 overflow-hidden pointer-events-auto w-100"
+    />
+  );
 }
 
-function MagneticButton({ children, className }: { children: React.ReactNode, className?: string }) {
+function MagneticButton({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   const buttonRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -1601,12 +1791,12 @@ function MagneticButton({ children, className }: { children: React.ReactNode, cl
     const rect = buttonRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    
+
     gsap.to(buttonRef.current, {
       x: x * 0.4,
       y: y * 0.4,
       duration: 0.8,
-      ease: "power3.out"
+      ease: "power3.out",
     });
   };
 
@@ -1616,14 +1806,14 @@ function MagneticButton({ children, className }: { children: React.ReactNode, cl
       x: 0,
       y: 0,
       duration: 0.8,
-      ease: "elastic.out(1, 0.3)"
+      ease: "elastic.out(1, 0.3)",
     });
   };
 
   return (
-    <div 
-      ref={buttonRef} 
-      onMouseMove={handleMouseMove} 
+    <div
+      ref={buttonRef}
+      onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`inline-block w-full sm:w-auto ${className || ""}`}
     >

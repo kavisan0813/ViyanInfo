@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { burst, onHoverBurst } from "../utils/particleBurst";
 import {
   Briefcase,
   MapPin,
@@ -80,6 +82,19 @@ const TeamCollaborationIllustration = () => (
 );
 
 export default function Careers() {
+  useEffect(() => {
+    const handleEnter = (e: MouseEvent) => {
+      burst(e.currentTarget as HTMLElement, 12, ["#7B2FF7", "#3B82F6", "#EC4899", "#10B981"], 80, 700);
+    };
+
+    const btns = document.querySelectorAll<HTMLElement>(".apply-now-btn");
+    btns.forEach(btn => btn.addEventListener("mouseenter", handleEnter));
+
+    return () => {
+      btns.forEach(btn => btn.removeEventListener("mouseenter", handleEnter));
+    };
+  }, []);
+
   return (
     <div className="bg-[#FAF7FF] min-h-screen text-[#475569] font-body overflow-hidden">
       
@@ -107,7 +122,7 @@ export default function Careers() {
               </p>
               <div className="flex gap-4">
                 <a href="#positions">
-                  <button className="px-6 py-3 bg-[#7B2FF7] text-white font-bold text-sm rounded-xl shadow-lg hover:bg-[#9333EA] transition-colors cursor-pointer">
+                  <button onMouseEnter={onHoverBurst} className="px-6 py-3 bg-[#7B2FF7] text-white font-bold text-sm rounded-xl shadow-lg hover:bg-[#9333EA] transition-colors cursor-pointer">
                     Explore Open Positions
                   </button>
                 </a>
@@ -356,7 +371,7 @@ export default function Careers() {
                 </div>
                 <div className="shrink-0 w-full md:w-auto">
                   <Link to="/contact" className="block w-full md:w-auto">
-                    <button className="w-full md:w-auto px-6 py-3.5 bg-gradient-to-r from-[#7B2FF7] to-[#9333EA] text-white font-bold text-xs rounded-xl shadow-md hover:shadow-[0_0_15px_rgba(123,47,247,0.4)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-1">
+                    <button className="apply-now-btn w-full md:w-auto px-6 py-3.5 bg-gradient-to-r from-[#7B2FF7] to-[#9333EA] text-white font-bold text-xs rounded-xl shadow-md hover:shadow-[0_0_15px_rgba(123,47,247,0.4)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-1">
                       Apply Now <ChevronRight className="w-4 h-4" />
                     </button>
                   </Link>

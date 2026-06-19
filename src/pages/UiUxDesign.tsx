@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   Sparkles,
@@ -179,7 +179,7 @@ const designPillars = [
 function DesignPillarsFlip() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(
         ".dp-card-inner"

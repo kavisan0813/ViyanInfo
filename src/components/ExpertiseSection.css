@@ -5,7 +5,7 @@
 
 .expertise-section {
   position: relative;
-  background: #FAF7FF;
+  background: #faf7ff;
   overflow: hidden;
 }
 
@@ -34,8 +34,8 @@
   padding: 6px 18px;
   border-radius: 9999px;
   background: rgba(233, 213, 255, 0.6);
-  border: 1px solid #E9D5FF;
-  color: #7B2FF7;
+  border: 1px solid #e9d5ff;
+  color: #7b2ff7;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 5px;
@@ -46,7 +46,7 @@
 
 .expertise-heading h2 {
   font-size: clamp(36px, 5vw, 64px);
-  color: #0F172A;
+  color: #0f172a;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -55,7 +55,7 @@
 
 .expertise-heading p {
   font-size: 15px;
-  color: #64748B;
+  color: #64748b;
   margin-top: 10px;
   max-width: 460px;
   margin-left: auto;
@@ -110,49 +110,114 @@
   box-sizing: border-box;
 }
 
-/* ── Front face ── */
-.expertise-card-front {
-  background: white;
-  border: 1px solid rgba(123, 47, 247, 0.06);
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.04),
-    0 16px 40px rgba(123, 47, 247, 0.04);
+/* ── Front face — Tarot Playing Card ── */
+.expertise-card-front.tarot-front {
+  background: #6366f1;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+  cursor: pointer;
 }
 
-.expertise-card-front .card-icon {
-  width: 68px;
-  height: 68px;
-  border-radius: 20px;
+.expertise-card:hover .expertise-card-front.tarot-front {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* SVG geometry layer */
+.tarot-geometry {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.expertise-card:hover .tarot-geometry {
+  opacity: 1;
+}
+
+/* Icon badge — Layer 3: Glassmorphic circle */
+.tarot-icon-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
 }
 
-.expertise-card-front h3 {
-  font-size: 20px;
+.expertise-card:hover .tarot-icon-badge {
+  transform: translate(-50%, -50%) scale(1.08);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* Diamond outer rotation on hover */
+.tarot-diamond-outer {
+  transform-origin: 120px 175px;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.expertise-card:hover .tarot-diamond-outer {
+  transform: rotate(8deg);
+}
+
+/* Title */
+.expertise-card-front.tarot-front h3 {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  font-size: 18px;
   font-weight: 700;
   text-align: center;
-  color: #0F172A;
+  color: white;
   font-family: var(--font-display, "Sora", sans-serif);
   letter-spacing: -0.01em;
   line-height: 1.3;
+  z-index: 5;
 }
 
-.expertise-card-front .card-label {
-  margin-top: 14px;
-  font-size: 9px;
+/* Bottom label */
+.expertise-card-front.tarot-front .card-label {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  text-align: center;
+  font-size: 8px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 6px;
   font-family: var(--font-mono, "Space Mono", monospace);
-  opacity: 0.5;
+  color: rgba(255, 255, 255, 0.65);
+  z-index: 5;
 }
 
 /* ── Back face (Light Theme) ── */
 .expertise-card-back {
   transform: rotateY(180deg);
-  color: #0F172A;
+  color: #0f172a;
   justify-content: flex-start;
   padding-top: 40px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
@@ -202,7 +267,7 @@
     height: 300px;
   }
 
-  .expertise-card-front h3 {
+  .expertise-card-front.tarot-front h3 {
     font-size: 16px;
   }
 }
@@ -222,25 +287,24 @@
     height: 260px;
   }
 
-  .expertise-card-front .card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    margin-bottom: 14px;
+  .expertise-card-front.tarot-front .tarot-icon-badge {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 10px;
   }
 
-  .expertise-card-front .card-icon svg {
+  .expertise-card-front.tarot-front .tarot-icon-badge svg {
     width: 24px;
     height: 24px;
   }
 
-  .expertise-card-front h3 {
-    font-size: 14px;
+  .expertise-card-front.tarot-front h3 {
+    font-size: 13px;
   }
 
-  .expertise-card-front .card-label {
-    font-size: 7px;
-    letter-spacing: 2px;
+  .expertise-card-front.tarot-front .card-label {
+    font-size: 6px;
+    letter-spacing: 3px;
   }
 
   .expertise-card-back .back-title {

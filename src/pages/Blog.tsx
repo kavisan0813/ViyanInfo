@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { onHoverBurst } from "../utils/particleBurst";
 import {
   Search,
   Calendar,
@@ -247,6 +248,7 @@ export default function Blog() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
+            onMouseEnter={onHoverBurst}
             className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6"
           >
             Insights, Trends & <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Technology</span>

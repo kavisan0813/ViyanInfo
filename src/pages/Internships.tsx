@@ -1,4 +1,5 @@
 import { useState, useRef, useLayoutEffect } from "react";
+import { onHoverBurst } from "../utils/particleBurst";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,6 +21,7 @@ import {
   Bookmark,
   BookOpen,
 } from "lucide-react";
+import { AiOutlinePython } from "react-icons/ai";
 import { SectionDivider } from "../components/SectionDivider";
 import { CTABlock } from "../components/CTABlock";
 import "../components/ExpertiseSection.css";
@@ -124,7 +126,7 @@ export default function Internships() {
     target: timelineRef,
     offset: ["start center", "end center"],
   });
-  
+
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   const roadmapStages = [
@@ -222,7 +224,10 @@ export default function Internships() {
               </p>
               <div className="flex gap-4">
                 <a href="#programs">
-                  <button className="px-6 py-3 bg-[#7B2FF7] text-white font-bold text-sm rounded-xl shadow-lg hover:bg-[#9333EA] transition-colors cursor-pointer">
+                  <button
+                    onMouseEnter={onHoverBurst}
+                    className="px-6 py-3 bg-[#7B2FF7] text-white font-bold text-sm rounded-xl shadow-lg hover:bg-[#9333EA] transition-colors cursor-pointer"
+                  >
                     Explore Programs
                   </button>
                 </a>
@@ -344,7 +349,7 @@ export default function Internships() {
             {/* Center connector line background */}
             <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-[#E9D5FF]/50 -translate-x-1/2 z-0"></div>
             {/* Animated progress line */}
-            <motion.div 
+            <motion.div
               className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#7B2FF7] to-[#EC4899] -translate-x-1/2 z-0 origin-top"
               style={{ scaleY: lineHeight }}
             />
@@ -371,9 +376,15 @@ export default function Internships() {
                     <motion.div
                       animate={{
                         scale: isHighlighted ? 1.25 : 1,
-                        boxShadow: isHighlighted ? `0 0 20px ${flow.color}` : "none",
+                        boxShadow: isHighlighted
+                          ? `0 0 20px ${flow.color}`
+                          : "none",
                       }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      }}
                       className="absolute left-8 md:left-1/2 top-6 w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-md z-20"
                       style={{
                         border: `4px solid ${flow.color}`,
@@ -381,11 +392,14 @@ export default function Internships() {
                       }}
                     >
                       <motion.span
-                        animate={{ 
+                        animate={{
                           scale: isActive ? [1, 1.5, 1] : 1,
-                          opacity: isActive ? [1, 0.5, 1] : 1
+                          opacity: isActive ? [1, 0.5, 1] : 1,
                         }}
-                        transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
+                        transition={{
+                          duration: 2,
+                          repeat: isActive ? Infinity : 0,
+                        }}
                         className="w-1.5 h-1.5 rounded-full"
                         style={{ backgroundColor: flow.color }}
                       />
@@ -445,7 +459,9 @@ export default function Internships() {
                         <span
                           className="text-4xl font-mono font-black mb-2 block transition-colors duration-300"
                           style={{
-                            color: isHighlighted ? flow.color : `${flow.color}30`,
+                            color: isHighlighted
+                              ? flow.color
+                              : `${flow.color}30`,
                           }}
                         >
                           {flow.step}
@@ -548,7 +564,7 @@ export default function Internships() {
             {/* Edge Gradients for smooth fade in/out */}
             <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
             <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
-            
+
             <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
               {[
                 {
@@ -654,10 +670,15 @@ export default function Internships() {
             {/* Inner background card */}
             <div className="bg-[#15173A] rounded-[32px] p-8 sm:p-12 text-left relative overflow-hidden flex flex-col justify-between aspect-video min-h-[380px] text-white">
               {/* Shimmer Light Sweep */}
-              <motion.div 
+              <motion.div
                 className="absolute top-0 bottom-0 w-32 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg] z-50 pointer-events-none"
                 animate={{ left: ["-100%", "200%"] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  repeatDelay: 1,
+                }}
               />
 
               {/* Certificate decorations */}
@@ -716,14 +737,32 @@ export default function Internships() {
         </div>
       </section>
 
-      <SectionDivider />
+      <div className="pb-24">
+        <SectionDivider />
+      </div>
 
       {/* FINAL CTA */}
-      <CTABlock
-        title="Ready to start your journey?"
-        subtitle="Submit your application to secure a spot in our next internship cohort. Cohorts begin quarterly."
-        primaryLabel="Apply Now"
-      />
+      <section
+        className="relative overflow-hidden"
+        style={{
+          backgroundImage:
+            "url('https://framerusercontent.com/images/jja1XS9zZD3ZZ4MSCCeXllTRGjQ.png?width=2048&height=1536')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* CTA Content */}
+        <div className="relative z-10 pt-16 pb-64 md:pb-80 pl-4 md:pl-12 lg:pl-24">
+          <CTABlock
+            title="Ready to start your journey?"
+            subtitle="Submit your application to secure a spot in our next internship cohort. Cohorts begin quarterly."
+            primaryLabel="Apply Now"
+            transparent={true}
+            align="left"
+          />
+        </div>
+      </section>
     </div>
   );
 }
@@ -735,16 +774,20 @@ export default function Internships() {
 const expertisePrograms = [
   {
     title: "Python Development",
-    icon: Code,
+    icon: AiOutlinePython,
     accent: "#3B82F6",
+    logoColor: "#f0f416ff",
+    logoGlow: "rgba(55, 118, 171, 0.4)",
     gradient: "linear-gradient(135deg, #EFF6FF, #DBEAFE)", // Light Blue
-    iconBg: "rgba(59, 130, 246, 0.1)",
+    iconBg: "rgba(255, 255, 255, 1)",
     skills: ["Django", "FastAPI", "PostgreSQL", "Algorithms", "REST APIs"],
   },
   {
     title: "Full Stack Development",
     icon: Globe,
     accent: "#7B2FF7",
+    logoColor: "#61DAFB",
+    logoGlow: "rgba(97, 218, 251, 0.4)",
     gradient: "linear-gradient(135deg, #F5F3FF, #EDE9FE)", // Light Purple
     iconBg: "rgba(123, 47, 247, 0.1)",
     skills: ["React", "TypeScript", "Node.js", "Next.js", "Tailwind"],
@@ -753,6 +796,8 @@ const expertisePrograms = [
     title: "AI & Machine Learning",
     icon: Brain,
     accent: "#EC4899",
+    logoColor: "#FF4DA6",
+    logoGlow: "rgba(255, 77, 166, 0.4)",
     gradient: "linear-gradient(135deg, #FDF2F8, #FCE7F3)", // Light Pink
     iconBg: "rgba(236, 72, 153, 0.1)",
     skills: ["OpenAI", "LangChain", "RAG", "HuggingFace", "Automation"],
@@ -761,6 +806,8 @@ const expertisePrograms = [
     title: "Data Science",
     icon: Database,
     accent: "#06B6D4",
+    logoColor: "#00D4FF",
+    logoGlow: "rgba(0, 212, 255, 0.4)",
     gradient: "linear-gradient(135deg, #ECFEFF, #CFFAFE)", // Light Cyan
     iconBg: "rgba(6, 182, 212, 0.1)",
     skills: ["Pandas", "Scikit-Learn", "Tableau", "SQL", "Power BI"],
@@ -769,9 +816,17 @@ const expertisePrograms = [
     title: "UI/UX Design",
     icon: Palette,
     accent: "#F59E0B",
+    logoColor: "#FFB347",
+    logoGlow: "rgba(255, 179, 71, 0.4)",
     gradient: "linear-gradient(135deg, #FFFBEB, #FEF3C7)", // Light Amber
     iconBg: "rgba(245, 158, 11, 0.1)",
-    skills: ["Figma", "Wireframing", "Prototyping", "User Research", "Design Systems"],
+    skills: [
+      "Figma",
+      "Wireframing",
+      "Prototyping",
+      "User Research",
+      "Design Systems",
+    ],
   },
 ];
 
@@ -785,7 +840,7 @@ function InternshipExpertiseSection() {
     if (!section) return;
 
     const cardInners = gsap.utils.toArray(
-      section.querySelectorAll(".expertise-card-inner")
+      section.querySelectorAll(".expertise-card-inner"),
     ) as HTMLElement[];
 
     if (cardInners.length === 0) return;
@@ -828,7 +883,7 @@ function InternshipExpertiseSection() {
             duration: 1,
             ease: "none",
           },
-          i * 0.15
+          i * 0.15,
         );
       });
     }, section);
@@ -837,17 +892,16 @@ function InternshipExpertiseSection() {
   }, []);
 
   return (
-    <section
-      id="programs"
-      ref={sectionRef}
-      className="expertise-section"
-    >
+    <section id="programs" ref={sectionRef} className="expertise-section">
       <div className="expertise-viewport">
         {/* Heading */}
         <div className="expertise-heading">
           <span className="label">Training Tracks</span>
           <h2>Our Internship Programs</h2>
-          <p>Choose from 5 industry-mapped development and design specializations.</p>
+          <p>
+            Choose from 5 industry-mapped development and design
+            specializations.
+          </p>
         </div>
 
         {/* All cards visible in a row */}
@@ -857,18 +911,361 @@ function InternshipExpertiseSection() {
             return (
               <div key={idx} className="expertise-card">
                 <div className="expertise-card-inner">
-                  {/* FRONT FACE — Icon + Title */}
-                  <div className="expertise-card-front">
-                    <div
-                      className="card-icon"
-                      style={{ background: program.iconBg }}
+                  {/* FRONT FACE — Tarot Playing Card Style */}
+                  <div className="expertise-card-front tarot-front">
+                    {/* SVG Geometric Decorations */}
+                    <svg
+                      className="tarot-geometry"
+                      viewBox="0 0 240 350"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      preserveAspectRatio="none"
                     >
-                      <IconComp className="w-8 h-8" style={{ color: program.accent }} />
+                      {/* Outer border */}
+                      <rect
+                        x="8"
+                        y="8"
+                        width="224"
+                        height="334"
+                        rx="16"
+                        stroke="rgba(255,255,255,0.8)"
+                        strokeWidth="2.5"
+                      />
+                      {/* Inner border */}
+                      <rect
+                        x="16"
+                        y="16"
+                        width="208"
+                        height="318"
+                        rx="12"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                      />
+
+                      {/* Corner circles */}
+                      <circle
+                        cx="28"
+                        cy="28"
+                        r="6"
+                        stroke="rgba(255,255,255,0.7)"
+                        strokeWidth="2"
+                      />
+                      <circle
+                        cx="212"
+                        cy="28"
+                        r="6"
+                        stroke="rgba(255,255,255,0.7)"
+                        strokeWidth="2"
+                      />
+                      <circle
+                        cx="28"
+                        cy="322"
+                        r="6"
+                        stroke="rgba(255,255,255,0.7)"
+                        strokeWidth="2"
+                      />
+                      <circle
+                        cx="212"
+                        cy="322"
+                        r="6"
+                        stroke="rgba(255,255,255,0.7)"
+                        strokeWidth="2"
+                      />
+
+                      {/* Corner dot fills */}
+                      <circle
+                        cx="28"
+                        cy="28"
+                        r="2"
+                        fill="rgba(255,255,255,0.8)"
+                      />
+                      <circle
+                        cx="212"
+                        cy="28"
+                        r="2"
+                        fill="rgba(255,255,255,0.8)"
+                      />
+                      <circle
+                        cx="28"
+                        cy="322"
+                        r="2"
+                        fill="rgba(255,255,255,0.8)"
+                      />
+                      <circle
+                        cx="212"
+                        cy="322"
+                        r="2"
+                        fill="rgba(255,255,255,0.8)"
+                      />
+
+                      {/* Connecting lines from corners */}
+                      <line
+                        x1="34"
+                        y1="28"
+                        x2="80"
+                        y2="28"
+                        stroke="rgba(255,255,255,0.5)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="160"
+                        y1="28"
+                        x2="206"
+                        y2="28"
+                        stroke="rgba(255,255,255,0.5)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="34"
+                        y1="322"
+                        x2="80"
+                        y2="322"
+                        stroke="rgba(255,255,255,0.5)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="160"
+                        y1="322"
+                        x2="206"
+                        y2="322"
+                        stroke="rgba(255,255,255,0.5)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="28"
+                        y1="34"
+                        x2="28"
+                        y2="80"
+                        stroke="rgba(255,255,255,0.5)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="28"
+                        y1="270"
+                        x2="28"
+                        y2="316"
+                        stroke="rgba(255,255,255,0.5)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="212"
+                        y1="34"
+                        x2="212"
+                        y2="80"
+                        stroke="rgba(255,255,255,0.5)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="212"
+                        y1="270"
+                        x2="212"
+                        y2="316"
+                        stroke="rgba(255,255,255,0.5)"
+                        strokeWidth="2"
+                      />
+
+                      {/* Top semi-circle */}
+                      <path
+                        d="M100 16 A20 20 0 0 1 140 16"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      {/* Bottom semi-circle */}
+                      <path
+                        d="M100 334 A20 20 0 0 0 140 334"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+
+                      {/* Top heart/chevron */}
+                      <path
+                        d="M115 40 L120 34 L125 40"
+                        stroke="rgba(255,255,255,0.7)"
+                        strokeWidth="2"
+                        fill="none"
+                        strokeLinecap="round"
+                      />
+                      {/* Bottom heart/chevron (inverted) */}
+                      <path
+                        d="M115 310 L120 316 L125 310"
+                        stroke="rgba(255,255,255,0.7)"
+                        strokeWidth="2"
+                        fill="none"
+                        strokeLinecap="round"
+                      />
+
+                      {/* Left diamond arrow */}
+                      <path
+                        d="M16 155 L28 145 L28 165 Z"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                        fill="rgba(255,255,255,0.2)"
+                      />
+                      <path
+                        d="M16 195 L28 185 L28 205 Z"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                        fill="rgba(255,255,255,0.2)"
+                      />
+
+                      {/* Right diamond arrow */}
+                      <path
+                        d="M224 155 L212 145 L212 165 Z"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                        fill="rgba(255,255,255,0.2)"
+                      />
+                      <path
+                        d="M224 195 L212 185 L212 205 Z"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                        fill="rgba(255,255,255,0.2)"
+                      />
+
+                      {/* ─── CENTER MEDALLION ─── */}
+                      {/* Layer 1: Main Diamond — exactly at center 120, 175
+                      <g className="tarot-diamond-outer">
+                        <rect
+                          x="65"
+                          y="120"
+                          width="110"
+                          height="110"
+                          rx="8"
+                          transform="rotate(45 120 175)"
+                          stroke="rgba(255,255,255,0.7)"
+                          strokeWidth="2"
+                          fill="rgba(255,255,255,0.1)"
+                        />
+                      </g> */}
+
+                      {/* Layer 2: Inner Diamond
+                      <g className="tarot-diamond-inner">
+                        <rect
+                          x="80"
+                          y="135"
+                          width="80"
+                          height="80"
+                          rx="4"
+                          transform="rotate(45 120 175)"
+                          stroke="rgba(255,255,255,0.6)"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                      </g> */}
+
+                      {/* Layer 2: Four tiny dots around the diamond */}
+                      <circle
+                        cx="120"
+                        cy="85"
+                        r="2.5"
+                        fill="rgba(255,255,255,0.8)"
+                      />
+                      <circle
+                        cx="120"
+                        cy="265"
+                        r="2.5"
+                        fill="rgba(255,255,255,0.8)"
+                      />
+                      <circle
+                        cx="30"
+                        cy="175"
+                        r="2.5"
+                        fill="rgba(255,255,255,0.8)"
+                      />
+                      <circle
+                        cx="210"
+                        cy="175"
+                        r="2.5"
+                        fill="rgba(255,255,255,0.8)"
+                      />
+
+                      {/* Layer 2: Short rays extending outward */}
+                      <line
+                        x1="120"
+                        y1="92"
+                        x2="120"
+                        y2="102"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="120"
+                        y1="248"
+                        x2="120"
+                        y2="258"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="42"
+                        y1="175"
+                        x2="52"
+                        y2="175"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="188"
+                        y1="175"
+                        x2="198"
+                        y2="175"
+                        stroke="rgba(255,255,255,0.6)"
+                        strokeWidth="2"
+                      />
+
+                      {/* Horizontal center line accents - shifted to edge to not intersect the middle */}
+                      <line
+                        x1="30"
+                        y1="85"
+                        x2="100"
+                        y2="85"
+                        stroke="rgba(255,255,255,0.3)"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 6"
+                      />
+                      <line
+                        x1="140"
+                        y1="85"
+                        x2="210"
+                        y2="85"
+                        stroke="rgba(255,255,255,0.3)"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 6"
+                      />
+                      {/* <line
+                        x1="30"
+                        y1="265"
+                        x2="100"
+                        y2="265"
+                        stroke="rgba(255,255,255,0.3)"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 6"
+                      /> */}
+                      {/* <line
+                        x1="140"
+                        y1="265"
+                        x2="210"
+                        y2="265"
+                        stroke="rgba(255,255,255,0.3)"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 6"
+                      /> */}
+                    </svg>
+
+                    {/* Layer 3+4: Circular Badge perfectly centered */}
+                    <div className="tarot-icon-badge">
+                      <IconComp
+                        className="w-[50px] h-[50px]"
+                        style={{
+                          color: program.logoColor,
+                        }}
+                      />
                     </div>
+
+                    {/* Title positioned at bottom */}
                     <h3>{program.title}</h3>
-                    <span className="card-label" style={{ color: program.accent }}>
-                      Interactive Track
-                    </span>
                   </div>
 
                   {/* BACK FACE — Skills list */}
@@ -890,118 +1287,5 @@ function InternshipExpertiseSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-function TiltProgramCard({ program, delay }: { program: any, delay: number }) {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    // Normalize to -1 to 1
-    const xPct = (x / rect.width - 0.5) * 2;
-    const yPct = (y / rect.height - 0.5) * 2;
-    
-    // Max tilt 8 degrees
-    setTilt({ x: -yPct * 8, y: xPct * 8 });
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setTilt({ x: 0, y: 0 });
-  };
-
-  return (
-    <div className="relative group" style={{ perspective: "1000px" }}>
-      {/* Background glow blob behind card */}
-      <motion.div
-        className="absolute inset-0 rounded-3xl blur-2xl pointer-events-none"
-        style={{ background: program.glowBlob }}
-        animate={{ opacity: isHovered ? 0.15 : 0 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      />
-
-      {/* Card Container */}
-      <motion.div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: delay }}
-        animate={{
-          rotateX: tilt.x,
-          rotateY: tilt.y,
-          y: isHovered ? -8 : 0,
-          boxShadow: isHovered ? `0 20px 40px ${program.glowColor}` : "0 4px 6px -1px rgba(0, 0, 0, 0.05)",
-        }}
-        style={{
-          backgroundColor: "#FFFFFF",
-          borderColor: isHovered ? `${program.accent}30` : "transparent",
-          borderWidth: "1px",
-          borderStyle: "solid",
-          transformStyle: "preserve-3d",
-        }}
-        className="p-8 rounded-3xl shadow-xs transition-colors duration-300 flex flex-col justify-between h-full relative z-10 overflow-hidden"
-      >
-        {/* Inside gradient hover overlay */}
-        <div
-          className="absolute inset-0 rounded-3xl transition-opacity duration-300 pointer-events-none"
-          style={{
-            opacity: isHovered ? 1 : 0,
-            backgroundImage: `linear-gradient(135deg, ${program.accent}1a, ${program.accent}05)`,
-          }}
-        />
-
-        <div style={{ transform: "translateZ(30px)" }}>
-          {/* Icon container */}
-          <motion.div
-            className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300"
-            style={{
-              background: isHovered ? program.iconBgHover : program.iconBgDefault,
-              scale: isHovered ? 1.08 : 1,
-              rotate: isHovered ? 2 : 0,
-            }}
-          >
-            {program.icon}
-          </motion.div>
-
-          {/* Title */}
-          <h3
-            className="text-xl font-display font-semibold mb-3 transition-colors duration-300"
-            style={{ color: isHovered ? "#000000" : "#0F172A", fontWeight: isHovered ? 700 : 600 }}
-          >
-            {program.title}
-          </h3>
-
-          {/* Description */}
-          <p className="text-sm leading-relaxed text-[#475569] mb-6">
-            {program.desc}
-          </p>
-        </div>
-
-        {/* Footer Line */}
-        <div className="pt-4 border-t border-purple-500/5" style={{ transform: "translateZ(20px)" }}>
-          <span
-            className="text-xs font-mono font-bold uppercase tracking-wider block transition-all duration-300"
-            style={{ 
-              color: isHovered ? program.accent : "#94a3b8",
-              letterSpacing: isHovered ? "0.15em" : "0.05em",
-              textShadow: isHovered ? `0 0 8px ${program.accent}40` : "none"
-            }}
-          >
-            Interactive Track
-          </span>
-        </div>
-      </motion.div>
-    </div>
   );
 }

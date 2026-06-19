@@ -17,6 +17,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import ContactMap from "../components/ContactMap";
+import { burst } from "../utils/particleBurst";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -81,6 +82,10 @@ export default function Contact() {
         duration: 1,
         ease: "power3.out",
         stagger: 0.15,
+        onComplete: () => {
+          const headline = document.querySelector<HTMLElement>("h1.hero-content-anim");
+          if (headline) burst(headline, 20, ["#7B2FF7", "#9333EA", "#3B82F6"], 160, 1000);
+        },
       });
 
       // Left column details

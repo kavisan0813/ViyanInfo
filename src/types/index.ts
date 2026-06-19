@@ -16,6 +16,8 @@ export interface CTABlockProps {
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
+  transparent?: boolean;
+  align?: "center" | "left";
 }
 
 export interface ServiceCardProps {

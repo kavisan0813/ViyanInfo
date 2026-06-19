@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { onHoverBurst } from "../utils/particleBurst";
 import { gsap } from "gsap";
 import type { CTABlockProps } from "../types/index";
 
@@ -10,6 +11,8 @@ export function CTABlock({
   primaryHref = "/contact",
   secondaryLabel,
   secondaryHref,
+  transparent = false,
+  align = "center",
 }: CTABlockProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -38,14 +41,20 @@ export function CTABlock({
   return (
     <section
       ref={sectionRef}
-      className="section bg-deep relative overflow-hidden"
+      className={`${transparent ? "" : "section bg-deep"} relative overflow-hidden`}
     >
-      <div className="orb w-[600px] h-[600px] bg-[radial-gradient(circle,var(--color-surface)_0%,transparent_60%)] opacity-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+      {!transparent && (
+        <div className="orb w-[600px] h-[600px] bg-[radial-gradient(circle,var(--color-surface)_0%,transparent_60%)] opacity-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+      )}
 
       <div className="container relative z-10">
-        <div className="glass-card rounded-3xl p-10 md:p-20 text-center max-w-4xl mx-auto relative">
+        <div
+          className={`${transparent ? "bg-transparent border-none shadow-none p-0 md:p-0" : "glass-card p-10 md:p-20"} rounded-3xl ${align === "left" ? "text-center lg:ml-12 max-w-2xl" : "text-center max-w-4xl mx-auto"} relative`}
+        >
           {/* Top glow edge */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-linear-to-r from-transparent via-(--color-rose-bright) to-transparent opacity-60 shadow-[0_0_20px_rgba(232,180,208,0.7)]"></div>
+          {!transparent && (
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-linear-to-r from-transparent via-(--color-rose-bright) to-transparent opacity-60 shadow-[0_0_20px_rgba(232,180,208,0.7)]"></div>
+          )}
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary mb-6 leading-tight tracking-tight flex flex-wrap justify-center overflow-hidden">
             {words.map((word, i) => (
@@ -58,13 +67,16 @@ export function CTABlock({
             ))}
           </h2>
 
-          <p className="cta-sub text-lg md:text-xl text-text-secondary mb-10 max-w-2xl mx-auto">
+          <p className="cta-sub text-lg md:text-xl mb-10 max-w-2xl mx-auto text-text-secondary">
             {subtitle}
           </p>
 
           <div className="cta-sub flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to={primaryHref}>
-              <button className="btn-glass w-full sm:w-auto">
+              <button
+                onMouseEnter={onHoverBurst}
+                className="btn-glass w-full sm:w-auto"
+              >
                 {primaryLabel}
               </button>
             </Link>

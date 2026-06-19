@@ -1,4 +1,5 @@
 import { useLayoutEffect, useState } from "react";
+import { onHoverBurst } from "../utils/particleBurst";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -36,7 +37,10 @@ const NeuralNetworkIllustration = () => (
       className="relative z-10 w-full h-full flex items-center justify-center"
     >
       {/* SVG Canvas for Connecting Nodes */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 500 400">
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 500 400"
+      >
         {/* Node connections */}
         <motion.path
           d="M 250,200 L 120,100 M 250,200 L 380,100 M 250,200 L 120,300 M 250,200 L 380,300 M 120,100 L 120,300 M 380,100 L 380,300"
@@ -44,9 +48,11 @@ const NeuralNetworkIllustration = () => (
           strokeWidth="2"
           strokeDasharray="6,6"
         />
-        
+
         {/* Pulsing particle paths */}
         <motion.circle
+          cx="250"
+          cy="200"
           r="4"
           fill="#EC4899"
           animate={{
@@ -56,22 +62,36 @@ const NeuralNetworkIllustration = () => (
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
         />
         <motion.circle
+          cx="250"
+          cy="200"
           r="4"
           fill="#EC4899"
           animate={{
             cx: [250, 380],
             cy: [200, 300],
           }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: "linear", delay: 0.5 }}
+          transition={{
+            duration: 3.5,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 0.5,
+          }}
         />
         <motion.circle
+          cx="120"
+          cy="300"
           r="4"
           fill="#7B2FF7"
           animate={{
             cx: [120, 250],
             cy: [300, 200],
           }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 1,
+          }}
         />
       </svg>
 
@@ -98,7 +118,12 @@ const NeuralNetworkIllustration = () => (
       {/* Node 2: Automation/Workflow (Top-Right) */}
       <motion.div
         animate={{ y: [-4, 4, -4] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.5,
+        }}
         className="absolute top-[60px] right-[70px] z-20 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-md text-[#EC4899]"
       >
         <Workflow className="w-5 h-5" />
@@ -107,7 +132,12 @@ const NeuralNetworkIllustration = () => (
       {/* Node 3: Analytics (Bottom-Left) */}
       <motion.div
         animate={{ y: [-5, 5, -5] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
         className="absolute bottom-[60px] left-[70px] z-20 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-md text-[#EC4899]"
       >
         <BarChart3 className="w-5 h-5" />
@@ -116,7 +146,12 @@ const NeuralNetworkIllustration = () => (
       {/* Node 4: Git Branch / Integration (Bottom-Right) */}
       <motion.div
         animate={{ y: [5, -5, 5] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        transition={{
+          duration: 5.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1.5,
+        }}
         className="absolute bottom-[60px] right-[70px] z-20 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-md text-[#EC4899]"
       >
         <GitBranch className="w-5 h-5" />
@@ -134,8 +169,6 @@ const NeuralNetworkIllustration = () => (
     </motion.div>
   </div>
 );
-
-
 
 const aiNetworkCards = [
   {
@@ -207,9 +240,13 @@ const AINetwork = () => {
 
       {/* Absolute Centered Coordinate System */}
       <div className="network-center-system">
-        
         {/* SVG Orbit Circle — pentagon-aligned */}
-        <svg className="network-svg-absolute" width="800" height="800" viewBox="-400 -400 800 800">
+        <svg
+          className="network-svg-absolute"
+          width="800"
+          height="800"
+          viewBox="-400 -400 800 800"
+        >
           <circle cx="0" cy="0" r="280" className="network-circle" />
           {/* Connection lines from center to each node */}
           {aiNetworkCards.map((card, i) => (
@@ -276,42 +313,42 @@ const AINetwork = () => {
                 top: `${card.y}px`,
                 left: `${card.x}px`,
                 borderColor: isExpanded
-                ? `${card.color}30`
-                : "rgba(0,0,0,0.06)",
-              boxShadow: isExpanded
-                ? `0 25px 80px ${card.color}20`
-                : "0 10px 40px rgba(0,0,0,0.05)",
-            }}
-            onMouseEnter={() => setActiveCard(card.title)}
-            onMouseLeave={() => setActiveCard(null)}
-          >
-            <div
-              className="icon-box"
-              style={{
-                color: card.color,
-                background: card.tagBg,
+                  ? `${card.color}30`
+                  : "rgba(0,0,0,0.06)",
+                boxShadow: isExpanded
+                  ? `0 25px 80px ${card.color}20`
+                  : "0 10px 40px rgba(0,0,0,0.05)",
               }}
+              onMouseEnter={() => setActiveCard(card.title)}
+              onMouseLeave={() => setActiveCard(null)}
             >
-              <Icon size={24} />
-            </div>
-
-            <h3>{card.title}</h3>
-
-            {isExpanded && (
-              <div className="card-details">
-                <p>{card.desc}</p>
-                <span
-                  style={{
-                    background: card.tagBg,
-                    color: card.color,
-                  }}
-                >
-                  {card.tags}
-                </span>
+              <div
+                className="icon-box"
+                style={{
+                  color: card.color,
+                  background: card.tagBg,
+                }}
+              >
+                <Icon size={24} />
               </div>
-            )}
-          </div>
-        );
+
+              <h3>{card.title}</h3>
+
+              {isExpanded && (
+                <div className="card-details">
+                  <p>{card.desc}</p>
+                  <span
+                    style={{
+                      background: card.tagBg,
+                      color: card.color,
+                    }}
+                  >
+                    {card.tags}
+                  </span>
+                </div>
+              )}
+            </div>
+          );
         })}
       </div>
     </section>
@@ -319,16 +356,18 @@ const AINetwork = () => {
 };
 
 export default function AiSolutions() {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      gsap.utils.toArray(".case-study-card").forEach((card: any) => {
+      gsap.utils.toArray<HTMLElement>(".case-study-card").forEach((card) => {
         gsap.fromTo(
           card,
           {
             scale: 0.85,
-            opacity: 0.5
+            opacity: 0.5,
           },
           {
             scale: 1,
@@ -337,9 +376,9 @@ export default function AiSolutions() {
               trigger: card,
               start: "top center",
               end: "bottom center",
-              scrub: true
-            }
-          }
+              scrub: true,
+            },
+          },
         );
       });
     });
@@ -349,13 +388,11 @@ export default function AiSolutions() {
 
   return (
     <div className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden">
-      
       {/* HERO SECTION */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.04)_0%,transparent_60%)] pointer-events-none" />
         <div className="container max-w-[1240px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -369,25 +406,31 @@ export default function AiSolutions() {
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
                 AI Powered Solutions <br />
-                <span className="bg-gradient-to-r from-[#EC4899] via-pink-600 to-indigo-600 bg-clip-text text-transparent">For Smarter Businesses</span>
+                <span className="bg-gradient-to-r from-[#EC4899] via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+                  For Smarter Businesses
+                </span>
               </h1>
               <p className="text-base sm:text-lg leading-relaxed text-slate-600 max-w-xl mb-8">
-                Automate workflows, enhance customer experiences, and unlock business insights with AI. We engineer production-grade LLM applications.
+                Automate workflows, enhance customer experiences, and unlock
+                business insights with AI. We engineer production-grade LLM
+                applications.
               </p>
               <div className="flex gap-4">
                 <a href="#contactform">
-                  <button className="px-6 py-3.5 bg-[#7B2FF7] hover:bg-[#9333EA] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-colors cursor-pointer">
+                  <button
+                    onMouseEnter={onHoverBurst}
+                    className="px-6 py-3.5 bg-[#7B2FF7] hover:bg-[#9333EA] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-colors cursor-pointer"
+                  >
                     Start Project
                   </button>
                 </a>
               </div>
             </motion.div>
-            
+
             {/* Right Content: Neural Animation */}
             <div className="lg:col-span-6">
               <NeuralNetworkIllustration />
             </div>
-
           </div>
         </div>
       </section>
@@ -408,52 +451,109 @@ export default function AiSolutions() {
               Value Engineered With AI
             </h2>
             <p className="text-base sm:text-lg text-slate-500">
-              Transforming raw model architectures into measurable business efficiencies.
+              Transforming raw model architectures into measurable business
+              efficiencies.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[16px] items-stretch pt-[22px] text-left">
             {[
               {
                 title: "24/7 Support",
                 desc: "AI chatbots process customer inquiries instantly at any hour of the day.",
-                icon: <Clock className="w-6 h-6 text-[#EC4899]" />,
-                bg: "bg-pink-50 border-pink-100"
+                Icon: Clock,
+                baseColor: "#3B82F6",
+                bgBase: "rgba(59,130,246,0.08)",
+                bgHover: "rgba(59,130,246,0.92)",
+                borderHover: "rgba(59,130,246,0.55)",
+                shadowHover: "0 12px 32px rgba(59,130,246,0.14)"
               },
               {
                 title: "Automation",
                 desc: "Free up employee schedules by handing off manual data processing to agents.",
-                icon: <Workflow className="w-6 h-6 text-[#EC4899]" />,
-                bg: "bg-pink-50 border-pink-100"
+                Icon: Workflow,
+                baseColor: "#10B981",
+                bgBase: "rgba(16,185,129,0.08)",
+                bgHover: "rgba(16,185,129,0.92)",
+                borderHover: "rgba(16,185,129,0.55)",
+                shadowHover: "0 12px 32px rgba(16,185,129,0.14)"
               },
               {
                 title: "Reduced Costs",
                 desc: "Decrease operational and support overhead with smart automated pipelines.",
-                icon: <Coins className="w-6 h-6 text-[#EC4899]" />,
-                bg: "bg-pink-50 border-pink-100"
+                Icon: Coins,
+                baseColor: "#F43F5E",
+                bgBase: "rgba(244,63,94,0.08)",
+                bgHover: "rgba(244,63,94,0.92)",
+                borderHover: "rgba(244,63,94,0.55)",
+                shadowHover: "0 12px 32px rgba(244,63,94,0.14)"
               },
               {
                 title: "Faster Decisions",
                 desc: "Synthesize huge datasets into visual insights in seconds for leadership teams.",
-                icon: <Zap className="w-6 h-6 text-[#EC4899]" />,
-                bg: "bg-pink-50 border-pink-100"
-              }
-            ].map((benefit, idx) => (
+                Icon: Zap,
+                baseColor: "#7B2FF7",
+                bgBase: "rgba(123,47,247,0.08)",
+                bgHover: "rgba(123,47,247,0.92)",
+                borderHover: "rgba(123,47,247,0.55)",
+                shadowHover: "0 12px 32px rgba(123,47,247,0.14)"
+              },
+            ].map((benefit, idx) => {
+              const isHovered = hoveredIdx === idx;
+              const Icon = benefit.Icon;
+              return (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="h-full"
               >
-                <div className={`w-12 h-12 rounded-2xl ${benefit.bg} flex items-center justify-center mb-6 border`}>
-                  {benefit.icon}
+                <div
+                  className="feature-card"
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    borderRadius: '14px',
+                    padding: '24px 20px',
+                    background: '#ffffff',
+                    height: isHovered ? 'calc(100% + 12px)' : '100%',
+                    transform: isHovered ? 'translateY(-16px)' : 'translateY(0px)',
+                    transition: 'height 0.35s cubic-bezier(0.34,1.56,0.64,1), transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.22s ease, box-shadow 0.22s ease',
+                    willChange: 'transform, height',
+                    border: `1px solid ${isHovered ? benefit.borderHover : 'rgba(241, 245, 249, 1)'}`,
+                    boxShadow: isHovered ? benefit.shadowHover : '0 1px 2px 0 rgba(0,0,0,0.05)'
+                  }}
+                >
+                  <div 
+                    style={{
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '16px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: '24px',
+                      background: isHovered ? benefit.bgHover : benefit.bgBase,
+                      transition: 'background 0.22s ease'
+                    }}
+                  >
+                    <Icon 
+                      className="w-6 h-6" 
+                      style={{ 
+                        color: isHovered ? '#ffffff' : benefit.baseColor,
+                        transition: 'color 0.22s ease'
+                      }} 
+                    />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-display font-bold text-slate-900 mb-3">{benefit.title}</h3>
+                  <p className="text-xs sm:text-sm leading-relaxed text-slate-500">{benefit.desc}</p>
                 </div>
-                <h3 className="text-base sm:text-lg font-display font-bold text-slate-900 mb-3">{benefit.title}</h3>
-                <p className="text-xs sm:text-sm leading-relaxed text-slate-500">{benefit.desc}</p>
               </motion.div>
-            ))}
+            )})}
           </div>
         </div>
       </section>
@@ -469,15 +569,14 @@ export default function AiSolutions() {
               AI Deployments Case Studies
             </h2>
             <p className="text-base sm:text-lg text-slate-500">
-              Browse successful custom applications we have engineered and launched.
+              Browse successful custom applications we have engineered and
+              launched.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left max-w-4xl mx-auto">
             {/* Case 1: AI Assistant */}
-            <div
-              className="case-study-card p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full group hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(236,72,153,0.06)]"
-            >
+            <div className="case-study-card p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full group hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(236,72,153,0.06)]">
               <div>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-2 block">
                   Product Optimization
@@ -486,10 +585,12 @@ export default function AiSolutions() {
                   AI Assistant Integration
                 </h3>
                 <p className="text-xs sm:text-sm leading-relaxed text-slate-500 mb-6">
-                  Configured a vector-backed assistant referencing 10,000+ support pages. Decreased ticket load by 40% in the first 30 days of deployment.
+                  Configured a vector-backed assistant referencing 10,000+
+                  support pages. Decreased ticket load by 40% in the first 30
+                  days of deployment.
                 </p>
               </div>
-              
+
               <div className="pt-4 border-t border-slate-200/50 flex items-center justify-between">
                 <span className="text-xs font-bold text-[#7B2FF7] flex items-center gap-1 group-hover:gap-1.5 transition-all">
                   View Case Study <ArrowRight className="w-3.5 h-3.5" />
@@ -498,9 +599,7 @@ export default function AiSolutions() {
             </div>
 
             {/* Case 2: Automation Platform */}
-            <div
-              className="case-study-card p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full group hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(236,72,153,0.06)]"
-            >
+            <div className="case-study-card p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full group hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(236,72,153,0.06)]">
               <div>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-2 block">
                   Workflow Optimization
@@ -509,10 +608,12 @@ export default function AiSolutions() {
                   Automation Platform
                 </h3>
                 <p className="text-xs sm:text-sm leading-relaxed text-slate-500 mb-6">
-                  Built custom data scrapers and GPT agents compiling field data. Automated 100% of field operations reports with error checks.
+                  Built custom data scrapers and GPT agents compiling field
+                  data. Automated 100% of field operations reports with error
+                  checks.
                 </p>
               </div>
-              
+
               <div className="pt-4 border-t border-slate-200/50 flex items-center justify-between">
                 <span className="text-xs font-bold text-[#7B2FF7] flex items-center gap-1 group-hover:gap-1.5 transition-all">
                   View Case Study <ArrowRight className="w-3.5 h-3.5" />
@@ -533,7 +634,8 @@ export default function AiSolutions() {
             Interactive AI Stack
           </h2>
           <p className="text-base sm:text-lg text-slate-500 mb-12">
-            We utilize state-of-the-art frameworks to orchestrate and query language models.
+            We utilize state-of-the-art frameworks to orchestrate and query
+            language models.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -543,11 +645,15 @@ export default function AiSolutions() {
               { name: "Vector Databases", glow: "rgba(6, 182, 212, 0.15)" },
               { name: "Anthropic", glow: "rgba(236, 72, 153, 0.15)" },
               { name: "Pinecone", glow: "rgba(6, 182, 212, 0.15)" },
-              { name: "LlamaIndex", glow: "rgba(124, 58, 237, 0.15)" }
+              { name: "LlamaIndex", glow: "rgba(124, 58, 237, 0.15)" },
             ].map((tech, i) => (
               <motion.div
                 key={i}
-                whileHover={{ scale: 1.05, y: -2, boxShadow: `0 10px 25px ${tech.glow}` }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -2,
+                  boxShadow: `0 10px 25px ${tech.glow}`,
+                }}
                 className="bg-white border border-slate-100 rounded-2xl px-6 py-4 cursor-default shadow-xs transition-all duration-300"
               >
                 <TechBadge name={tech.name} />

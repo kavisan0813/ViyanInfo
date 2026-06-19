@@ -779,9 +779,9 @@ export default function TechStack() {
                     <path d="M 50,120 L 150,120 M 230,120 L 330,80 M 230,120 L 330,160 M 390,80 L 450,120 M 390,160 L 450,120" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4,4" />
                     
                     {/* Dynamic flow particles */}
-                    <motion.circle r="3" fill="#FF9900" animate={{ cx: [50, 150], cy: [120, 120] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} />
-                    <motion.circle r="3" fill="#2496ED" animate={{ cx: [230, 330], cy: [120, 80] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 0.5 }} />
-                    <motion.circle r="3" fill="#336791" animate={{ cx: [230, 330], cy: [120, 160] }} transition={{ duration: 2.8, repeat: Infinity, ease: "linear", delay: 1 }} />
+                    <motion.circle cx="50" cy="120" r="3" fill="#FF9900" animate={{ cx: [50, 150], cy: [120, 120] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} />
+                    <motion.circle cx="230" cy="120" r="3" fill="#2496ED" animate={{ cx: [230, 330], cy: [120, 80] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 0.5 }} />
+                    <motion.circle cx="230" cy="120" r="3" fill="#336791" animate={{ cx: [230, 330], cy: [120, 160] }} transition={{ duration: 2.8, repeat: Infinity, ease: "linear", delay: 1 }} />
                   </svg>
 
                   {/* Node 1: Client Request */}

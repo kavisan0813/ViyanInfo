@@ -6,6 +6,7 @@ import {
   useCallback,
 } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { onHoverBurst } from "../utils/particleBurst";
 import { gsap } from "gsap";
 import {
   Menu as MenuIcon,
@@ -307,7 +308,7 @@ export function Navbar() {
           {/* Right Side CTA Button */}
           <div className="flex items-center gap-4">
             <Link to="/contact" className="hidden md:block">
-              <button className="relative overflow-hidden px-5 py-2.5 text-xs font-bold text-white rounded-[14px] bg-gradient-to-r from-[#7B2FF7] to-[#9333EA] hover:shadow-[0_0_20px_rgba(123,47,247,0.45)] hover:-translate-y-[2px] active:translate-y-0 active:shadow-md transition-all duration-300 cursor-pointer">
+              <button onMouseEnter={onHoverBurst} className="relative overflow-hidden px-5 py-2.5 text-xs font-bold text-white rounded-[14px] bg-gradient-to-r from-[#7B2FF7] to-[#9333EA] hover:shadow-[0_0_20px_rgba(123,47,247,0.45)] hover:-translate-y-[2px] active:translate-y-0 active:shadow-md transition-all duration-300 cursor-pointer">
                 Start Project
               </button>
             </Link>

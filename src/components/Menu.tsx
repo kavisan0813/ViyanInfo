@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { onHoverBurst } from "../utils/particleBurst";
 import { gsap } from "gsap";
 import type { MenuProps } from "../types";
 
@@ -166,7 +167,7 @@ export function Menu({ isOpen, onClose }: MenuProps) {
           {/* CTA Mobile Button */}
           <div className="overflow-hidden pt-4 menu-nav-link">
             <Link to="/contact" onClick={handleClose} className="inline-block">
-              <button className="px-6 py-3 bg-gradient-to-r from-[#7B2FF7] to-[#9333EA] hover:shadow-[0_0_15px_rgba(123,47,247,0.4)] text-white font-bold text-sm rounded-[14px] transition-all duration-300">
+              <button onMouseEnter={onHoverBurst} className="px-6 py-3 bg-gradient-to-r from-[#7B2FF7] to-[#9333EA] hover:shadow-[0_0_15px_rgba(123,47,247,0.4)] text-white font-bold text-sm rounded-[14px] transition-all duration-300">
                 Start Project
               </button>
             </Link>
