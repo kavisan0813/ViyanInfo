@@ -752,8 +752,40 @@ export default function Internships() {
           backgroundRepeat: "no-repeat",
         }}
       >
+        {/* Fog & Mist Layers fading into the footer
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#D6BADB] via-[#E4D1E8]/60 to-transparent z-0 pointer-events-none" />
+        <motion.div 
+          className="absolute inset-x-0 bottom-0 h-40 bg-[#D6BADB] blur-3xl z-0 opacity-70 pointer-events-none"
+          animate={{ opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+         */}
+        {/* Floating Fog Particles
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={`fog-${i}`}
+            className="absolute rounded-full bg-white/20 blur-3xl pointer-events-none z-0"
+            style={{
+              width: `${Math.random() * 400 + 300}px`,
+              height: `${Math.random() * 200 + 100}px`,
+              left: `${Math.random() * 80}%`,
+              bottom: `-50px`,
+            }}
+            animate={{
+              x: [0, Math.random() * 100 - 50, 0],
+              y: [0, Math.random() * 40 - 20, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))} */}
+
         {/* CTA Content */}
-        <div className="relative z-10 pt-16 pb-64 md:pb-80 pl-4 md:pl-12 lg:pl-24">
+        <div className="relative z-10 pt-16 pb-32 md:pb-48 pl-4 md:pl-12 lg:pl-24">
           <CTABlock
             title="Ready to start your journey?"
             subtitle="Submit your application to secure a spot in our next internship cohort. Cohorts begin quarterly."
@@ -776,7 +808,7 @@ const expertisePrograms = [
     title: "Python Development",
     icon: AiOutlinePython,
     accent: "#3B82F6",
-    logoColor: "#f0f416ff",
+    logoColor: "#65f418ff",
     logoGlow: "rgba(55, 118, 171, 0.4)",
     gradient: "linear-gradient(135deg, #EFF6FF, #DBEAFE)", // Light Blue
     iconBg: "rgba(255, 255, 255, 1)",
@@ -785,8 +817,8 @@ const expertisePrograms = [
   {
     title: "Full Stack Development",
     icon: Globe,
-    accent: "#7B2FF7",
-    logoColor: "#61DAFB",
+    accent: "#7b2ff7ff",
+    logoColor: "#f7782fff",
     logoGlow: "rgba(97, 218, 251, 0.4)",
     gradient: "linear-gradient(135deg, #F5F3FF, #EDE9FE)", // Light Purple
     iconBg: "rgba(123, 47, 247, 0.1)",
@@ -796,7 +828,7 @@ const expertisePrograms = [
     title: "AI & Machine Learning",
     icon: Brain,
     accent: "#EC4899",
-    logoColor: "#FF4DA6",
+    logoColor: "#ff4d4dff",
     logoGlow: "rgba(255, 77, 166, 0.4)",
     gradient: "linear-gradient(135deg, #FDF2F8, #FCE7F3)", // Light Pink
     iconBg: "rgba(236, 72, 153, 0.1)",
@@ -929,7 +961,7 @@ function InternshipExpertiseSection() {
                         height="334"
                         rx="16"
                         stroke="rgba(255,255,255,0.8)"
-                        strokeWidth="2.5"
+                        strokeWidth="1.5"
                       />
                       {/* Inner border */}
                       <rect
@@ -939,35 +971,35 @@ function InternshipExpertiseSection() {
                         height="318"
                         rx="12"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1.5"
                       />
 
                       {/* Corner circles */}
                       <circle
                         cx="28"
                         cy="28"
-                        r="6"
+                        r="4"
                         stroke="rgba(255,255,255,0.7)"
                         strokeWidth="2"
                       />
                       <circle
                         cx="212"
                         cy="28"
-                        r="6"
+                        r="4"
                         stroke="rgba(255,255,255,0.7)"
                         strokeWidth="2"
                       />
                       <circle
                         cx="28"
                         cy="322"
-                        r="6"
+                        r="4"
                         stroke="rgba(255,255,255,0.7)"
                         strokeWidth="2"
                       />
                       <circle
                         cx="212"
                         cy="322"
-                        r="6"
+                        r="4"
                         stroke="rgba(255,255,255,0.7)"
                         strokeWidth="2"
                       />
@@ -976,25 +1008,25 @@ function InternshipExpertiseSection() {
                       <circle
                         cx="28"
                         cy="28"
-                        r="2"
+                        r="1"
                         fill="rgba(255,255,255,0.8)"
                       />
                       <circle
                         cx="212"
                         cy="28"
-                        r="2"
+                        r="1"
                         fill="rgba(255,255,255,0.8)"
                       />
                       <circle
                         cx="28"
                         cy="322"
-                        r="2"
+                        r="1"
                         fill="rgba(255,255,255,0.8)"
                       />
                       <circle
                         cx="212"
                         cy="322"
-                        r="2"
+                        r="1"
                         fill="rgba(255,255,255,0.8)"
                       />
 
@@ -1005,7 +1037,7 @@ function InternshipExpertiseSection() {
                         x2="80"
                         y2="28"
                         stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                       />
                       <line
                         x1="160"
@@ -1013,7 +1045,7 @@ function InternshipExpertiseSection() {
                         x2="206"
                         y2="28"
                         stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                       />
                       <line
                         x1="34"
@@ -1021,7 +1053,7 @@ function InternshipExpertiseSection() {
                         x2="80"
                         y2="322"
                         stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                       />
                       <line
                         x1="160"
@@ -1029,7 +1061,7 @@ function InternshipExpertiseSection() {
                         x2="206"
                         y2="322"
                         stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                       />
                       <line
                         x1="28"
@@ -1037,7 +1069,7 @@ function InternshipExpertiseSection() {
                         x2="28"
                         y2="80"
                         stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                       />
                       <line
                         x1="28"
@@ -1045,7 +1077,7 @@ function InternshipExpertiseSection() {
                         x2="28"
                         y2="316"
                         stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                       />
                       <line
                         x1="212"
@@ -1053,7 +1085,7 @@ function InternshipExpertiseSection() {
                         x2="212"
                         y2="80"
                         stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                       />
                       <line
                         x1="212"
@@ -1061,21 +1093,21 @@ function InternshipExpertiseSection() {
                         x2="212"
                         y2="316"
                         stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                       />
 
                       {/* Top semi-circle */}
                       <path
                         d="M100 16 A20 20 0 0 1 140 16"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                         fill="none"
                       />
                       {/* Bottom semi-circle */}
                       <path
                         d="M100 334 A20 20 0 0 0 140 334"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                         fill="none"
                       />
 
@@ -1083,7 +1115,7 @@ function InternshipExpertiseSection() {
                       <path
                         d="M115 40 L120 34 L125 40"
                         stroke="rgba(255,255,255,0.7)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                         fill="none"
                         strokeLinecap="round"
                       />
@@ -1091,36 +1123,36 @@ function InternshipExpertiseSection() {
                       <path
                         d="M115 310 L120 316 L125 310"
                         stroke="rgba(255,255,255,0.7)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                         fill="none"
                         strokeLinecap="round"
                       />
 
                       {/* Left diamond arrow */}
                       <path
-                        d="M16 155 L28 145 L28 165 Z"
+                        d="M20 155 L28 145 L28 165 Z"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                         fill="rgba(255,255,255,0.2)"
                       />
                       <path
-                        d="M16 195 L28 185 L28 205 Z"
+                        d="M20 195 L28 185 L28 205 Z"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                         fill="rgba(255,255,255,0.2)"
                       />
 
                       {/* Right diamond arrow */}
                       <path
-                        d="M224 155 L212 145 L212 165 Z"
+                        d="M220 155 L212 145 L212 165 Z"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                         fill="rgba(255,255,255,0.2)"
                       />
                       <path
-                        d="M224 195 L212 185 L212 205 Z"
+                        d="M220 195 L212 185 L212 205 Z"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1"
                         fill="rgba(255,255,255,0.2)"
                       />
 
@@ -1159,25 +1191,25 @@ function InternshipExpertiseSection() {
                       <circle
                         cx="120"
                         cy="85"
-                        r="2.5"
+                        r="1.5"
                         fill="rgba(255,255,255,0.8)"
                       />
                       <circle
                         cx="120"
                         cy="265"
-                        r="2.5"
+                        r="1.5"
                         fill="rgba(255,255,255,0.8)"
                       />
                       <circle
                         cx="30"
                         cy="175"
-                        r="2.5"
+                        r="1.5"
                         fill="rgba(255,255,255,0.8)"
                       />
                       <circle
                         cx="210"
                         cy="175"
-                        r="2.5"
+                        r="1.5"
                         fill="rgba(255,255,255,0.8)"
                       />
 
@@ -1188,7 +1220,7 @@ function InternshipExpertiseSection() {
                         x2="120"
                         y2="102"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1.5"
                       />
                       <line
                         x1="120"
@@ -1196,7 +1228,7 @@ function InternshipExpertiseSection() {
                         x2="120"
                         y2="258"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1.5"
                       />
                       <line
                         x1="42"
@@ -1204,7 +1236,7 @@ function InternshipExpertiseSection() {
                         x2="52"
                         y2="175"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1.5"
                       />
                       <line
                         x1="188"
@@ -1212,11 +1244,11 @@ function InternshipExpertiseSection() {
                         x2="198"
                         y2="175"
                         stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="2"
+                        strokeWidth="1.5"
                       />
 
                       {/* Horizontal center line accents - shifted to edge to not intersect the middle */}
-                      <line
+                      {/* <line
                         x1="30"
                         y1="85"
                         x2="100"
@@ -1233,7 +1265,7 @@ function InternshipExpertiseSection() {
                         stroke="rgba(255,255,255,0.3)"
                         strokeWidth="1.5"
                         strokeDasharray="4 6"
-                      />
+                      /> */}
                       {/* <line
                         x1="30"
                         y1="265"

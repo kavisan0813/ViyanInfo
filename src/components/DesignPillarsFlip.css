@@ -5,7 +5,7 @@
 
 .dp-section {
   position: relative;
-  background: #FAF7FF;
+  background: #faf7ff;
   overflow: hidden;
 }
 
@@ -35,7 +35,7 @@
   border-radius: 9999px;
   background: rgba(255, 237, 198, 0.6);
   border: 1px solid rgba(245, 158, 11, 0.2);
-  color: #F59E0B;
+  color: #f59e0b;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 5px;
@@ -46,7 +46,7 @@
 
 .dp-heading h2 {
   font-size: clamp(32px, 5vw, 56px);
-  color: #0F172A;
+  color: #0f172a;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -55,7 +55,7 @@
 
 .dp-heading p {
   font-size: 15px;
-  color: #64748B;
+  color: #64748b;
   margin-top: 10px;
   max-width: 480px;
   margin-left: auto;
@@ -110,49 +110,96 @@
   box-sizing: border-box;
 }
 
-/* ── Front face — Minimal ── */
-.dp-card-front {
-  background: white;
-  border: 1px solid rgba(245, 158, 11, 0.06);
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.04),
-    0 16px 40px rgba(245, 158, 11, 0.04);
+/* ── Front face — Tarot Playing Card ── */
+.dp-card-front.tarot-front {
+  background: #1a018e;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+  cursor: pointer;
 }
 
-.dp-card-icon {
-  width: 68px;
-  height: 68px;
-  border-radius: 20px;
+.dp-card:hover .dp-card-front.tarot-front {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* SVG geometry layer */
+.tarot-geometry {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.dp-card:hover .tarot-geometry {
+  opacity: 1;
+}
+
+/* Icon badge — Layer 3: Glassmorphic circle */
+.tarot-icon-badge {
+  position: relative;
+  z-index: 5;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
 }
 
-.dp-card-front h3 {
-  font-size: 20px;
+.dp-card:hover .tarot-icon-badge {
+  transform: scale(1.08);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.dp-card-front.tarot-front h3 {
+  position: relative;
+  padding: 0 16px;
+  font-size: 18px;
   font-weight: 700;
   text-align: center;
-  color: #0F172A;
+  color: white;
   font-family: var(--font-display, "Sora", sans-serif);
   letter-spacing: -0.01em;
   line-height: 1.3;
+  z-index: 5;
 }
 
-.dp-card-label {
-  margin-top: 14px;
-  font-size: 9px;
+.dp-card-front.tarot-front .dp-card-label {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  text-align: center;
+  font-size: 8px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 6px;
   font-family: var(--font-mono, "Space Mono", monospace);
-  opacity: 0.5;
+  color: rgba(255, 255, 255, 0.65);
+  z-index: 5;
 }
 
 /* ── Back face (Light Theme) ── */
 .dp-card-back {
   transform: rotateY(180deg);
-  color: #0F172A;
+  color: #0f172a;
   justify-content: flex-start;
   padding-top: 36px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
@@ -183,7 +230,7 @@
 .dp-back-tags {
   font-size: 11px;
   font-weight: 700;
-  color: #94A3B8;
+  color: #94a3b8;
   text-align: center;
   letter-spacing: 0.5px;
   padding-top: 16px;
@@ -227,25 +274,24 @@
     height: 270px;
   }
 
-  .dp-card-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
-    margin-bottom: 16px;
+  .tarot-icon-badge {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
   }
 
-  .dp-card-icon svg {
-    width: 24px;
-    height: 24px;
+  .tarot-icon-badge svg {
+    width: 20px;
+    height: 20px;
   }
 
-  .dp-card-front h3 {
-    font-size: 15px;
+  .dp-card-front.tarot-front h3 {
+    font-size: 13px;
   }
 
-  .dp-card-label {
-    font-size: 7px;
-    letter-spacing: 2px;
+  .dp-card-front.tarot-front .dp-card-label {
+    font-size: 6px;
+    letter-spacing: 3px;
   }
 
   .dp-back-title {

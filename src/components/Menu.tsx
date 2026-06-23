@@ -151,7 +151,6 @@ export function Menu({ isOpen, onClose }: MenuProps) {
 
       {/* Main content grid */}
       <div className="flex-1 flex flex-col md:flex-row px-8 md:px-16 pt-4 relative z-10 gap-10">
-        
         {/* Navigation list */}
         <div className="flex-1 flex flex-col gap-2 md:gap-3">
           {navLinks.map((link) => (
@@ -167,7 +166,10 @@ export function Menu({ isOpen, onClose }: MenuProps) {
           {/* CTA Mobile Button */}
           <div className="overflow-hidden pt-4 menu-nav-link">
             <Link to="/contact" onClick={handleClose} className="inline-block">
-              <button onMouseEnter={onHoverBurst} className="px-6 py-3 bg-gradient-to-r from-[#7B2FF7] to-[#9333EA] hover:shadow-[0_0_15px_rgba(123,47,247,0.4)] text-white font-bold text-sm rounded-[14px] transition-all duration-300">
+              <button
+                onMouseEnter={onHoverBurst}
+                className="px-6 py-3 bg-gradient-to-r from-[#7B2FF7] to-[#9333EA] hover:shadow-[0_0_15px_rgba(123,47,247,0.4)] text-white font-bold text-sm rounded-[14px] transition-all duration-300"
+              >
                 Start Project
               </button>
             </Link>
@@ -190,7 +192,7 @@ export function Menu({ isOpen, onClose }: MenuProps) {
               href="tel:+910000000000"
               className="block text-sm text-slate-200 hover:text-[#7B2FF7] transition-colors font-medium"
             >
-              +91 XXXXX XXXXX
+              +91 6379723465
             </a>
           </div>
 
@@ -217,7 +219,6 @@ export function Menu({ isOpen, onClose }: MenuProps) {
             </div>
           </div>
         </div>
-
       </div>
 
       {/* Bottom Watermark */}

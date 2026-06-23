@@ -22,7 +22,8 @@ import dashboardImg from "../assets/intro.png";
 import { motion } from "framer-motion";
 import { burst } from "../utils/particleBurst";
 import astronautImg from "../assets/Astronaut.webp";
-import saturnImg from "../assets/Saturn.webp";
+import visionImg from "../assets/Vision.png";
+import saturnimage from "../assets/Saturn.webp";
 
 export default function Home() {
   const ctaContainerRef = useRef<HTMLDivElement>(null);
@@ -410,24 +411,13 @@ export default function Home() {
       {/* SECTION 1 - HERO (UNTOUCHED) */}
       <section
         ref={heroRef}
-        className="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center overflow-hidden pt-8 pb-16 bg-[#F8F5FF]"
+        className="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center overflow-hidden bg-[#F8F5FF]"
       >
-        {/* Soft Ambient Background - Mouse Reactive */}
-        {/* <div
-          ref={heroBgBlobRef}
-          className="absolute inset-0 z-0 pointer-events-none"
-        >
-          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[radial-gradient(circle,rgba(240,230,255,0.6)_0%,transparent_60%)]"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[radial-gradient(circle,rgba(220,200,255,0.4)_0%,transparent_60%)]"></div>
-        </div> */}
         {/* Content */}
-        <div
-          ref={heroContentRef}
-          className="container-fluid relative z-10 w-full max-w-[1600px]"
-        >
-          <div className="flex justify-between gap-12 lg:gap-8 items-center pt-20 lg:pt-0">
+        <div ref={heroContentRef} className="container-fluid relative z-10">
+          <div className="flex justify-between items-center p-15">
             {/* Left Box: Typographic Content (5/12 equivalent) */}
-            <div className="lg:col-span-5 text-left flex flex-col items-start pr-4">
+            <div className="lg:col-span-5 text-left flex flex-col items-start">
               <div className="hero-badge flex items-center gap-2.5 bg-[#F5F0FF] backdrop-blur-md px-4 py-2 rounded-full mb-8 border border-[#E9D5FF] shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#7C3AED]"></span>
                 <span className="text-[12px] font-body font-semibold text-[#7C3AED]">
@@ -443,7 +433,10 @@ export default function Home() {
                   {[
                     { text: "We", color: "" },
                     { text: "Engineer", color: "" },
-                    { text: "Digital", color: "text-[#9333ea]" },
+                    {
+                      text: "Digital",
+                      color: "text-[#9333ea]",
+                    },
                     { text: "Excellence", color: "text-[#9333ea]" },
                     { text: "From", color: "" },
                     { text: "Day", color: "" },
@@ -451,11 +444,11 @@ export default function Home() {
                   ].map((wordObj, i) => (
                     <span
                       key={i}
-                      className="inline-block overflow-hidden pb-2"
+                      className={`inline-block overflow-hidden pb-2`}
                       style={{ transformStyle: "preserve-3d" }}
                     >
                       <span
-                        className={`word-inner inline-block ${wordObj.color}`}
+                        className={`word-inner inline-block ${wordObj.color} ${i === 2 || i === 3 ? "playfairDisplay" : ""}`}
                         style={{ transformOrigin: "bottom center" }}
                       >
                         {wordObj.text}
@@ -501,8 +494,8 @@ export default function Home() {
                   ref={flowerRef}
                   src={flowerImg}
                   alt="Translucent Flower Decor"
-                  style={{ bottom: "0px", left: "-100px" }}
-                  className=" absolute w-[540px] h-auto pointer-events-none z-10 opacity-90 object-contain"
+                  style={{ bottom: "10px", left: "-50px", width: "500px" }}
+                  className=" absolute  h-auto pointer-events-none z-10 opacity-90 object-contain"
                 />
 
                 {/* Layer 3: Dashboard Image (Foreground) */}
@@ -510,7 +503,8 @@ export default function Home() {
                   ref={dashRef}
                   src={dashboardImg}
                   alt="Dashboard Showcase"
-                  className="w-full h-auto object-contain z-20 relative rounded-2xl w-[300px]"
+                  style={{ width: "1000px" }}
+                  className="object-contain z-20 relative rounded-2xl img-fluid"
                 />
               </div>
             </div>
@@ -1297,41 +1291,15 @@ export default function Home() {
 
             {/* Right Visual Illustrative Box */}
             <div className="lg:col-span-6 flex justify-center">
-              <motion.div
+              <motion.img
+                src={visionImg}
+                alt="ViyanInfo Vision"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="relative w-full max-w-lg aspect-square rounded-3xl bg-gradient-to-br from-[#7B2FF7]/5 to-[#9333EA]/5 border border-purple-500/10 p-8 flex flex-col justify-between overflow-hidden group shadow-lg"
-              >
-                {/* Tech grid line graphics */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(123,47,247,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(123,47,247,0.03)_1px,transparent_1px)] bg-size:[30px_30px]"></div>
-
-                <div className="relative z-10 flex justify-between items-start">
-                  <div className="w-12 h-12 rounded-2xl bg-white border border-[#E9D5FF] flex items-center justify-center text-xl">
-                    🌟
-                  </div>
-                  <span className="font-mono text-xs text-[#7B2FF7] uppercase tracking-widest font-bold">
-                    Viyan Efficacy
-                  </span>
-                </div>
-
-                {/* Animated graphic mockup */}
-                <div className="relative z-10 my-8 flex flex-col items-center">
-                  <div className="w-40 h-40 rounded-full border-4 border-dashed border-[#7B2FF7]/20 flex items-center justify-center animate-[spin-slow_40s_linear_infinite]">
-                    <div className="w-28 h-28 rounded-full border-4 border-dotted border-[#9333EA]/30 flex items-center justify-center animate-[spin-counter-clockwise_25s_linear_infinite]">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#7B2FF7] to-[#9333EA] flex items-center justify-center text-white text-lg font-bold shadow-md">
-                        V
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative z-10 flex justify-between items-center text-xs text-[#475569] font-mono">
-                  <span>Growth Indicator: +240%</span>
-                  <span>Timeline: 2026</span>
-                </div>
-              </motion.div>
+                className="w-full max-w-lg rounded-3xl shadow-lg object-cover"
+              />
             </div>
           </div>
         </div>
@@ -1378,8 +1346,8 @@ export default function Home() {
 
       <SectionDivider /> */}
 
-      <section className="py-24 bg-[#FAF7FF] relative">
-        <div className="container mx-auto px-6 relative z-10">
+      <section className="bg-black relative z-20">
+        <div className="container-fluid mx-auto relative z-10">
           <motion.div
             ref={ctaContainerRef}
             onMouseMove={handleCtaMouseMove}
@@ -1387,7 +1355,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="p-8 md:p-10 rounded-3xl bg-black text-center text-white relative overflow-hidden shadow-2xl"
+            className="pt-16 pb-0 md:pt-20 md:pb-0 bg-black text-center text-white relative shadow-2xl"
           >
             {/* Glowing particle blobs */}
             <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-400/20 blur-3xl animate-[float-y_15s_ease-in-out_infinite] pointer-events-none"></div>
@@ -1395,23 +1363,27 @@ export default function Home() {
 
             {/* Floating CSS particles with mouse repulsion */}
             <CTAParticles />
+            <div className="absolute left-[2%] opacity-70 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_7s_ease-in-out_infinite] saturnimage  top-[20%]">
+              {/* Saturn image floating in top left */}
+              <img
+                src={saturnimage}
+                alt="Saturn"
+                className="animate-[float-y_6s_ease-in-out_infinite] img-fluid w-[500px] md:w-[700px]"
+              />
+            </div>
 
-            {/* Saturn Image floating in top left */}
-            <img
-              ref={saturnRef}
-              src={saturnImg}
-              alt="Saturn"
-              // className="absolute top-2 left-4 md:left-12 w-20 md:w-28 lg:w-32 opacity-70 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_7s_ease-in-out_infinite]"
-              className="absolute opacity-70 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_7s_ease-in-out_infinite] saturnimage"
-            />
-
-            {/* Astronaut Image floating in bottom right */}
-            <img
-              ref={astronautRef}
-              src={astronautImg}
-              alt="Astronaut"
-              className="absolute -bottom-2 right-4 md:right-12 w-24 md:w-32 lg:w-40 opacity-80 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_6s_ease-in-out_infinite] scale-x-[-1]"
-            />
+            <div
+              className="absolute flip-horizontal right-4 opacity-80 pointer-events-none z-10 drop-shadow-2xl"
+              style={{ bottom: "-80px" }}
+            >
+              {/* Astronaut Image floating in bottom right */}
+              <img
+                ref={astronautRef}
+                src={astronautImg}
+                alt="Astronaut"
+                className="animate-[float-y_6s_ease-in-out_infinite] img-fluid w-[350px] md:w-[250px]"
+              />
+            </div>
 
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(15,23,42,0.15)_100%)] pointer-events-none"></div>
 
@@ -1427,7 +1399,7 @@ export default function Home() {
                 engineering and design teams.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center items-center relative z-20">
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center items-center relative z-20 mb-8">
                 <Link to="/contact" className="w-full sm:w-auto">
                   <MagneticButton>
                     <button

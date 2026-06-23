@@ -34,19 +34,23 @@ interface FormData {
 const FAQ_ITEMS = [
   {
     question: "What is your typical project timeline?",
-    answer: "Most custom software and web application projects range from 6 to 12 weeks, depending on requirements. We build in iterative phases, providing staging demos every two weeks.",
+    answer:
+      "Most custom software and web application projects range from 6 to 12 weeks, depending on requirements. We build in iterative phases, providing staging demos every two weeks.",
   },
   {
     question: "How do you determine project budgets?",
-    answer: "Budgets are estimated based on technical complexity, integrations, and total developer hours. We offer fixed-price options for clear specs or dedicated sprints for evolving MVPs.",
+    answer:
+      "Budgets are estimated based on technical complexity, integrations, and total developer hours. We offer fixed-price options for clear specs or dedicated sprints for evolving MVPs.",
   },
   {
     question: "Do you offer post-launch support?",
-    answer: "Yes, every digital product we deliver includes 30 days of complimentary support. We also offer monthly SLA retainer plans for hosting management, updates, and feature scaling.",
+    answer:
+      "Yes, every digital product we deliver includes 30 days of complimentary support. We also offer monthly SLA retainer plans for hosting management, updates, and feature scaling.",
   },
   {
     question: "How does the internship program coordinate?",
-    answer: "Our internships run for 3-6 months. We offer real-world learning tracks, 1-on-1 developer mentorship, code reviews, and certified completions tied to potential placement options.",
+    answer:
+      "Our internships run for 3-6 months. We offer real-world learning tracks, 1-on-1 developer mentorship, code reviews, and certified completions tied to potential placement options.",
   },
 ];
 
@@ -83,8 +87,11 @@ export default function Contact() {
         ease: "power3.out",
         stagger: 0.15,
         onComplete: () => {
-          const headline = document.querySelector<HTMLElement>("h1.hero-content-anim");
-          if (headline) burst(headline, 20, ["#7B2FF7", "#9333EA", "#3B82F6"], 160, 1000);
+          const headline = document.querySelector<HTMLElement>(
+            "h1.hero-content-anim",
+          );
+          if (headline)
+            burst(headline, 20, ["#7B2FF7", "#9333EA", "#3B82F6"], 160, 1000);
         },
       });
 
@@ -200,35 +207,42 @@ export default function Contact() {
   };
 
   return (
-    <div ref={containerRef} className="bg-slate-50 min-h-screen text-slate-800 font-body relative overflow-hidden pt-24 pb-20">
-      
+    <div
+      ref={containerRef}
+      className="bg-slate-50 min-h-screen text-slate-800 font-body relative overflow-hidden pt-24 pb-20"
+    >
       {/* Background gradients */}
       <div className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-purple-100/30 to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 left-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-blue-50/20 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       {/* HERO SECTION */}
-      <section ref={heroRef} className="text-center max-w-3xl mx-auto mt-8 mb-16 px-6">
+      <section
+        ref={heroRef}
+        className="text-center max-w-3xl mx-auto mt-8 mb-16 px-6"
+      >
         <div className="hero-content-anim inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-purple-700 text-xs font-semibold uppercase tracking-wider mb-6">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Contact ViyanInfo</span>
         </div>
 
         <h1 className="hero-content-anim text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
-          Let's Build Something <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 bg-clip-text text-transparent">Amazing Together</span>
+          Let's Build Something{" "}
+          <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 bg-clip-text text-transparent">
+            Amazing Together
+          </span>
         </h1>
 
         <p className="hero-content-anim text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto">
-          Tell us about your project and goals. We respond to all inquiries within 24 business hours.
+          Tell us about your project and goals. We respond to all inquiries
+          within 24 business hours.
         </p>
       </section>
 
       {/* TWO COLUMN GRID SECTION */}
       <section className="container max-w-[1240px] mx-auto px-6 mb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          
           {/* LEFT COLUMN: CONTACT DETAILS & SOCIALS */}
           <div className="lg:col-span-5 info-card-container flex flex-col gap-6">
-            
             {/* Email (Purple) */}
             <div className="info-card-anim bg-white border border-slate-100 rounded-2xl p-6 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center text-[#7B2FF7] shrink-0 border border-purple-100">
@@ -260,10 +274,10 @@ export default function Contact() {
                   Phone Number
                 </h4>
                 <a
-                  href="tel:+910000000000"
+                  href="tel:+916379723465"
                   className="text-base font-bold text-slate-900 hover:text-[#3B82F6] transition-colors"
                 >
-                  +91 XXXXX XXXXX
+                  +91 6379723465
                 </a>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Mon-Fri from 9am to 6pm.
@@ -281,7 +295,8 @@ export default function Contact() {
                   Main Headquarters
                 </h4>
                 <p className="text-sm font-bold text-slate-900 leading-snug">
-                  VIYAN Infotech, No : 168 B, PTC Nagar, Ikkadu, Tiruvallur - 602001
+                  VIYAN Infotech, No : 168 B, PTC Nagar, Ikkadu, Tiruvallur -
+                  602001
                 </p>
                 <p className="text-xs text-slate-500 mt-1">
                   Chennai, Tamil Nadu, India.
@@ -296,10 +311,26 @@ export default function Contact() {
               </h4>
               <div className="flex gap-3">
                 {[
-                  { icon: <Linkedin className="w-4 h-4" />, href: "https://linkedin.com", label: "LinkedIn" },
-                  { icon: <Github className="w-4 h-4" />, href: "https://github.com", label: "GitHub" },
-                  { icon: <Instagram className="w-4 h-4" />, href: "https://instagram.com", label: "Instagram" },
-                  { icon: <Facebook className="w-4 h-4" />, href: "https://facebook.com", label: "Facebook" }
+                  {
+                    icon: <Linkedin className="w-4 h-4" />,
+                    href: "https://linkedin.com",
+                    label: "LinkedIn",
+                  },
+                  {
+                    icon: <Github className="w-4 h-4" />,
+                    href: "https://github.com",
+                    label: "GitHub",
+                  },
+                  {
+                    icon: <Instagram className="w-4 h-4" />,
+                    href: "https://instagram.com",
+                    label: "Instagram",
+                  },
+                  {
+                    icon: <Facebook className="w-4 h-4" />,
+                    href: "https://facebook.com",
+                    label: "Facebook",
+                  },
                 ].map((social, idx) => (
                   <a
                     key={idx}
@@ -314,7 +345,6 @@ export default function Contact() {
                 ))}
               </div>
             </div>
-
           </div>
 
           {/* RIGHT COLUMN: MODERN FORM */}
@@ -328,7 +358,9 @@ export default function Contact() {
                   Message Transmitted!
                 </h3>
                 <p className="text-slate-500 text-sm max-w-sm leading-relaxed mb-8">
-                  Thank you for submitting your project query. Our technical lead will review your details and connect within 24 business hours.
+                  Thank you for submitting your project query. Our technical
+                  lead will review your details and connect within 24 business
+                  hours.
                 </p>
                 <button
                   onClick={() => {
@@ -360,47 +392,64 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="name" className="text-xs font-bold text-slate-700">
+                    <label
+                      htmlFor="name"
+                      className="text-xs font-bold text-slate-700"
+                    >
                       Full Name *
                     </label>
                     <input
                       id="name"
                       type="text"
                       required
-                      placeholder="e.g. John Doe"
+                      placeholder="Rithick Nathan"
                       value={formData.name}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 rounded-xl border ${
                         errors.name ? "border-rose-500" : "border-slate-200"
                       } bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800`}
                     />
-                    {errors.name && <span className="text-[10px] text-rose-500">{errors.name}</span>}
+                    {errors.name && (
+                      <span className="text-[10px] text-rose-500">
+                        {errors.name}
+                      </span>
+                    )}
                   </div>
 
                   {/* Email */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="text-xs font-bold text-slate-700">
+                    <label
+                      htmlFor="email"
+                      className="text-xs font-bold text-slate-700"
+                    >
                       Company Email *
                     </label>
                     <input
                       id="email"
                       type="email"
                       required
-                      placeholder="e.g. name@company.com"
+                      placeholder="ceo@viyaninfo.com"
                       value={formData.email}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 rounded-xl border ${
                         errors.email ? "border-rose-500" : "border-slate-200"
                       } bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800`}
                     />
-                    {errors.email && <span className="text-[10px] text-rose-500">{errors.email}</span>}
+                    {errors.email && (
+                      <span className="text-[10px] text-rose-500">
+                        {errors.email}
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Phone */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="phone" className="text-xs font-bold text-slate-700">
+                    <label
+                      htmlFor="phone"
+                      className="text-xs font-bold text-slate-700"
+                    >
                       Phone Number
                     </label>
                     <input
@@ -415,7 +464,10 @@ export default function Contact() {
 
                   {/* Company */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="company" className="text-xs font-bold text-slate-700">
+                    <label
+                      htmlFor="company"
+                      className="text-xs font-bold text-slate-700"
+                    >
                       Company Name
                     </label>
                     <input
@@ -432,7 +484,10 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Service */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="service" className="text-xs font-bold text-slate-700">
+                    <label
+                      htmlFor="service"
+                      className="text-xs font-bold text-slate-700"
+                    >
                       Service Type
                     </label>
                     <select
@@ -442,18 +497,29 @@ export default function Contact() {
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800 appearance-none"
                     >
                       <option value="">Select Service...</option>
-                      <option value="Custom Software">Custom Software Development</option>
-                      <option value="Web Applications">Web Application Development</option>
-                      <option value="Mobile Applications">Mobile Application Development</option>
+                      <option value="Custom Software">
+                        Custom Software Development
+                      </option>
+                      <option value="Web Applications">
+                        Web Application Development
+                      </option>
+                      <option value="Mobile Applications">
+                        Mobile Application Development
+                      </option>
                       <option value="AI Solutions">AI Solutions</option>
                       <option value="UI/UX Design">UI/UX Design</option>
-                      <option value="Internship Programs">Internship Programs</option>
+                      <option value="Internship Programs">
+                        Internship Programs
+                      </option>
                     </select>
                   </div>
 
                   {/* Budget */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="budget" className="text-xs font-bold text-slate-700">
+                    <label
+                      htmlFor="budget"
+                      className="text-xs font-bold text-slate-700"
+                    >
                       Estimated Budget
                     </label>
                     <select
@@ -473,7 +539,10 @@ export default function Contact() {
 
                 {/* Message */}
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="message" className="text-xs font-bold text-slate-700">
+                  <label
+                    htmlFor="message"
+                    className="text-xs font-bold text-slate-700"
+                  >
                     Project Requirements *
                   </label>
                   <textarea
@@ -487,7 +556,11 @@ export default function Contact() {
                       errors.message ? "border-rose-500" : "border-slate-200"
                     } bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800 resize-none`}
                   />
-                  {errors.message && <span className="text-[10px] text-rose-500">{errors.message}</span>}
+                  {errors.message && (
+                    <span className="text-[10px] text-rose-500">
+                      {errors.message}
+                    </span>
+                  )}
                 </div>
 
                 {/* Submit */}
@@ -505,7 +578,6 @@ export default function Contact() {
               </form>
             )}
           </div>
-
         </div>
       </section>
 
@@ -520,7 +592,10 @@ export default function Contact() {
       </section>
 
       {/* FAQ SECTION */}
-      <section ref={faqRef} className="container max-w-[800px] mx-auto px-6 mb-24">
+      <section
+        ref={faqRef}
+        className="container max-w-[800px] mx-auto px-6 mb-24"
+      >
         <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 text-center mb-10">
           Frequently Answered Queries
         </h3>
@@ -537,7 +612,9 @@ export default function Contact() {
                   onClick={() => setActiveFaq(isOpen ? null : idx)}
                   className="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-slate-800 hover:text-[#7B2FF7] transition-colors duration-200 outline-none cursor-pointer"
                 >
-                  <span className="text-sm sm:text-base leading-snug">{item.question}</span>
+                  <span className="text-sm sm:text-base leading-snug">
+                    {item.question}
+                  </span>
                   <ChevronDown
                     className={`w-4 h-4 text-slate-400 transition-transform duration-300 shrink-0 ml-4 ${
                       isOpen ? "rotate-180 text-[#7B2FF7]" : ""
@@ -574,17 +651,22 @@ export default function Contact() {
             Book A Free Consultation Call
           </h3>
           <p className="text-xs sm:text-sm text-slate-300 max-w-md leading-relaxed mb-8">
-            Schedule a 1-on-1 strategy call with our architecture lead. We'll map your requirements, review technologies, and draft a clean scope outline.
+            Schedule a 1-on-1 strategy call with our architecture lead. We'll
+            map your requirements, review technologies, and draft a clean scope
+            outline.
           </p>
 
-          <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://calendly.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <button className="px-6 py-3.5 bg-[#7B2FF7] hover:bg-[#9333EA] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-colors cursor-pointer">
               Schedule Free Call
             </button>
           </a>
         </div>
       </section>
-
     </div>
   );
 }
