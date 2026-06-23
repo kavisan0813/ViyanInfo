@@ -144,8 +144,16 @@ function Fireflies() {
 export function Footer() {
   const { pathname } = useLocation();
 
-  const isInternship = pathname === "/internship";
-  const isHome = pathname === "/";
+  const normalizedPath = pathname.replace(/\/$/, "");
+
+  const isInternship = normalizedPath === "/internship";
+  const isWebsites = normalizedPath === "/services/websites";
+  const isAiSolutions = normalizedPath === "/services/ai";
+  const isUiUx = normalizedPath === "/services/uiux";
+  const isBlog = normalizedPath === "/blog" || normalizedPath === "/resources/blog";
+  const isHome = normalizedPath === "" || normalizedPath === "/";
+
+  if (isWebsites || isAiSolutions || isUiUx || isBlog) return null;
 
   // Dynamic colors depending on the page
   const textColor = isInternship ? "text-white/90" : "text-[#C9C6D8]";

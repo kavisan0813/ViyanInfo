@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { onHoverBurst } from "../utils/particleBurst";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -16,11 +17,20 @@ import {
   Coins,
   Zap,
   ArrowRight,
+  Linkedin,
+  Instagram,
+  Facebook,
+  Github,
+  Mail,
+  Phone,
+  MapPin,
+  Globe,
 } from "lucide-react";
 import { TechBadge } from "../components/TechBadge";
-import { CTABlock } from "../components/CTABlock";
 import { SectionDivider } from "../components/SectionDivider";
 import "../components/AINetwork.css";
+import logo1 from "../assets/Logoimage.svg";
+import aiSolutionsImg from "../assets/Aisolutions.webp";
 
 // Premium Interactive Neural Network & Workflow SVG Illustration
 const NeuralNetworkIllustration = () => (
@@ -663,11 +673,345 @@ export default function AiSolutions() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <CTABlock
-        title="Ready to engineer your AI Solutions?"
-        subtitle="Let's build a smart model ecosystem that automates operations and scales with your business."
-      />
+      {/* PREMIUM CINEMATIC CTA + FOOTER SECTION */}
+      <section
+        className="relative flex flex-col justify-between w-full overflow-hidden"
+        style={{
+          backgroundImage: `url(${aiSolutionsImg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          minHeight: "min(100vh, 980px)",
+        }}
+      >
+        {/* Dark Cinematic Overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(4, 6, 22, 0.18), rgba(4, 6, 22, 0.48), rgba(4, 6, 22, 0.82))",
+          }}
+        />
+
+        {/* Subtle AI Floating Particles */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={`particle-${i}`}
+            className="absolute rounded-full pointer-events-none z-[1]"
+            style={{
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              left: `${10 + Math.random() * 80}%`,
+              top: `${10 + Math.random() * 60}%`,
+              background:
+                i % 2 === 0
+                  ? "rgba(124, 58, 237, 0.6)"
+                  : "rgba(59, 130, 246, 0.5)",
+              boxShadow:
+                i % 2 === 0
+                  ? "0 0 12px rgba(124, 58, 237, 0.4)"
+                  : "0 0 12px rgba(59, 130, 246, 0.35)",
+            }}
+            animate={{
+              y: [0, -(20 + Math.random() * 40), 0],
+              x: [0, (Math.random() - 0.5) * 30, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 5 + Math.random() * 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.7,
+            }}
+          />
+        ))}
+
+        {/* Ambient Neon Glow */}
+        <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#7c3aed]/10 blur-[120px] rounded-full pointer-events-none z-0" />
+        <div className="absolute bottom-[30%] right-[10%] w-[300px] h-[200px] bg-[#3B82F6]/8 blur-[100px] rounded-full pointer-events-none z-0" />
+
+        {/* TOP AREA: CTA OVERLAY */}
+        <div className="relative z-10 flex flex-col items-center justify-center text-center pt-16 pb-12 px-6 mt-4 md:mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-3xl mx-auto"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
+              Ready to engineer your AI Solutions?
+            </h2>
+            <p className="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto drop-shadow-md">
+              Let's build a smart model ecosystem that automates operations and
+              scales with your business.
+            </p>
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <Link to="/contact">
+                <button
+                  className="px-8 py-4 rounded-full text-white font-bold text-base md:text-lg transition-all duration-350 cursor-pointer"
+                  style={{
+                    background: "linear-gradient(135deg, #7c3aed, #9333ea)",
+                    boxShadow: "0 0 35px rgba(124,58,237,0.55)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform =
+                      "translateY(-4px) scale(1.03)";
+                    e.currentTarget.style.boxShadow =
+                      "0 0 50px rgba(124,58,237,0.7)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform =
+                      "translateY(0) scale(1)";
+                    e.currentTarget.style.boxShadow =
+                      "0 0 35px rgba(124,58,237,0.55)";
+                  }}
+                >
+                  Start a Project
+                </button>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* BOTTOM AREA: GLASSMORPHISM FOOTER */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="relative z-10 w-[90%] max-w-[1450px] mx-auto mb-12 rounded-[32px]"
+          style={{
+            background: "rgba(8, 10, 28, 0.48)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            boxShadow:
+              "0 20px 80px rgba(0,0,0,0.5), 0 0 120px rgba(59,130,246,0.12)",
+          }}
+        >
+          {/* Gentle footer glass glow pulse */}
+          <motion.div
+            className="absolute inset-0 rounded-[32px] pointer-events-none"
+            animate={{
+              boxShadow: [
+                "inset 0 0 0px rgba(124,58,237,0)",
+                "inset 0 0 40px rgba(124,58,237,0.12)",
+                "inset 0 0 0px rgba(124,58,237,0)",
+              ],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+
+          <div className="py-[40px] md:py-[70px] px-[30px] md:px-[60px]">
+            {/* 4-COLUMN FOOTER GRID */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12 text-center md:text-left">
+              {/* Column 1: Company Info */}
+              <div className="flex flex-col items-center md:items-start gap-5">
+                <Link to="/" className="block w-fit">
+                  <img
+                    src={logo1}
+                    alt="ViyanInfo"
+                    className="h-10 w-auto object-contain select-none"
+                  />
+                </Link>
+
+                <p className="text-sm leading-relaxed text-[rgba(255,255,255,0.82)] max-w-xs">
+                  Building scalable software, AI solutions, and digital products
+                  that help businesses grow faster and operate smarter.
+                </p>
+
+                {/* Social Icons */}
+                <div className="flex gap-4 mt-2">
+                  {[
+                    {
+                      icon: <Linkedin className="w-[20px] h-[20px]" />,
+                      href: "https://linkedin.com",
+                      label: "LinkedIn",
+                    },
+                    {
+                      icon: <Github className="w-[20px] h-[20px]" />,
+                      href: "https://github.com",
+                      label: "GitHub",
+                    },
+                    {
+                      icon: <Instagram className="w-[20px] h-[20px]" />,
+                      href: "https://instagram.com",
+                      label: "Instagram",
+                    },
+                    {
+                      icon: <Facebook className="w-[20px] h-[20px]" />,
+                      href: "https://facebook.com",
+                      label: "Facebook",
+                    },
+                  ].map((social, sIdx) => (
+                    <a
+                      key={sIdx}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="w-11 h-11 flex items-center justify-center rounded-xl text-white transition-all duration-350"
+                      style={{
+                        background: "rgba(255,255,255,0.08)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background =
+                          "rgba(124,58,237,0.28)";
+                        e.currentTarget.style.transform =
+                          "translateY(-4px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background =
+                          "rgba(255,255,255,0.08)";
+                        e.currentTarget.style.transform = "translateY(0)";
+                      }}
+                    >
+                      {social.icon}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Column 2: Services */}
+              <div className="flex flex-col items-center md:items-start gap-4">
+                <span className="font-display font-bold text-[#ffffff] text-[15px] uppercase tracking-wider mb-2">
+                  Services
+                </span>
+                {[
+                  {
+                    label: "Custom Software Development",
+                    path: "/services",
+                  },
+                  {
+                    label: "Web Applications",
+                    path: "/services/websites",
+                  },
+                  {
+                    label: "Mobile Applications",
+                    path: "/services/mobile",
+                  },
+                  { label: "AI Solutions", path: "/services/ai" },
+                  { label: "UI/UX Design", path: "/services/uiux" },
+                  {
+                    label: "Internship Programs",
+                    path: "/internship",
+                  },
+                ].map((link, lIdx) => (
+                  <Link
+                    key={lIdx}
+                    to={link.path}
+                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors duration-200 block py-1"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Column 3: Resources */}
+              <div className="flex flex-col items-center md:items-start gap-4">
+                <span className="font-display font-bold text-[#ffffff] text-[15px] uppercase tracking-wider mb-2">
+                  Resources
+                </span>
+                {[
+                  { label: "Portfolio", path: "/portfolio" },
+                  { label: "Case Studies", path: "/portfolio" },
+                  { label: "Careers", path: "/careers" },
+                  { label: "Blog", path: "/blog" },
+                  { label: "Technology Stack", path: "/tech-stack" },
+                  { label: "Contact", path: "/contact" },
+                ].map((link, lIdx) => (
+                  <Link
+                    key={lIdx}
+                    to={link.path}
+                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors duration-200 block py-1"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Column 4: Contact */}
+              <div className="flex flex-col items-center md:items-start gap-4">
+                <span className="font-display font-bold text-[#ffffff] text-[15px] uppercase tracking-wider mb-2">
+                  Contact
+                </span>
+
+                <a
+                  href="mailto:admin@viyaninfo.com"
+                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors flex items-center gap-3 py-1"
+                >
+                  <Mail className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
+                  <span>admin@viyaninfo.com</span>
+                </a>
+
+                <a
+                  href="tel:+916379723465"
+                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors flex items-center gap-3 py-1"
+                >
+                  <Phone className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
+                  <span>+91 6379723465</span>
+                </a>
+
+                <span className="text-sm text-[rgba(255,255,255,0.82)] flex items-start gap-3 py-1">
+                  <MapPin className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)] mt-0.5" />
+                  <span>Tiruvallur, Tamil Nadu</span>
+                </span>
+
+                <a
+                  href="https://www.viyaninfo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors flex items-center gap-3 py-1"
+                >
+                  <Globe className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
+                  <span>www.viyaninfo.com</span>
+                </a>
+              </div>
+            </div>
+
+            {/* BOTTOM BAR */}
+            <div className="h-px bg-[rgba(255,255,255,0.12)] w-full mb-6" />
+
+            <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 text-xs text-[rgba(255,255,255,0.62)]">
+              <p>© 2026 ViyanInfo. All rights reserved.</p>
+
+              <div className="flex flex-wrap gap-5 justify-center">
+                <Link
+                  to="/privacy"
+                  className="hover:text-white transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  to="/terms"
+                  className="hover:text-white transition-colors"
+                >
+                  Terms of Service
+                </Link>
+                <Link
+                  to="/about"
+                  className="hover:text-white transition-colors"
+                >
+                  Cookie Policy
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 }
