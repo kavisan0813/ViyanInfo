@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
 import { ScrollTicker } from "../components/ScrollTicker";
+import { ServicesOrbital } from "../components/ServicesOrbital";
 
 export default function ServicesOverview() {
   const [activeOrbitTech, setActiveOrbitTech] = useState<string>("AI");
@@ -272,89 +273,9 @@ export default function ServicesOverview() {
               </div>
             </div>
 
-            {/* Right Col: 3D Software development visual representation */}
-            <div className="lg:col-span-6 flex justify-center relative">
-              <div className="relative w-full max-w-[460px] aspect-square">
-                {/* Spinning orbital ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#7B2FF7]/15 animate-[spin-slow_30s_linear_infinite]" />
-                <div className="absolute inset-8 rounded-full border border-dotted border-[#9333EA]/20 animate-[spin-counter-clockwise_20s_linear_infinite]" />
-
-                {/* Floating center board representating software build */}
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-16 rounded-3xl bg-white/60 backdrop-blur-md border border-white shadow-xl p-6 flex flex-col justify-between"
-                >
-                  <div className="flex justify-between items-center mb-4 border-b border-[#E9D5FF]/30 pb-3">
-                    <div className="flex gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
-                    </div>
-                    <span className="text-[10px] font-mono text-[#7B2FF7] font-bold">
-                      viyan-build.log
-                    </span>
-                  </div>
-
-                  <div className="flex-1 font-mono text-[11px] text-[#475569] space-y-2 text-left">
-                    <p className="text-[#7B2FF7] font-semibold">
-                      {"$ npm run build"}
-                    </p>
-                    <p>{"✔ transforming files (2267 modules)..."}</p>
-                    <p className="text-green-600">
-                      {"✔ index.js (262.7 kB) - gzip 86.0 kB"}
-                    </p>
-                    <p className="text-green-600">
-                      {"✔ vendor.js (257.3 kB) - gzip 90.8 kB"}
-                    </p>
-                    <p className="text-indigo-500">
-                      {"✔ deploy pipeline: SUCCESSful (0.4s)"}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-[#E9D5FF]/30 flex justify-between items-center text-[10px] font-mono text-[#9333EA]">
-                    <span>CPU usage: 12%</span>
-                    <span>All systems green</span>
-                  </div>
-                </motion.div>
-
-                {/* Floating orbits badge elements */}
-                <motion.div
-                  animate={{ y: [-5, 5, -5] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5,
-                  }}
-                  className="absolute top-4 left-6 px-4 py-2.5 rounded-2xl bg-white border border-[#E9D5FF] shadow-md flex items-center gap-2"
-                >
-                  <Globe className="w-4 h-4 text-[#7B2FF7]" />
-                  <span className="text-xs font-bold text-[#0F172A]">
-                    React
-                  </span>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [5, -5, 5] }}
-                  transition={{
-                    duration: 4.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                  className="absolute bottom-12 right-0 px-4 py-2.5 rounded-2xl bg-white border border-[#E9D5FF] shadow-md flex items-center gap-2"
-                >
-                  <Brain className="w-4 h-4 text-[#7B2FF7]" />
-                  <span className="text-xs font-bold text-[#0F172A]">
-                    AI Automation
-                  </span>
-                </motion.div>
-              </div>
+            {/* Right Col: Interactive Services Orbital Visual */}
+            <div className="lg:col-span-6 flex justify-center relative select-none">
+              <ServicesOrbital />
             </div>
           </div>
         </div>

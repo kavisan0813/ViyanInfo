@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 import {
   Sparkles,
   Layers,
-  Cpu,
   Monitor,
   Search,
   Maximize,
   ArrowRight,
   Database,
-  CheckCircle2,
   Linkedin,
   Instagram,
   Facebook,
@@ -24,111 +22,9 @@ import { TechBadge } from "../components/TechBadge";
 import { SectionDivider } from "../components/SectionDivider";
 import logo1 from "../assets/Logoimage.svg";
 import webdevImg from "../assets/webdev img.webp";
+import { WebAppHeroMockup,CodeRainBg } from "../components/WebAppHeroMockup";
 
-// Premium SVG Browser / SaaS Dashboard Illustration
-const BrowserDashboardIllustration = () => (
-  <div className="relative w-full aspect-[4/3] max-w-[540px] mx-auto flex items-center justify-center">
-    {/* Floating backdrop blur elements */}
-    <div className="absolute w-72 h-72 bg-[#3B82F6]/10 rounded-full blur-3xl top-10 right-10"></div>
-    <div className="absolute w-64 h-64 bg-[#7B2FF7]/5 rounded-full blur-3xl bottom-10 left-10"></div>
-
-    {/* Main Browser Card */}
-    <motion.div
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative z-10 w-full bg-white border border-slate-200/80 rounded-2xl shadow-xl overflow-hidden"
-    >
-      {/* Browser Header */}
-      <div className="bg-slate-50 border-b border-slate-200/80 px-4 py-3 flex items-center gap-2">
-        <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-rose-400" />
-          <div className="w-3 h-3 rounded-full bg-amber-400" />
-          <div className="w-3 h-3 rounded-full bg-emerald-400" />
-        </div>
-        <div className="flex-1 max-w-xs mx-auto bg-slate-200/50 rounded-lg h-5 text-[10px] text-slate-400 flex items-center justify-center px-4 font-mono select-none">
-          https://app.viyaninfo.com/dashboard
-        </div>
-      </div>
-
-      {/* Browser Body / Dashboard Content */}
-      <div className="p-5 bg-white flex flex-col gap-4">
-        {/* Top metric row */}
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { val: "94.2k", label: "Api Requests", color: "text-[#3B82F6]", bg: "bg-[#3B82F6]/5" },
-            { val: "99.99%", label: "System Uptime", color: "text-emerald-500", bg: "bg-emerald-50" },
-            { val: "1.2s", label: "Avg Load Speed", color: "text-[#7B2FF7]", bg: "bg-[#7B2FF7]/5" }
-          ].map((stat, i) => (
-            <div key={i} className={`${stat.bg} p-3 rounded-xl border border-slate-100/50`}>
-              <span className={`block text-base sm:text-lg font-bold font-display ${stat.color}`}>{stat.val}</span>
-              <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">{stat.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Chart + mini sidebar mockup */}
-        <div className="grid grid-cols-12 gap-3">
-          {/* Main Visual Chart */}
-          <div className="col-span-8 bg-slate-50 border border-slate-100 rounded-xl p-3 flex flex-col justify-between h-40">
-            <div className="flex justify-between items-center">
-              <span className="text-[10px] font-bold text-slate-700">Performance Metrics</span>
-              <span className="text-[8px] font-mono text-[#3B82F6] bg-[#3B82F6]/10 px-2 py-0.5 rounded-full font-bold">Real-time</span>
-            </div>
-            {/* Chart bars */}
-            <div className="flex items-end justify-around h-24 pt-2">
-              {[40, 65, 35, 80, 50, 95, 70].map((h, i) => (
-                <div key={i} className="w-5 bg-slate-200/50 rounded-t-md h-full relative flex items-end">
-                  <motion.div
-                    initial={{ height: 0 }}
-                    animate={{ height: `${h}%` }}
-                    transition={{ duration: 1.2, delay: 0.2 + i * 0.1 }}
-                    className={`w-full rounded-t-md ${i === 5 ? "bg-[#3B82F6]" : "bg-gradient-to-t from-slate-300 to-slate-400"}`}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mini sidebar details */}
-          <div className="col-span-4 flex flex-col gap-2.5">
-            <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex-1 flex flex-col justify-center gap-1.5">
-              <span className="text-[8px] font-mono text-slate-400 uppercase tracking-wider">Storage Node</span>
-              <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-                <div className="h-full w-3/4 bg-[#3B82F6]" />
-              </div>
-              <span className="text-[9px] font-bold text-slate-700">75% Used</span>
-            </div>
-            <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex-1 flex items-center gap-2">
-              <div className="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center border border-emerald-100">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[9px] font-bold text-slate-800">SSL Sec</span>
-                <span className="text-[7px] text-slate-400">Cert Active</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-
-    {/* Floating Badge */}
-    <motion.div
-      animate={{ y: [-6, 6, -6] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute bottom-8 right-[-16px] z-20 px-4 py-3 rounded-2xl bg-white border border-slate-200 shadow-lg flex items-center gap-2.5"
-    >
-      <div className="w-7 h-7 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6]">
-        <Cpu size={14} />
-      </div>
-      <div>
-        <span className="block text-xs font-bold text-slate-900">Next.js Edge</span>
-        <span className="text-[9px] text-slate-400">Serverless API</span>
-      </div>
-    </motion.div>
-  </div>
-);
+// Browser illustration removed in favor of WebAppHeroMockup
 
 export default function WebsitesDev() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
@@ -138,6 +34,7 @@ export default function WebsitesDev() {
       
       {/* HERO SECTION */}
       <section className="relative pt-32 pb-20 overflow-hidden">
+        <CodeRainBg />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.04)_0%,transparent_60%)] pointer-events-none" />
         <div className="container max-w-[1240px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -169,9 +66,9 @@ export default function WebsitesDev() {
               </div>
             </motion.div>
             
-            {/* Right Box: SVG dashboard */}
+            {/* Right Box: Laptop Mockup */}
             <div className="lg:col-span-6">
-              <BrowserDashboardIllustration />
+              <WebAppHeroMockup />
             </div>
 
           </div>
@@ -567,13 +464,13 @@ export default function WebsitesDev() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="relative z-10 w-[90%] max-w-[1450px] mx-auto mb-12 rounded-[32px]"
+          className="relative z-10 w-[94%] md:w-[88%] max-w-[1450px] mx-auto mt-[70px] mb-10 rounded-[32px] p-8 md:p-[50px_60px]"
           style={{
-            background: "rgba(18, 18, 30, 0.45)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(255,255,255,0.12)",
-           
+            background: "rgba(255, 255, 255, 0.1)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            boxShadow: "0 8px 40px rgba(0, 0, 0, 0.25), 0 0 60px rgba(255, 255, 255, 0.05)",
           }}
         >
           {/* Gentle footer glass glow pulse */}
@@ -583,9 +480,9 @@ export default function WebsitesDev() {
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
 
-          <div className="py-[40px] md:py-[70px] px-[30px] md:px-[60px]">
+          <div>
             {/* 4-COLUMN FOOTER GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12 text-center md:text-left">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[50px] text-center md:text-left mb-12">
               {/* Column 1: Company Info */}
               <div className="flex flex-col items-center md:items-start gap-5">
                 <Link to="/" className="block w-fit">
@@ -604,10 +501,10 @@ export default function WebsitesDev() {
                 {/* Social Icons */}
                 <div className="flex gap-4 mt-2">
                   {[
-                    { icon: <Linkedin className="w-[20px] h-[20px]" />, href: "https://linkedin.com", label: "LinkedIn" },
-                    { icon: <Github className="w-[20px] h-[20px]" />, href: "https://github.com", label: "GitHub" },
-                    { icon: <Instagram className="w-[20px] h-[20px]" />, href: "https://instagram.com", label: "Instagram" },
-                    { icon: <Facebook className="w-[20px] h-[20px]" />, href: "https://facebook.com", label: "Facebook" },
+                    { icon: <Linkedin className="w-[18px] h-[18px]" />, href: "https://linkedin.com", label: "LinkedIn" },
+                    { icon: <Github className="w-[18px] h-[18px]" />, href: "https://github.com", label: "GitHub" },
+                    { icon: <Instagram className="w-[18px] h-[18px]" />, href: "https://instagram.com", label: "Instagram" },
+                    { icon: <Facebook className="w-[18px] h-[18px]" />, href: "https://facebook.com", label: "Facebook" },
                   ].map((social, sIdx) => (
                     <a
                       key={sIdx}
@@ -615,14 +512,21 @@ export default function WebsitesDev() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="w-11 h-11 flex items-center justify-center rounded-xl text-white transition-all duration-350"
-                      style={{ background: "rgba(255,255,255,0.08)" }}
+                      className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-white transition-all duration-350"
+                      style={{
+                        background: "rgba(255,255,255,0.08)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                      }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "rgba(124,58,237,0.35)";
+                        e.currentTarget.style.background = "rgba(168, 85, 247, 0.4)";
+                        e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.4)";
+                        e.currentTarget.style.boxShadow = "0 0 22px rgba(168,85,247,0.45)";
                         e.currentTarget.style.transform = "translateY(-4px)";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                        e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                        e.currentTarget.style.boxShadow = "none";
                         e.currentTarget.style.transform = "translateY(0)";
                       }}
                     >
@@ -634,7 +538,7 @@ export default function WebsitesDev() {
 
               {/* Column 2: Services */}
               <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="font-display font-bold text-[#ffffff] text-[15px] uppercase tracking-wider mb-2">
+                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
                   Services
                 </span>
                 {[
@@ -648,7 +552,7 @@ export default function WebsitesDev() {
                   <Link
                     key={lIdx}
                     to={link.path}
-                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors duration-200 block py-1"
+                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 block py-1"
                   >
                     {link.label}
                   </Link>
@@ -657,7 +561,7 @@ export default function WebsitesDev() {
 
               {/* Column 3: Resources */}
               <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="font-display font-bold text-[#ffffff] text-[15px] uppercase tracking-wider mb-2">
+                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
                   Resources
                 </span>
                 {[
@@ -671,7 +575,7 @@ export default function WebsitesDev() {
                   <Link
                     key={lIdx}
                     to={link.path}
-                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors duration-200 block py-1"
+                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 block py-1"
                   >
                     {link.label}
                   </Link>
@@ -680,16 +584,16 @@ export default function WebsitesDev() {
 
               {/* Column 4: Contact */}
               <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="font-display font-bold text-[#ffffff] text-[15px] uppercase tracking-wider mb-2">
+                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
                   Contact
                 </span>
                 
-                <a href="mailto:admin@viyaninfo.com" className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors flex items-center gap-3 py-1">
+                <a href="mailto:admin@viyaninfo.com" className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1">
                   <Mail className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
                   <span>admin@viyaninfo.com</span>
                 </a>
 
-                <a href="tel:+916379723465" className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors flex items-center gap-3 py-1">
+                <a href="tel:+916379723465" className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1">
                   <Phone className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
                   <span>+91 6379723465</span>
                 </a>
@@ -699,7 +603,7 @@ export default function WebsitesDev() {
                   <span>Tiruvallur, Tamil Nadu</span>
                 </span>
 
-                <a href="https://www.viyaninfo.com" target="_blank" rel="noopener noreferrer" className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors flex items-center gap-3 py-1">
+                <a href="https://www.viyaninfo.com" target="_blank" rel="noopener noreferrer" className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1">
                   <Globe className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
                   <span>www.viyaninfo.com</span>
                 </a>

@@ -10,135 +10,27 @@ import {
   TrendingUp,
   Heart,
   UserCheck,
-  ArrowRight,
   Linkedin,
   Github,
   Instagram,
   Facebook,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo1 from "../assets/Logoimage.svg";
+import logo1 from "../assets/Logo image 1.svg";
 import uiuxImg from "../assets/uiux_img.webp";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TechBadge } from "../components/TechBadge";
-import { CTABlock } from "../components/CTABlock";
 import { SectionDivider } from "../components/SectionDivider";
 import "../components/DesignPillarsFlip.css";
+import {
+  FigmaCanvasHero,
+  DesignShowcaseGallery,
+  BeforeAfterSlider,
+  DesignProcessSVG,
+} from "../components/FigmaCanvasHero";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Premium Interactive Design Board & Wireframe SVG Illustration
-const DesignBoardIllustration = () => (
-  <div className="relative w-full aspect-[4/3] max-w-[500px] mx-auto flex items-center justify-center select-none">
-    {/* Floating background blur elements */}
-    <div className="absolute w-72 h-72 bg-[#F59E0B]/10 rounded-full blur-3xl top-10 right-10"></div>
-    <div className="absolute w-64 h-64 bg-[#7B2FF7]/5 rounded-full blur-3xl bottom-10 left-10"></div>
-
-    {/* Main Design Canvas */}
-    <motion.div
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="relative z-10 w-full bg-white border border-slate-200/80 rounded-2xl shadow-xl overflow-hidden p-4 flex flex-col gap-4"
-    >
-      {/* Figma-like Tab Bar */}
-      <div className="flex justify-between items-center pb-2 border-b border-slate-100">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
-          <span className="text-[10px] font-mono text-slate-400">
-            Desktop / Wireframe_v2
-          </span>
-        </div>
-        <div className="flex gap-2">
-          <span className="text-[8px] font-mono text-slate-400 bg-slate-100 px-2 py-0.5 rounded-md">
-            100%
-          </span>
-        </div>
-      </div>
-
-      {/* Wireframe Mockup */}
-      <div className="flex-1 bg-slate-50 rounded-xl p-4 flex flex-col gap-3 relative border border-dashed border-slate-200">
-        {/* Alignment Guide Lines */}
-        <div className="absolute left-[30px] inset-y-0 w-px bg-rose-400/10 border-dashed" />
-        <div className="absolute right-[30px] inset-y-0 w-px bg-rose-400/10 border-dashed" />
-        <div className="absolute top-[40px] inset-x-0 h-px bg-rose-400/10 border-dashed" />
-
-        {/* Hero Section Mockup */}
-        <div className="flex justify-between items-center mb-2">
-          <div className="flex flex-col gap-1.5 w-2/3">
-            <div className="h-3 w-3/4 bg-slate-200 rounded" />
-            <div className="h-2 w-1/2 bg-slate-200 rounded" />
-          </div>
-          <div className="w-10 h-10 rounded-lg bg-[#F59E0B]/10 flex items-center justify-center text-[#F59E0B] border border-[#F59E0B]/20">
-            <Palette size={16} />
-          </div>
-        </div>
-
-        {/* Grid Blocks */}
-        <div className="grid grid-cols-3 gap-3">
-          {[1, 2, 3].map((item) => (
-            <div
-              key={item}
-              className="bg-white border border-slate-200/60 rounded-lg p-2.5 flex flex-col gap-1.5 shadow-xs relative"
-            >
-              {/* Spacing guides */}
-              {item === 1 && (
-                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 bg-rose-400 text-white font-mono text-[6px] px-1 rounded-sm leading-none py-0.5">
-                  16px
-                </div>
-              )}
-              <div className="w-full h-8 bg-slate-100 rounded-md flex items-center justify-center">
-                <span className="text-[8px] text-slate-300 font-mono">
-                  Box {item}
-                </span>
-              </div>
-              <div className="h-1.5 w-3/4 bg-slate-200 rounded" />
-              <div className="h-1 w-1/2 bg-slate-150 rounded" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-
-    {/* Floating Figma Cursor Node */}
-    <motion.div
-      animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
-      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute top-1/2 left-[20%] z-20 flex flex-col gap-1 pointer-events-none"
-    >
-      <div className="flex items-center gap-1.5">
-        {/* Cursor Arrow */}
-        <svg
-          className="w-4 h-4 text-[#F59E0B] fill-[#F59E0B]"
-          viewBox="0 0 24 24"
-        >
-          <path d="M4.5 3V17L9.5 12.5L16.5 19.5L19.5 16.5L12.5 9.5L17.5 4.5H4.5Z" />
-        </svg>
-        <span className="px-2 py-0.5 bg-[#F59E0B] text-white text-[8px] font-bold font-mono rounded-md shadow-md">
-          Designer
-        </span>
-      </div>
-    </motion.div>
-
-    {/* Floating Spec Screen Overlay */}
-    <motion.div
-      animate={{ y: [-8, 8, -8] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute right-[-10px] top-[20%] z-20 p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-lg flex items-center gap-3 w-40"
-    >
-      <div className="w-8 h-8 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] flex items-center justify-center shrink-0">
-        <Sparkles size={16} />
-      </div>
-      <div className="text-left">
-        <span className="block text-[10px] font-bold text-slate-900 leading-tight">
-          Figma Tokens
-        </span>
-        <span className="text-[8px] text-slate-400">Shared Design Lib</span>
-      </div>
-    </motion.div>
-  </div>
-);
 
 /* ─────────────────────────────────────────
    LUSION 3D FLIP — Design Pillars
@@ -604,8 +496,8 @@ export default function UiUxDesign() {
             </motion.div>
 
             {/* Right Content: Design board */}
-            <div className="lg:col-span-6">
-              <DesignBoardIllustration />
+            <div className="lg:col-span-6 flex justify-center items-center">
+              <FigmaCanvasHero />
             </div>
           </div>
         </div>
@@ -615,6 +507,48 @@ export default function UiUxDesign() {
 
       {/* DESIGN SPECIALIZATION PILLARS — Lusion 3D Flip */}
       <DesignPillarsFlip />
+
+      <SectionDivider />
+
+      {/* DESIGN PROCESS TIMELINE */}
+      <section className="py-24 bg-white">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-amber-50 border border-amber-100 text-[#F59E0B] text-xs font-semibold uppercase tracking-wider mb-4">
+              Our Workflow
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight mb-4">
+              Structured Design Process
+            </h2>
+            <p className="text-base sm:text-lg text-slate-500">
+              How we take your product concept from low-fidelity wireframe to
+              high-fidelity production handoff.
+            </p>
+          </div>
+          <DesignProcessSVG />
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* BEFORE / AFTER WIREFRAME TO PRODUCTION SLIDER */}
+      <section className="py-24 bg-[#FAF7FF]">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+              Visual Transformation
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight mb-4">
+              Wireframe vs Final Interface
+            </h2>
+            <p className="text-base sm:text-lg text-slate-500">
+              Slide to see how we refine low-fidelity wireframe blueprints into
+              polished, interactive user interfaces.
+            </p>
+          </div>
+          <BeforeAfterSlider />
+        </div>
+      </section>
 
       {/* BENEFITS SECTION */}
       <section className="py-24 bg-slate-50">
@@ -693,59 +627,7 @@ export default function UiUxDesign() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            {[
-              {
-                title: "App Designs",
-                desc: "Tactile, user-centric mobile UI structures designed for iOS and Android.",
-                tag: "ViyanHealth App",
-                glowColor: "rgba(245, 158, 11, 0.08)",
-              },
-              {
-                title: "Dashboard Designs",
-                desc: "Data-heavy analytics trackers featuring custom diagrams and responsive grids.",
-                tag: "Enterprise Portal",
-                glowColor: "rgba(123, 47, 247, 0.08)",
-              },
-              {
-                title: "Website Designs",
-                desc: "High-end corporate layouts designed to drive product inquiries.",
-                tag: "Marketing Platform",
-                glowColor: "rgba(6, 182, 212, 0.08)",
-              },
-            ].map((design, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.08 }}
-                whileHover={{
-                  y: -6,
-                  boxShadow: `0 20px 40px ${design.glowColor}`,
-                }}
-                className="p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full transition-all duration-300 relative group"
-              >
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-2 block">
-                    {design.tag}
-                  </span>
-                  <h3 className="text-xl font-display font-bold text-slate-900 mb-3 group-hover:text-[#F59E0B] transition-colors duration-200">
-                    {design.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-500 mb-6">
-                    {design.desc}
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-slate-200/50 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#7B2FF7] flex items-center gap-1 group-hover:gap-1.5 transition-all">
-                    View Case Study <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <DesignShowcaseGallery />
         </div>
       </section>
 
@@ -826,7 +708,8 @@ export default function UiUxDesign() {
               Ready to design your product?
             </h2>
             <p className="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto drop-shadow-md">
-              Let's engineer a gorgeous, intuitive design system that scales seamlessly with your business.
+              Let's engineer a gorgeous, intuitive design system that scales
+              seamlessly with your business.
             </p>
             <motion.div
               whileHover={{ scale: 1.05, translateY: -3 }}
@@ -894,7 +777,8 @@ export default function UiUxDesign() {
                       e.currentTarget.style.transform = "scale(1.08)";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                      e.currentTarget.style.background =
+                        "rgba(255,255,255,0.08)";
                       e.currentTarget.style.transform = "scale(1)";
                     }}
                   >
@@ -911,10 +795,12 @@ export default function UiUxDesign() {
               </h4>
               <ul className="space-y-4">
                 {[
-                  { name: "Custom Software Development", path: "/services/custom-software" },
+                  { name: "Custom Software Development", path: "/services" },
                   { name: "Web Applications", path: "/services/websites" },
-                  { name: "Mobile Applications", path: "/services/mobile-apps" },
-                  { name: "AI Solutions", path: "/services/ai" },
+                  { name: "Mobile Applications", path: "/services/mobile" },
+                  { name: "AI Solutions", path: "/services" },
+                  { name: "UI/UX Design", path: "/services" },
+                  { name: "Internship Programs", path: "/internship" },
                 ].map((item, idx) => (
                   <li key={idx}>
                     <Link
@@ -934,18 +820,23 @@ export default function UiUxDesign() {
                 Resources
               </h4>
               <ul className="space-y-4">
-                {["Portfolio", "Case Studies", "Careers", "Blog"].map(
-                  (item, idx) => (
-                    <li key={idx}>
-                      <a
-                        href="#"
-                        className="text-[rgba(255,255,255,0.82)] hover:text-white hover:drop-shadow-[0_0_8px_rgba(124,58,237,0.8)] transition-all duration-300 text-sm"
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  )
-                )}
+                {[
+                  { name: "Portfolio", path: "/portfolio" },
+                  { name: "Case Studies", path: "/portfolio" },
+                  { name: "Careers", path: "/careers" },
+                  { name: "Blog", path: "/blog" },
+                  { name: "Technology Stack", path: "/tech-stack" },
+                  { name: "Contact", path: "/contact" },
+                ].map((item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      to={item.path}
+                      className="text-[rgba(255,255,255,0.82)] hover:text-white hover:drop-shadow-[0_0_8px_rgba(124,58,237,0.8)] transition-all duration-300 text-sm"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -1036,6 +927,28 @@ export default function UiUxDesign() {
                   </span>
                 </li>
               </ul>
+            </div>
+          </div>
+
+          {/* BOTTOM BAR */}
+          <div className="h-px bg-[rgba(255,255,255,0.12)] w-full mb-6 mt-12" />
+
+          <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 text-xs text-[rgba(255,255,255,0.62)] pb-8">
+            <p>© 2026 ViyanInfo. All rights reserved.</p>
+
+            <div className="flex flex-wrap gap-5 justify-center">
+              <Link
+                to="/privacy"
+                className="hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="hover:text-white transition-colors">
+                Terms of Service
+              </Link>
+              <Link to="/about" className="hover:text-white transition-colors">
+                Cookie Policy
+              </Link>
             </div>
           </div>
         </div>

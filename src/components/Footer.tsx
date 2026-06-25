@@ -153,7 +153,7 @@ export function Footer() {
   const isBlog = normalizedPath === "/blog" || normalizedPath === "/resources/blog";
   const isHome = normalizedPath === "" || normalizedPath === "/";
 
-  if (isWebsites || isAiSolutions || isUiUx || isBlog) return null;
+  if (isWebsites || isAiSolutions || isUiUx || isBlog || normalizedPath === "/careers" || normalizedPath === "/portfolio" || normalizedPath === "/services/mobile" || normalizedPath === "/contact") return null;
 
   // Dynamic colors depending on the page
   const textColor = isInternship ? "text-white/90" : "text-[#C9C6D8]";

@@ -760,3 +760,49 @@ h6 {
   transform: translate(0px, 0px);
   margin-top: -110px;
 }
+
+@keyframes liquidShine {
+  0% {
+    transform: translateX(-25%) translateY(-10%) rotate(18deg);
+  }
+
+  100% {
+    transform: translateX(25%) translateY(10%) rotate(18deg);
+  }
+}
+
+@keyframes liquidFloat {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  50% {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+@keyframes liquidFloatSlow {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  50% {
+    transform: translate(-30px, -20px) scale(1.12);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-liquidFloat {
+  animation: liquidFloat 10s ease-in-out infinite;
+}
+
+.animate-liquidFloatSlow {
+  animation: liquidFloatSlow 14s ease-in-out infinite;
+}

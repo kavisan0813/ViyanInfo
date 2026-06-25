@@ -18,7 +18,7 @@ import { SectionDivider } from "../components/SectionDivider";
 import inventryImg from "../assets/inventry.webp";
 import emsImg from "../assets/ems.webp";
 import flowerImg from "../assets/sakura.webp";
-import dashboardImg from "../assets/intro.webp";
+import dashboardImg from "../assets/Strategy.webp";
 import { motion } from "framer-motion";
 import { burst } from "../utils/particleBurst";
 import astronautImg from "../assets/Astronaut.webp";

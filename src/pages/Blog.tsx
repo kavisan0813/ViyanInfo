@@ -754,10 +754,12 @@ export default function Blog() {
               </h4>
               <ul className="space-y-4">
                 {[
-                  { name: "Custom Software Development", path: "/services/custom-software" },
+                  { name: "Custom Software Development", path: "/services" },
                   { name: "Web Applications", path: "/services/websites" },
-                  { name: "Mobile Applications", path: "/services/mobile-apps" },
-                  { name: "AI Solutions", path: "/services/ai" },
+                  { name: "Mobile Applications", path: "/services/mobile" },
+                  { name: "AI Solutions", path: "/services" },
+                  { name: "UI/UX Design", path: "/services" },
+                  { name: "Internship Programs", path: "/internship" },
                 ].map((item, idx) => (
                   <li key={idx}>
                     <Link
@@ -777,18 +779,23 @@ export default function Blog() {
                 Resources
               </h4>
               <ul className="space-y-4">
-                {["Portfolio", "Case Studies", "Careers", "Blog"].map(
-                  (item, idx) => (
-                    <li key={idx}>
-                      <a
-                        href="#"
-                        className="text-[rgba(255,255,255,0.82)] hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,120,40,0.8)] transition-all duration-300 text-sm"
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  )
-                )}
+                {[
+                  { name: "Portfolio", path: "/portfolio" },
+                  { name: "Case Studies", path: "/portfolio" },
+                  { name: "Careers", path: "/careers" },
+                  { name: "Blog", path: "/blog" },
+                  { name: "Technology Stack", path: "/tech-stack" },
+                  { name: "Contact", path: "/contact" },
+                ].map((item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      to={item.path}
+                      className="text-[rgba(255,255,255,0.82)] hover:text-white hover:drop-shadow-[0_0_8px_rgba(124,58,237,0.8)] transition-all duration-300 text-sm"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -879,6 +886,34 @@ export default function Blog() {
                   </span>
                 </li>
               </ul>
+            </div>
+          </div>
+
+          {/* BOTTOM BAR */}
+          <div className="h-px bg-[rgba(255,255,255,0.12)] w-full mb-6 mt-12" />
+
+          <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 text-xs text-[rgba(255,255,255,0.62)] pb-8">
+            <p>© 2026 ViyanInfo. All rights reserved.</p>
+
+            <div className="flex flex-wrap gap-5 justify-center">
+              <Link
+                to="/privacy"
+                className="hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms"
+                className="hover:text-white transition-colors"
+              >
+                Terms of Service
+              </Link>
+              <Link
+                to="/about"
+                className="hover:text-white transition-colors"
+              >
+                Cookie Policy
+              </Link>
             </div>
           </div>
         </div>

@@ -18,12 +18,14 @@ import {
   CheckCircle2,
   Layers,
   Activity,
+  Facebook,
 } from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
-import { CTABlock } from "../components/CTABlock";
-import rithick from "../assets/Rithick.jpg";
-import naren from "../assets/Naren.png";
+import rithick from "../assets/Rithick.webp";
+import naren from "../assets/Naren.webp";
 import peter from "../assets/peter.webp";
+import aboutImg from "../assets/aboutus.webp";
+import logo1 from "../assets/Logoimage.svg";
 
 // 1. Company Story: Software Team Collaboration / Project Architecture
 const CompanyStoryIllustration = () => (
@@ -434,11 +436,10 @@ export default function About() {
   const [scrollVal, setScrollVal] = useState(0);
   const activeFounderRef = useRef(0);
 
-  const foundersData = useMemo(() => [
-    { name: "Rithick" },
-    { name: "Peter" },
-    { name: "Narendhiran" },
-  ], []);
+  const foundersData = useMemo(
+    () => [{ name: "Rithick" }, { name: "Peter" }, { name: "Narendhiran" }],
+    [],
+  );
 
   useEffect(() => {
     return scrollYProgress.on("change", (val) => {
@@ -1181,12 +1182,293 @@ export default function About() {
         <SectionDivider />
       </div>
 
-      {/* FINAL CTA */}
-      <CTABlock
-        title="Want to join our team?"
-        subtitle="Join us in building scalable software and our in-house ERP platform. You’ll work closely with the core team, take ownership, and ship meaningful features."
-        primaryLabel="Contact Us"
-      />
+      {/* COMBINED CTA + FOOTER SECTION */}
+      <section
+        className="relative w-full overflow-hidden"
+        style={{ minHeight: "950px" }}
+      >
+        {/* BACKGROUND IMAGE */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={aboutImg}
+            alt="About Us Background"
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+
+        {/* CINEMATIC OVERLAY */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            background: "rgba(10, 6, 25, 0.55)",
+          }}
+        />
+
+        {/* TOP AREA: CTA OVERLAY */}
+        <div className="relative z-10 flex flex-col items-center justify-center text-center pt-[100px] pb-12 px-6 mt-4 md:mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mx-auto flex flex-col items-center"
+          >
+            <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-8 drop-shadow-xl">
+              Ready to start your journey with us?
+            </span>
+            <motion.div
+              whileHover={{ scale: 1.05, translateY: -3 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <a href="#contactform" className="block relative group">
+                <div className="absolute inset-0 bg-[#7c3aed] blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-300 rounded-full" />
+                <button
+                  className="relative px-8 py-4 text-white font-bold text-sm uppercase tracking-wider rounded-full shadow-[0_0_30px_rgba(147,51,234,0.45)] transition-all duration-300 border border-white/10"
+                  style={{
+                    background: "linear-gradient(135deg, #7c3aed, #9333ea)",
+                  }}
+                >
+                  Contact Us
+                </button>
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* BOTTOM AREA: GLASSMORPHISM FOOTER */}
+        <div
+          className="relative z-10 w-[94%] md:w-[90%] max-w-[1450px] mx-auto mt-[60px] mb-10 rounded-[32px] p-8 md:p-[60px]"
+          style={{
+            background: "rgba(20, 12, 40, 0.72)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            border: "1px solid rgba(255,255,255,0.12)",
+          }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+            {/* Column 1: Logo & Description */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <Link to="/" className="block w-fit mb-6">
+                <img
+                  src={logo1}
+                  alt="ViyanInfo"
+                  className="h-10 w-auto object-contain select-none"
+                />
+              </Link>
+              <p className="text-sm leading-relaxed text-[rgba(255,255,255,0.82)] max-w-xs mb-8">
+                Building scalable software, AI solutions, and digital products
+                that help businesses grow faster and operate smarter.
+              </p>
+              {/* Social Icons */}
+              <div className="flex gap-4">
+                {[
+                  { icon: <Linkedin size={18} />, href: "#" },
+                  { icon: <Github size={18} />, href: "#" },
+                  { icon: <Instagram size={18} />, href: "#" },
+                  { icon: <Facebook size={18} />, href: "#" },
+                ].map((social, idx) => (
+                  <a
+                    key={idx}
+                    href={social.href}
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-white transition-all duration-300"
+                    style={{
+                      background: "rgba(255,255,255,0.08)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      backdropFilter: "blur(4px)",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow =
+                        "0 0 15px rgba(147, 51, 234, 0.6)";
+                      e.currentTarget.style.transform =
+                        "scale(1.08) translateY(-3px)";
+                      e.currentTarget.style.background =
+                        "rgba(147, 51, 234, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = "none";
+                      e.currentTarget.style.transform =
+                        "scale(1) translateY(0)";
+                      e.currentTarget.style.background =
+                        "rgba(255,255,255,0.08)";
+                    }}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 2: Services */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <span className="text-white font-bold text-sm uppercase tracking-[0.5px] mb-6">
+                Services
+              </span>
+              <ul className="space-y-4">
+                {[
+                  { name: "Custom Software Development", path: "/services" },
+                  { name: "Web Applications", path: "/services/websites" },
+                  { name: "Mobile Applications", path: "/services/mobile" },
+                  { name: "AI Solutions", path: "/services" },
+                  { name: "UI/UX Design", path: "/services" },
+                  { name: "Internship Programs", path: "/internship" },
+                ].map((item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      to={item.path}
+                      className="text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] transition-colors duration-300 text-sm"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3: Resources */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <h4 className="text-white font-bold text-sm uppercase tracking-[0.5px] mb-6">
+                Resources
+              </h4>
+              <ul className="space-y-4">
+                {[
+                  { name: "Portfolio", path: "/portfolio" },
+                  { name: "Case Studies", path: "/portfolio" },
+                  { name: "Careers", path: "/careers" },
+                  { name: "Blog", path: "/blog" },
+                  { name: "Technology Stack", path: "/tech-stack" },
+                  { name: "Contact", path: "/contact" },
+                ].map((item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      to={item.path}
+                      className="text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] transition-colors duration-300 text-sm"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 4: Contact */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <h4 className="text-white font-bold text-sm uppercase tracking-[0.5px] mb-6">
+                Contact
+              </h4>
+              <ul className="space-y-4">
+                <li className="flex items-center gap-3 justify-center md:justify-start group cursor-pointer">
+                  <div className="text-[rgba(255,255,255,0.82)] group-hover:text-[#c084fc] transition-colors">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </div>
+                  <span className="text-[rgba(255,255,255,0.82)] group-hover:text-white text-sm transition-colors">
+                    admin@viyaninfo.com
+                  </span>
+                </li>
+                <li className="flex items-center gap-3 justify-center md:justify-start group cursor-pointer">
+                  <div className="text-[rgba(255,255,255,0.82)] group-hover:text-[#c084fc] transition-colors">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </div>
+                  <span className="text-[rgba(255,255,255,0.82)] group-hover:text-white text-sm transition-colors">
+                    +91 6379723465
+                  </span>
+                </li>
+                <li className="flex items-center gap-3 justify-center md:justify-start group cursor-pointer">
+                  <div className="text-[rgba(255,255,255,0.82)] group-hover:text-[#c084fc] transition-colors">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <span className="text-[rgba(255,255,255,0.82)] group-hover:text-white text-sm transition-colors">
+                    Tiruvallur, Tamil Nadu
+                  </span>
+                </li>
+                <li className="flex items-center gap-3 justify-center md:justify-start group cursor-pointer">
+                  <div className="text-[rgba(255,255,255,0.82)] group-hover:text-[#c084fc] transition-colors">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="2" y1="12" x2="22" y2="12" />
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                  </div>
+                  <span className="text-[rgba(255,255,255,0.82)] group-hover:text-white text-sm transition-colors">
+                    www.viyaninfo.com
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* BOTTOM BAR */}
+          <div className="h-px bg-[rgba(255,255,255,0.12)] w-full mb-6 mt-12" />
+
+          <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 text-xs text-[rgba(255,255,255,0.62)] pb-8">
+            <p>© 2026 ViyanInfo. All rights reserved.</p>
+
+            <div className="flex flex-wrap gap-5 justify-center">
+              <Link
+                to="/privacy"
+                className="hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms"
+                className="hover:text-white transition-colors"
+              >
+                Terms of Service
+              </Link>
+              <Link
+                to="/about"
+                className="hover:text-white transition-colors"
+              >
+                Cookie Policy
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

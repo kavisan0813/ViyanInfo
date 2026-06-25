@@ -1,4 +1,6 @@
 import { useState, useLayoutEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,11 +15,11 @@ import {
   Instagram,
   Facebook,
   ChevronDown,
-  CalendarDays,
-  Sparkles,
+  Clock,
 } from "lucide-react";
-import ContactMap from "../components/ContactMap";
-import { burst } from "../utils/particleBurst";
+import contactImg from "../assets/contact_img.webp";
+import logo1 from "../assets/Logo image 1.svg";
+import "./ContactPage.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,9 +58,6 @@ const FAQ_ITEMS = [
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLElement>(null);
-  const formRef = useRef<HTMLDivElement>(null);
-  const faqRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState<FormData>({
@@ -79,61 +78,7 @@ export default function Contact() {
   // Entrance animations
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero reveal
-      gsap.from(".hero-content-anim", {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.15,
-        onComplete: () => {
-          const headline = document.querySelector<HTMLElement>(
-            "h1.hero-content-anim",
-          );
-          if (headline)
-            burst(headline, 20, ["#7B2FF7", "#9333EA", "#3B82F6"], 160, 1000);
-        },
-      });
-
-      // Left column details
-      gsap.from(".info-card-anim", {
-        x: -40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: ".info-card-container",
-          start: "top 85%",
-        },
-      });
-
-      // Right column form
-      gsap.from(formRef.current, {
-        y: 60,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: formRef.current,
-          start: "top 80%",
-        },
-      });
-
-      // FAQ reveal
-      gsap.from(".faq-item-anim", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.08,
-        scrollTrigger: {
-          trigger: faqRef.current,
-          start: "top 80%",
-        },
-      });
-
-      // Consultation CTA reveal
+      // CTA reveal on scroll
       gsap.from(ctaRef.current, {
         scale: 0.95,
         opacity: 0,
@@ -207,157 +152,134 @@ export default function Contact() {
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="bg-slate-50 min-h-screen text-slate-800 font-body relative overflow-hidden pt-24 pb-20"
-    >
-      {/* Background gradients */}
-      <div className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-purple-100/30 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/3 left-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-blue-50/20 to-transparent rounded-full blur-3xl pointer-events-none" />
+    <div ref={containerRef} className="contact-page">
+      {/* ── HERO SECTION ─────────────────────────────── */}
+      <section className="contact-hero">
+        <div className="contact-overlay" />
 
-      {/* HERO SECTION */}
-      <section
-        ref={heroRef}
-        className="text-center max-w-3xl mx-auto mt-8 mb-16 px-6"
-      >
-        <div className="hero-content-anim inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-purple-700 text-xs font-semibold uppercase tracking-wider mb-6">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Contact ViyanInfo</span>
-        </div>
+        <div className="contact-container">
+          {/* ── LEFT SIDE ────────────────────────────── */}
+          <div className="contact-left">
+            <div className="glass-card main-contact-card">
+              <span className="small-tag">CONTACT US</span>
 
-        <h1 className="hero-content-anim text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
-          Let's Build Something{" "}
-          <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 bg-clip-text text-transparent">
-            Amazing Together
-          </span>
-        </h1>
+              <h1>
+                Let's Build Something
+                <span> Amazing Together</span>
+              </h1>
 
-        <p className="hero-content-anim text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto">
-          Tell us about your project and goals. We respond to all inquiries
-          within 24 business hours.
-        </p>
-      </section>
+              <p>
+                Have a project idea, startup vision, or business requirement?
+                Connect with our team and let's create scalable digital
+                experiences together.
+              </p>
 
-      {/* TWO COLUMN GRID SECTION */}
-      <section className="container max-w-[1240px] mx-auto px-6 mb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          {/* LEFT COLUMN: CONTACT DETAILS & SOCIALS */}
-          <div className="lg:col-span-5 info-card-container flex flex-col gap-6">
-            {/* Email (Purple) */}
-            <div className="info-card-anim bg-white border border-slate-100 rounded-2xl p-6 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center text-[#7B2FF7] shrink-0 border border-purple-100">
-                <Mail size={18} />
+              <div className="contact-info-grid">
+                <div className="info-card">
+                  <div className="icon-wrap">
+                    <PhoneIcon size={18} />
+                  </div>
+                  <div>
+                    <h4>Phone</h4>
+                    <p>+91 6379723465</p>
+                  </div>
+                </div>
+
+                <div className="info-card">
+                  <div className="icon-wrap">
+                    <Mail size={18} />
+                  </div>
+                  <div>
+                    <h4>Email</h4>
+                    <p>admin@viyaninfo.com</p>
+                  </div>
+                </div>
+
+                <div className="info-card">
+                  <div className="icon-wrap">
+                    <MapPin size={18} />
+                  </div>
+                  <div>
+                    <h4>Location</h4>
+                    <p>Tiruvallur, Tamil Nadu</p>
+                  </div>
+                </div>
+
+                <div className="info-card">
+                  <div className="icon-wrap">
+                    <Clock size={18} />
+                  </div>
+                  <div>
+                    <h4>Working Hours</h4>
+                    <p>Mon - Sat : 9AM - 7PM</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h4 className="text-xs font-display font-extrabold text-slate-400 uppercase tracking-widest mb-1.5">
-                  Email Address
-                </h4>
-                <a
-                  href="mailto:hello@viyaninfo.com"
-                  className="text-base font-bold text-slate-900 hover:text-[#7B2FF7] transition-colors"
-                >
-                  hello@viyaninfo.com
-                </a>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  For sales & general updates.
-                </p>
+
+              {/* Social Row */}
+              <div className="social-row">
+                <h4>Connect With Us</h4>
+                <div className="social-icons">
+                  {[
+                    {
+                      icon: <Linkedin size={18} />,
+                      href: "https://linkedin.com",
+                      label: "LinkedIn",
+                    },
+                    {
+                      icon: <Github size={18} />,
+                      href: "https://github.com",
+                      label: "GitHub",
+                    },
+                    {
+                      icon: <Instagram size={18} />,
+                      href: "https://instagram.com",
+                      label: "Instagram",
+                    },
+                    {
+                      icon: <Facebook size={18} />,
+                      href: "https://facebook.com",
+                      label: "Facebook",
+                    },
+                  ].map((social, idx) => (
+                    <a
+                      key={idx}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                    >
+                      {social.icon}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Phone (Blue) */}
-            <div className="info-card-anim bg-white border border-slate-100 rounded-2xl p-6 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[#3B82F6] shrink-0 border border-blue-100">
-                <PhoneIcon size={18} />
-              </div>
-              <div>
-                <h4 className="text-xs font-display font-extrabold text-slate-400 uppercase tracking-widest mb-1.5">
-                  Phone Number
-                </h4>
-                <a
-                  href="tel:+916379723465"
-                  className="text-base font-bold text-slate-900 hover:text-[#3B82F6] transition-colors"
-                >
-                  +91 6379723465
-                </a>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Mon-Fri from 9am to 6pm.
-                </p>
-              </div>
-            </div>
-
-            {/* Location (Cyan) */}
-            <div className="info-card-anim bg-white border border-slate-100 rounded-2xl p-6 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center text-[#06B6D4] shrink-0 border border-cyan-100">
-                <MapPin size={18} />
-              </div>
-              <div>
-                <h4 className="text-xs font-display font-extrabold text-slate-400 uppercase tracking-widest mb-1.5">
-                  Main Headquarters
-                </h4>
-                <p className="text-sm font-bold text-slate-900 leading-snug">
-                  VIYAN Infotech, No : 168 B, PTC Nagar, Ikkadu, Tiruvallur -
-                  602001
-                </p>
-                <p className="text-xs text-slate-500 mt-1">
-                  Chennai, Tamil Nadu, India.
-                </p>
-              </div>
-            </div>
-
-            {/* Social Media (Gradient Purple) */}
-            <div className="info-card-anim bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-              <h4 className="text-xs font-display font-extrabold text-slate-400 uppercase tracking-widest mb-4">
-                Connect With Us
-              </h4>
-              <div className="flex gap-3">
-                {[
-                  {
-                    icon: <Linkedin className="w-4 h-4" />,
-                    href: "https://linkedin.com",
-                    label: "LinkedIn",
-                  },
-                  {
-                    icon: <Github className="w-4 h-4" />,
-                    href: "https://github.com",
-                    label: "GitHub",
-                  },
-                  {
-                    icon: <Instagram className="w-4 h-4" />,
-                    href: "https://instagram.com",
-                    label: "Instagram",
-                  },
-                  {
-                    icon: <Facebook className="w-4 h-4" />,
-                    href: "https://facebook.com",
-                    label: "Facebook",
-                  },
-                ].map((social, idx) => (
-                  <a
-                    key={idx}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="w-9 h-9 rounded-xl bg-slate-50 text-slate-400 hover:text-white hover:bg-gradient-to-r hover:from-[#7B2FF7] hover:to-[#9333EA] hover:shadow-[0_0_12px_rgba(123,47,247,0.35)] flex items-center justify-center border border-slate-100 hover:border-transparent transition-all duration-300"
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
+            {/* Map Card */}
+            <div className="glass-card map-card">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1942.5993636899964!2d79.91710244433159!3d13.14986128051883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a529002e663fce9%3A0xbc828996ba34e68c!2s1353%2C%20Chinnaekkadu%2C%20Ikkadu%2C%20Tamil%20Nadu%20602021!5e0!3m2!1sen!2sin!4v1782392522728!5m2!1sen!2sin"
+                width="600"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              ></iframe>
             </div>
           </div>
 
-          {/* RIGHT COLUMN: MODERN FORM */}
-          <div ref={formRef} className="lg:col-span-7">
+          {/* ── RIGHT SIDE ───────────────────────────── */}
+          <div className="contact-right">
+            {/* Form Card */}
             {isSuccess ? (
-              <div className="bg-white border border-slate-100 p-10 sm:p-16 rounded-3xl flex flex-col items-center justify-center text-center shadow-lg h-full min-h-[500px]">
-                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mb-6 border border-emerald-100">
+              <div className="glass-card success-card">
+                <div className="success-icon">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="text-2xl font-display font-extrabold text-slate-900 mb-3">
-                  Message Transmitted!
-                </h3>
-                <p className="text-slate-500 text-sm max-w-sm leading-relaxed mb-8">
+                <h3>Message Transmitted!</h3>
+                <p>
                   Thank you for submitting your project query. Our technical
                   lead will review your details and connect within 24 business
                   hours.
@@ -375,296 +297,483 @@ export default function Contact() {
                       message: "",
                     });
                   }}
-                  className="px-6 py-3 bg-[#7B2FF7] hover:bg-[#9333EA] text-white font-bold text-xs rounded-xl shadow-md transition-colors cursor-pointer"
                 >
                   Send Another Message
                 </button>
               </div>
             ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="bg-white border border-slate-100 p-8 sm:p-10 rounded-3xl shadow-sm flex flex-col gap-6"
-              >
-                <h3 className="text-xl font-display font-extrabold text-slate-900 pb-3 border-b border-slate-50">
-                  Project Request Form
-                </h3>
+              <div className="glass-card form-card">
+                <h2>Send Us a Message</h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Name */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="name"
-                      className="text-xs font-bold text-slate-700"
-                    >
-                      Full Name *
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="name">Full Name *</label>
+                      <input
+                        id="name"
+                        type="text"
+                        required
+                        placeholder="Rithick Nathan"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={errors.name ? "error-border" : ""}
+                      />
+                      {errors.name && (
+                        <span className="error-text">{errors.name}</span>
+                      )}
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="email">Company Email *</label>
+                      <input
+                        id="email"
+                        type="email"
+                        required
+                        placeholder="ceo@viyaninfo.com"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={errors.email ? "error-border" : ""}
+                      />
+                      {errors.email && (
+                        <span className="error-text">{errors.email}</span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="phone">Phone Number</label>
+                      <input
+                        id="phone"
+                        type="tel"
+                        placeholder="e.g. +91 98765 43210"
+                        value={formData.phone}
+                        onChange={handleChange}
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="company">Company Name</label>
+                      <input
+                        id="company"
+                        type="text"
+                        placeholder="e.g. Acme Inc"
+                        value={formData.company}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="service">Service Type</label>
+                      <select
+                        id="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                      >
+                        <option value="">Select Service...</option>
+                        <option value="Custom Software">
+                          Custom Software Development
+                        </option>
+                        <option value="Web Applications">
+                          Web Application Development
+                        </option>
+                        <option value="Mobile Applications">
+                          Mobile Application Development
+                        </option>
+                        <option value="AI Solutions">AI Solutions</option>
+                        <option value="UI/UX Design">UI/UX Design</option>
+                        <option value="Internship Programs">
+                          Internship Programs
+                        </option>
+                      </select>
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="budget">Estimated Budget</label>
+                      <select
+                        id="budget"
+                        value={formData.budget}
+                        onChange={handleChange}
+                      >
+                        <option value="">Select Budget Range...</option>
+                        <option value="< $5k">Less than $5,000</option>
+                        <option value="$5k - $15k">$5,000 - $15,000</option>
+                        <option value="$15k - $50k">$15,000 - $50,000</option>
+                        <option value="> $50k">More than $50,000</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="message">Project Requirements *</label>
+                    <textarea
+                      id="message"
+                      rows={5}
                       required
-                      placeholder="Rithick Nathan"
-                      value={formData.name}
+                      placeholder="Tell us about your project requirements, scope, or timeline goals..."
+                      value={formData.message}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        errors.name ? "border-rose-500" : "border-slate-200"
-                      } bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800`}
+                      className={errors.message ? "error-border" : ""}
                     />
-                    {errors.name && (
-                      <span className="text-[10px] text-rose-500">
-                        {errors.name}
-                      </span>
+                    {errors.message && (
+                      <span className="error-text">{errors.message}</span>
                     )}
                   </div>
 
-                  {/* Email */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="email"
-                      className="text-xs font-bold text-slate-700"
-                    >
-                      Company Email *
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      required
-                      placeholder="ceo@viyaninfo.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        errors.email ? "border-rose-500" : "border-slate-200"
-                      } bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800`}
-                    />
-                    {errors.email && (
-                      <span className="text-[10px] text-rose-500">
-                        {errors.email}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Phone */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="phone"
-                      className="text-xs font-bold text-slate-700"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      placeholder="e.g. +91 98765 43210"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800"
-                    />
-                  </div>
-
-                  {/* Company */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="company"
-                      className="text-xs font-bold text-slate-700"
-                    >
-                      Company Name
-                    </label>
-                    <input
-                      id="company"
-                      type="text"
-                      placeholder="e.g. Acme Inc"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Service */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="service"
-                      className="text-xs font-bold text-slate-700"
-                    >
-                      Service Type
-                    </label>
-                    <select
-                      id="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800 appearance-none"
-                    >
-                      <option value="">Select Service...</option>
-                      <option value="Custom Software">
-                        Custom Software Development
-                      </option>
-                      <option value="Web Applications">
-                        Web Application Development
-                      </option>
-                      <option value="Mobile Applications">
-                        Mobile Application Development
-                      </option>
-                      <option value="AI Solutions">AI Solutions</option>
-                      <option value="UI/UX Design">UI/UX Design</option>
-                      <option value="Internship Programs">
-                        Internship Programs
-                      </option>
-                    </select>
-                  </div>
-
-                  {/* Budget */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="budget"
-                      className="text-xs font-bold text-slate-700"
-                    >
-                      Estimated Budget
-                    </label>
-                    <select
-                      id="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800 appearance-none"
-                    >
-                      <option value="">Select Budget Range...</option>
-                      <option value="< $5k">Less than $5,000</option>
-                      <option value="$5k - $15k">$5,000 - $15,000</option>
-                      <option value="$15k - $50k">$15,000 - $50,000</option>
-                      <option value="> $50k">More than $50,000</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Message */}
-                <div className="flex flex-col gap-1.5">
-                  <label
-                    htmlFor="message"
-                    className="text-xs font-bold text-slate-700"
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="send-btn"
                   >
-                    Project Requirements *
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={4}
-                    required
-                    placeholder="Tell us about your project requirements, scope, or timeline goals..."
-                    value={formData.message}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-xl border ${
-                      errors.message ? "border-rose-500" : "border-slate-200"
-                    } bg-slate-50/50 outline-none focus:bg-white focus:border-[#7B2FF7] focus:ring-2 focus:ring-[#7B2FF7]/15 transition-all duration-300 text-sm text-slate-800 resize-none`}
-                  />
-                  {errors.message && (
-                    <span className="text-[10px] text-rose-500">
-                      {errors.message}
-                    </span>
-                  )}
-                </div>
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full h-12 bg-gradient-to-r from-[#7B2FF7] to-[#9333EA] hover:shadow-[0_0_15px_rgba(123,47,247,0.45)] hover:-translate-y-[1px] active:translate-y-0 text-white font-bold text-xs uppercase tracking-wider rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer mt-2"
-                >
-                  {isLoading ? (
-                    <Loader2 className="animate-spin w-5 h-5 text-white" />
-                  ) : (
-                    "Transmit Query"
-                  )}
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* MAP SECTION (NEUTRAL STYLING) */}
-      <section className="container max-w-[1240px] mx-auto px-6 mb-24">
-        <h3 className="text-xl font-display font-extrabold text-slate-900 mb-6">
-          Office Location Map
-        </h3>
-        <div className="border border-slate-100 bg-white rounded-3xl p-3 shadow-sm overflow-hidden">
-          <ContactMap />
-        </div>
-      </section>
-
-      {/* FAQ SECTION */}
-      <section
-        ref={faqRef}
-        className="container max-w-[800px] mx-auto px-6 mb-24"
-      >
-        <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 text-center mb-10">
-          Frequently Answered Queries
-        </h3>
-
-        <div className="flex flex-col gap-4">
-          {FAQ_ITEMS.map((item, idx) => {
-            const isOpen = activeFaq === idx;
-            return (
-              <div
-                key={idx}
-                className="faq-item-anim bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm"
-              >
-                <button
-                  onClick={() => setActiveFaq(isOpen ? null : idx)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-slate-800 hover:text-[#7B2FF7] transition-colors duration-200 outline-none cursor-pointer"
-                >
-                  <span className="text-sm sm:text-base leading-snug">
-                    {item.question}
-                  </span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-transform duration-300 shrink-0 ml-4 ${
-                      isOpen ? "rotate-180 text-[#7B2FF7]" : ""
-                    }`}
-                  />
-                </button>
-
-                <div
-                  className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${
-                    isOpen ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed border-t border-slate-50 pt-4">
-                    {item.answer}
-                  </p>
-                </div>
+                    {isLoading ? (
+                      <Loader2 className="animate-spin" size={20} />
+                    ) : (
+                      "Send Message"
+                    )}
+                  </button>
+                </form>
               </div>
-            );
-          })}
+            )}
+
+            {/* FAQ Card */}
+            <div className="glass-card faq-card">
+              <h2>Frequently Asked Questions</h2>
+
+              {FAQ_ITEMS.map((item, idx) => {
+                const isOpen = activeFaq === idx;
+                return (
+                  <div key={idx} className="faq-item">
+                    <button onClick={() => setActiveFaq(isOpen ? null : idx)}>
+                      <span>{item.question}</span>
+                      <ChevronDown
+                        size={16}
+                        style={{
+                          transition: "transform 0.3s ease",
+                          transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                          color: isOpen ? "#c4b5fd" : "rgba(255,255,255,0.4)",
+                          flexShrink: 0,
+                        }}
+                      />
+                    </button>
+
+                    <div className={`faq-answer ${isOpen ? "open" : "closed"}`}>
+                      <p>{item.answer}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* FINAL CONSULTATION CTA BANNER */}
-      <section ref={ctaRef} className="container max-w-[1240px] mx-auto px-6">
-        <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-950 rounded-3xl p-8 sm:p-12 relative overflow-hidden text-center flex flex-col items-center shadow-lg">
-          <div className="absolute right-0 bottom-0 w-80 h-80 rounded-full bg-purple-600/10 blur-3xl pointer-events-none" />
-          <div className="absolute left-0 top-0 w-80 h-80 rounded-full bg-cyan-600/5 blur-3xl pointer-events-none" />
+      {/* ── COMBINED CTA + FOOTER SECTION ────────────── */}
+      <section
+        ref={ctaRef}
+        className="relative w-full overflow-hidden rounded-[32px_32px_0_0] mt-24"
+        style={{
+          minHeight: "550px",
+          paddingTop: "40px",
+          paddingBottom: "20px",
+        }}
+      >
+        {/* BACKGROUND IMAGE */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={contactImg}
+            alt="Contact Background"
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
 
-          <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
-            <CalendarDays className="w-6 h-6" />
+        {/* CINEMATIC OVERLAY */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(10, 10, 30, 0.35), rgba(12, 12, 40, 0.65), rgba(5, 5, 20, 0.92))",
+          }}
+        />
+
+        {/* VIGNETTE EFFECT */}
+        <div className="absolute inset-0 z-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]" />
+
+        {/* Ambient Glows */}
+        <div className="absolute top-[10%] left-1/4 w-[500px] h-[300px] bg-[#7c3aed]/10 blur-[130px] rounded-full pointer-events-none z-0" />
+        <div className="absolute bottom-[35%] right-1/4 w-[400px] h-[250px] bg-[#6366f1]/8 blur-[110px] rounded-full pointer-events-none z-0" />
+
+        {/* Floating Particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={`particle-${i}`}
+            className="absolute rounded-full pointer-events-none z-[1]"
+            style={{
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              left: `${15 + Math.random() * 70}%`,
+              top: `${15 + Math.random() * 50}%`,
+              background:
+                i % 2 === 0
+                  ? "rgba(168, 85, 247, 0.4)"
+                  : "rgba(99, 102, 241, 0.35)",
+              boxShadow: "0 0 10px rgba(168, 85, 247, 0.3)",
+            }}
+            animate={{
+              y: [0, -(25 + Math.random() * 30), 0],
+              x: [0, (Math.random() - 0.5) * 20, 0],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 6 + Math.random() * 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.8,
+            }}
+          />
+        ))}
+
+        {/* BOTTOM AREA: GLASSMORPHISM FOOTER */}
+        <div
+          className="relative z-10 w-[94%] md:w-[88%] max-w-[1450px] mx-auto mt-8 mb-6 rounded-[32px] p-8 md:p-[50px_60px]"
+          style={{
+            background: "rgba(255, 255, 255, 0.1)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            boxShadow:
+              "0 8px 40px rgba(0, 0, 0, 0.25), 0 0 60px rgba(255, 255, 255, 0.05)",
+          }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[50px] text-center md:text-left">
+            {/* Column 1: Logo & Description */}
+            <div className="flex flex-col items-center md:items-start">
+              <Link to="/" className="block w-fit mb-6">
+                <img
+                  src={logo1}
+                  alt="ViyanInfo"
+                  className="h-10 w-auto object-contain select-none"
+                />
+              </Link>
+              <p className="text-sm leading-relaxed text-[rgba(255,255,255,0.82)] max-w-xs mb-8">
+                Building scalable software, AI solutions, and digital products
+                that help businesses grow faster and operate smarter.
+              </p>
+              {/* Social Icons */}
+              <div className="flex gap-4">
+                {[
+                  {
+                    icon: <Linkedin size={18} />,
+                    href: "https://linkedin.com",
+                  },
+                  { icon: <Github size={18} />, href: "https://github.com" },
+                  {
+                    icon: <Instagram size={18} />,
+                    href: "https://instagram.com",
+                  },
+                  {
+                    icon: <Facebook size={18} />,
+                    href: "https://facebook.com",
+                  },
+                ].map((social, idx) => (
+                  <a
+                    key={idx}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-white transition-all duration-300"
+                    style={{
+                      background: "rgba(255,255,255,0.08)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow =
+                        "0 0 22px rgba(168,85,247,0.45)";
+                      e.currentTarget.style.transform = "translateY(-4px)";
+                      e.currentTarget.style.background =
+                        "rgba(168, 85, 247, 0.4)";
+                      e.currentTarget.style.borderColor =
+                        "rgba(168, 85, 247, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = "none";
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.background =
+                        "rgba(255,255,255,0.08)";
+                      e.currentTarget.style.borderColor =
+                        "rgba(255,255,255,0.08)";
+                    }}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 2: Services */}
+            <div className="flex flex-col items-center md:items-start">
+              <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
+                Services
+              </span>
+              <ul className="space-y-4">
+                {[
+                  { name: "Custom Software Development", path: "/services" },
+                  { name: "Web Applications", path: "/services/websites" },
+                  { name: "Mobile Applications", path: "/services/mobile" },
+                  { name: "AI Solutions", path: "/services" },
+                  { name: "UI/UX Design", path: "/services" },
+                  { name: "Internship Programs", path: "/internship" },
+                ].map((item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      to={item.path}
+                      className="text-[rgba(255,255,255,0.88)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 text-sm inline-block"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3: Resources */}
+            <div className="flex flex-col items-center md:items-start">
+              <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
+                Resources
+              </span>
+              <ul className="space-y-4">
+                {[
+                  { name: "Portfolio", path: "/portfolio" },
+                  { name: "Case Studies", path: "/portfolio" },
+                  { name: "Careers", path: "/careers" },
+                  { name: "Blog", path: "/blog" },
+                  { name: "Technology Stack", path: "/tech-stack" },
+                  { name: "Contact", path: "/contact" },
+                ].map((item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      to={item.path}
+                      className="text-[rgba(255,255,255,0.88)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 text-sm inline-block"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 4: Contact */}
+            <div className="flex flex-col items-center md:items-start text-[rgba(255,255,255,0.82)]">
+              <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
+                Contact
+              </span>
+              <ul className="space-y-4">
+                <li className="flex items-center gap-3 justify-center md:justify-start group cursor-pointer">
+                  <div className="text-[rgba(255,255,255,0.82)] group-hover:text-[#c084fc] transition-colors">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </div>
+                  <span className="text-[rgba(255,255,255,0.82)] group-hover:text-white text-sm transition-colors">
+                    admin@viyaninfo.com
+                  </span>
+                </li>
+                <li className="flex items-center gap-3 justify-center md:justify-start group cursor-pointer">
+                  <div className="text-[rgba(255,255,255,0.82)] group-hover:text-[#c084fc] transition-colors">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </div>
+                  <span className="text-[rgba(255,255,255,0.82)] group-hover:text-white text-sm transition-colors">
+                    +91 6379723465
+                  </span>
+                </li>
+                <li className="flex items-center gap-3 justify-center md:justify-start group cursor-pointer">
+                  <div className="text-[rgba(255,255,255,0.82)] group-hover:text-[#c084fc] transition-colors">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <span className="text-[rgba(255,255,255,0.82)] group-hover:text-white text-sm transition-colors">
+                    Tiruvallur, Tamil Nadu
+                  </span>
+                </li>
+                <li className="flex items-center gap-3 justify-center md:justify-start group cursor-pointer">
+                  <div className="text-[rgba(255,255,255,0.82)] group-hover:text-[#c084fc] transition-colors">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="2" y1="12" x2="22" y2="12" />
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                  </div>
+                  <span className="text-[rgba(255,255,255,0.82)] group-hover:text-white text-sm transition-colors">
+                    www.viyaninfo.com
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight mb-3">
-            Book A Free Consultation Call
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-md leading-relaxed mb-8">
-            Schedule a 1-on-1 strategy call with our architecture lead. We'll
-            map your requirements, review technologies, and draft a clean scope
-            outline.
-          </p>
+          {/* BOTTOM BAR */}
+          <div className="h-px bg-[rgba(255,255,255,0.12)] w-full mb-6 mt-12" />
 
-          <a
-            href="https://calendly.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="px-6 py-3.5 bg-[#7B2FF7] hover:bg-[#9333EA] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-colors cursor-pointer">
-              Schedule Free Call
-            </button>
-          </a>
+          <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 text-xs text-[rgba(255,255,255,0.62)] pb-8">
+            <p>© 2026 ViyanInfo. All rights reserved.</p>
+
+            <div className="flex flex-wrap gap-5 justify-center">
+              <Link
+                to="/privacy"
+                className="hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="hover:text-white transition-colors">
+                Terms of Service
+              </Link>
+              <Link to="/about" className="hover:text-white transition-colors">
+                Cookie Policy
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -130,6 +130,20 @@ export default function App() {
   useSmoothScroll();
   useMagneticButtons();
 
+  const location = useLocation();
+  const customFooterPaths = [
+    "/contact",
+    "/services/websites",
+    "/services/mobile",
+    "/portfolio",
+    "/about",
+    "/careers",
+    "/blog",
+    "/services/ai",
+    "/services/uiux"
+  ];
+  const hideGlobalFooter = customFooterPaths.includes(location.pathname) || customFooterPaths.includes(location.pathname.replace(/\/$/, ""));
+
   return (
     <div className="flex flex-col min-h-screen">
       <CustomCursor />
@@ -166,7 +180,7 @@ export default function App() {
           </Routes>
         </Suspense>
       </main>
-      <Footer />
+      {!hideGlobalFooter && <Footer />}
     </div>
   );
 }

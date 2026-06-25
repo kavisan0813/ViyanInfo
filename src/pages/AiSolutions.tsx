@@ -476,7 +476,7 @@ export default function AiSolutions() {
                 bgBase: "rgba(59,130,246,0.08)",
                 bgHover: "rgba(59,130,246,0.92)",
                 borderHover: "rgba(59,130,246,0.55)",
-                shadowHover: "0 12px 32px rgba(59,130,246,0.14)"
+                shadowHover: "0 12px 32px rgba(59,130,246,0.14)",
               },
               {
                 title: "Automation",
@@ -486,7 +486,7 @@ export default function AiSolutions() {
                 bgBase: "rgba(16,185,129,0.08)",
                 bgHover: "rgba(16,185,129,0.92)",
                 borderHover: "rgba(16,185,129,0.55)",
-                shadowHover: "0 12px 32px rgba(16,185,129,0.14)"
+                shadowHover: "0 12px 32px rgba(16,185,129,0.14)",
               },
               {
                 title: "Reduced Costs",
@@ -496,7 +496,7 @@ export default function AiSolutions() {
                 bgBase: "rgba(244,63,94,0.08)",
                 bgHover: "rgba(244,63,94,0.92)",
                 borderHover: "rgba(244,63,94,0.55)",
-                shadowHover: "0 12px 32px rgba(244,63,94,0.14)"
+                shadowHover: "0 12px 32px rgba(244,63,94,0.14)",
               },
               {
                 title: "Faster Decisions",
@@ -506,64 +506,76 @@ export default function AiSolutions() {
                 bgBase: "rgba(123,47,247,0.08)",
                 bgHover: "rgba(123,47,247,0.92)",
                 borderHover: "rgba(123,47,247,0.55)",
-                shadowHover: "0 12px 32px rgba(123,47,247,0.14)"
+                shadowHover: "0 12px 32px rgba(123,47,247,0.14)",
               },
             ].map((benefit, idx) => {
               const isHovered = hoveredIdx === idx;
               const Icon = benefit.Icon;
               return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="h-full"
-              >
-                <div
-                  className="feature-card"
-                  onMouseEnter={() => setHoveredIdx(idx)}
-                  onMouseLeave={() => setHoveredIdx(null)}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    borderRadius: '14px',
-                    padding: '24px 20px',
-                    background: '#ffffff',
-                    height: isHovered ? 'calc(100% + 12px)' : '100%',
-                    transform: isHovered ? 'translateY(-16px)' : 'translateY(0px)',
-                    transition: 'height 0.35s cubic-bezier(0.34,1.56,0.64,1), transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.22s ease, box-shadow 0.22s ease',
-                    willChange: 'transform, height',
-                    border: `1px solid ${isHovered ? benefit.borderHover : 'rgba(241, 245, 249, 1)'}`,
-                    boxShadow: isHovered ? benefit.shadowHover : '0 1px 2px 0 rgba(0,0,0,0.05)'
-                  }}
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="h-full"
                 >
-                  <div 
+                  <div
+                    className="feature-card"
+                    onMouseEnter={() => setHoveredIdx(idx)}
+                    onMouseLeave={() => setHoveredIdx(null)}
                     style={{
-                      width: '48px',
-                      height: '48px',
-                      borderRadius: '16px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '24px',
-                      background: isHovered ? benefit.bgHover : benefit.bgBase,
-                      transition: 'background 0.22s ease'
+                      display: "flex",
+                      flexDirection: "column",
+                      borderRadius: "14px",
+                      padding: "24px 20px",
+                      background: "#ffffff",
+                      height: isHovered ? "calc(100% + 12px)" : "100%",
+                      transform: isHovered
+                        ? "translateY(-16px)"
+                        : "translateY(0px)",
+                      transition:
+                        "height 0.35s cubic-bezier(0.34,1.56,0.64,1), transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.22s ease, box-shadow 0.22s ease",
+                      willChange: "transform, height",
+                      border: `1px solid ${isHovered ? benefit.borderHover : "rgba(241, 245, 249, 1)"}`,
+                      boxShadow: isHovered
+                        ? benefit.shadowHover
+                        : "0 1px 2px 0 rgba(0,0,0,0.05)",
                     }}
                   >
-                    <Icon 
-                      className="w-6 h-6" 
-                      style={{ 
-                        color: isHovered ? '#ffffff' : benefit.baseColor,
-                        transition: 'color 0.22s ease'
-                      }} 
-                    />
+                    <div
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "16px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: "24px",
+                        background: isHovered
+                          ? benefit.bgHover
+                          : benefit.bgBase,
+                        transition: "background 0.22s ease",
+                      }}
+                    >
+                      <Icon
+                        className="w-6 h-6"
+                        style={{
+                          color: isHovered ? "#ffffff" : benefit.baseColor,
+                          transition: "color 0.22s ease",
+                        }}
+                      />
+                    </div>
+                    <h3 className="text-base sm:text-lg font-display font-bold text-slate-900 mb-3">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm leading-relaxed text-slate-500">
+                      {benefit.desc}
+                    </p>
                   </div>
-                  <h3 className="text-base sm:text-lg font-display font-bold text-slate-900 mb-3">{benefit.title}</h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-500">{benefit.desc}</p>
-                </div>
-              </motion.div>
-            )})}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -768,8 +780,7 @@ export default function AiSolutions() {
                       "0 0 50px rgba(124,58,237,0.7)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.transform =
-                      "translateY(0) scale(1)";
+                    e.currentTarget.style.transform = "translateY(0) scale(1)";
                     e.currentTarget.style.boxShadow =
                       "0 0 35px rgba(124,58,237,0.55)";
                   }}
@@ -787,14 +798,14 @@ export default function AiSolutions() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="relative z-10 w-[90%] max-w-[1450px] mx-auto mb-12 rounded-[32px]"
+          className="relative z-10 w-[94%] md:w-[88%] max-w-[1450px] mx-auto mt-[70px] mb-10 rounded-[32px] p-8 md:p-[50px_60px]"
           style={{
-            background: "rgba(8, 10, 28, 0.48)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(255,255,255,0.12)",
+            background: "rgba(255, 255, 255, 0.1)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
             boxShadow:
-              "0 20px 80px rgba(0,0,0,0.5), 0 0 120px rgba(59,130,246,0.12)",
+              "0 8px 40px rgba(0, 0, 0, 0.25), 0 0 60px rgba(255, 255, 255, 0.05)",
           }}
         >
           {/* Gentle footer glass glow pulse */}
@@ -803,7 +814,7 @@ export default function AiSolutions() {
             animate={{
               boxShadow: [
                 "inset 0 0 0px rgba(124,58,237,0)",
-                "inset 0 0 40px rgba(124,58,237,0.12)",
+                "inset 0 0 40px rgba(124,58,237,0.15)",
                 "inset 0 0 0px rgba(124,58,237,0)",
               ],
             }}
@@ -814,9 +825,9 @@ export default function AiSolutions() {
             }}
           />
 
-          <div className="py-[40px] md:py-[70px] px-[30px] md:px-[60px]">
+          <div>
             {/* 4-COLUMN FOOTER GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12 text-center md:text-left">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[50px] text-center md:text-left mb-12">
               {/* Column 1: Company Info */}
               <div className="flex flex-col items-center md:items-start gap-5">
                 <Link to="/" className="block w-fit">
@@ -836,24 +847,28 @@ export default function AiSolutions() {
                 <div className="flex gap-4 mt-2">
                   {[
                     {
-                      icon: <Linkedin className="w-[20px] h-[20px]" />,
+                      icon: <Linkedin className="w-[18px] h-[18px]" />,
                       href: "https://linkedin.com",
                       label: "LinkedIn",
+                      name: "linkedin",
                     },
                     {
-                      icon: <Github className="w-[20px] h-[20px]" />,
+                      icon: <Github className="w-[18px] h-[18px]" />,
                       href: "https://github.com",
                       label: "GitHub",
+                      name: "github",
                     },
                     {
-                      icon: <Instagram className="w-[20px] h-[20px]" />,
+                      icon: <Instagram className="w-[18px] h-[18px]" />,
                       href: "https://instagram.com",
                       label: "Instagram",
+                      name: "instagram",
                     },
                     {
-                      icon: <Facebook className="w-[20px] h-[20px]" />,
+                      icon: <Facebook className="w-[18px] h-[18px]" />,
                       href: "https://facebook.com",
                       label: "Facebook",
+                      name: "facebook",
                     },
                   ].map((social, sIdx) => (
                     <a
@@ -862,20 +877,32 @@ export default function AiSolutions() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="w-11 h-11 flex items-center justify-center rounded-xl text-white transition-all duration-350"
+                      className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-white transition-all duration-350"
                       style={{
                         background: "rgba(255,255,255,0.08)",
                         border: "1px solid rgba(255,255,255,0.08)",
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background =
-                          "rgba(124,58,237,0.28)";
-                        e.currentTarget.style.transform =
-                          "translateY(-4px)";
+                        if (social.name === "instagram") {
+                          e.currentTarget.style.background =
+                            "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)";
+                          e.currentTarget.style.borderColor = "transparent";
+                        } else {
+                          e.currentTarget.style.background =
+                            "rgba(168, 85, 247, 0.4)";
+                          e.currentTarget.style.borderColor =
+                            "rgba(168, 85, 247, 0.4)";
+                        }
+                        e.currentTarget.style.boxShadow =
+                          "0 0 22px rgba(168,85,247,0.45)";
+                        e.currentTarget.style.transform = "translateY(-4px)";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.background =
                           "rgba(255,255,255,0.08)";
+                        e.currentTarget.style.borderColor =
+                          "rgba(255,255,255,0.08)";
+                        e.currentTarget.style.boxShadow = "none";
                         e.currentTarget.style.transform = "translateY(0)";
                       }}
                     >
@@ -887,33 +914,21 @@ export default function AiSolutions() {
 
               {/* Column 2: Services */}
               <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="font-display font-bold text-[#ffffff] text-[15px] uppercase tracking-wider mb-2">
+                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
                   Services
                 </span>
                 {[
-                  {
-                    label: "Custom Software Development",
-                    path: "/services",
-                  },
-                  {
-                    label: "Web Applications",
-                    path: "/services/websites",
-                  },
-                  {
-                    label: "Mobile Applications",
-                    path: "/services/mobile",
-                  },
-                  { label: "AI Solutions", path: "/services/ai" },
-                  { label: "UI/UX Design", path: "/services/uiux" },
-                  {
-                    label: "Internship Programs",
-                    path: "/internship",
-                  },
+                  { label: "Custom Software Development", path: "/services" },
+                  { label: "Web Applications", path: "/services/websites" },
+                  { label: "Mobile Applications", path: "/services/mobile" },
+                  { label: "AI Solutions", path: "/services" },
+                  { label: "UI/UX Design", path: "/services" },
+                  { label: "Internship Programs", path: "/internship" },
                 ].map((link, lIdx) => (
                   <Link
                     key={lIdx}
                     to={link.path}
-                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors duration-200 block py-1"
+                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 block py-1"
                   >
                     {link.label}
                   </Link>
@@ -922,7 +937,7 @@ export default function AiSolutions() {
 
               {/* Column 3: Resources */}
               <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="font-display font-bold text-[#ffffff] text-[15px] uppercase tracking-wider mb-2">
+                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
                   Resources
                 </span>
                 {[
@@ -936,7 +951,7 @@ export default function AiSolutions() {
                   <Link
                     key={lIdx}
                     to={link.path}
-                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors duration-200 block py-1"
+                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 block py-1"
                   >
                     {link.label}
                   </Link>
@@ -945,13 +960,13 @@ export default function AiSolutions() {
 
               {/* Column 4: Contact */}
               <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="font-display font-bold text-[#ffffff] text-[15px] uppercase tracking-wider mb-2">
+                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
                   Contact
                 </span>
 
                 <a
                   href="mailto:admin@viyaninfo.com"
-                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors flex items-center gap-3 py-1"
+                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1"
                 >
                   <Mail className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
                   <span>admin@viyaninfo.com</span>
@@ -959,7 +974,7 @@ export default function AiSolutions() {
 
                 <a
                   href="tel:+916379723465"
-                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors flex items-center gap-3 py-1"
+                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1"
                 >
                   <Phone className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
                   <span>+91 6379723465</span>
@@ -974,7 +989,7 @@ export default function AiSolutions() {
                   href="https://www.viyaninfo.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#ffffff] transition-colors flex items-center gap-3 py-1"
+                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1"
                 >
                   <Globe className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
                   <span>www.viyaninfo.com</span>
