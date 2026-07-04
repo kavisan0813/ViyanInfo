@@ -1431,13 +1431,6 @@ export default function Home() {
   );
 }
 
-// ============================================================================
-// HELPER SUB-COMPONENTS
-// ============================================================================
-
-/**
- * Pure React CountUp animation component triggered by viewport intersection.
- */
 function CountUp({ end, duration = 2.5 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);
   const elementRef = useRef<HTMLSpanElement>(null);
@@ -1548,25 +1541,25 @@ function TestimonialCarousel() {
   );
 }
 
-interface ServiceItem {
-  icon: React.ReactNode;
-  tag: string;
-  tagColor: string;
+interface ServiceCard {
   title: string;
+  icon: React.ReactNode;
   desc: string;
-  path: string;
+  tag: string;
   bg: string;
-  gradientBorder: string;
+  tagColor: string;
   learnMoreColor: string;
   btnBg: string;
   btnDot: string;
+  gradientBorder: string;
+  path: string;
 }
 
 function HorizontalTiltCard({
   service,
   idx,
 }: {
-  service: ServiceItem;
+  service: ServiceCard;
   idx: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -1574,7 +1567,6 @@ function HorizontalTiltCard({
   const handleMouseEnter = () => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (cardRef.current) {
-      // Keep existing Y movement along with rotateY/X
       gsap.to(cardRef.current, {
         rotateY: 8,
         rotateX: -4,
