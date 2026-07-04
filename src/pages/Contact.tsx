@@ -74,9 +74,7 @@ export default function Contact() {
 
   // Entrance animations
   useLayoutEffect(() => {
-    if (!containerRef.current) return;
     const ctx = gsap.context(() => {
-      if (!ctaRef.current) return;
       // CTA reveal on scroll
       gsap.from(ctaRef.current, {
         scale: 0.95,

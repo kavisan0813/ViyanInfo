@@ -89,7 +89,6 @@ function DesignPillarsFlip() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".dp-card-inner") as HTMLElement[];
 

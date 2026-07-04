@@ -24,9 +24,9 @@ export function Menu({ isOpen, onClose }: MenuProps) {
 
   // Build the timeline once.
   useLayoutEffect(() => {
-    if (!menuRef.current) return;
     const ctx = gsap.context(() => {
-      const el = menuRef.current!;
+      const el = menuRef.current;
+      if (!el) return;
 
       const links = el.querySelectorAll(".menu-nav-link");
       const infoItems = el.querySelectorAll(".menu-info-item");

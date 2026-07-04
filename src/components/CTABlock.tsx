@@ -17,7 +17,6 @@ export function CTABlock({
   const sectionRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
-    if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
       const words = gsap.utils.toArray<HTMLElement>(".cta-word");
       gsap.from(words, {

@@ -17,7 +17,6 @@ export default function ContactMap() {
   const position: [number, number] = [13.150031, 79.917083];
 
   useLayoutEffect(() => {
-    if (!mapRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from(mapRef.current, {
         y: 120,

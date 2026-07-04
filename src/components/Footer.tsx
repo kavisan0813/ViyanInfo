@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -18,15 +18,11 @@ import img1 from "../assets/img 1.webp";
 function FooterParticles() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
 
-    let particles: HTMLDivElement[] = [];
-    let handleMouseMove: (e: MouseEvent) => void;
-
-    const ctx = gsap.context(() => {
-      // Create particles
+    // Create particles
     const particles = Array.from({ length: 30 }).map(() => {
       const el = document.createElement("div");
       const size = Math.random() * 6 + 2;
@@ -52,7 +48,7 @@ function FooterParticles() {
     });
 
     let ticking = false;
-    handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const rect = container.getBoundingClientRect();
@@ -90,10 +86,7 @@ function FooterParticles() {
     };
 
     container.addEventListener("mousemove", handleMouseMove);
-    });
-
     return () => {
-      ctx.revert();
       container.removeEventListener("mousemove", handleMouseMove);
       particles.forEach((p) => p.remove());
     };
@@ -110,14 +103,11 @@ function FooterParticles() {
 function Fireflies() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
     
-    let particles: HTMLDivElement[] = [];
-
-    const ctx = gsap.context(() => {
-      particles = Array.from({ length: 30 }).map(() => {
+    const particles = Array.from({ length: 30 }).map(() => {
       const el = document.createElement("div");
       const size = Math.random() * 3 + 1.5;
       el.className = "absolute rounded-full bg-[#fef08a] pointer-events-none z-0";
@@ -143,10 +133,7 @@ function Fireflies() {
       return el;
     });
 
-    });
-
     return () => {
-      ctx.revert();
       particles.forEach((p) => p.remove());
     };
   }, []);

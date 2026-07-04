@@ -41,46 +41,71 @@ const VALUE_BG_IMAGES: Record<string, string> = {
     "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=400&fit=crop&auto=format",
 };
 
-// Story Timeline Visual — Developer Journey
-const StoryTimelineVisual = () => {
-  const steps = [
-    {
-      title: "The Beginning",
-      desc: "Started with a passion for building modern digital products.",
-      align: "left"
-    },
-    {
-      title: "Growing Fast",
-      desc: "Expanded into AI solutions and scalable applications.",
-      align: "right"
-    },
-    {
-      title: "The Future",
-      desc: "Building enterprise-level digital ecosystems for tomorrow.",
-      align: "left"
-    }
-  ];
-
+// Our Story — Immersive Split Stack
+const StoryImmersiveSplit = () => {
   return (
-    <section className="story-section">
-      <div className="story-line"></div>
+    <section className="story-v2-section">
+      <div className="story-bg-text">VIYAN</div>
 
-      {steps.map((step, idx) => (
+      <div className="story-v2-grid">
+        {/* Left — Overlapping images */}
         <motion.div
-          key={idx}
-          className={`story-step ${step.align}`}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="story-v2-images"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="story-dot"></div>
-          <div className="story-card">
-            <h3>{step.title}</h3>
-            <p>{step.desc}</p>
+          <img
+            src="/images/story-main.jpg"
+            alt="Viyan workspace"
+            className="story-main-img"
+          />
+          <img
+            src="/images/story-side.jpg"
+            alt="Developer at work"
+            className="story-side-img"
+          />
+          <motion.div
+            className="floating-story-card"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <h4>5+</h4>
+            <p>Successful Projects</p>
+          </motion.div>
+        </motion.div>
+
+        {/* Right — Content */}
+        <motion.div
+          className="story-v2-content"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="section-tag">OUR STORY</span>
+
+          <h2>
+            Transforming Ideas Into
+            <br />
+            Digital Experiences
+          </h2>
+
+          <p>
+            We started Viyan with a vision to create impactful digital products
+            that combine innovation, creativity, and technology.
+          </p>
+
+          <div className="story-points">
+            <div className="story-point">🚀 Startup Focused</div>
+            <div className="story-point">🤖 AI Driven Innovation</div>
+            <div className="story-point">⚡ Scalable Architecture</div>
           </div>
         </motion.div>
-      ))}
+      </div>
     </section>
   );
 };
@@ -629,55 +654,8 @@ export default function About() {
 
       <SectionDivider />
 
-      {/* OUR STORY SECTION */}
-      <section className="py-24 bg-[#FAF7FF] relative">
-        <div className="container max-w-[1200px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center text-left">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-                Our Story
-              </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] mb-6 tracking-tight">
-                Engineering Digital Growth
-              </h2>
-              <p className="text-lg leading-relaxed text-[#475569] mb-6">
-                Founded with a vision to build clean, high-performance
-                applications, ViyanInfo has evolved into an agile software
-                development company. We solve architectural complexity so our
-                clients can focus entirely on scaling their core operations.
-              </p>
-              <p className="text-sm leading-relaxed text-[#475569]">
-                We partner with modern startups and forward-thinking enterprises
-                alike, building custom backends, fluid user experiences, and
-                automated intelligence layers that drive measurable digital
-                value.
-              </p>
-            </motion.div>
-
-            {/* Developer Journey Timeline */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <StoryTimelineVisual />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-      {/* 
-      <section className="py-8 bg-[#FAF7FF]">
-        <div className="container max-w-[1200px] mx-auto px-6">
-          <h3 className="text-sm font-mono text-slate-400 uppercase tracking-widest mb-4">Life at ViyanInfo</h3>
-          <TeamPhotoStrip />
-        </div>
-      </section> */}
+      {/* OUR STORY — IMMERSIVE SPLIT STACK */}
+      <StoryImmersiveSplit />
 
       <SectionDivider />
 

@@ -13,7 +13,6 @@ export function ProjectCard({
   const cardRef = useRef<HTMLAnchorElement>(null);
 
   useLayoutEffect(() => {
-    if (!cardRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from(cardRef.current, {
         clipPath: "inset(100% 0% 0% 0%)",

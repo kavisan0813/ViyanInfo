@@ -155,21 +155,7 @@ export default function Home() {
   }, []);
 
   useLayoutEffect(() => {
-    if (
-      !containerRef.current ||
-      !heroContentRef.current ||
-      !heroRef.current ||
-      !dashRef.current ||
-      !flowerRef.current ||
-      !heroBgLayerRef.current ||
-      !heroBgBlobRef.current ||
-      !servicesSectionRef.current ||
-      !servicesTrackRef.current ||
-      !servicesBlob1Ref.current ||
-      !servicesBlob2Ref.current
-    ) {
-      return;
-    }
+    if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();

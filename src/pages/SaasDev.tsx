@@ -25,8 +25,6 @@ export default function SaasDev() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (!containerRef.current || !heroContentRef.current) return;
-
     const ctx = gsap.context(() => {
       // 1. Hero Animation
       const badge = heroContentRef.current?.querySelector(".hero-badge");

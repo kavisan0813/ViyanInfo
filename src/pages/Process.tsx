@@ -12,8 +12,6 @@ export default function Process() {
   const heroContentRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (!containerRef.current || !heroContentRef.current) return;
-
     const ctx = gsap.context(() => {
       const badge = heroContentRef.current?.querySelector(".hero-badge");
       const h1Lines = gsap.utils.toArray<HTMLElement>(

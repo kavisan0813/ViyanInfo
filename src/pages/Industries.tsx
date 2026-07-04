@@ -13,8 +13,6 @@ export default function Industries() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (!containerRef.current || !heroContentRef.current) return;
-
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 

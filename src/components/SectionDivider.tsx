@@ -8,8 +8,7 @@ export function SectionDivider() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (!containerRef.current) return;
-    const divider = containerRef.current.querySelector(".divider-line");
+    const divider = containerRef.current?.querySelector(".divider-line");
     if (!divider) return;
 
     const ctx = gsap.context(() => {

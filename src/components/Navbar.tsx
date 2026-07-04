@@ -46,7 +46,6 @@ export function Navbar() {
 
   // Entrance animation (runs once)
   useLayoutEffect(() => {
-    if (!navRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from(navRef.current, {
         y: -80,
