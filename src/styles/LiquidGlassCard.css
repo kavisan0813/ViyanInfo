@@ -1,0 +1,179 @@
+/* ============================================================
+   Liquid Glass Card
+   Real refraction (SVG feDisplacementMap) + specular sweep + rim light.
+   Tokens: --accent passed inline per-card (defaults to #7B2FF7).
+   Designed for dark, image-backed sections (matches AiSolutions.tsx
+   CTA/footer background: rgba(4,6,22,...) overlay).
+   ============================================================ */
+
+.liquid-glass-card {
+  --px: 50%;
+  --py: 50%;
+  --rx: 0deg;
+  --ry: 0deg;
+  --accent: #7b2ff7;
+
+  position: relative;
+  isolation: isolate;
+  border-radius: 22px;
+  padding: 28px 26px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+
+  /* Base glass body */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 20px 60px rgba(4, 6, 22, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Refractive backdrop — the actual "liquid" distortion of whatever sits behind it */
+.liquid-glass-card__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(6px) saturate(140%) url(#liquid-glass-filter);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+}
+
+/* Rotating specular highlight, follows pointer via --px/--py custom props */
+.liquid-glass-card__specular {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    220px circle at var(--px) var(--py),
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.06) 40%,
+    transparent 70%
+  );
+  mix-blend-mode: overlay;
+  transition: background 0.15s ease-out;
+}
+
+/* Accent-tinted rim light — reinforces brand color without flattening the glass */
+.liquid-glass-card__rim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--accent) 65%, transparent),
+    transparent 35%,
+    transparent 65%,
+    color-mix(in srgb, var(--accent) 45%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.7;
+}
+
+.liquid-glass-card__content {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+
+.liquid-glass-distortion {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.liquid-glass-card:hover {
+  box-shadow:
+    0 28px 70px rgba(4, 6, 22, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 14px rgba(0, 0, 0, 0.25),
+    0 0 40px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass-card {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .liquid-glass-card {
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+}
+
+/* ============================================================
+   Light-Mode Variant
+   Add className="liquid-glass-light" to <LiquidGlassCard> for
+   light-background pages (e.g. Contact page).
+   ============================================================ */
+
+.liquid-glass-card.liquid-glass-light {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.78),
+    rgba(255, 255, 255, 0.45)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 20px 60px rgba(139, 92, 246, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 8px rgba(139, 92, 246, 0.04);
+}
+
+.liquid-glass-card.liquid-glass-light .liquid-glass-card__backdrop {
+  backdrop-filter: blur(16px) saturate(180%) url(#liquid-glass-filter);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+.liquid-glass-card.liquid-glass-light .liquid-glass-card__specular {
+  background: radial-gradient(
+    220px circle at var(--px) var(--py),
+    rgba(139, 92, 246, 0.15),
+    rgba(255, 255, 255, 0.12) 40%,
+    transparent 70%
+  );
+  mix-blend-mode: normal;
+}
+
+.liquid-glass-card.liquid-glass-light .liquid-glass-card__rim {
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--accent) 40%, transparent),
+    transparent 35%,
+    transparent 65%,
+    color-mix(in srgb, var(--accent) 30%, transparent)
+  );
+  opacity: 0.55;
+}
+
+.liquid-glass-card.liquid-glass-light .liquid-glass-card__content {
+  color: #1a1a2e;
+}
+
+.liquid-glass-card.liquid-glass-light:hover {
+  box-shadow:
+    0 28px 70px rgba(139, 92, 246, 0.14),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 10px rgba(139, 92, 246, 0.06),
+    0 0 40px color-mix(in srgb, var(--accent) 15%, transparent);
+}

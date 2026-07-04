@@ -13,6 +13,7 @@ export function CredibilitySection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
+    if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {

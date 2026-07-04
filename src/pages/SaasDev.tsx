@@ -5,6 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { CTABlock } from "../components/CTABlock";
 import { SectionDivider } from "../components/SectionDivider";
+import { LiquidFooter } from "../components/LiquidFooter";
 import { Database, ShieldCheck, CreditCard, Activity, Cpu } from "lucide-react";
 
 import saasHero from "../assets/saas_hero_server.webp";
@@ -24,6 +25,8 @@ export default function SaasDev() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (!containerRef.current || !heroContentRef.current) return;
+
     const ctx = gsap.context(() => {
       // 1. Hero Animation
       const badge = heroContentRef.current?.querySelector(".hero-badge");
@@ -97,7 +100,7 @@ export default function SaasDev() {
       {/* 1. NEW HERO SECTION */}
       <section
         ref={heroRef}
-        className="relative pt-32 pb-20 overflow-hidden min-h-[85vh] flex items-center"
+        className="relative pt-24 pb-20 overflow-hidden min-h-[85vh] flex items-center"
       >
         {/* Background Atmosphere */}
         <div className="absolute inset-0 bg-void z-0"></div>
@@ -443,6 +446,7 @@ export default function SaasDev() {
         title="Building the next big SaaS?"
         subtitle="Let's architect a platform that scales with your ambition."
       />
+      <LiquidFooter />
     </div>
   );
 }

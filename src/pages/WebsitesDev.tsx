@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { LiquidFooter } from "../components/LiquidFooter";
 import {
   Sparkles,
   Layers,
@@ -9,20 +10,26 @@ import {
   Maximize,
   ArrowRight,
   Database,
-  Linkedin,
-  Instagram,
-  Facebook,
-  Github,
-  Mail,
-  Phone,
-  MapPin,
   Globe,
 } from "lucide-react";
-import { TechBadge } from "../components/TechBadge";
 import { SectionDivider } from "../components/SectionDivider";
-import logo1 from "../assets/Logoimage.svg";
 import webdevImg from "../assets/webdev img.webp";
-import { WebAppHeroMockup,CodeRainBg } from "../components/WebAppHeroMockup";
+import { WebBg, LaptopMockup } from "../components/WebVisuals";
+
+const techStack = [
+  { n: "React 19", c: "#61DAFB" },
+  { n: "Next.js", c: "#0F172A" },
+  { n: "TypeScript", c: "#3178C6" },
+  { n: "Tailwind", c: "#06B6D4" },
+  { n: "GSAP", c: "#88CE02" },
+  { n: "Three.js", c: "#0F172A" },
+  { n: "Framer", c: "#FF0055" },
+  { n: "Vite", c: "#BD34FE" },
+  { n: "Node.js", c: "#339933" },
+  { n: "PostgreSQL", c: "#4169E1" },
+  { n: "Redis", c: "#DC382D" },
+  { n: "Docker", c: "#2496ED" },
+];
 
 // Browser illustration removed in favor of WebAppHeroMockup
 
@@ -31,46 +38,94 @@ export default function WebsitesDev() {
 
   return (
     <div className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden">
-      
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <CodeRainBg />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.04)_0%,transparent_60%)] pointer-events-none" />
-        <div className="container max-w-[1240px] mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            
-            {/* Left Box: Headline */}
+      <section className="relative z-10 pt-28 pb-16 overflow-hidden">
+        <WebBg />
+        <div className="container relative z-10 max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-6 text-left"
             >
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-[#3B82F6] text-xs font-semibold uppercase tracking-wider mb-6">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Web Application Services</span>
+              <span
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-widest mb-6"
+                style={{
+                  background: "rgba(6,182,212,.1)",
+                  border: "1px solid rgba(6,182,212,.3)",
+                  color: "#67E8F9",
+                }}
+              >
+                <Globe size={11} /> Web Applications
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
-                Build Modern <br />
-                <span className="bg-gradient-to-r from-[#3B82F6] via-blue-600 to-indigo-600 bg-clip-text text-transparent">Web Experiences</span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold leading-[1.1] tracking-tight mb-5">
+                <span className="text-white" style={{ color: "#ffffff" }}>
+                  Blazing-fast
+                </span>{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(90deg,#06B6D4,#3B82F6)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  web experiences
+                </span>
               </h1>
-              <p className="text-base sm:text-lg leading-relaxed text-slate-600 max-w-xl mb-8">
-                Scalable, secure, and high-performance web applications engineered for growth. We combine modern engineering workflows with next-gen architectures.
+              <p className="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
+                React, Next.js, and TypeScript apps built with atomic design
+                systems, cinematic GSAP animations, and lighthouse-perfect
+                performance scores.
               </p>
-              <div className="flex gap-4">
-                <a href="#contactform">
-                  <button className="px-6 py-3.5 bg-[#7B2FF7] hover:bg-[#9333EA] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-colors cursor-pointer">
-                    Start Project
-                  </button>
-                </a>
+              <div className="flex flex-wrap gap-4 mb-8">
+                <Link to="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    className="px-7 py-3.5 rounded-full text-sm font-bold text-white cursor-pointer"
+                    style={{
+                      background: "linear-gradient(135deg,#06B6D4,#3B82F6)",
+                      boxShadow: "0 0 32px rgba(6,182,212,.4)",
+                    }}
+                  >
+                    Start Your Web Project →
+                  </motion.button>
+                </Link>
+                <Link to="/portfolio">
+                  <motion.button
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    className="px-7 py-3.5 rounded-full text-sm font-bold border border-white/15 text-slate-300 cursor-pointer"
+                    style={{
+                      background: "rgba(255,255,255,0.05)",
+                      backdropFilter: "blur(12px)",
+                    }}
+                  >
+                    See Case Studies
+                  </motion.button>
+                </Link>
+              </div>
+              {/* Quick stats */}
+              <div className="flex gap-6 flex-wrap">
+                {[
+                  { v: "50+", l: "Sites shipped" },
+                  { v: "98", l: "Avg Lighthouse" },
+                  { v: "<50ms", l: "TTFB" },
+                ].map((s) => (
+                  <div key={s.l}>
+                    <div className="text-xl font-black text-white">{s.v}</div>
+                    <div className="text-[10px] text-slate-500 uppercase tracking-wider">
+                      {s.l}
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
-            
-            {/* Right Box: Laptop Mockup */}
-            <div className="lg:col-span-6">
-              <WebAppHeroMockup />
-            </div>
-
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <LaptopMockup />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -88,12 +143,12 @@ export default function WebsitesDev() {
               Modern Engineering Layers
             </h2>
             <p className="text-base sm:text-lg text-slate-500">
-              We design modular architectures for fast response, high safety thresholds, and robust scalability.
+              We design modular architectures for fast response, high safety
+              thresholds, and robust scalability.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
             {/* Left: Frontend Development */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -109,22 +164,37 @@ export default function WebsitesDev() {
                 Frontend Development
               </h3>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                We craft fluid, components-driven web frontends focusing on pixel-perfect designs, light bundles, and instantaneous page loadings.
+                We craft fluid, components-driven web frontends focusing on
+                pixel-perfect designs, light bundles, and instantaneous page
+                loadings.
               </p>
-              
+
               <div className="flex flex-col gap-3.5 mb-8">
                 {[
-                  { name: "React", desc: "For dynamic component nesting and solid state flows." },
-                  { name: "Next.js", desc: "For static serverless functions and optimized server rendering." },
-                  { name: "TypeScript", desc: "For compile-time type-safety and codebase reliability." }
+                  {
+                    name: "React",
+                    desc: "For dynamic component nesting and solid state flows.",
+                  },
+                  {
+                    name: "Next.js",
+                    desc: "For static serverless functions and optimized server rendering.",
+                  },
+                  {
+                    name: "TypeScript",
+                    desc: "For compile-time type-safety and codebase reliability.",
+                  },
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-3 items-start">
                     <div className="w-5 h-5 rounded-full bg-blue-50 text-[#3B82F6] flex items-center justify-center mt-0.5 shrink-0 border border-blue-100">
                       <span className="text-[10px] font-bold">✓</span>
                     </div>
                     <div>
-                      <span className="font-bold text-slate-800 text-sm block">{item.name}</span>
-                      <span className="text-xs text-slate-400">{item.desc}</span>
+                      <span className="font-bold text-slate-800 text-sm block">
+                        {item.name}
+                      </span>
+                      <span className="text-xs text-slate-400">
+                        {item.desc}
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -146,28 +216,41 @@ export default function WebsitesDev() {
                 Backend Development
               </h3>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                We implement fast, scalable backends supporting heavy database transactions, third-party hooks, and concurrent client requests.
+                We implement fast, scalable backends supporting heavy database
+                transactions, third-party hooks, and concurrent client requests.
               </p>
-              
+
               <div className="flex flex-col gap-3.5 mb-8">
                 {[
-                  { name: "Node.js", desc: "For sub-second event loop handling and fast API runtimes." },
-                  { name: "Python", desc: "For robust logic workflows and ML integration." },
-                  { name: "Django", desc: "For secure schemas, migrations, and database administration." }
+                  {
+                    name: "Node.js",
+                    desc: "For sub-second event loop handling and fast API runtimes.",
+                  },
+                  {
+                    name: "Python",
+                    desc: "For robust logic workflows and ML integration.",
+                  },
+                  {
+                    name: "Django",
+                    desc: "For secure schemas, migrations, and database administration.",
+                  },
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-3 items-start">
                     <div className="w-5 h-5 rounded-full bg-purple-50 text-[#7B2FF7] flex items-center justify-center mt-0.5 shrink-0 border border-purple-100">
                       <span className="text-[10px] font-bold">✓</span>
                     </div>
                     <div>
-                      <span className="font-bold text-slate-800 text-sm block">{item.name}</span>
-                      <span className="text-xs text-slate-400">{item.desc}</span>
+                      <span className="font-bold text-slate-800 text-sm block">
+                        {item.name}
+                      </span>
+                      <span className="text-xs text-slate-400">
+                        {item.desc}
+                      </span>
                     </div>
                   </div>
                 ))}
               </div>
             </motion.div>
-
           </div>
         </div>
       </section>
@@ -183,7 +266,8 @@ export default function WebsitesDev() {
               Engineered For Results
             </h2>
             <p className="text-base sm:text-lg text-slate-500">
-              Why clients partner with ViyanInfo to launch their core web systems.
+              Why clients partner with ViyanInfo to launch their core web
+              systems.
             </p>
           </div>
 
@@ -197,7 +281,7 @@ export default function WebsitesDev() {
                 bgBase: "rgba(59,130,246,0.08)",
                 bgHover: "rgba(59,130,246,0.92)",
                 borderHover: "rgba(59,130,246,0.55)",
-                shadowHover: "0 12px 32px rgba(59,130,246,0.14)"
+                shadowHover: "0 12px 32px rgba(59,130,246,0.14)",
               },
               {
                 title: "SEO Friendly",
@@ -207,7 +291,7 @@ export default function WebsitesDev() {
                 bgBase: "rgba(16,185,129,0.08)",
                 bgHover: "rgba(16,185,129,0.92)",
                 borderHover: "rgba(16,185,129,0.55)",
-                shadowHover: "0 12px 32px rgba(16,185,129,0.14)"
+                shadowHover: "0 12px 32px rgba(16,185,129,0.14)",
               },
               {
                 title: "Responsive Layouts",
@@ -217,7 +301,7 @@ export default function WebsitesDev() {
                 bgBase: "rgba(244,63,94,0.08)",
                 bgHover: "rgba(244,63,94,0.92)",
                 borderHover: "rgba(244,63,94,0.55)",
-                shadowHover: "0 12px 32px rgba(244,63,94,0.14)"
+                shadowHover: "0 12px 32px rgba(244,63,94,0.14)",
               },
               {
                 title: "Scalable Logic",
@@ -227,64 +311,76 @@ export default function WebsitesDev() {
                 bgBase: "rgba(123,47,247,0.08)",
                 bgHover: "rgba(123,47,247,0.92)",
                 borderHover: "rgba(123,47,247,0.55)",
-                shadowHover: "0 12px 32px rgba(123,47,247,0.14)"
-              }
+                shadowHover: "0 12px 32px rgba(123,47,247,0.14)",
+              },
             ].map((benefit, idx) => {
               const isHovered = hoveredIdx === idx;
               const Icon = benefit.Icon;
               return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="h-full"
-              >
-                <div
-                  className="feature-card"
-                  onMouseEnter={() => setHoveredIdx(idx)}
-                  onMouseLeave={() => setHoveredIdx(null)}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    borderRadius: '14px',
-                    padding: '24px 20px',
-                    background: '#ffffff',
-                    height: isHovered ? 'calc(100% + 12px)' : '100%',
-                    transform: isHovered ? 'translateY(-16px)' : 'translateY(0px)',
-                    transition: 'height 0.35s cubic-bezier(0.34,1.56,0.64,1), transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.22s ease, box-shadow 0.22s ease',
-                    willChange: 'transform, height',
-                    border: `1px solid ${isHovered ? benefit.borderHover : 'rgba(241, 245, 249, 1)'}`,
-                    boxShadow: isHovered ? benefit.shadowHover : '0 1px 2px 0 rgba(0,0,0,0.05)'
-                  }}
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="h-full"
                 >
-                  <div 
+                  <div
+                    className="feature-card"
+                    onMouseEnter={() => setHoveredIdx(idx)}
+                    onMouseLeave={() => setHoveredIdx(null)}
                     style={{
-                      width: '48px',
-                      height: '48px',
-                      borderRadius: '16px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '24px',
-                      background: isHovered ? benefit.bgHover : benefit.bgBase,
-                      transition: 'background 0.22s ease'
+                      display: "flex",
+                      flexDirection: "column",
+                      borderRadius: "14px",
+                      padding: "24px 20px",
+                      background: "#ffffff",
+                      height: isHovered ? "calc(100% + 12px)" : "100%",
+                      transform: isHovered
+                        ? "translateY(-16px)"
+                        : "translateY(0px)",
+                      transition:
+                        "height 0.35s cubic-bezier(0.34,1.56,0.64,1), transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.22s ease, box-shadow 0.22s ease",
+                      willChange: "transform, height",
+                      border: `1px solid ${isHovered ? benefit.borderHover : "rgba(241, 245, 249, 1)"}`,
+                      boxShadow: isHovered
+                        ? benefit.shadowHover
+                        : "0 1px 2px 0 rgba(0,0,0,0.05)",
                     }}
                   >
-                    <Icon 
-                      className="w-6 h-6" 
-                      style={{ 
-                        color: isHovered ? '#ffffff' : benefit.baseColor,
-                        transition: 'color 0.22s ease'
-                      }} 
-                    />
+                    <div
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "16px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: "24px",
+                        background: isHovered
+                          ? benefit.bgHover
+                          : benefit.bgBase,
+                        transition: "background 0.22s ease",
+                      }}
+                    >
+                      <Icon
+                        className="w-6 h-6"
+                        style={{
+                          color: isHovered ? "#ffffff" : benefit.baseColor,
+                          transition: "color 0.22s ease",
+                        }}
+                      />
+                    </div>
+                    <h3 className="text-base sm:text-lg font-display font-bold text-slate-900 mb-3">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm leading-relaxed text-slate-500">
+                      {benefit.desc}
+                    </p>
                   </div>
-                  <h3 className="text-base sm:text-lg font-display font-bold text-slate-900 mb-3">{benefit.title}</h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-500">{benefit.desc}</p>
-                </div>
-              </motion.div>
-            )})}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -300,7 +396,8 @@ export default function WebsitesDev() {
               Web Applications Showcase
             </h2>
             <p className="text-base sm:text-lg text-slate-500">
-              Browse successful custom applications we have engineered and launched.
+              Browse successful custom applications we have engineered and
+              launched.
             </p>
           </div>
 
@@ -326,7 +423,7 @@ export default function WebsitesDev() {
                 tag: "System Tooling",
                 accentColor: "#06B6D4",
                 glowColor: "rgba(6, 182, 212, 0.08)",
-              }
+              },
             ].map((project, idx) => (
               <motion.div
                 key={idx}
@@ -334,7 +431,10 @@ export default function WebsitesDev() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.08 }}
-                whileHover={{ y: -6, boxShadow: `0 20px 40px ${project.glowColor}` }}
+                whileHover={{
+                  y: -6,
+                  boxShadow: `0 20px 40px ${project.glowColor}`,
+                }}
                 className="p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between h-full transition-all duration-300 relative group"
               >
                 <div>
@@ -348,7 +448,7 @@ export default function WebsitesDev() {
                     {project.desc}
                   </p>
                 </div>
-                
+
                 <div className="pt-4 border-t border-slate-200/50 flex items-center justify-between">
                   <span className="text-xs font-bold text-[#7B2FF7] flex items-center gap-1 group-hover:gap-1.5 transition-all">
                     View Case Study <ArrowRight className="w-3.5 h-3.5" />
@@ -360,37 +460,33 @@ export default function WebsitesDev() {
         </div>
       </section>
 
-      {/* TECHNOLOGY SHOWCASE SECTION */}
-      <section className="py-24 bg-[#FAF7FF]">
-        <div className="container max-w-[1000px] mx-auto px-6 text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-[#3B82F6] text-xs font-semibold uppercase tracking-wider mb-4">
-            Tech Ecosystem
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight mb-4">
-            Interactive Stack Showcase
+      {/* TECH STACK */}
+      <section className="relative z-10 py-24 bg-[#FAF7FF]">
+        <div className="container max-w-[960px] mx-auto px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 mb-4">
+            Our Web Tech Stack
           </h2>
-          <p className="text-base sm:text-lg text-slate-500 mb-12">
-            Hover over elements to see how we configure our web tech stacks.
+          <p className="text-slate-500 text-base sm:text-lg mb-12">
+            Modern tools, proven in production.
           </p>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              { name: "React", glow: "rgba(59, 130, 246, 0.15)" },
-              { name: "Next.js", glow: "rgba(15, 23, 42, 0.15)" },
-              { name: "TypeScript", glow: "rgba(37, 99, 235, 0.15)" },
-              { name: "Node.js", glow: "rgba(34, 197, 94, 0.15)" },
-              { name: "Python", glow: "rgba(59, 130, 246, 0.15)" },
-              { name: "Django", glow: "rgba(16, 185, 129, 0.15)" },
-              { name: "TailwindCSS", glow: "rgba(6, 182, 212, 0.15)" },
-              { name: "GSAP", glow: "rgba(123, 47, 247, 0.15)" },
-              { name: "PostgreSQL", glow: "rgba(37, 99, 235, 0.15)" },
-            ].map((tech, i) => (
+          <div className="flex flex-wrap justify-center gap-3">
+            {techStack.map((t, i) => (
               <motion.div
-                key={i}
-                whileHover={{ scale: 1.05, y: -2, boxShadow: `0 10px 25px ${tech.glow}` }}
-                className="bg-white border border-slate-100 rounded-2xl px-6 py-4 cursor-default shadow-xs transition-all duration-300"
+                key={t.n}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                whileHover={{ scale: 1.1, y: -4 }}
+                className="px-5 py-2.5 rounded-xl text-sm font-semibold cursor-default"
+                style={{
+                  background: "#ffffff",
+                  border: `1px solid ${t.c}25`,
+                  color: t.c,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
+                }}
               >
-                <TechBadge name={tech.name} />
+                {t.n}
               </motion.div>
             ))}
           </div>
@@ -409,15 +505,16 @@ export default function WebsitesDev() {
         }}
       >
         {/* Dark Cinematic Overlay */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none z-0"
           style={{
-            background: "linear-gradient(to bottom, rgba(8, 6, 20, 0.15), rgba(8, 6, 20, 0.55), rgba(8, 6, 20, 0.82))"
+            background:
+              "linear-gradient(to bottom, rgba(8, 6, 20, 0.15), rgba(8, 6, 20, 0.55), rgba(8, 6, 20, 0.82))",
           }}
         />
 
         {/* Parallax / Floating subtle motion on background can be achieved by the scroll fade up */}
-        
+
         {/* TOP AREA: CTA OVERLAY */}
         <div className="relative z-10 flex flex-col items-center justify-center text-center pt-16 pb-12 px-6 mt-4 md:mt-8">
           <motion.div
@@ -431,21 +528,23 @@ export default function WebsitesDev() {
               Ready to build something amazing?
             </h2>
             <p className="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto drop-shadow-md">
-              Let's engineer a custom web application that scales seamlessly with your business.
+              Let's engineer a custom web application that scales seamlessly
+              with your business.
             </p>
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <Link to="/contact">
-                <button 
+                <button
                   className="px-8 py-4 rounded-full text-white font-bold text-base md:text-lg transition-all duration-350"
                   style={{
                     background: "linear-gradient(135deg, #7c3aed, #9333ea)",
-                    boxShadow: "0 0 30px rgba(147, 51, 234, 0.45)"
+                    boxShadow: "0 0 30px rgba(147, 51, 234, 0.45)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-4px) scale(1.03)";
+                    e.currentTarget.style.transform =
+                      "translateY(-4px) scale(1.03)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "translateY(0) scale(1)";
@@ -459,171 +558,7 @@ export default function WebsitesDev() {
         </div>
 
         {/* BOTTOM AREA: GLASSMORPHISM FOOTER */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="relative z-10 w-[94%] md:w-[88%] max-w-[1450px] mx-auto mt-[70px] mb-10 rounded-[32px] p-8 md:p-[50px_60px]"
-          style={{
-            background: "rgba(255, 255, 255, 0.1)",
-            backdropFilter: "blur(18px)",
-            WebkitBackdropFilter: "blur(18px)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            boxShadow: "0 8px 40px rgba(0, 0, 0, 0.25), 0 0 60px rgba(255, 255, 255, 0.05)",
-          }}
-        >
-          {/* Gentle footer glass glow pulse */}
-          <motion.div
-            className="absolute inset-0 rounded-[32px] pointer-events-none"
-            animate={{ boxShadow: ["inset 0 0 0px rgba(124,58,237,0)", "inset 0 0 40px rgba(124,58,237,0.15)", "inset 0 0 0px rgba(124,58,237,0)"] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          />
-
-          <div>
-            {/* 4-COLUMN FOOTER GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[50px] text-center md:text-left mb-12">
-              {/* Column 1: Company Info */}
-              <div className="flex flex-col items-center md:items-start gap-5">
-                <Link to="/" className="block w-fit">
-                  <img
-                    src={logo1}
-                    alt="ViyanInfo"
-                    className="h-10 w-auto object-contain select-none"
-                  />
-                </Link>
-
-                <p className="text-sm leading-relaxed text-[rgba(255,255,255,0.82)] max-w-xs">
-                  Building scalable software, AI solutions, and digital products
-                  that help businesses grow faster and operate smarter.
-                </p>
-
-                {/* Social Icons */}
-                <div className="flex gap-4 mt-2">
-                  {[
-                    { icon: <Linkedin className="w-[18px] h-[18px]" />, href: "https://linkedin.com", label: "LinkedIn" },
-                    { icon: <Github className="w-[18px] h-[18px]" />, href: "https://github.com", label: "GitHub" },
-                    { icon: <Instagram className="w-[18px] h-[18px]" />, href: "https://instagram.com", label: "Instagram" },
-                    { icon: <Facebook className="w-[18px] h-[18px]" />, href: "https://facebook.com", label: "Facebook" },
-                  ].map((social, sIdx) => (
-                    <a
-                      key={sIdx}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-white transition-all duration-350"
-                      style={{
-                        background: "rgba(255,255,255,0.08)",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "rgba(168, 85, 247, 0.4)";
-                        e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.4)";
-                        e.currentTarget.style.boxShadow = "0 0 22px rgba(168,85,247,0.45)";
-                        e.currentTarget.style.transform = "translateY(-4px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                        e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
-                        e.currentTarget.style.boxShadow = "none";
-                        e.currentTarget.style.transform = "translateY(0)";
-                      }}
-                    >
-                      {social.icon}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Column 2: Services */}
-              <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
-                  Services
-                </span>
-                {[
-                  { label: "Custom Software Development", path: "/services" },
-                  { label: "Web Applications", path: "/services/websites" },
-                  { label: "Mobile Applications", path: "/services/mobile" },
-                  { label: "AI Solutions", path: "/services" },
-                  { label: "UI/UX Design", path: "/services" },
-                  { label: "Internship Programs", path: "/internship" },
-                ].map((link, lIdx) => (
-                  <Link
-                    key={lIdx}
-                    to={link.path}
-                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 block py-1"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-
-              {/* Column 3: Resources */}
-              <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
-                  Resources
-                </span>
-                {[
-                  { label: "Portfolio", path: "/portfolio" },
-                  { label: "Case Studies", path: "/portfolio" },
-                  { label: "Careers", path: "/careers" },
-                  { label: "Blog", path: "/blog" },
-                  { label: "Technology Stack", path: "/tech-stack" },
-                  { label: "Contact", path: "/contact" },
-                ].map((link, lIdx) => (
-                  <Link
-                    key={lIdx}
-                    to={link.path}
-                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 block py-1"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-
-              {/* Column 4: Contact */}
-              <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
-                  Contact
-                </span>
-                
-                <a href="mailto:admin@viyaninfo.com" className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1">
-                  <Mail className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
-                  <span>admin@viyaninfo.com</span>
-                </a>
-
-                <a href="tel:+916379723465" className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1">
-                  <Phone className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
-                  <span>+91 6379723465</span>
-                </a>
-
-                <span className="text-sm text-[rgba(255,255,255,0.82)] flex items-start gap-3 py-1">
-                  <MapPin className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)] mt-0.5" />
-                  <span>Tiruvallur, Tamil Nadu</span>
-                </span>
-
-                <a href="https://www.viyaninfo.com" target="_blank" rel="noopener noreferrer" className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1">
-                  <Globe className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
-                  <span>www.viyaninfo.com</span>
-                </a>
-              </div>
-            </div>
-
-            {/* BOTTOM BAR */}
-            <div className="h-px bg-[rgba(255,255,255,0.12)] w-full mb-6" />
-
-            <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 text-xs text-[rgba(255,255,255,0.62)]">
-              <p>© 2026 ViyanInfo. All rights reserved.</p>
-
-              <div className="flex flex-wrap gap-5 justify-center">
-                <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-                <Link to="/about" className="hover:text-white transition-colors">Cookie Policy</Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        <LiquidFooter />
       </section>
     </div>
   );

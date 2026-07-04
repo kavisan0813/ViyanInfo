@@ -24,6 +24,7 @@ import { burst } from "../utils/particleBurst";
 import astronautImg from "../assets/Astronaut.webp";
 import visionImg from "../assets/Vision.png";
 import saturnimage from "../assets/Saturn.webp";
+import { BackgroundEffects } from "../components/BackgroundEffects";
 
 export default function Home() {
   const ctaContainerRef = useRef<HTMLDivElement>(null);
@@ -154,7 +155,21 @@ export default function Home() {
   }, []);
 
   useLayoutEffect(() => {
-    if (!containerRef.current) return;
+    if (
+      !containerRef.current ||
+      !heroContentRef.current ||
+      !heroRef.current ||
+      !dashRef.current ||
+      !flowerRef.current ||
+      !heroBgLayerRef.current ||
+      !heroBgBlobRef.current ||
+      !servicesSectionRef.current ||
+      !servicesTrackRef.current ||
+      !servicesBlob1Ref.current ||
+      !servicesBlob2Ref.current
+    ) {
+      return;
+    }
 
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
@@ -407,11 +422,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={containerRef} className="bg-abyss">
+    <div ref={containerRef} className="bg-abyss relative">
+      <BackgroundEffects />
       {/* SECTION 1 - HERO (UNTOUCHED) */}
       <section
         ref={heroRef}
-        className="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center overflow-hidden bg-[#F8F5FF]"
+        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#F8F5FF]"
       >
         {/* Content */}
         <div ref={heroContentRef} className="container-fluid relative z-10">
@@ -1546,7 +1562,27 @@ function TestimonialCarousel() {
   );
 }
 
-function HorizontalTiltCard({ service, idx }: { service: any; idx: number }) {
+interface ServiceItem {
+  icon: React.ReactNode;
+  tag: string;
+  tagColor: string;
+  title: string;
+  desc: string;
+  path: string;
+  bg: string;
+  gradientBorder: string;
+  learnMoreColor: string;
+  btnBg: string;
+  btnDot: string;
+}
+
+function HorizontalTiltCard({
+  service,
+  idx,
+}: {
+  service: ServiceItem;
+  idx: number;
+}) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = () => {
@@ -1593,7 +1629,7 @@ function HorizontalTiltCard({ service, idx }: { service: any; idx: number }) {
   };
 
   return (
-    <div className="service-card shrink-0" style={{ perspective: "1000px" }}>
+    <div className="shrink-0" style={{ perspective: "1000px" }}>
       <motion.div
         ref={cardRef}
         initial={{ opacity: 0, y: 30 }}
@@ -1603,7 +1639,7 @@ function HorizontalTiltCard({ service, idx }: { service: any; idx: number }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{ perspective: 1200, transformStyle: "preserve-3d" }}
-        className="group relative w-full lg:w-[400px] h-full p-8 rounded-3xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[0_8px_30px_rgba(123,47,247,0.02)] hover:shadow-[0_20px_50px_rgba(123,47,247,0.08)] transition-all duration-500 flex flex-col justify-between overflow-hidden cursor-pointer"
+        className="service-card group w-full lg:w-[400px] h-full p-8 flex flex-col justify-between cursor-pointer"
       >
         {/* Dynamic Background Glow */}
         <div

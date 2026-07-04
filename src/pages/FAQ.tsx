@@ -2,6 +2,7 @@ import { useState, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ChevronDown } from "lucide-react";
 import { CTABlock } from "../components/CTABlock";
+import { LiquidFooter } from "../components/LiquidFooter";
 
 const faqs = [
   {
@@ -46,6 +47,7 @@ export default function FAQ() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (!containerRef.current || !heroContentRef.current || !faqRef.current) return;
     const ctx = gsap.context(() => {
       const h1Lines = gsap.utils.toArray<HTMLElement>(
         ".line-inner",
@@ -78,7 +80,7 @@ export default function FAQ() {
   return (
     <div ref={containerRef} className="bg-abyss">
       {/* Hero */}
-      <section ref={heroRef} className="relative pt-8 pb-12 overflow-hidden">
+      <section ref={heroRef} className="relative pt-24 pb-12 overflow-hidden">
         <div className="orb w-[600px] h-[600px] bg-[radial-gradient(circle,var(--color-surface)_0%,transparent_60%)] opacity-60 top-0 left-1/2 -translate-x-1/2 z-0"></div>
         <div
           ref={heroContentRef}
@@ -113,6 +115,7 @@ export default function FAQ() {
       </section>
 
       <CTABlock title="Still have questions?" subtitle="We're happy to talk." />
+      <LiquidFooter />
     </div>
   );
 }
@@ -133,6 +136,7 @@ function FAQItem({
   const iconRef = useRef<SVGSVGElement>(null);
 
   useLayoutEffect(() => {
+    if (!itemRef.current || !panelRef.current || !iconRef.current) return;
     const ctx = gsap.context(() => {
       if (isOpen) {
         gsap.set(panelRef.current, { height: "auto", overflow: "hidden" });

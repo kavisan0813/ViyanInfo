@@ -14,7 +14,10 @@ export function WebAppHeroMockup() {
   }, []);
 
   return (
-    <div className="relative w-full max-w-[520px] mx-auto select-none" aria-hidden="true">
+    <div
+      className="relative w-full max-w-[520px] mx-auto select-none"
+      aria-hidden="true"
+    >
       {/* Glow behind laptop */}
       <div className="absolute inset-0 bg-[#7B2FF7]/10 blur-3xl rounded-full scale-75 translate-y-8" />
 
@@ -49,7 +52,10 @@ export function WebAppHeroMockup() {
             </div>
 
             {/* Screen content — scrolling dashboard */}
-            <div className="bg-[#fafafa] overflow-hidden relative" style={{ height: "calc(100% - 28px)" }}>
+            <div
+              className="bg-[#fafafa] overflow-hidden relative"
+              style={{ height: "calc(100% - 28px)" }}
+            >
               {/* Shimmer overlay */}
               {shimmer && (
                 <motion.div
@@ -63,7 +69,12 @@ export function WebAppHeroMockup() {
               {/* Simulated scrolling content */}
               <motion.div
                 animate={{ y: [0, -120, 0] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  repeatDelay: 2,
+                }}
               >
                 {/* Navbar */}
                 <div className="flex items-center justify-between px-4 py-2 border-b border-slate-100">
@@ -90,7 +101,10 @@ export function WebAppHeroMockup() {
                       className="flex-1 rounded-lg p-2 border border-slate-100"
                       style={{ background: `${color}08` }}
                     >
-                      <div className="w-full h-2 rounded mb-1" style={{ background: `${color}30` }} />
+                      <div
+                        className="w-full h-2 rounded mb-1"
+                        style={{ background: `${color}30` }}
+                      />
                       <div className="w-2/3 h-1.5 rounded bg-slate-200" />
                     </div>
                   ))}
@@ -116,7 +130,10 @@ export function WebAppHeroMockup() {
 
                 {/* Table rows */}
                 {[1, 2, 3, 4].map((row) => (
-                  <div key={row} className="flex items-center gap-3 px-4 py-2 border-b border-slate-50">
+                  <div
+                    key={row}
+                    className="flex items-center gap-3 px-4 py-2 border-b border-slate-50"
+                  >
                     <div className="w-6 h-6 rounded-full bg-slate-100" />
                     <div className="flex-1 h-2 rounded bg-slate-100" />
                     <div className="w-12 h-2 rounded bg-[#7B2FF7]/20" />
@@ -148,8 +165,12 @@ export function WebAppHeroMockup() {
             <span className="text-sm font-black text-emerald-600">98</span>
           </div>
           <div>
-            <div className="text-[9px] font-bold text-slate-700">Lighthouse</div>
-            <div className="text-[8px] text-emerald-600 font-semibold">Performance</div>
+            <div className="text-[9px] font-bold text-slate-700">
+              Lighthouse
+            </div>
+            <div className="text-[8px] text-emerald-600 font-semibold">
+              Performance
+            </div>
           </div>
         </motion.div>
       </motion.div>
@@ -168,8 +189,12 @@ export function WebAppHeroMockup() {
         >
           <div className="w-2 h-2 rounded-full bg-[#7B2FF7] animate-pulse" />
           <div>
-            <div className="text-[9px] font-bold text-slate-700">Core Web Vitals</div>
-            <div className="text-[8px] text-[#7B2FF7] font-semibold">All green ✓</div>
+            <div className="text-[9px] font-bold text-slate-700">
+              Core Web Vitals
+            </div>
+            <div className="text-[8px] text-[#7B2FF7] font-semibold">
+              All green ✓
+            </div>
           </div>
         </motion.div>
       </motion.div>
@@ -209,7 +234,9 @@ export function TechStackGrid() {
           >
             {tech.name.slice(0, 2)}
           </div>
-          <span className="text-[9px] font-semibold text-slate-500">{tech.name}</span>
+          <span className="text-[9px] font-semibold text-slate-500">
+            {tech.name}
+          </span>
         </motion.div>
       ))}
     </div>
@@ -226,8 +253,8 @@ export function CodeRainBg() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const W = canvas.width = canvas.offsetWidth;
-    const H = canvas.height = canvas.offsetHeight;
+    const W = (canvas.width = canvas.offsetWidth);
+    const H = (canvas.height = canvas.offsetHeight);
     const cols = Math.floor(W / 18);
     const drops = Array(cols).fill(1);
     const chars = "01アイウエオカキクケコ</>{}[]";

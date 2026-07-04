@@ -9,11 +9,7 @@ import {
   Brain,
   Database,
   Palette,
-  Briefcase,
   Award,
-  Users,
-  Star,
-  Target,
   ClipboardList,
   FileQuestion,
   Clock,
@@ -24,98 +20,16 @@ import {
 import { AiOutlinePython } from "react-icons/ai";
 import { SectionDivider } from "../components/SectionDivider";
 import { CTABlock } from "../components/CTABlock";
-import "../components/ExpertiseSection.css";
+import {
+  InternshipSkillTree,
+  InternTestimonials,
+  InternshipHeroBg,
+  LearningTrackCards,
+} from "../components/InternshipVisuals";
+import "../styles/ExpertiseSection.css";
 import "../index.css";
 
 // Abstract illustration of students collaborating
-const StudentsCollaborationIllustration = () => (
-  <div className="relative w-full aspect-square max-w-[480px] mx-auto flex items-center justify-center">
-    {/* Floating Orbits */}
-    <motion.div
-      animate={{ rotate: 360 }}
-      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-      className="absolute w-80 h-80 rounded-full border border-purple-500/10 border-dashed"
-    />
-    <motion.div
-      animate={{ rotate: -360 }}
-      transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-      className="absolute w-[420px] h-[420px] rounded-full border border-indigo-500/5"
-    />
-
-    {/* Glowing particles */}
-    <div className="absolute w-56 h-56 bg-purple-500/10 rounded-full blur-3xl top-10 left-10"></div>
-    <div className="absolute w-56 h-56 bg-pink-500/5 rounded-full blur-3xl bottom-10 right-10"></div>
-
-    {/* Central Interaction Hub */}
-    <motion.div
-      animate={{ y: [-12, 12, -12] }}
-      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      className="relative z-10 p-8 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-xl flex flex-col items-center gap-4 w-[280px]"
-    >
-      <div className="flex gap-[-8px] items-center">
-        <div className="w-10 h-10 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold border-2 border-white text-sm shadow-md">
-          S1
-        </div>
-        <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold border-2 border-white text-sm shadow-md ml-[-8px]">
-          S2
-        </div>
-        <div className="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold border-2 border-white text-sm shadow-md ml-[-8px]">
-          S3
-        </div>
-      </div>
-      <div className="text-center w-full">
-        <div className="text-[10px] font-mono text-[#8D92B2] uppercase tracking-wider mb-2">
-          Live Sprint Collaboration
-        </div>
-        <div className="h-2 w-full bg-gray-200/50 rounded-full overflow-hidden mb-1.5">
-          <motion.div
-            animate={{ width: ["30%", "85%", "30%"] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
-          ></motion.div>
-        </div>
-        <div className="text-[11px] font-semibold text-[#475569]">
-          Backend API: 200 OK
-        </div>
-      </div>
-    </motion.div>
-
-    {/* Floating elements */}
-    <motion.div
-      animate={{ y: [5, -15, 5], rotate: [0, 10, 0] }}
-      transition={{
-        duration: 5,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: 1.5,
-      }}
-      className="absolute top-16 left-12 p-3.5 rounded-2xl bg-white/60 backdrop-blur-md border border-white/80 shadow-md text-blue-500"
-    >
-      <Code className="w-6 h-6" />
-    </motion.div>
-
-    <motion.div
-      animate={{ y: [-15, 5, -15], rotate: [0, -10, 0] }}
-      transition={{
-        duration: 5,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: 0.5,
-      }}
-      className="absolute bottom-20 right-8 p-3.5 rounded-2xl bg-white/60 backdrop-blur-md border border-white/80 shadow-md text-pink-500"
-    >
-      <Brain className="w-6 h-6" />
-    </motion.div>
-
-    <motion.div
-      animate={{ scale: [0.9, 1.1, 0.9] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute top-8 right-24 p-3 rounded-full bg-white/70 border border-white shadow-sm text-yellow-500"
-    >
-      <Award className="w-5 h-5" />
-    </motion.div>
-  </div>
-);
 
 export default function Internships() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
@@ -200,8 +114,8 @@ export default function Internships() {
   return (
     <div className="bg-[#FAF7FF] min-h-screen text-[#475569] font-body overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(123,47,247,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+      <section className="relative pt-24 pb-24 overflow-hidden">
+        <InternshipHeroBg />
         <div className="container max-w-[1300px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left Content */}
@@ -234,13 +148,13 @@ export default function Internships() {
               </div>
             </motion.div>
 
-            {/* Right Collaborative Illustration */}
+            {/* Right — Interactive Skill Tree */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <StudentsCollaborationIllustration />
+              <InternshipSkillTree />
             </motion.div>
           </div>
         </div>
@@ -253,79 +167,46 @@ export default function Internships() {
 
       <SectionDivider />
 
-      {/* BENEFITS SECTION */}
+      {/* LEARNING TRACKS SECTION */}
       <section className="py-24 bg-[#FAF7FF] relative">
         <div className="container max-w-[1200px] mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-              Benefits
+              Learning Tracks
             </span>
             <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
-              Why Intern With ViyanInfo?
+              Choose Your Path
             </h2>
             <p className="text-lg text-[#475569]">
-              Gain core technical capabilities that set you apart in the
-              recruitment landscape.
+              Specialization tracks mapped to industry demand — pick your focus
+              and master it.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 text-left">
-            {[
-              {
-                title: "Live Projects",
-                desc: "Write production code, commit pull requests, and compile modules.",
-                icon: <Code className="w-6 h-6 text-[#7B2FF7]" />,
-                bg: "bg-purple-500/10",
-              },
-              {
-                title: "Mentorship",
-                desc: "Work directly with core software architects on code reviews.",
-                icon: <Users className="w-6 h-6 text-[#3B82F6]" />,
-                bg: "bg-blue-500/10",
-              },
-              {
-                title: "Certificate",
-                desc: "Earn a verified company internship certification outlining achievements.",
-                icon: <Award className="w-6 h-6 text-[#EC4899]" />,
-                bg: "bg-pink-500/10",
-              },
-              {
-                title: "Portfolio Building",
-                desc: "Draft clean project architecture maps and host real demo applications.",
-                icon: <Target className="w-6 h-6 text-[#06B6D4]" />,
-                bg: "bg-cyan-500/10",
-              },
-              {
-                title: "Placement Support",
-                desc: "Resume audit sessions, mock technical interviews, and reference paths.",
-                icon: <Briefcase className="w-6 h-6 text-[#F59E0B]" />,
-                bg: "bg-amber-500/10",
-              },
-            ].map((benefit, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-xs hover:shadow-md transition-shadow duration-300"
-              >
-                <div
-                  className={`w-12 h-12 rounded-2xl ${benefit.bg} flex items-center justify-center mb-6`}
-                >
-                  {benefit.icon}
-                </div>
-                <h3 className="text-lg font-display font-bold text-[#0F172A] mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-xs leading-relaxed text-[#475569]">
-                  {benefit.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+          <LearningTrackCards />
         </div>
       </section>
+
+      <SectionDivider />
+
+      {/* INTERN JOURNEY TIMELINE */}
+      {/* <section className="py-24 bg-[#FAF7FF] relative">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+              Your Journey
+            </span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
+              From Day One to Placement
+            </h2>
+            <p className="text-lg text-[#475569]">
+              A structured path that takes you from onboarding to career readiness.
+            </p>
+          </div>
+
+          <InternJourneyTimeline />
+        </div>
+      </section> */}
 
       <SectionDivider />
 
@@ -545,7 +426,7 @@ export default function Internships() {
 
       <SectionDivider />
 
-      {/* STUDENT SUCCESS STORIES */}
+      {/* STUDENT SUCCESS STORIES — TESTIMONIAL CAROUSEL */}
       <section className="py-24 bg-[#FAF7FF] relative">
         <div className="container max-w-[1200px] mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
@@ -560,84 +441,7 @@ export default function Internships() {
             </p>
           </div>
 
-          <div className="overflow-hidden w-full relative group">
-            {/* Edge Gradients for smooth fade in/out */}
-            <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
-
-            <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
-              {[
-                {
-                  text: "The Python program at ViyanInfo was incredibly structured. I committed API endpoints that are being used in production today.",
-                  name: "Rahul Verma",
-                  role: "Software Developer, HCL",
-                  track: "Python Track",
-                },
-                {
-                  text: "Mastering React and TypeScript during the full-stack internship helped me pass my technical evaluations and land a frontend engineer role.",
-                  name: "Anjali K.",
-                  role: "Frontend Engineer, Cognizant",
-                  track: "Full Stack Track",
-                },
-                {
-                  text: "Building real LLM chat agents gave me the practical portfolio I needed. Mentors corrected my architecture in every PR review.",
-                  name: "Vikram Sen",
-                  role: "Associate AI Developer, TCS",
-                  track: "AI & ML Track",
-                },
-                {
-                  text: "The Python program at ViyanInfo was incredibly structured. I committed API endpoints that are being used in production today.",
-                  name: "Rahul Verma",
-                  role: "Software Developer, HCL",
-                  track: "Python Track",
-                },
-                {
-                  text: "Mastering React and TypeScript during the full-stack internship helped me pass my technical evaluations and land a frontend engineer role.",
-                  name: "Anjali K.",
-                  role: "Frontend Engineer, Cognizant",
-                  track: "Full Stack Track",
-                },
-                {
-                  text: "Building real LLM chat agents gave me the practical portfolio I needed. Mentors corrected my architecture in every PR review.",
-                  name: "Vikram Sen",
-                  role: "Associate AI Developer, TCS",
-                  track: "AI & ML Track",
-                },
-              ].map((story, idx) => (
-                <div
-                  key={idx}
-                  className="w-[350px] shrink-0 mx-4 p-8 rounded-3xl bg-white border border-gray-200/80 hover:shadow-[0_15px_30px_rgba(123,47,247,0.08)] transition-all duration-300 flex flex-col justify-between whitespace-normal"
-                >
-                  <div>
-                    <div className="flex gap-1 mb-6">
-                      {[1, 2, 3, 4, 5].map((s) => (
-                        <Star
-                          key={s}
-                          className="w-4 h-4 fill-amber-400 text-amber-400"
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm italic leading-relaxed text-[#475569] mb-6">
-                      "{story.text}"
-                    </p>
-                  </div>
-                  <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
-                    <div>
-                      <h4 className="font-display font-bold text-[#0F172A] text-sm">
-                        {story.name}
-                      </h4>
-                      <span className="text-xs text-[#7B2FF7] font-semibold">
-                        {story.role}
-                      </span>
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full bg-purple-500/5 text-[#7B2FF7] font-mono text-[9px] font-bold uppercase tracking-wider">
-                      {story.track}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <InternTestimonials />
         </div>
       </section>
 

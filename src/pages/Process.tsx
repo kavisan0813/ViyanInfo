@@ -5,12 +5,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { ProcessStep } from "../components/ProcessStep";
 import { CTABlock } from "../components/CTABlock";
+import { LiquidFooter } from "../components/LiquidFooter";
 
 export default function Process() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (!containerRef.current || !heroContentRef.current) return;
+
     const ctx = gsap.context(() => {
       const badge = heroContentRef.current?.querySelector(".hero-badge");
       const h1Lines = gsap.utils.toArray<HTMLElement>(
@@ -72,7 +75,7 @@ export default function Process() {
   return (
     <div ref={containerRef} className="bg-abyss relative overflow-hidden">
       {/* Hero */}
-      <section className="relative pt-16 pb-6 overflow-hidden min-h-[60vh]">
+      <section className="relative pt-24 pb-6 overflow-hidden min-h-[60vh]">
         <div className="orb w-[600px] h-[600px] bg-[radial-gradient(circle,var(--color-surface)_0%,transparent_60%)] opacity-60 top-0 right-0 z-0"></div>
         <div
           ref={heroContentRef}
@@ -163,6 +166,7 @@ export default function Process() {
         title="Ready to start the process?"
         subtitle="Let's turn your vision into a concrete plan."
       />
+      <LiquidFooter />
     </div>
   );
 }

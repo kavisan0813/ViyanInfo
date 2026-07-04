@@ -1,0 +1,94 @@
+/* HomeVisuals.css */
+
+@keyframes slideGrid {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(40px);
+  }
+}
+
+.home-grid-bg {
+  position: absolute;
+  inset: -100px; /* Oversize to hide edge pops during animation */
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(123, 47, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(123, 47, 247, 0.04) 1px, transparent 1px);
+  animation: slideGrid 15s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatParticleUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120px) translateX(30px);
+    opacity: 0;
+  }
+}
+
+@keyframes floatParticleDown {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(100px) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+.cyber-particle {
+  position: absolute;
+  border-radius: 80%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.cyber-particle.p-1 {
+  width: 2px;
+  height: 2px;
+  background: #7b2ff7;
+  box-shadow: 0 0 8px 1px rgba(123, 47, 247, 0.5);
+  animation: floatParticleUp 8s infinite linear;
+}
+
+.cyber-particle.p-2 {
+  width: 2px;
+  height: 2px;
+  background: #3b82f6;
+  box-shadow: 0 0 10px 2px rgba(59, 130, 246, 0.5);
+  animation: floatParticleDown 12s infinite linear;
+}
+
+.cyber-particle.p-3 {
+  width: 2px;
+  height: 2px;
+  background: #06b6d4;
+  box-shadow: 0 0 6px 1px rgba(6, 182, 212, 0.5);
+  animation: floatParticleUp 10s infinite linear;
+}
+
+.cyber-particle.p-4 {
+  width: 2px;
+  height: 2px;
+  background: #ec4899;
+  box-shadow: 0 0 12px 2px rgba(236, 72, 153, 0.4);
+  animation: floatParticleDown 14s infinite linear;
+}

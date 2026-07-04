@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import {
   MousePointer2,
@@ -357,6 +357,20 @@ export function DesignShowcaseGallery() {
 export function BeforeAfterSlider() {
   const [sliderX, setSliderX] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(670);
+
+  useLayoutEffect(() => {
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.getBoundingClientRect().width);
+    }
+    const handleResize = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.getBoundingClientRect().width);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = containerRef.current?.getBoundingClientRect();
@@ -397,7 +411,7 @@ export function BeforeAfterSlider() {
         <div
           className="absolute inset-0 bg-white p-6 flex flex-col justify-between"
           style={{
-            width: containerRef.current?.getBoundingClientRect().width || 670,
+            width: containerWidth,
           }}
         >
           <div>

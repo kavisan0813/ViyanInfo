@@ -107,9 +107,8 @@ body {
   background-attachment: fixed;
 }
 
-main {
-  padding-top: 80px;
-}
+/* main {
+} */
 section {
   overflow-x: clip;
 }
@@ -805,4 +804,40 @@ h6 {
 
 .animate-liquidFloatSlow {
   animation: liquidFloatSlow 14s ease-in-out infinite;
+}
+
+.service-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.4s ease;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,0.12),
+      transparent
+    );
+  transform: translateX(-100%);
+  transition: 0.8s;
+}
+
+.service-card:hover::before {
+  transform: translateX(100%);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 0 40px rgba(139,92,246,0.25),
+    0 0 80px rgba(59,130,246,0.12);
 }

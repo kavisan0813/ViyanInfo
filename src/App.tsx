@@ -16,7 +16,6 @@ const About = lazy(() => import("./pages/About"));
 const Process = lazy(() => import("./pages/Process"));
 const TechStack = lazy(() => import("./pages/TechStack"));
 const Industries = lazy(() => import("./pages/Industries"));
-const Pricing = lazy(() => import("./pages/Pricing"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/404"));
@@ -140,9 +139,17 @@ export default function App() {
     "/careers",
     "/blog",
     "/services/ai",
-    "/services/uiux"
+    "/services/uiux",
+    "/services/saas",
+    "/internships",
+    "/process",
+    "/tech-stack",
+    "/industries",
+    "/faq",
   ];
-  const hideGlobalFooter = customFooterPaths.includes(location.pathname) || customFooterPaths.includes(location.pathname.replace(/\/$/, ""));
+  const hideGlobalFooter =
+    customFooterPaths.includes(location.pathname) ||
+    customFooterPaths.includes(location.pathname.replace(/\/$/, ""));
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -150,7 +157,7 @@ export default function App() {
       <ScrollToTop />
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:p-4 focus:bg-(--color-glass-1) focus:text-text-primary"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:p-4 focus:text-text-primary"
       >
         Skip to main content
       </a>
@@ -173,7 +180,6 @@ export default function App() {
             <Route path="/process" element={<Process />} />
             <Route path="/tech-stack" element={<TechStack />} />
             <Route path="/industries" element={<Industries />} />
-            <Route path="/pricing" element={<Pricing />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />

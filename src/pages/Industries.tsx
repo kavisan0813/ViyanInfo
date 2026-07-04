@@ -5,6 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { Building2, HeartPulse, ShoppingBag, Briefcase } from "lucide-react";
 import { CTABlock } from "../components/CTABlock";
+import { LiquidFooter } from "../components/LiquidFooter";
 
 export default function Industries() {
   const heroRef = useRef<HTMLElement>(null);
@@ -12,6 +13,8 @@ export default function Industries() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (!containerRef.current || !heroContentRef.current) return;
+
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
@@ -73,7 +76,7 @@ export default function Industries() {
       {/* Hero */}
       <section
         ref={heroRef}
-        className="relative pt-20 pb-10 md:pb-6 overflow-hidden md:min-h-[60vh]"
+        className="relative pt-24 pb-10 md:pb-6 overflow-hidden md:min-h-[60vh]"
       >
         <div className="orb w-[600px] h-[600px] bg-[radial-gradient(circle,var(--color-surface)_0%,transparent_60%)] opacity-60 top-0 right-0 z-0"></div>
         <div
@@ -156,6 +159,7 @@ export default function Industries() {
         title="Don't see your industry?"
         subtitle="Our engineering principles apply universally. Let's talk about your domain."
       />
+      <LiquidFooter />
     </div>
   );
 }

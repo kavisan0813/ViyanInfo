@@ -11,6 +11,7 @@ export function ProcessStep({
   const stepRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (!stepRef.current) return;
     const ctx = gsap.context(() => {
       if (!isLast) {
         gsap.fromTo(

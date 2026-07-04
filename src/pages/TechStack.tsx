@@ -14,7 +14,7 @@ import {
   ArrowRight,
   Sparkles,
   Eye,
-  LineChart
+  LineChart,
 } from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
 
@@ -22,58 +22,152 @@ import { SectionDivider } from "../components/SectionDivider";
 // CUSTOM OFFICIAL BRAND SVG ICONS
 // ==========================================
 const ReactIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    className="w-8 h-8"
+    viewBox="0 0 100 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <circle cx="50" cy="50" r="8" fill="#61DAFB" />
-    <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(0 50 50)" />
-    <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(60 50 50)" />
-    <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(120 50 50)" />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="14"
+      stroke="#61DAFB"
+      strokeWidth="3"
+      transform="rotate(0 50 50)"
+    />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="14"
+      stroke="#61DAFB"
+      strokeWidth="3"
+      transform="rotate(60 50 50)"
+    />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="14"
+      stroke="#61DAFB"
+      strokeWidth="3"
+      transform="rotate(120 50 50)"
+    />
   </svg>
 );
 
 const NextjsIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="46" fill="#000000" stroke="#333" strokeWidth="2" />
-    <path d="M72 70L42 34H36V66H41V42.5L68 73.5C70 72.3 71 71.2 72 70Z" fill="white" />
+  <svg
+    className="w-8 h-8"
+    viewBox="0 0 100 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="50"
+      cy="50"
+      r="46"
+      fill="#000000"
+      stroke="#333"
+      strokeWidth="2"
+    />
+    <path
+      d="M72 70L42 34H36V66H41V42.5L68 73.5C70 72.3 71 71.2 72 70Z"
+      fill="white"
+    />
     <rect x="58" y="34" width="5" height="32" fill="white" />
   </svg>
 );
 
 const TypeScriptIcon = () => (
-  <svg className="w-8 h-8 rounded-lg overflow-hidden" viewBox="0 0 100 100" fill="none">
+  <svg
+    className="w-8 h-8 rounded-lg overflow-hidden"
+    viewBox="0 0 100 100"
+    fill="none"
+  >
     <rect width="100" height="100" fill="#3178C6" />
-    <text x="90" y="85" fill="white" fontSize="42" fontWeight="bold" fontFamily="sans-serif" textAnchor="end">TS</text>
+    <text
+      x="90"
+      y="85"
+      fill="white"
+      fontSize="42"
+      fontWeight="bold"
+      fontFamily="sans-serif"
+      textAnchor="end"
+    >
+      TS
+    </text>
   </svg>
 );
 
 const TailwindIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M26 50C26 38 35.5 32.5 44.5 32.5C56.5 32.5 59.5 41.5 68.5 41.5C74.5 41.5 80 37 80 32.5C80 44.5 70.5 50 61.5 50C49.5 50 46.5 41 37.5 41C31.5 41 26 45.5 26 50Z" fill="#38BDF8" />
-    <path d="M14 62.5C14 50.5 23.5 45 32.5 45C44.5 45 47.5 54 56.5 54C62.5 54 68 49.5 68 45C68 57 58.5 62.5 49.5 62.5C37.5 62.5 34.5 53.5 25.5 53.5C19.5 53.5 14 58 14 62.5Z" fill="#06B6D4" />
+    <path
+      d="M26 50C26 38 35.5 32.5 44.5 32.5C56.5 32.5 59.5 41.5 68.5 41.5C74.5 41.5 80 37 80 32.5C80 44.5 70.5 50 61.5 50C49.5 50 46.5 41 37.5 41C31.5 41 26 45.5 26 50Z"
+      fill="#38BDF8"
+    />
+    <path
+      d="M14 62.5C14 50.5 23.5 45 32.5 45C44.5 45 47.5 54 56.5 54C62.5 54 68 49.5 68 45C68 57 58.5 62.5 49.5 62.5C37.5 62.5 34.5 53.5 25.5 53.5C19.5 53.5 14 58 14 62.5Z"
+      fill="#06B6D4"
+    />
   </svg>
 );
 
 const NodejsIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M48 22.5L25 35.5V62L48 75L71 62V35.5L48 22.5Z" stroke="#339933" strokeWidth="4" strokeLinejoin="round" />
+    <path
+      d="M48 22.5L25 35.5V62L48 75L71 62V35.5L48 22.5Z"
+      stroke="#339933"
+      strokeWidth="4"
+      strokeLinejoin="round"
+    />
     <path d="M48 22.5L25 35.5V62L48 75V22.5Z" fill="#339933" opacity="0.1" />
-    <path d="M48 40V65" stroke="#339933" strokeWidth="5" strokeLinecap="round" />
+    <path
+      d="M48 40V65"
+      stroke="#339933"
+      strokeWidth="5"
+      strokeLinecap="round"
+    />
     <circle cx="48" cy="32" r="3" fill="#339933" />
   </svg>
 );
 
 const PythonIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M50 12C38 12 37 17 37 23.5V31.5H50V33.5H30.5C23.5 33.5 19 37.5 19 49C19 60.5 23.5 64.5 30.5 64.5H35.5V58.5C35.5 50.5 41.5 44.5 49.5 44.5H62.5V36.5C62.5 24.5 58.5 12 50 12Z" fill="#3776AB" />
-    <path d="M50 88C62 88 63 83 63 76.5V68.5H50V66.5H69.5C76.5 66.5 81 62.5 81 51C81 39.5 76.5 35.5 69.5 35.5H64.5V41.5C64.5 49.5 58.5 55.5 50.5 55.5H37.5V63.5C37.5 75.5 41.5 88 50 88Z" fill="#FFE052" />
+    <path
+      d="M50 12C38 12 37 17 37 23.5V31.5H50V33.5H30.5C23.5 33.5 19 37.5 19 49C19 60.5 23.5 64.5 30.5 64.5H35.5V58.5C35.5 50.5 41.5 44.5 49.5 44.5H62.5V36.5C62.5 24.5 58.5 12 50 12Z"
+      fill="#3776AB"
+    />
+    <path
+      d="M50 88C62 88 63 83 63 76.5V68.5H50V66.5H69.5C76.5 66.5 81 62.5 81 51C81 39.5 76.5 35.5 69.5 35.5H64.5V41.5C64.5 49.5 58.5 55.5 50.5 55.5H37.5V63.5C37.5 75.5 41.5 88 50 88Z"
+      fill="#FFE052"
+    />
     <circle cx="44" cy="21" r="2.5" fill="white" />
     <circle cx="56" cy="79" r="2.5" fill="black" />
   </svg>
 );
 
 const DjangoIcon = () => (
-  <svg className="w-8 h-8 rounded-lg overflow-hidden" viewBox="0 0 100 100" fill="none">
+  <svg
+    className="w-8 h-8 rounded-lg overflow-hidden"
+    viewBox="0 0 100 100"
+    fill="none"
+  >
     <rect width="100" height="100" fill="#092E20" />
-    <text x="50" y="65" fill="#0FEE90" fontSize="56" fontWeight="bold" fontFamily="serif" textAnchor="middle">d</text>
+    <text
+      x="50"
+      y="65"
+      fill="#0FEE90"
+      fontSize="56"
+      fontWeight="bold"
+      fontFamily="serif"
+      textAnchor="middle"
+    >
+      d
+    </text>
   </svg>
 );
 
@@ -87,7 +181,17 @@ const FastApiIcon = () => (
 const ExpressIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
     <circle cx="50" cy="50" r="44" fill="#353535" />
-    <text x="50" y="58" fill="white" fontSize="28" fontWeight="bold" fontFamily="monospace" textAnchor="middle">Ex</text>
+    <text
+      x="50"
+      y="58"
+      fill="white"
+      fontSize="28"
+      fontWeight="bold"
+      fontFamily="monospace"
+      textAnchor="middle"
+    >
+      Ex
+    </text>
   </svg>
 );
 
@@ -102,9 +206,33 @@ const FlutterIcon = () => (
 const ReactNativeIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
     <circle cx="50" cy="50" r="6" fill="#00D8FF" />
-    <ellipse cx="50" cy="50" rx="38" ry="12" stroke="#00D8FF" strokeWidth="3.5" transform="rotate(30 50 50)" />
-    <ellipse cx="50" cy="50" rx="38" ry="12" stroke="#00D8FF" strokeWidth="3.5" transform="rotate(90 50 50)" />
-    <ellipse cx="50" cy="50" rx="38" ry="12" stroke="#00D8FF" strokeWidth="3.5" transform="rotate(150 50 50)" />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="12"
+      stroke="#00D8FF"
+      strokeWidth="3.5"
+      transform="rotate(30 50 50)"
+    />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="12"
+      stroke="#00D8FF"
+      strokeWidth="3.5"
+      transform="rotate(90 50 50)"
+    />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="12"
+      stroke="#00D8FF"
+      strokeWidth="3.5"
+      transform="rotate(150 50 50)"
+    />
   </svg>
 );
 
@@ -118,38 +246,96 @@ const FirebaseIcon = () => (
 
 const OpenAiIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M50 28C44 28 39 31 36 36C33 33 28 32 24 35C20 38 19 44 22 48C18 51 17 57 20 61C23 65 29 66 33 63C36 67 41 69 46 67C49 71 55 72 59 69C63 66 64 60 61 56C65 53 66 47 63 43C60 39 54 38 50 41C47 37 42 35 37 37" stroke="#10A37F" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M50 28C44 28 39 31 36 36C33 33 28 32 24 35C20 38 19 44 22 48C18 51 17 57 20 61C23 65 29 66 33 63C36 67 41 69 46 67C49 71 55 72 59 69C63 66 64 60 61 56C65 53 66 47 63 43C60 39 54 38 50 41C47 37 42 35 37 37"
+      stroke="#10A37F"
+      strokeWidth="4.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
     <circle cx="50" cy="50" r="4" fill="#10A37F" />
   </svg>
 );
 
 const LangChainIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <rect x="25" y="35" width="30" height="30" rx="8" stroke="#38BDF8" strokeWidth="5" transform="rotate(-15 40 50)" />
-    <rect x="45" y="35" width="30" height="30" rx="8" stroke="#10A37F" strokeWidth="5" transform="rotate(15 60 50)" />
+    <rect
+      x="25"
+      y="35"
+      width="30"
+      height="30"
+      rx="8"
+      stroke="#38BDF8"
+      strokeWidth="5"
+      transform="rotate(-15 40 50)"
+    />
+    <rect
+      x="45"
+      y="35"
+      width="30"
+      height="30"
+      rx="8"
+      stroke="#10A37F"
+      strokeWidth="5"
+      transform="rotate(15 60 50)"
+    />
   </svg>
 );
 
 const PostgreSQLIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M50 16C31.5 16 22 28.5 22 43.5C22 56 31 66.5 41 71.5L34 82H45L51 72.5C59.5 73.5 68 70 73 62C78 54 78 41 78 32.5C78 24 71.5 16 50 16Z" stroke="#336791" strokeWidth="4.5" strokeLinejoin="round" />
-    <path d="M38 34C35 34 32 37 32 41C32 45 35 48 38 48" stroke="#336791" strokeWidth="4" />
+    <path
+      d="M50 16C31.5 16 22 28.5 22 43.5C22 56 31 66.5 41 71.5L34 82H45L51 72.5C59.5 73.5 68 70 73 62C78 54 78 41 78 32.5C78 24 71.5 16 50 16Z"
+      stroke="#336791"
+      strokeWidth="4.5"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M38 34C35 34 32 37 32 41C32 45 35 48 38 48"
+      stroke="#336791"
+      strokeWidth="4"
+    />
   </svg>
 );
 
 const MongodbIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M50 12C50 12 32 32 32 54C32 68 41 76 50 88C50 88 50 82 50 78" stroke="#47A248" strokeWidth="4.5" strokeLinecap="round" />
-    <path d="M50 12C50 12 68 32 68 54C68 68 59 76 50 88" stroke="#47A248" strokeWidth="4.5" strokeLinecap="round" />
+    <path
+      d="M50 12C50 12 32 32 32 54C32 68 41 76 50 88C50 88 50 82 50 78"
+      stroke="#47A248"
+      strokeWidth="4.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M50 12C50 12 68 32 68 54C68 68 59 76 50 88"
+      stroke="#47A248"
+      strokeWidth="4.5"
+      strokeLinecap="round"
+    />
     <path d="M50 28V68" stroke="#3F3F3F" strokeWidth="4" />
   </svg>
 );
 
 const AwsIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M22 62C27 68 37 72 50 72C63 72 73 68 78 62" stroke="#FF9900" strokeWidth="5.5" strokeLinecap="round" />
+    <path
+      d="M22 62C27 68 37 72 50 72C63 72 73 68 78 62"
+      stroke="#FF9900"
+      strokeWidth="5.5"
+      strokeLinecap="round"
+    />
     <path d="M74 61L81 67L79 56L74 61Z" fill="#FF9900" />
-    <text x="50" y="50" fill="white" fontSize="26" fontWeight="extrabold" fontFamily="sans-serif" textAnchor="middle">AWS</text>
+    <text
+      x="50"
+      y="50"
+      fill="white"
+      fontSize="26"
+      fontWeight="extrabold"
+      fontFamily="sans-serif"
+      textAnchor="middle"
+    >
+      AWS
+    </text>
   </svg>
 );
 
@@ -159,15 +345,33 @@ const DockerIcon = () => (
     <rect x="38" y="44" width="12" height="12" rx="2" fill="#2496ED" />
     <rect x="54" y="44" width="12" height="12" rx="2" fill="#2496ED" />
     <rect x="38" y="28" width="12" height="12" rx="2" fill="#2496ED" />
-    <path d="M14 62C24 62 26 52 48 52C70 52 72 62 86 62C86 72 74 78 50 78C26 78 14 72 14 62Z" fill="#2496ED" />
+    <path
+      d="M14 62C24 62 26 52 48 52C70 52 72 62 86 62C86 72 74 78 50 78C26 78 14 72 14 62Z"
+      fill="#2496ED"
+    />
   </svg>
 );
 
 const RedisIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M18 30L50 16L82 30L50 44L18 30Z" fill="#DC382D" stroke="#A81C14" strokeWidth="2" />
-    <path d="M18 48L50 34L82 48L50 62L18 48Z" fill="#DC382D" stroke="#A81C14" strokeWidth="2" />
-    <path d="M18 66L50 52L82 66L50 80L18 66Z" fill="#DC382D" stroke="#A81C14" strokeWidth="2" />
+    <path
+      d="M18 30L50 16L82 30L50 44L18 30Z"
+      fill="#DC382D"
+      stroke="#A81C14"
+      strokeWidth="2"
+    />
+    <path
+      d="M18 48L50 34L82 48L50 62L18 48Z"
+      fill="#DC382D"
+      stroke="#A81C14"
+      strokeWidth="2"
+    />
+    <path
+      d="M18 66L50 52L82 66L50 80L18 66Z"
+      fill="#DC382D"
+      stroke="#A81C14"
+      strokeWidth="2"
+    />
   </svg>
 );
 
@@ -176,17 +380,83 @@ export default function TechStack() {
 
   // Ecosystem nodes layout data (angles in radians, radii)
   const nodes = [
-    { name: "React", icon: <ReactIcon />, angle: 0, color: "#61DAFB", desc: "Interactive Frontend Framework" },
-    { name: "Node.js", icon: <NodejsIcon />, angle: (2 * Math.PI) / 11, color: "#339933", desc: "Scalable Event-Driven APIs" },
-    { name: "Python", icon: <PythonIcon />, angle: (4 * Math.PI) / 11, color: "#3776AB", desc: "Data Operations & AI Scripting" },
-    { name: "Django", icon: <DjangoIcon />, angle: (6 * Math.PI) / 11, color: "#092E20", desc: "Rapid Secure Backend Admin" },
-    { name: "FastAPI", icon: <FastApiIcon />, angle: (8 * Math.PI) / 11, color: "#009688", desc: "Ultra-fast Modern Python APIs" },
-    { name: "Flutter", icon: <FlutterIcon />, angle: (10 * Math.PI) / 11, color: "#02569B", desc: "Cross-platform Mobile UI Engine" },
-    { name: "PostgreSQL", icon: <PostgreSQLIcon />, angle: (12 * Math.PI) / 11, color: "#336791", desc: "Robust Relational ACID Storage" },
-    { name: "MongoDB", icon: <MongodbIcon />, angle: (14 * Math.PI) / 11, color: "#47A248", desc: "Flexible Dynamic Document Store" },
-    { name: "Docker", icon: <DockerIcon />, angle: (16 * Math.PI) / 11, color: "#2496ED", desc: "Immutable Isolated Containers" },
-    { name: "AWS", icon: <AwsIcon />, angle: (18 * Math.PI) / 11, color: "#FF9900", desc: "Resilient Global Cloud Hosting" },
-    { name: "OpenAI", icon: <OpenAiIcon />, angle: (20 * Math.PI) / 11, color: "#10A37F", desc: "Advanced LLM Integration Hub" }
+    {
+      name: "React",
+      icon: <ReactIcon />,
+      angle: 0,
+      color: "#61DAFB",
+      desc: "Interactive Frontend Framework",
+    },
+    {
+      name: "Node.js",
+      icon: <NodejsIcon />,
+      angle: (2 * Math.PI) / 11,
+      color: "#339933",
+      desc: "Scalable Event-Driven APIs",
+    },
+    {
+      name: "Python",
+      icon: <PythonIcon />,
+      angle: (4 * Math.PI) / 11,
+      color: "#3776AB",
+      desc: "Data Operations & AI Scripting",
+    },
+    {
+      name: "Django",
+      icon: <DjangoIcon />,
+      angle: (6 * Math.PI) / 11,
+      color: "#092E20",
+      desc: "Rapid Secure Backend Admin",
+    },
+    {
+      name: "FastAPI",
+      icon: <FastApiIcon />,
+      angle: (8 * Math.PI) / 11,
+      color: "#009688",
+      desc: "Ultra-fast Modern Python APIs",
+    },
+    {
+      name: "Flutter",
+      icon: <FlutterIcon />,
+      angle: (10 * Math.PI) / 11,
+      color: "#02569B",
+      desc: "Cross-platform Mobile UI Engine",
+    },
+    {
+      name: "PostgreSQL",
+      icon: <PostgreSQLIcon />,
+      angle: (12 * Math.PI) / 11,
+      color: "#336791",
+      desc: "Robust Relational ACID Storage",
+    },
+    {
+      name: "MongoDB",
+      icon: <MongodbIcon />,
+      angle: (14 * Math.PI) / 11,
+      color: "#47A248",
+      desc: "Flexible Dynamic Document Store",
+    },
+    {
+      name: "Docker",
+      icon: <DockerIcon />,
+      angle: (16 * Math.PI) / 11,
+      color: "#2496ED",
+      desc: "Immutable Isolated Containers",
+    },
+    {
+      name: "AWS",
+      icon: <AwsIcon />,
+      angle: (18 * Math.PI) / 11,
+      color: "#FF9900",
+      desc: "Resilient Global Cloud Hosting",
+    },
+    {
+      name: "OpenAI",
+      icon: <OpenAiIcon />,
+      angle: (20 * Math.PI) / 11,
+      color: "#10A37F",
+      desc: "Advanced LLM Integration Hub",
+    },
   ];
 
   return (
@@ -196,7 +466,7 @@ export default function TechStack() {
       <div className="absolute top-[20%] left-0 w-[45%] aspect-square bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.02)_0%,transparent_65%)] pointer-events-none z-0" />
 
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-24 overflow-hidden bg-[#FAF7FF]">
+      <section className="relative pt-24 pb-24 overflow-hidden bg-[#FAF7FF]">
         {/* Animated Particles background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           {[...Array(15)].map((_, i) => {
@@ -206,28 +476,29 @@ export default function TechStack() {
             const rand4 = ((i * 31) % 100) / 100;
             const rand5 = ((i * 41) % 100) / 100;
             return (
-            <motion.div
-              key={i}
-              className="absolute w-2.5 h-2.5 rounded-full"
-              style={{
-                backgroundColor: i % 2 === 0 ? "#7B2FF7" : "#9333EA",
-                opacity: 0.15,
-                left: `${rand1 * 100}%`,
-                top: `${rand2 * 100}%`
-              }}
-              animate={{
-                y: [0, -120, 0],
-                x: [0, rand3 * 60 - 30, 0],
-                scale: [0.8, 1.2, 0.8]
-              }}
-              transition={{
-                duration: 6 + rand4 * 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: rand5 * 4
-              }}
-            />
-          )})}
+              <motion.div
+                key={i}
+                className="absolute w-2.5 h-2.5 rounded-full"
+                style={{
+                  backgroundColor: i % 2 === 0 ? "#7B2FF7" : "#9333EA",
+                  opacity: 0.15,
+                  left: `${rand1 * 100}%`,
+                  top: `${rand2 * 100}%`,
+                }}
+                animate={{
+                  y: [0, -120, 0],
+                  x: [0, rand3 * 60 - 30, 0],
+                  scale: [0.8, 1.2, 0.8],
+                }}
+                transition={{
+                  duration: 6 + rand4 * 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: rand5 * 4,
+                }}
+              />
+            );
+          })}
         </div>
 
         <div className="container relative z-10 max-w-[1300px] mx-auto px-6 text-center">
@@ -243,7 +514,9 @@ export default function TechStack() {
               Our Technology Stack
             </h1>
             <p className="text-lg leading-relaxed text-[#475569] max-w-2xl mx-auto mb-8">
-              We leverage modern technologies, cloud infrastructure, and AI-powered solutions to build scalable, secure, and beautiful digital products.
+              We leverage modern technologies, cloud infrastructure, and
+              AI-powered solutions to build scalable, secure, and beautiful
+              digital products.
             </p>
           </motion.div>
         </div>
@@ -262,14 +535,18 @@ export default function TechStack() {
               Interactive Synergy Network
             </h2>
             <p className="text-[#475569] text-base">
-              Hover over the technology nodes to see how they connect to ViyanInfo.
+              Hover over the technology nodes to see how they connect to
+              ViyanInfo.
             </p>
           </div>
 
           {/* Interactive Network Diagram */}
           <div className="relative w-full aspect-square max-w-[650px] mx-auto flex items-center justify-center select-none">
             {/* SVG Connecting Lines with dashes flowing to center */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 600 600">
+            <svg
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              viewBox="0 0 600 600"
+            >
               <defs>
                 <radialGradient id="g-glow" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="#7B2FF7" stopOpacity="0.1" />
@@ -289,11 +566,21 @@ export default function TechStack() {
                       y1="300"
                       x2={x}
                       y2={y}
-                      stroke={isHovered ? node.color : "rgba(147, 51, 234, 0.15)"}
+                      stroke={
+                        isHovered ? node.color : "rgba(147, 51, 234, 0.15)"
+                      }
                       strokeWidth={isHovered ? "3.5" : "2"}
                       strokeDasharray="6, 6"
-                      animate={isHovered ? { strokeDashoffset: [0, -36] } : { strokeDashoffset: [0, -20] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                      animate={
+                        isHovered
+                          ? { strokeDashoffset: [0, -36] }
+                          : { strokeDashoffset: [0, -20] }
+                      }
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     />
                     {/* Flow particle */}
                     <motion.circle
@@ -302,13 +589,13 @@ export default function TechStack() {
                       animate={{
                         cx: [x, 300],
                         cy: [y, 300],
-                        opacity: [0, 1, 0]
+                        opacity: [0, 1, 0],
                       }}
                       transition={{
                         duration: 3,
                         repeat: Infinity,
                         ease: "easeOut",
-                        delay: i * 0.25
+                        delay: i * 0.25,
                       }}
                     />
                   </g>
@@ -323,8 +610,12 @@ export default function TechStack() {
               className="absolute w-32 h-32 rounded-full bg-gradient-to-tr from-[#7B2FF7] to-[#9333EA] flex flex-col items-center justify-center text-white z-20 shadow-xl border border-white/20"
             >
               <div className="absolute inset-0 rounded-full bg-[#7B2FF7]/20 animate-ping pointer-events-none" />
-              <span className="text-sm font-display font-black tracking-widest uppercase">VIYAN</span>
-              <span className="text-[10px] font-mono tracking-widest text-purple-200">SYSTEMS</span>
+              <span className="text-sm font-display font-black tracking-widest uppercase">
+                VIYAN
+              </span>
+              <span className="text-[10px] font-mono tracking-widest text-purple-200">
+                SYSTEMS
+              </span>
             </motion.div>
 
             {/* Orbiting Tech Nodes */}
@@ -337,7 +628,10 @@ export default function TechStack() {
                 <div
                   key={i}
                   className="absolute -translate-x-1/2 -translate-y-1/2 z-10"
-                  style={{ left: `${(x / 600) * 100}%`, top: `${(y / 600) * 100}%` }}
+                  style={{
+                    left: `${(x / 600) * 100}%`,
+                    top: `${(y / 600) * 100}%`,
+                  }}
                 >
                   <motion.div
                     onMouseEnter={() => setHoveredNode(node.name)}
@@ -345,19 +639,23 @@ export default function TechStack() {
                     whileHover={{ scale: 1.15 }}
                     animate={{
                       y: [0, Math.sin(i * 45) * 6, 0],
-                      x: [0, Math.cos(i * 45) * 6, 0]
+                      x: [0, Math.cos(i * 45) * 6, 0],
                     }}
                     transition={{
                       duration: 4 + (i % 3),
                       repeat: Infinity,
-                      ease: "easeInOut"
+                      ease: "easeInOut",
                     }}
                     className={`w-16 h-16 rounded-2xl bg-white shadow-md border flex items-center justify-center cursor-pointer transition-all duration-300 relative ${
                       isHovered ? "shadow-lg" : "border-slate-200"
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 10px 25px -5px ${node.color}25, 0 0 15px ${node.color}15` : "0 4px 6px -1px rgb(0 0 0 / 0.05)",
-                      borderColor: isHovered ? node.color : "rgb(226, 232, 240)"
+                      boxShadow: isHovered
+                        ? `0 10px 25px -5px ${node.color}25, 0 0 15px ${node.color}15`
+                        : "0 4px 6px -1px rgb(0 0 0 / 0.05)",
+                      borderColor: isHovered
+                        ? node.color
+                        : "rgb(226, 232, 240)",
                     }}
                   >
                     {node.icon}
@@ -372,7 +670,10 @@ export default function TechStack() {
                           transition={{ duration: 0.2 }}
                           className="absolute bottom-20 w-44 bg-slate-900 border border-slate-800 text-white rounded-xl p-3 shadow-xl pointer-events-none z-30 leading-tight"
                         >
-                          <span className="block text-xs font-extrabold" style={{ color: node.color }}>
+                          <span
+                            className="block text-xs font-extrabold"
+                            style={{ color: node.color }}
+                          >
                             {node.name}
                           </span>
                           <span className="text-[10px] text-slate-400 mt-1 block">
@@ -402,7 +703,8 @@ export default function TechStack() {
               Frontend Development Stack
             </h2>
             <p className="text-base text-[#475569]">
-              We configure responsive, accessible, and fast web layers mapping to premium interface criteria.
+              We configure responsive, accessible, and fast web layers mapping
+              to premium interface criteria.
             </p>
           </div>
 
@@ -415,7 +717,7 @@ export default function TechStack() {
                 bg: "bg-[#61DAFB]/5 border-[#61DAFB]/20",
                 level: "Expertise: Principal",
                 usage: "ViyanInfo ERP Platform, Client Portal UIs",
-                desc: "High-performance SPA library utilizing component hierarchies, custom hook pipelines, and virtual state bindings."
+                desc: "High-performance SPA library utilizing component hierarchies, custom hook pipelines, and virtual state bindings.",
               },
               {
                 name: "Next.js",
@@ -424,7 +726,7 @@ export default function TechStack() {
                 bg: "bg-black/5 border-black/10",
                 level: "Expertise: Architect",
                 usage: "Public Landing Pages, SEO Blogs",
-                desc: "Server-side rendering, static generation, React Server Components (RSC), and edge-routing file structures."
+                desc: "Server-side rendering, static generation, React Server Components (RSC), and edge-routing file structures.",
               },
               {
                 name: "TypeScript",
@@ -433,7 +735,7 @@ export default function TechStack() {
                 bg: "bg-[#3178C6]/5 border-[#3178C6]/20",
                 level: "Expertise: Strict Standard",
                 usage: "All In-House Modules",
-                desc: "Static type-safety audits, strict null checks, generic interface systems, and type declarations."
+                desc: "Static type-safety audits, strict null checks, generic interface systems, and type declarations.",
               },
               {
                 name: "Tailwind CSS",
@@ -442,8 +744,8 @@ export default function TechStack() {
                 bg: "bg-[#06B6D4]/5 border-[#06B6D4]/20",
                 level: "Expertise: Expert Utility",
                 usage: "Component Libraries, Design Tokens",
-                desc: "CSS-first utility compiling, responsive grid columns, design token variables, and lightweight production bundles."
-              }
+                desc: "CSS-first utility compiling, responsive grid columns, design token variables, and lightweight production bundles.",
+              },
             ].map((tech, idx) => (
               <motion.div
                 key={idx}
@@ -455,20 +757,30 @@ export default function TechStack() {
                 className={`p-8 rounded-3xl border bg-white shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between`}
               >
                 <div>
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border ${tech.bg}`}>
+                  <div
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border ${tech.bg}`}
+                  >
                     {tech.icon}
                   </div>
-                  <h3 className="text-xl font-display font-bold text-[#0F172A] mb-3">{tech.name}</h3>
-                  <p className="text-xs text-slate-500 mb-4 leading-relaxed">{tech.desc}</p>
+                  <h3 className="text-xl font-display font-bold text-[#0F172A] mb-3">
+                    {tech.name}
+                  </h3>
+                  <p className="text-xs text-slate-500 mb-4 leading-relaxed">
+                    {tech.desc}
+                  </p>
                 </div>
                 <div className="border-t border-slate-100 pt-4 mt-4 text-[10px] font-mono">
                   <div className="flex justify-between mb-1">
                     <span className="text-slate-400">Level:</span>
-                    <span className="font-extrabold text-[#7B2FF7]">{tech.level}</span>
+                    <span className="font-extrabold text-[#7B2FF7]">
+                      {tech.level}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-400">Usage:</span>
-                    <span className="text-slate-700 text-right truncate max-w-[120px]">{tech.usage}</span>
+                    <span className="text-slate-700 text-right truncate max-w-[120px]">
+                      {tech.usage}
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -498,7 +810,9 @@ export default function TechStack() {
                 Backend Infrastructure
               </h2>
               <p className="text-[#475569] leading-relaxed mb-6">
-                Our servers are configured for zero-downtime scalability, using light event loops, clean database queries, and modular API structures.
+                Our servers are configured for zero-downtime scalability, using
+                light event loops, clean database queries, and modular API
+                structures.
               </p>
               <div className="space-y-4">
                 <div className="flex gap-3 items-start">
@@ -506,8 +820,12 @@ export default function TechStack() {
                     <Zap className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="block text-sm font-bold text-slate-800">API Speed Latency</span>
-                    <span className="text-xs text-slate-500">Fast database query execution with Redis data caches.</span>
+                    <span className="block text-sm font-bold text-slate-800">
+                      API Speed Latency
+                    </span>
+                    <span className="text-xs text-slate-500">
+                      Fast database query execution with Redis data caches.
+                    </span>
                   </div>
                 </div>
                 <div className="flex gap-3 items-start">
@@ -515,8 +833,12 @@ export default function TechStack() {
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="block text-sm font-bold text-slate-800">Strict Auth Rules</span>
-                    <span className="text-xs text-slate-500">JWT security keys and scoped RBAC verification protocols.</span>
+                    <span className="block text-sm font-bold text-slate-800">
+                      Strict Auth Rules
+                    </span>
+                    <span className="text-xs text-slate-500">
+                      JWT security keys and scoped RBAC verification protocols.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -525,11 +847,36 @@ export default function TechStack() {
             {/* Right Column grid cards */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
-                { name: "Node.js", icon: <NodejsIcon />, color: "#339933", desc: "Non-blocking event loop framework compiling scalable web network servers." },
-                { name: "Python", icon: <PythonIcon />, color: "#3776AB", desc: "Flexible processing script engine handling calculations and data pipelines." },
-                { name: "Django", icon: <DjangoIcon />, color: "#092E20", desc: "MVT clean framework configured with an integrated SQL administration panel." },
-                { name: "FastAPI", icon: <FastApiIcon />, color: "#009688", desc: "Teal lighting-fast Python REST router generating auto OpenAPI docs." },
-                { name: "Express", icon: <ExpressIcon />, color: "#353535", desc: "Minimalist and flexible Node.js web application framework for robust APIs." }
+                {
+                  name: "Node.js",
+                  icon: <NodejsIcon />,
+                  color: "#339933",
+                  desc: "Non-blocking event loop framework compiling scalable web network servers.",
+                },
+                {
+                  name: "Python",
+                  icon: <PythonIcon />,
+                  color: "#3776AB",
+                  desc: "Flexible processing script engine handling calculations and data pipelines.",
+                },
+                {
+                  name: "Django",
+                  icon: <DjangoIcon />,
+                  color: "#092E20",
+                  desc: "MVT clean framework configured with an integrated SQL administration panel.",
+                },
+                {
+                  name: "FastAPI",
+                  icon: <FastApiIcon />,
+                  color: "#009688",
+                  desc: "Teal lighting-fast Python REST router generating auto OpenAPI docs.",
+                },
+                {
+                  name: "Express",
+                  icon: <ExpressIcon />,
+                  color: "#353535",
+                  desc: "Minimalist and flexible Node.js web application framework for robust APIs.",
+                },
               ].map((tech, idx) => (
                 <motion.div
                   key={idx}
@@ -544,8 +891,12 @@ export default function TechStack() {
                     {tech.icon}
                   </div>
                   <div>
-                    <h4 className="font-display font-extrabold text-[#0F172A] text-lg mb-1">{tech.name}</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">{tech.desc}</p>
+                    <h4 className="font-display font-extrabold text-[#0F172A] text-lg mb-1">
+                      {tech.name}
+                    </h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      {tech.desc}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -585,24 +936,37 @@ export default function TechStack() {
                   <div>
                     <div className="flex justify-between items-center mb-6">
                       <div>
-                        <span className="block text-[8px] font-mono text-slate-400">Welcome Back</span>
-                        <span className="text-xs font-bold text-slate-800">Flutter App</span>
+                        <span className="block text-[8px] font-mono text-slate-400">
+                          Welcome Back
+                        </span>
+                        <span className="text-xs font-bold text-slate-800">
+                          Flutter App
+                        </span>
                       </div>
-                      <div className="w-6 h-6 rounded-full bg-[#02569B] text-white text-[8px] font-bold flex items-center justify-center">V</div>
+                      <div className="w-6 h-6 rounded-full bg-[#02569B] text-white text-[8px] font-bold flex items-center justify-center">
+                        V
+                      </div>
                     </div>
 
                     {/* Chart visual mock */}
                     <div className="bg-white rounded-xl p-3 shadow-3xs border border-slate-100 mb-4">
                       <div className="flex justify-between mb-2">
-                        <span className="text-[7px] text-slate-400">Weekly Health</span>
-                        <span className="text-[8px] font-bold text-[#02569B]">+12.4%</span>
+                        <span className="text-[7px] text-slate-400">
+                          Weekly Health
+                        </span>
+                        <span className="text-[8px] font-bold text-[#02569B]">
+                          +12.4%
+                        </span>
                       </div>
                       <div className="h-12 w-full flex items-end gap-1 pb-1">
                         {[40, 60, 30, 80, 50, 90, 70].map((h, i) => (
                           <div
                             key={i}
                             className="bg-[#02569B] rounded-xs flex-1"
-                            style={{ height: `${h}%`, opacity: 0.3 + (h / 100) * 0.7 }}
+                            style={{
+                              height: `${h}%`,
+                              opacity: 0.3 + (h / 100) * 0.7,
+                            }}
                           />
                         ))}
                       </div>
@@ -611,12 +975,20 @@ export default function TechStack() {
                     {/* Feature badges list */}
                     <div className="space-y-2">
                       <div className="bg-white rounded-lg p-2.5 border border-slate-100 flex justify-between items-center">
-                        <span className="text-[8px] font-extrabold text-slate-700">Database Sync</span>
-                        <span className="text-[7px] bg-[#FFC229]/20 text-[#FFA000] px-1.5 py-0.5 rounded font-mono font-bold">Firebase</span>
+                        <span className="text-[8px] font-extrabold text-slate-700">
+                          Database Sync
+                        </span>
+                        <span className="text-[7px] bg-[#FFC229]/20 text-[#FFA000] px-1.5 py-0.5 rounded font-mono font-bold">
+                          Firebase
+                        </span>
                       </div>
                       <div className="bg-white rounded-lg p-2.5 border border-slate-100 flex justify-between items-center">
-                        <span className="text-[8px] font-extrabold text-slate-700">Native Speed</span>
-                        <span className="text-[7px] bg-[#00D8FF]/20 text-[#00D8FF] px-1.5 py-0.5 rounded font-mono font-bold">C++ Native</span>
+                        <span className="text-[8px] font-extrabold text-slate-700">
+                          Native Speed
+                        </span>
+                        <span className="text-[7px] bg-[#00D8FF]/20 text-[#00D8FF] px-1.5 py-0.5 rounded font-mono font-bold">
+                          C++ Native
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -652,23 +1024,49 @@ export default function TechStack() {
                 Native & Cross-Platform Engines
               </h2>
               <p className="text-[#475569] leading-relaxed mb-10">
-                We engineer mobile applications that feel fluid, responsive, and compile directly to ARM assembly layers.
+                We engineer mobile applications that feel fluid, responsive, and
+                compile directly to ARM assembly layers.
               </p>
 
               <div className="space-y-6">
                 {[
-                  { name: "Flutter", icon: <FlutterIcon />, color: "#02569B", label: "Dart Compiled Core", desc: "Fluid rendering engine delivering 120Hz interface redraws." },
-                  { name: "React Native", icon: <ReactNativeIcon />, color: "#00D8FF", label: "Bridge Native Modules", desc: "Cross-platform execution leveraging existing React logic pipelines." },
-                  { name: "Firebase", icon: <FirebaseIcon />, color: "#FFC229", label: "NoSQL DB / Cloud Functions", desc: "Real-time key-value database sync, secure serverless auth." }
+                  {
+                    name: "Flutter",
+                    icon: <FlutterIcon />,
+                    color: "#02569B",
+                    label: "Dart Compiled Core",
+                    desc: "Fluid rendering engine delivering 120Hz interface redraws.",
+                  },
+                  {
+                    name: "React Native",
+                    icon: <ReactNativeIcon />,
+                    color: "#00D8FF",
+                    label: "Bridge Native Modules",
+                    desc: "Cross-platform execution leveraging existing React logic pipelines.",
+                  },
+                  {
+                    name: "Firebase",
+                    icon: <FirebaseIcon />,
+                    color: "#FFC229",
+                    label: "NoSQL DB / Cloud Functions",
+                    desc: "Real-time key-value database sync, secure serverless auth.",
+                  },
                 ].map((tech, idx) => (
-                  <div key={idx} className="flex gap-4 items-start p-5 rounded-2xl bg-white border border-slate-200/60 shadow-2xs">
+                  <div
+                    key={idx}
+                    className="flex gap-4 items-start p-5 rounded-2xl bg-white border border-slate-200/60 shadow-2xs"
+                  >
                     <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
                       {tech.icon}
                     </div>
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-display font-extrabold text-[#0F172A]">{tech.name}</span>
-                        <span className="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 uppercase">{tech.label}</span>
+                        <span className="font-display font-extrabold text-[#0F172A]">
+                          {tech.name}
+                        </span>
+                        <span className="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 uppercase">
+                          {tech.label}
+                        </span>
                       </div>
                       <p className="text-xs text-slate-500">{tech.desc}</p>
                     </div>
@@ -693,17 +1091,48 @@ export default function TechStack() {
               AI & Workflow Automation
             </h2>
             <p className="text-base text-[#475569]">
-              We build custom intelligence modules, utilizing large language models and vector data databases.
+              We build custom intelligence modules, utilizing large language
+              models and vector data databases.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
-              { name: "OpenAI", icon: <OpenAiIcon />, color: "#10A37F", badge: "GPT-4o / Embeddings", desc: "Contextual processing engines, custom fine-tunes." },
-              { name: "LangChain", icon: <LangChainIcon />, color: "#10A37F", badge: "LLM Orchestrator", desc: "Agentic toolchains, sequence maps, and memory variables." },
-              { name: "RAG Systems", icon: <Cpu className="w-8 h-8 text-pink-500" />, color: "#EC4899", badge: "Retrieval Augmented", desc: "Semantic context injection directly matching internal document vaults." },
-              { name: "Vector Databases", icon: <Database className="w-8 h-8 text-cyan-500" />, color: "#06B6D4", badge: "Qdrant / Pinecone", desc: "Fast cosine distance search on high-dimension coordinate embeddings." },
-              { name: "AI Automation", icon: <Sparkles className="w-8 h-8 text-amber-500" />, color: "#F59E0B", badge: "Workflow Pipelines", desc: "Autonomous cron scheduling agentic chains mapping to webhooks." }
+              {
+                name: "OpenAI",
+                icon: <OpenAiIcon />,
+                color: "#10A37F",
+                badge: "GPT-4o / Embeddings",
+                desc: "Contextual processing engines, custom fine-tunes.",
+              },
+              {
+                name: "LangChain",
+                icon: <LangChainIcon />,
+                color: "#10A37F",
+                badge: "LLM Orchestrator",
+                desc: "Agentic toolchains, sequence maps, and memory variables.",
+              },
+              {
+                name: "RAG Systems",
+                icon: <Cpu className="w-8 h-8 text-pink-500" />,
+                color: "#EC4899",
+                badge: "Retrieval Augmented",
+                desc: "Semantic context injection directly matching internal document vaults.",
+              },
+              {
+                name: "Vector Databases",
+                icon: <Database className="w-8 h-8 text-cyan-500" />,
+                color: "#06B6D4",
+                badge: "Qdrant / Pinecone",
+                desc: "Fast cosine distance search on high-dimension coordinate embeddings.",
+              },
+              {
+                name: "AI Automation",
+                icon: <Sparkles className="w-8 h-8 text-amber-500" />,
+                color: "#F59E0B",
+                badge: "Workflow Pipelines",
+                desc: "Autonomous cron scheduling agentic chains mapping to webhooks.",
+              },
             ].map((tech, idx) => (
               <motion.div
                 key={idx}
@@ -717,9 +1146,15 @@ export default function TechStack() {
                   <div className="w-12 h-12 rounded-xl bg-white border border-slate-100 flex items-center justify-center mb-6 shadow-3xs">
                     {tech.icon}
                   </div>
-                  <h4 className="font-display font-extrabold text-[#0F172A] mb-1">{tech.name}</h4>
-                  <span className="text-[8px] font-mono font-black text-pink-600 block mb-3 uppercase tracking-wider">{tech.badge}</span>
-                  <p className="text-xs text-slate-500 leading-relaxed">{tech.desc}</p>
+                  <h4 className="font-display font-extrabold text-[#0F172A] mb-1">
+                    {tech.name}
+                  </h4>
+                  <span className="text-[8px] font-mono font-black text-pink-600 block mb-3 uppercase tracking-wider">
+                    {tech.badge}
+                  </span>
+                  <p className="text-xs text-slate-500 leading-relaxed">
+                    {tech.desc}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -748,17 +1183,26 @@ export default function TechStack() {
                 Databases & Cloud Hosting
               </h2>
               <p className="text-[#475569] leading-relaxed mb-8">
-                We engineer scalable cloud architecture paths, running data pipelines, container pods, and distributed databases safely.
+                We engineer scalable cloud architecture paths, running data
+                pipelines, container pods, and distributed databases safely.
               </p>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 rounded-xl bg-white border border-slate-200 text-left">
-                  <span className="block text-[8px] font-mono text-slate-400 uppercase">Load Balancers</span>
-                  <span className="text-base font-extrabold text-slate-800">AWS ALB</span>
+                  <span className="block text-[8px] font-mono text-slate-400 uppercase">
+                    Load Balancers
+                  </span>
+                  <span className="text-base font-extrabold text-slate-800">
+                    AWS ALB
+                  </span>
                 </div>
                 <div className="p-4 rounded-xl bg-white border border-slate-200 text-left">
-                  <span className="block text-[8px] font-mono text-slate-400 uppercase">Deployment</span>
-                  <span className="text-base font-extrabold text-slate-800">Docker Compose</span>
+                  <span className="block text-[8px] font-mono text-slate-400 uppercase">
+                    Deployment
+                  </span>
+                  <span className="text-base font-extrabold text-slate-800">
+                    Docker Compose
+                  </span>
                 </div>
               </div>
             </motion.div>
@@ -774,14 +1218,57 @@ export default function TechStack() {
               >
                 {/* SVG Visual Flow Schematic */}
                 <div className="relative h-64 w-full flex items-center justify-center">
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 500 240">
+                  <svg
+                    className="absolute inset-0 w-full h-full pointer-events-none"
+                    viewBox="0 0 500 240"
+                  >
                     {/* Flows paths */}
-                    <path d="M 50,120 L 150,120 M 230,120 L 330,80 M 230,120 L 330,160 M 390,80 L 450,120 M 390,160 L 450,120" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4,4" />
-                    
+                    <path
+                      d="M 50,120 L 150,120 M 230,120 L 330,80 M 230,120 L 330,160 M 390,80 L 450,120 M 390,160 L 450,120"
+                      stroke="#E2E8F0"
+                      strokeWidth="2"
+                      strokeDasharray="4,4"
+                    />
+
                     {/* Dynamic flow particles */}
-                    <motion.circle cx="50" cy="120" r="3" fill="#FF9900" animate={{ cx: [50, 150], cy: [120, 120] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} />
-                    <motion.circle cx="230" cy="120" r="3" fill="#2496ED" animate={{ cx: [230, 330], cy: [120, 80] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 0.5 }} />
-                    <motion.circle cx="230" cy="120" r="3" fill="#336791" animate={{ cx: [230, 330], cy: [120, 160] }} transition={{ duration: 2.8, repeat: Infinity, ease: "linear", delay: 1 }} />
+                    <motion.circle
+                      cx="50"
+                      cy="120"
+                      r="3"
+                      fill="#FF9900"
+                      animate={{ cx: [50, 150], cy: [120, 120] }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    />
+                    <motion.circle
+                      cx="230"
+                      cy="120"
+                      r="3"
+                      fill="#2496ED"
+                      animate={{ cx: [230, 330], cy: [120, 80] }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: "linear",
+                        delay: 0.5,
+                      }}
+                    />
+                    <motion.circle
+                      cx="230"
+                      cy="120"
+                      r="3"
+                      fill="#336791"
+                      animate={{ cx: [230, 330], cy: [120, 160] }}
+                      transition={{
+                        duration: 2.8,
+                        repeat: Infinity,
+                        ease: "linear",
+                        delay: 1,
+                      }}
+                    />
                   </svg>
 
                   {/* Node 1: Client Request */}
@@ -789,7 +1276,9 @@ export default function TechStack() {
                     <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 shadow-3xs">
                       <Terminal className="w-5 h-5" />
                     </div>
-                    <span className="text-[8px] font-mono mt-1 text-slate-400">Client UI</span>
+                    <span className="text-[8px] font-mono mt-1 text-slate-400">
+                      Client UI
+                    </span>
                   </div>
 
                   {/* Node 2: Load Balancer (Docker Pod) */}
@@ -797,7 +1286,9 @@ export default function TechStack() {
                     <div className="w-14 h-14 rounded-2xl bg-[#2496ED]/5 border border-[#2496ED]/30 flex items-center justify-center text-[#2496ED] shadow-2xs">
                       <DockerIcon />
                     </div>
-                    <span className="text-[8px] font-mono mt-1 text-[#2496ED] font-extrabold">Docker Container</span>
+                    <span className="text-[8px] font-mono mt-1 text-[#2496ED] font-extrabold">
+                      Docker Container
+                    </span>
                   </div>
 
                   {/* Node 3: PostgreSQL Database */}
@@ -805,7 +1296,9 @@ export default function TechStack() {
                     <div className="w-12 h-12 rounded-xl bg-[#336791]/5 border border-[#336791]/20 flex items-center justify-center text-[#336791] shadow-3xs">
                       <PostgreSQLIcon />
                     </div>
-                    <span className="text-[8px] font-mono mt-1 text-slate-500">Postgres Relational</span>
+                    <span className="text-[8px] font-mono mt-1 text-slate-500">
+                      Postgres Relational
+                    </span>
                   </div>
 
                   {/* Node 4: Redis Cache */}
@@ -813,7 +1306,9 @@ export default function TechStack() {
                     <div className="w-12 h-12 rounded-xl bg-[#DC382D]/5 border border-[#DC382D]/20 flex items-center justify-center text-[#DC382D] shadow-3xs">
                       <RedisIcon />
                     </div>
-                    <span className="text-[8px] font-mono mt-1 text-slate-500">Redis Cache Memory</span>
+                    <span className="text-[8px] font-mono mt-1 text-slate-500">
+                      Redis Cache Memory
+                    </span>
                   </div>
 
                   {/* Node 5: AWS Cloud Hosting */}
@@ -821,7 +1316,9 @@ export default function TechStack() {
                     <div className="w-14 h-14 rounded-2xl bg-[#FF9900]/5 border border-[#FF9900]/30 flex items-center justify-center text-[#FF9900] shadow-2xs">
                       <AwsIcon />
                     </div>
-                    <span className="text-[8px] font-mono mt-1 text-[#FF9900] font-extrabold">AWS Virtual Node</span>
+                    <span className="text-[8px] font-mono mt-1 text-[#FF9900] font-extrabold">
+                      AWS Virtual Node
+                    </span>
                   </div>
                 </div>
 
@@ -829,11 +1326,15 @@ export default function TechStack() {
                 <div className="flex justify-around items-center border-t border-slate-100 pt-6 mt-4">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#47A248]" />
-                    <span className="text-[9px] font-mono font-bold text-slate-500">MongoDB Clusters</span>
+                    <span className="text-[9px] font-mono font-bold text-slate-500">
+                      MongoDB Clusters
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#FF9900]" />
-                    <span className="text-[9px] font-mono font-bold text-slate-500">AWS VPC Security</span>
+                    <span className="text-[9px] font-mono font-bold text-slate-500">
+                      AWS VPC Security
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -855,7 +1356,8 @@ export default function TechStack() {
               Our Development Lifecycle
             </h2>
             <p className="text-base text-[#475569]">
-              How we translate code designs into production-ready software solutions.
+              How we translate code designs into production-ready software
+              solutions.
             </p>
           </div>
 
@@ -875,12 +1377,42 @@ export default function TechStack() {
             {/* Steps Row */}
             <div className="relative z-10 grid grid-cols-6 gap-4">
               {[
-                { name: "Discovery", color: "#7B2FF7", icon: <Eye className="w-5 h-5" />, desc: "Understand goals, requirements, user needs, and scoping parameters." },
-                { name: "Design", color: "#9333EA", icon: <Layers className="w-5 h-5" />, desc: "Mockups, interactive visual flows, prototyping, and layout systems." },
-                { name: "Development", color: "#3B82F6", icon: <Code2 className="w-5 h-5" />, desc: "Compile clean database queries, build responsive pages, and set up routing." },
-                { name: "Testing", color: "#06B6D4", icon: <CheckCircle2 className="w-5 h-5" />, desc: "Deploy unit testing logic, automated UI tests, and load audits." },
-                { name: "Deployment", color: "#10B981", icon: <Cloud className="w-5 h-5" />, desc: "Spin up isolated Docker containers on AWS servers securely." },
-                { name: "Monitoring", color: "#F59E0B", icon: <LineChart className="w-5 h-5" />, desc: "Track error instances, memory logs, and sync status hooks." }
+                {
+                  name: "Discovery",
+                  color: "#7B2FF7",
+                  icon: <Eye className="w-5 h-5" />,
+                  desc: "Understand goals, requirements, user needs, and scoping parameters.",
+                },
+                {
+                  name: "Design",
+                  color: "#9333EA",
+                  icon: <Layers className="w-5 h-5" />,
+                  desc: "Mockups, interactive visual flows, prototyping, and layout systems.",
+                },
+                {
+                  name: "Development",
+                  color: "#3B82F6",
+                  icon: <Code2 className="w-5 h-5" />,
+                  desc: "Compile clean database queries, build responsive pages, and set up routing.",
+                },
+                {
+                  name: "Testing",
+                  color: "#06B6D4",
+                  icon: <CheckCircle2 className="w-5 h-5" />,
+                  desc: "Deploy unit testing logic, automated UI tests, and load audits.",
+                },
+                {
+                  name: "Deployment",
+                  color: "#10B981",
+                  icon: <Cloud className="w-5 h-5" />,
+                  desc: "Spin up isolated Docker containers on AWS servers securely.",
+                },
+                {
+                  name: "Monitoring",
+                  color: "#F59E0B",
+                  icon: <LineChart className="w-5 h-5" />,
+                  desc: "Track error instances, memory logs, and sync status hooks.",
+                },
               ].map((step, idx) => (
                 <motion.div
                   key={idx}
@@ -898,12 +1430,12 @@ export default function TechStack() {
                       className="w-12 h-12 rounded-full bg-white border-2 flex items-center justify-center shadow-sm relative z-10 cursor-pointer"
                       style={{
                         borderColor: step.color,
-                        color: step.color
+                        color: step.color,
                       }}
                     >
                       {step.icon}
                     </motion.div>
-                    
+
                     {/* Index label */}
                     <span className="absolute -top-1.5 -right-1.5 text-[8px] font-mono font-extrabold text-white bg-slate-900 w-5 h-5 rounded-full flex items-center justify-center shadow-3xs z-20 pointer-events-none">
                       {idx + 1}
@@ -911,8 +1443,12 @@ export default function TechStack() {
                   </div>
 
                   {/* Title & Desc */}
-                  <h4 className="font-display font-extrabold text-[#0F172A] text-sm mt-4 mb-2">{step.name}</h4>
-                  <p className="text-[10px] text-slate-500 leading-normal max-w-[140px] mx-auto">{step.desc}</p>
+                  <h4 className="font-display font-extrabold text-[#0F172A] text-sm mt-4 mb-2">
+                    {step.name}
+                  </h4>
+                  <p className="text-[10px] text-slate-500 leading-normal max-w-[140px] mx-auto">
+                    {step.desc}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -933,7 +1469,8 @@ export default function TechStack() {
               Why Our Technology Stack?
             </h2>
             <p className="text-base text-[#475569]">
-              We curate tools engineered for execution speed, scale bounds, and security parameters.
+              We curate tools engineered for execution speed, scale bounds, and
+              security parameters.
             </p>
           </div>
 
@@ -951,9 +1488,13 @@ export default function TechStack() {
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-6">
                   <Zap className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">Performance Absolute</h3>
+                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">
+                  Performance Absolute
+                </h3>
                 <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                  We build with light frameworks, compiled architectures, and asset compressions. Your page loading speeds remain under 15ms.
+                  We build with light frameworks, compiled architectures, and
+                  asset compressions. Your page loading speeds remain under
+                  15ms.
                 </p>
               </div>
               <div className="text-[9px] font-mono text-blue-600 font-extrabold uppercase bg-blue-500/5 p-3 rounded-xl border border-blue-500/10">
@@ -973,9 +1514,12 @@ export default function TechStack() {
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 text-[#7B2FF7] flex items-center justify-center mb-6">
                   <TrendingUp className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">Scale Bounds</h3>
+                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">
+                  Scale Bounds
+                </h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Distributed cluster containers balancing request loads dynamically to prevent outages under heavy usage.
+                  Distributed cluster containers balancing request loads
+                  dynamically to prevent outages under heavy usage.
                 </p>
               </div>
               <div className="text-[9px] font-mono text-[#7B2FF7] font-extrabold uppercase bg-purple-500/5 p-3 rounded-xl border border-purple-500/10 mt-6">
@@ -995,9 +1539,12 @@ export default function TechStack() {
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-6">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">Vulnerability Auditing</h3>
+                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">
+                  Vulnerability Auditing
+                </h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Continuous security scans, SSL protection keys, JWT auth headers, and strict database query controls.
+                  Continuous security scans, SSL protection keys, JWT auth
+                  headers, and strict database query controls.
                 </p>
               </div>
               <div className="text-[9px] font-mono text-emerald-600 font-extrabold uppercase bg-emerald-500/5 p-3 rounded-xl border border-emerald-500/10 mt-6">
@@ -1017,9 +1564,12 @@ export default function TechStack() {
                 <div className="w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-500 flex items-center justify-center mb-6">
                   <Sparkles className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">AI Powered Innovation</h3>
+                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">
+                  AI Powered Innovation
+                </h3>
                 <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                  We integrate semantic vector indexing databases and LLM model prompts directly into core backend software.
+                  We integrate semantic vector indexing databases and LLM model
+                  prompts directly into core backend software.
                 </p>
               </div>
               <div className="text-[9px] font-mono text-orange-500 font-extrabold uppercase bg-orange-500/5 p-3 rounded-xl border border-orange-500/10">
@@ -1054,7 +1604,8 @@ export default function TechStack() {
               Build With Modern Technology
             </h2>
             <p className="relative z-10 text-lg text-purple-100 max-w-xl mx-auto mb-10">
-              Let's create scalable, secure software powered by the latest technologies.
+              Let's create scalable, secure software powered by the latest
+              technologies.
             </p>
 
             <div className="relative z-10 flex flex-col sm:flex-row gap-4 justify-center items-center">

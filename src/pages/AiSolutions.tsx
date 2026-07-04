@@ -1,9 +1,10 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState, useRef } from "react";
 import { onHoverBurst } from "../utils/particleBurst";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LiquidFooter } from "../components/LiquidFooter";
 import {
   Brain,
   Sparkles,
@@ -17,19 +18,10 @@ import {
   Coins,
   Zap,
   ArrowRight,
-  Linkedin,
-  Instagram,
-  Facebook,
-  Github,
-  Mail,
-  Phone,
-  MapPin,
-  Globe,
 } from "lucide-react";
 import { TechBadge } from "../components/TechBadge";
 import { SectionDivider } from "../components/SectionDivider";
-import "../components/AINetwork.css";
-import logo1 from "../assets/Logoimage.svg";
+import "../styles/AINetwork.css";
 import aiSolutionsImg from "../assets/Aisolutions.webp";
 
 // Premium Interactive Neural Network & Workflow SVG Illustration
@@ -367,9 +359,12 @@ const AINetwork = () => {
 
 export default function AiSolutions() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
+    if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".case-study-card").forEach((card) => {
@@ -391,15 +386,15 @@ export default function AiSolutions() {
           },
         );
       });
-    });
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden">
+    <div ref={containerRef} className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-24 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.04)_0%,transparent_60%)] pointer-events-none" />
         <div className="container max-w-[1240px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -706,15 +701,24 @@ export default function AiSolutions() {
         />
 
         {/* Subtle AI Floating Particles */}
-        {[...Array(8)].map((_, i) => (
+        {[
+          { w: 4, h: 4, l: 15, t: 20, y: -30, x: 10, dur: 7.5 },
+          { w: 3, h: 3, l: 35, t: 40, y: -45, x: -12, dur: 8.2 },
+          { w: 5, h: 5, l: 55, t: 15, y: -25, x: 8, dur: 6.9 },
+          { w: 2, h: 2, l: 75, t: 50, y: -50, x: -5, dur: 9.0 },
+          { w: 4, h: 4, l: 25, t: 60, y: -35, x: 15, dur: 8.0 },
+          { w: 3, h: 3, l: 45, t: 30, y: -40, x: -8, dur: 7.1 },
+          { w: 5, h: 5, l: 65, t: 45, y: -32, x: 10, dur: 8.8 },
+          { w: 2, h: 2, l: 85, t: 25, y: -28, x: -6, dur: 6.5 },
+        ].map((pt, i) => (
           <motion.div
             key={`particle-${i}`}
             className="absolute rounded-full pointer-events-none z-[1]"
             style={{
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
-              left: `${10 + Math.random() * 80}%`,
-              top: `${10 + Math.random() * 60}%`,
+              width: `${pt.w}px`,
+              height: `${pt.h}px`,
+              left: `${pt.l}%`,
+              top: `${pt.t}%`,
               background:
                 i % 2 === 0
                   ? "rgba(124, 58, 237, 0.6)"
@@ -725,12 +729,12 @@ export default function AiSolutions() {
                   : "0 0 12px rgba(59, 130, 246, 0.35)",
             }}
             animate={{
-              y: [0, -(20 + Math.random() * 40), 0],
-              x: [0, (Math.random() - 0.5) * 30, 0],
+              y: [0, pt.y, 0],
+              x: [0, pt.x, 0],
               opacity: [0.3, 0.8, 0.3],
             }}
             transition={{
-              duration: 5 + Math.random() * 4,
+              duration: pt.dur,
               repeat: Infinity,
               ease: "easeInOut",
               delay: i * 0.7,
@@ -793,239 +797,7 @@ export default function AiSolutions() {
         </div>
 
         {/* BOTTOM AREA: GLASSMORPHISM FOOTER */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="relative z-10 w-[94%] md:w-[88%] max-w-[1450px] mx-auto mt-[70px] mb-10 rounded-[32px] p-8 md:p-[50px_60px]"
-          style={{
-            background: "rgba(255, 255, 255, 0.1)",
-            backdropFilter: "blur(18px)",
-            WebkitBackdropFilter: "blur(18px)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            boxShadow:
-              "0 8px 40px rgba(0, 0, 0, 0.25), 0 0 60px rgba(255, 255, 255, 0.05)",
-          }}
-        >
-          {/* Gentle footer glass glow pulse */}
-          <motion.div
-            className="absolute inset-0 rounded-[32px] pointer-events-none"
-            animate={{
-              boxShadow: [
-                "inset 0 0 0px rgba(124,58,237,0)",
-                "inset 0 0 40px rgba(124,58,237,0.15)",
-                "inset 0 0 0px rgba(124,58,237,0)",
-              ],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-
-          <div>
-            {/* 4-COLUMN FOOTER GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[50px] text-center md:text-left mb-12">
-              {/* Column 1: Company Info */}
-              <div className="flex flex-col items-center md:items-start gap-5">
-                <Link to="/" className="block w-fit">
-                  <img
-                    src={logo1}
-                    alt="ViyanInfo"
-                    className="h-10 w-auto object-contain select-none"
-                  />
-                </Link>
-
-                <p className="text-sm leading-relaxed text-[rgba(255,255,255,0.82)] max-w-xs">
-                  Building scalable software, AI solutions, and digital products
-                  that help businesses grow faster and operate smarter.
-                </p>
-
-                {/* Social Icons */}
-                <div className="flex gap-4 mt-2">
-                  {[
-                    {
-                      icon: <Linkedin className="w-[18px] h-[18px]" />,
-                      href: "https://linkedin.com",
-                      label: "LinkedIn",
-                      name: "linkedin",
-                    },
-                    {
-                      icon: <Github className="w-[18px] h-[18px]" />,
-                      href: "https://github.com",
-                      label: "GitHub",
-                      name: "github",
-                    },
-                    {
-                      icon: <Instagram className="w-[18px] h-[18px]" />,
-                      href: "https://instagram.com",
-                      label: "Instagram",
-                      name: "instagram",
-                    },
-                    {
-                      icon: <Facebook className="w-[18px] h-[18px]" />,
-                      href: "https://facebook.com",
-                      label: "Facebook",
-                      name: "facebook",
-                    },
-                  ].map((social, sIdx) => (
-                    <a
-                      key={sIdx}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-white transition-all duration-350"
-                      style={{
-                        background: "rgba(255,255,255,0.08)",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                      }}
-                      onMouseEnter={(e) => {
-                        if (social.name === "instagram") {
-                          e.currentTarget.style.background =
-                            "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)";
-                          e.currentTarget.style.borderColor = "transparent";
-                        } else {
-                          e.currentTarget.style.background =
-                            "rgba(168, 85, 247, 0.4)";
-                          e.currentTarget.style.borderColor =
-                            "rgba(168, 85, 247, 0.4)";
-                        }
-                        e.currentTarget.style.boxShadow =
-                          "0 0 22px rgba(168,85,247,0.45)";
-                        e.currentTarget.style.transform = "translateY(-4px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background =
-                          "rgba(255,255,255,0.08)";
-                        e.currentTarget.style.borderColor =
-                          "rgba(255,255,255,0.08)";
-                        e.currentTarget.style.boxShadow = "none";
-                        e.currentTarget.style.transform = "translateY(0)";
-                      }}
-                    >
-                      {social.icon}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Column 2: Services */}
-              <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
-                  Services
-                </span>
-                {[
-                  { label: "Custom Software Development", path: "/services" },
-                  { label: "Web Applications", path: "/services/websites" },
-                  { label: "Mobile Applications", path: "/services/mobile" },
-                  { label: "AI Solutions", path: "/services" },
-                  { label: "UI/UX Design", path: "/services" },
-                  { label: "Internship Programs", path: "/internship" },
-                ].map((link, lIdx) => (
-                  <Link
-                    key={lIdx}
-                    to={link.path}
-                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 block py-1"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-
-              {/* Column 3: Resources */}
-              <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
-                  Resources
-                </span>
-                {[
-                  { label: "Portfolio", path: "/portfolio" },
-                  { label: "Case Studies", path: "/portfolio" },
-                  { label: "Careers", path: "/careers" },
-                  { label: "Blog", path: "/blog" },
-                  { label: "Technology Stack", path: "/tech-stack" },
-                  { label: "Contact", path: "/contact" },
-                ].map((link, lIdx) => (
-                  <Link
-                    key={lIdx}
-                    to={link.path}
-                    className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 block py-1"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-
-              {/* Column 4: Contact */}
-              <div className="flex flex-col items-center md:items-start gap-4">
-                <span className="text-white font-bold text-sm uppercase tracking-[1px] mb-6 block relative">
-                  Contact
-                </span>
-
-                <a
-                  href="mailto:admin@viyaninfo.com"
-                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1"
-                >
-                  <Mail className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
-                  <span>admin@viyaninfo.com</span>
-                </a>
-
-                <a
-                  href="tel:+916379723465"
-                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1"
-                >
-                  <Phone className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
-                  <span>+91 6379723465</span>
-                </a>
-
-                <span className="text-sm text-[rgba(255,255,255,0.82)] flex items-start gap-3 py-1">
-                  <MapPin className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)] mt-0.5" />
-                  <span>Tiruvallur, Tamil Nadu</span>
-                </span>
-
-                <a
-                  href="https://www.viyaninfo.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[rgba(255,255,255,0.82)] hover:text-[#c084fc] hover:translate-x-1 transition-all duration-250 flex items-center gap-3 py-1"
-                >
-                  <Globe className="w-[18px] h-[18px] text-[rgba(255,255,255,0.62)]" />
-                  <span>www.viyaninfo.com</span>
-                </a>
-              </div>
-            </div>
-
-            {/* BOTTOM BAR */}
-            <div className="h-px bg-[rgba(255,255,255,0.12)] w-full mb-6" />
-
-            <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 text-xs text-[rgba(255,255,255,0.62)]">
-              <p>© 2026 ViyanInfo. All rights reserved.</p>
-
-              <div className="flex flex-wrap gap-5 justify-center">
-                <Link
-                  to="/privacy"
-                  className="hover:text-white transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-                <Link
-                  to="/terms"
-                  className="hover:text-white transition-colors"
-                >
-                  Terms of Service
-                </Link>
-                <Link
-                  to="/about"
-                  className="hover:text-white transition-colors"
-                >
-                  Cookie Policy
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        <LiquidFooter />
       </section>
     </div>
   );

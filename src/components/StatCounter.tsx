@@ -7,6 +7,7 @@ export function StatCounter({ value, suffix, label }: StatCounterProps) {
   const elRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (!statsRef.current) return;
     const ctx = gsap.context(() => {
       const obj = { val: 0 };
 

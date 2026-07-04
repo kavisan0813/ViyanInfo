@@ -37,6 +37,7 @@ export function VisionSection() {
   >([]);
 
   useLayoutEffect(() => {
+    if (!containerRef.current) return;
     const ctx = gsap.context(() => {
       // Reveal animation
       gsap.from(".vision-card", {

@@ -129,19 +129,6 @@ export function ServicesOrbital() {
   );
 }
 
-// ── Service Card Thumbnail Images ──────────────────────────────────
-export const SERVICE_THUMBNAILS: Record<string, string> = {
-  websites:
-    "https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=200&fit=crop&auto=format",
-  mobile:
-    "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=200&fit=crop&auto=format",
-  saas: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&auto=format",
-  ai: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=400&h=200&fit=crop&auto=format",
-  uiux: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=200&fit=crop&auto=format",
-  internship:
-    "https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?w=400&h=200&fit=crop&auto=format",
-};
-
 // ── Process Step Line ──────────────────────────────────────────────
 export function ProcessStepLine() {
   const steps = ["Discover", "Design", "Build", "Launch"];

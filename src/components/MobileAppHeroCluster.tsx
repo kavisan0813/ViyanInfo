@@ -346,25 +346,3 @@ export function AppStoreBadges() {
     </div>
   );
 }
-
-// ── Mobile Features with Phone Screenshots ─────────────────────────
-export const MOBILE_FEATURE_IMAGES = [
-  {
-    title: "Real-time Sync",
-    desc: "Offline-first architecture with instant background sync",
-    image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=600&fit=crop&auto=format",
-  },
-  {
-    title: "Push Notifications",
-    desc: "Smart notification system with user preference controls",
-    image:
-      "https://images.unsplash.com/photo-1601972602237-8c79241e468b?w=300&h=600&fit=crop&auto=format",
-  },
-  {
-    title: "Secure Auth",
-    desc: "Biometric login with multi-factor authentication",
-    image:
-      "https://images.unsplash.com/photo-1614680376739-414d95ff43df?w=300&h=600&fit=crop&auto=format",
-  },
-];
