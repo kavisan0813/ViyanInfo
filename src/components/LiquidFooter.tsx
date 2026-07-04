@@ -4,11 +4,13 @@ import logo1 from "../assets/Logo image 1.svg";
 import { LiquidGlassCard } from "./LiquidGlassCard";
 import "../styles/LiquidFooter.css";
 
-export function LiquidFooter() {
+export function LiquidFooter({ isLight = false }: { isLight?: boolean }) {
   return (
     <LiquidGlassCard
       accent="#7B2FF7"
-      className="relative z-10 w-[94%] md:w-[88%] max-w-[1450px] mx-auto mt-[70px] mb-10 footer-glass"
+      className={`relative z-10 w-[94%] md:w-[88%] max-w-[1450px] mx-auto mt-[70px] mb-10 footer-glass ${
+        isLight ? "liquid-glass-light footer-glass--light" : ""
+      }`}
     >
       <div className="footer-glow one"></div>
       <div className="footer-glow two"></div>

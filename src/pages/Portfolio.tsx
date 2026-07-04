@@ -10,8 +10,6 @@ import {
   DarkProjectCard,
   type DarkProjectData,
 } from "../components/PortfolioVisuals";
-
-// Import existing image assets
 import inventryImg from "../assets/inventry.webp";
 import emsImg from "../assets/ems.webp";
 import aboutImg from "../assets/about_what_we_do.webp";
@@ -217,8 +215,7 @@ export default function Portfolio() {
 
       {/* ── CLIENT LOGOS ── */}
       <section className="relative">
-        <div className="container max-w-[1280px] mx-auto px-6">
-        </div>
+        <div className="container max-w-[1280px] mx-auto px-6"></div>
       </section>
 
       {/* ── FILTER + GRID ── */}

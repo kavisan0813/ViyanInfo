@@ -1,11 +1,11 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-
 import { ProcessStep } from "../components/ProcessStep";
 import { CTABlock } from "../components/CTABlock";
 import { LiquidFooter } from "../components/LiquidFooter";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Process() {
   const containerRef = useRef<HTMLDivElement>(null);

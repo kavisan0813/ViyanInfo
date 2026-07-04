@@ -14,7 +14,7 @@ import {
   Send,
 } from "lucide-react";
 import contactImg from "../assets/contact_img.webp";
-import "./ContactPage.css";
+import "../styles/ContactPage.css";
 import { LiquidFooter } from "../components/LiquidFooter";
 import { LiquidGlassCard } from "../components/LiquidGlassCard";
 
@@ -202,7 +202,10 @@ export default function Contact() {
       <section className="split-contact-section">
         {/* LEFT: Info Cards + Map */}
         <div className="split-left">
-          <LiquidGlassCard accent="#8b5cf6" className="liquid-glass-light hero-contact-card">
+          <LiquidGlassCard
+            accent="#8b5cf6"
+            className="liquid-glass-light hero-contact-card"
+          >
             <h3>Connect With Us</h3>
 
             <div className="contact-item">
@@ -244,7 +247,10 @@ export default function Contact() {
         <div className="split-right">
           {/* Success State */}
           {isSuccess ? (
-            <LiquidGlassCard accent="#10b981" className="liquid-glass-light success-card">
+            <LiquidGlassCard
+              accent="#10b981"
+              className="liquid-glass-light success-card"
+            >
               <div className="success-icon">
                 <CheckCircle2 size={32} />
               </div>
@@ -271,137 +277,140 @@ export default function Contact() {
               </button>
             </LiquidGlassCard>
           ) : (
-            <LiquidGlassCard accent="#8b5cf6" className="liquid-glass-light contact-form-wrapper">
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <h2>Send Us A Message</h2>
+            <LiquidGlassCard
+              accent="#8b5cf6"
+              className="liquid-glass-light contact-form-wrapper"
+            >
+              <form className="contact-form" onSubmit={handleSubmit}>
+                <h2>Send Us A Message</h2>
 
-              <div className="form-row">
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="name">Full Name *</label>
+                    <input
+                      id="name"
+                      type="text"
+                      required
+                      placeholder="Your full name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className={errors.name ? "error-border" : ""}
+                    />
+                    {errors.name && (
+                      <span className="error-text">{errors.name}</span>
+                    )}
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="email">Company Email *</label>
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      placeholder="you@company.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={errors.email ? "error-border" : ""}
+                    />
+                    {errors.email && (
+                      <span className="error-text">{errors.email}</span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      placeholder="e.g. +91 98765 43210"
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="company">Company Name</label>
+                    <input
+                      id="company"
+                      type="text"
+                      placeholder="e.g. Acme Inc"
+                      value={formData.company}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="service">Service Type</label>
+                    <select
+                      id="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select Service...</option>
+                      <option value="Custom Software">
+                        Custom Software Development
+                      </option>
+                      <option value="Web Applications">
+                        Web Application Development
+                      </option>
+                      <option value="Mobile Applications">
+                        Mobile Application Development
+                      </option>
+                      <option value="AI Solutions">AI Solutions</option>
+                      <option value="UI/UX Design">UI/UX Design</option>
+                      <option value="Internship Programs">
+                        Internship Programs
+                      </option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="budget">Estimated Budget</label>
+                    <select
+                      id="budget"
+                      value={formData.budget}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select Budget Range...</option>
+                      <option value="< $5k">Less than $5,000</option>
+                      <option value="$5k - $15k">$5,000 - $15,000</option>
+                      <option value="$15k - $50k">$15,000 - $50,000</option>
+                      <option value="> $50k">More than $50,000</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="form-group">
-                  <label htmlFor="name">Full Name *</label>
-                  <input
-                    id="name"
-                    type="text"
+                  <label htmlFor="message">Project Requirements *</label>
+                  <textarea
+                    id="message"
+                    rows={5}
                     required
-                    placeholder="Your full name"
-                    value={formData.name}
+                    placeholder="Tell us about your project requirements, scope, or timeline goals..."
+                    value={formData.message}
                     onChange={handleChange}
-                    className={errors.name ? "error-border" : ""}
+                    className={errors.message ? "error-border" : ""}
                   />
-                  {errors.name && (
-                    <span className="error-text">{errors.name}</span>
+                  {errors.message && (
+                    <span className="error-text">{errors.message}</span>
                   )}
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">Company Email *</label>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    placeholder="you@company.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={errors.email ? "error-border" : ""}
-                  />
-                  {errors.email && (
-                    <span className="error-text">{errors.email}</span>
+                <button type="submit" disabled={isLoading} className="send-btn">
+                  {isLoading ? (
+                    <Loader2 className="animate-spin" size={20} />
+                  ) : (
+                    <>
+                      Send Message
+                      <Send size={18} />
+                    </>
                   )}
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="phone">Phone Number</label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    placeholder="e.g. +91 98765 43210"
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="company">Company Name</label>
-                  <input
-                    id="company"
-                    type="text"
-                    placeholder="e.g. Acme Inc"
-                    value={formData.company}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="service">Service Type</label>
-                  <select
-                    id="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Service...</option>
-                    <option value="Custom Software">
-                      Custom Software Development
-                    </option>
-                    <option value="Web Applications">
-                      Web Application Development
-                    </option>
-                    <option value="Mobile Applications">
-                      Mobile Application Development
-                    </option>
-                    <option value="AI Solutions">AI Solutions</option>
-                    <option value="UI/UX Design">UI/UX Design</option>
-                    <option value="Internship Programs">
-                      Internship Programs
-                    </option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="budget">Estimated Budget</label>
-                  <select
-                    id="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Budget Range...</option>
-                    <option value="< $5k">Less than $5,000</option>
-                    <option value="$5k - $15k">$5,000 - $15,000</option>
-                    <option value="$15k - $50k">$15,000 - $50,000</option>
-                    <option value="> $50k">More than $50,000</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="message">Project Requirements *</label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  required
-                  placeholder="Tell us about your project requirements, scope, or timeline goals..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  className={errors.message ? "error-border" : ""}
-                />
-                {errors.message && (
-                  <span className="error-text">{errors.message}</span>
-                )}
-              </div>
-
-              <button type="submit" disabled={isLoading} className="send-btn">
-                {isLoading ? (
-                  <Loader2 className="animate-spin" size={20} />
-                ) : (
-                  <>
-                    Send Message
-                    <Send size={18} />
-                  </>
-                )}
-              </button>
-            </form>
+                </button>
+              </form>
             </LiquidGlassCard>
           )}
         </div>
@@ -409,7 +418,10 @@ export default function Contact() {
 
       {/* ── FULL WIDTH FAQ ACCORDION SECTION ───────────── */}
       <section className="faq-accordion-section">
-        <LiquidGlassCard accent="#7c3aed" className="liquid-glass-light faq-card-accordion">
+        <LiquidGlassCard
+          accent="#7c3aed"
+          className="liquid-glass-light faq-card-accordion"
+        >
           <h2>Frequently Asked Questions</h2>
 
           {FAQ_ITEMS.map((item, idx) => {

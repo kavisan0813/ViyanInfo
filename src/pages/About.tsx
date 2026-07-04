@@ -31,6 +31,9 @@ import {
   FounderHalo,
   MissionOrbGlow,
 } from "../components/AboutVisuals";
+import { IoRocketOutline } from "react-icons/io5";
+import { RiRobot2Line } from "react-icons/ri";
+import archIMG from "../assets/diagram.webp";
 
 const VALUE_BG_IMAGES: Record<string, string> = {
   "Performance Absolute":
@@ -94,15 +97,22 @@ const StoryImmersiveSplit = () => {
             Digital Experiences
           </h2>
 
-          <p>
+          <p className="mb-12">
             We started Viyan with a vision to create impactful digital products
             that combine innovation, creativity, and technology.
           </p>
 
           <div className="story-points">
-            <div className="story-point">🚀 Startup Focused</div>
-            <div className="story-point">🤖 AI Driven Innovation</div>
-            <div className="story-point">⚡ Scalable Architecture</div>
+            <div className="story-point">
+              <IoRocketOutline size={20} /> Startup Focused
+            </div>
+            <div className="story-point">
+              <RiRobot2Line size={20} /> AI Driven Innovation
+            </div>
+            <div className="story-point flex">
+              <img src={archIMG} style={{ width: "20px", height: "20px" }} />
+              <p className="mb-0">Scalable Architecture</p>
+            </div>
           </div>
         </motion.div>
       </div>
@@ -214,7 +224,9 @@ const CultureGalleryVisual = () => (
           alt="Team collaboration"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <span className="absolute bottom-2 left-3 text-[10px] font-semibold text-white/90">Sprint Planning</span>
+        <span className="absolute bottom-2 left-3 text-[10px] font-semibold text-white/90">
+          Sprint Planning
+        </span>
       </motion.div>
 
       <motion.div
@@ -229,7 +241,9 @@ const CultureGalleryVisual = () => (
           alt="Architecture review"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <span className="absolute bottom-2 left-3 text-[10px] font-semibold text-white/90">Code Review</span>
+        <span className="absolute bottom-2 left-3 text-[10px] font-semibold text-white/90">
+          Code Review
+        </span>
       </motion.div>
 
       <motion.div
@@ -244,7 +258,9 @@ const CultureGalleryVisual = () => (
           alt="Pair programming"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <span className="absolute bottom-2 left-3 text-[10px] font-semibold text-white/90">Pair Programming</span>
+        <span className="absolute bottom-2 left-3 text-[10px] font-semibold text-white/90">
+          Pair Programming
+        </span>
       </motion.div>
 
       {/* Floating notification chips */}
@@ -309,7 +325,7 @@ function useCountUp(target: number, duration: number = 2000) {
           observer.disconnect();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -486,7 +502,7 @@ export default function About() {
       accent: "#7B2FF7",
       glowColor: "rgba(123, 47, 247, 0.15)",
       bgLight: "bg-purple-500/5 border-purple-500/10",
-      badges: ["5+ Years Exp", "50+ Projects", "30+ Clients"],
+      badges: ["2+ Years Exp", "5+ Projects", "3+ Clients"],
     },
     {
       name: "Peter",
@@ -526,7 +542,6 @@ export default function About() {
       {/* HERO SECTION */}
       {/* ═══════ CINEMATIC HERO ═══════ */}
       <section className="about-hero-section">
-
         <motion.div
           className="hero-left"
           initial={{ opacity: 0, y: 40 }}
@@ -536,8 +551,10 @@ export default function About() {
           <span className="hero-badge">ABOUT VIYAN INFO TECH</span>
 
           <h1>
-            Building Digital<br />
-            <span>Experiences</span><br />
+            Building Digital
+            <br />
+            <span>Experiences</span>
+            <br />
             That Matter
           </h1>
 
@@ -581,7 +598,12 @@ export default function About() {
           <motion.div
             className="hero-floating-card card-2"
             animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
           >
             🤖 AI Solutions
           </motion.div>
@@ -589,12 +611,16 @@ export default function About() {
           <motion.div
             className="hero-floating-card card-3"
             animate={{ y: [0, -14, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            transition={{
+              duration: 4.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2,
+            }}
           >
             ⚡ Fast Delivery
           </motion.div>
         </motion.div>
-
       </section>
 
       <SectionDivider />
@@ -714,9 +740,9 @@ export default function About() {
                   Our Mission
                 </h3>
                 <p className="text-sm leading-relaxed text-[#475569]">
-                  To engineer stable, transparent, and scalable digital solutions
-                  that eliminate operational friction and enable businesses to
-                  expand systematically.
+                  To engineer stable, transparent, and scalable digital
+                  solutions that eliminate operational friction and enable
+                  businesses to expand systematically.
                 </p>
               </div>
             </motion.div>

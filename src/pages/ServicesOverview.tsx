@@ -1,8 +1,3 @@
-/**
- * SERVICES OVERVIEW PAGE
- * Theme: Light mode (#FAFAFA base) + liquid morphism blobs
- * Fixes: orbital hero, card thumbnail images, process steps, blob backgrounds
- */
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";

@@ -389,7 +389,10 @@ export default function AiSolutions() {
   }, []);
 
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden">
+    <div
+      ref={containerRef}
+      className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden"
+    >
       {/* HERO SECTION */}
       <section className="relative pt-24 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.04)_0%,transparent_60%)] pointer-events-none" />
