@@ -53,7 +53,6 @@ export default function Careers() {
 
         <div className="container max-w-[1400px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[700px]">
-
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -70,9 +69,10 @@ export default function Careers() {
               </h1>
 
               <p className="text-lg leading-relaxed text-[#475569] max-w-xl mx-auto lg:mx-0 mb-8">
-                Join our mission to build resilient enterprise systems, scalable web
-                applications, and automated AI workflows. We value operational
-                ownership, direct collaboration, and continuous learning.
+                Join our mission to build resilient enterprise systems, scalable
+                web applications, and automated AI workflows. We value
+                operational ownership, direct collaboration, and continuous
+                learning.
               </p>
 
               <div className="flex justify-center lg:justify-start">
@@ -100,7 +100,6 @@ export default function Careers() {
                 className="max-w-[750px] lg:max-w-[500px] h-auto object-contain scale-105 lg:scale-125"
               />
             </motion.div>
-
           </div>
         </div>
       </section>
@@ -157,7 +156,6 @@ export default function Careers() {
 
                 {/* Top Overlay Content */}
                 <div className="absolute top-0 left-0 w-full z-20 flex justify-between items-start p-5">
-
                   <div className="p-3 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 text-white">
                     <Users className="w-6 h-6" />
                   </div>

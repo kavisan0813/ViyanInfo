@@ -699,12 +699,12 @@ export default function Blog() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto flex flex-col items-center"
           >
-            <h2
+            <span
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl"
               style={{ fontSize: "42px" }}
             >
               Ready to start your internship journey?
-            </h2>
+            </span>
             <motion.div
               whileHover={{ scale: 1.05, translateY: -3 }}
               whileTap={{ scale: 0.98 }}

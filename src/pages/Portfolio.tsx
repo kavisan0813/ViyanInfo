@@ -367,7 +367,7 @@ export default function Portfolio() {
 
       {/* ── CTA + FOOTER SECTION (unchanged) ── */}
       <section
-        className="relative w-[94%] md:w-full mx-auto overflow-hidden rounded-[32px] md:rounded-[40px] z-10"
+        className="relative w-[94%] md:w-full mx-auto overflow-hidden rounded-t-[32px] rounded-b-none md:rounded-t-[40px] md:rounded-b-none z-10"
         style={{
           minHeight: "950px",
           marginTop: "80px",
@@ -391,26 +391,30 @@ export default function Portfolio() {
         />
 
         {/* CTA */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center pt-[80px] pb-12 px-6">
+        <div className="relative z-10 flex justify-end px-8 md:px-16 lg:px-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto flex flex-col items-center"
+            className="w-full max-w-3xl flex flex-col items-end text-right"
           >
             <span className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
               Ready to build your solution?
             </span>
+
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 drop-shadow-md">
               Let's coordinate on requirements and construct your application.
             </p>
+
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
+              className="self-center"
             >
               <Link to="/contact" className="block relative group">
                 <div className="absolute inset-0 bg-[#7c3aed] blur-[40px] opacity-55 group-hover:opacity-85 transition-opacity duration-300 rounded-full" />
+
                 <button
                   className="relative px-[48px] py-[18px] text-white font-semibold text-sm uppercase tracking-wider rounded-full shadow-[0_0_40px_rgba(124,58,237,0.55)] transition-all duration-300 border border-white/10 flex items-center gap-2"
                   style={{
@@ -425,7 +429,7 @@ export default function Portfolio() {
           </motion.div>
         </div>
 
-        {/* Glassmorphism Footer (unchanged) */}
+        {/* Footer remains unchanged */}
         <LiquidFooter />
       </section>
     </div>

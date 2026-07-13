@@ -699,9 +699,9 @@ export default function UiUxDesign() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto flex flex-col items-center"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
+            <span className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
               Ready to design your product?
-            </h2>
+            </span>
             <p className="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto drop-shadow-md">
               Let's engineer a gorgeous, intuitive design system that scales
               seamlessly with your business.

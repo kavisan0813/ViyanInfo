@@ -756,9 +756,9 @@ export default function AiSolutions() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
+            <span className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
               Ready to engineer your AI Solutions?
-            </h2>
+            </span>
             <p className="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto drop-shadow-md">
               Let's build a smart model ecosystem that automates operations and
               scales with your business.
