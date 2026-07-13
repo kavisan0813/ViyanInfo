@@ -17,6 +17,7 @@ import {
   LineChart,
 } from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
+import { LiquidFooter } from "../components/LiquidFooter";
 
 // ==========================================
 // CUSTOM OFFICIAL BRAND SVG ICONS
@@ -461,13 +462,7 @@ export default function TechStack() {
 
   return (
     <div className="bg-[#FAF7FF] min-h-screen text-[#475569] font-body overflow-x-hidden relative">
-      {/* Background radial soft shapes */}
-      <div className="absolute top-0 right-0 w-[50%] aspect-square bg-[radial-gradient(circle_at_center,rgba(123,47,247,0.03)_0%,transparent_65%)] pointer-events-none z-0" />
-      <div className="absolute top-[20%] left-0 w-[45%] aspect-square bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.02)_0%,transparent_65%)] pointer-events-none z-0" />
-
-      {/* HERO SECTION */}
-      <section className="relative pt-24 pb-24 overflow-hidden bg-[#FAF7FF]">
-        {/* Animated Particles background */}
+      <section className="relative min-h-screen flex justify-center items-center overflow-hidden bg-[#FAF7FF]">
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           {[...Array(15)].map((_, i) => {
             const rand1 = ((i * 17) % 100) / 100;
@@ -1625,6 +1620,8 @@ export default function TechStack() {
           </motion.div>
         </div>
       </section>
+
+      <LiquidFooter isLight={true} />
     </div>
   );
 }

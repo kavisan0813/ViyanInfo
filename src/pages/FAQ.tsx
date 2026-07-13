@@ -47,6 +47,8 @@ export default function FAQ() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (!containerRef.current || !heroContentRef.current || !faqRef.current)
+      return;
     const ctx = gsap.context(() => {
       const h1Lines = gsap.utils.toArray<HTMLElement>(
         ".line-inner",

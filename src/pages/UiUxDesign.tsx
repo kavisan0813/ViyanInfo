@@ -11,7 +11,6 @@ import {
   Heart,
   UserCheck,
 } from "lucide-react";
-
 import { LiquidFooter } from "../components/LiquidFooter";
 import uiuxImg from "../assets/uiux_img.webp";
 import gsap from "gsap";

@@ -1,15 +1,14 @@
 import { useLayoutEffect, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-
 import { CTABlock } from "../components/CTABlock";
 import { SectionDivider } from "../components/SectionDivider";
 import { LiquidFooter } from "../components/LiquidFooter";
 import { Database, ShieldCheck, CreditCard, Activity, Cpu } from "lucide-react";
-
 import saasHero from "../assets/saas_hero_server.webp";
 import saasDashboard from "../assets/saas_dashboard_ui.webp";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SaasDev() {
   useEffect(() => {

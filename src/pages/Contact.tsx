@@ -13,7 +13,7 @@ import {
   Send,
 } from "lucide-react";
 import contactImg from "../assets/contact_img.webp";
-import "./ContactPage.css";
+import "../styles/ContactPage.css";
 import { LiquidFooter } from "../components/LiquidFooter";
 import { LiquidGlassCard } from "../components/LiquidGlassCard";
 
@@ -224,7 +224,10 @@ export default function Contact() {
       <section className="split-contact-section">
         {/* LEFT: Info Cards + Map */}
         <div className="split-left">
-          <LiquidGlassCard accent="#8b5cf6" className="liquid-glass-light hero-contact-card">
+          <LiquidGlassCard
+            accent="#8b5cf6"
+            className="liquid-glass-light hero-contact-card"
+          >
             <h3>Connect With Us</h3>
 
             <div className="contact-item">
@@ -266,7 +269,10 @@ export default function Contact() {
         <div className="split-right">
           {/* Success State */}
           {isSuccess ? (
-            <LiquidGlassCard accent="#10b981" className="liquid-glass-light success-card">
+            <LiquidGlassCard
+              accent="#10b981"
+              className="liquid-glass-light success-card"
+            >
               <div className="success-icon">
                 <CheckCircle2 size={32} />
               </div>
@@ -293,7 +299,10 @@ export default function Contact() {
               </button>
             </LiquidGlassCard>
           ) : (
-            <LiquidGlassCard accent="#8b5cf6" className="liquid-glass-light contact-form-wrapper">
+            <LiquidGlassCard
+              accent="#8b5cf6"
+              className="liquid-glass-light contact-form-wrapper"
+            >
               <form className="contact-form" onSubmit={handleSubmit}>
                 <h2>Send Us A Message</h2>
 
@@ -429,21 +438,12 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ── FAQ CINEMATIC SECTION ───────────── */}
-      <section className="faq-cinematic-section">
-        {/* LEFT IMAGE */}
-        <div className="faq-image-side">
-          <img
-            src="/images/support-team.jpg"
-            alt="FAQ"
-            className="faq-main-image"
-          />
-          <div className="faq-image-overlay"></div>
-        </div>
-
-        {/* RIGHT CONTENT */}
-        <div className="faq-content-side">
-          <span className="faq-tag">FAQ</span>
+      {/* ── FULL WIDTH FAQ ACCORDION SECTION ───────────── */}
+      <section className="faq-accordion-section">
+        <LiquidGlassCard
+          accent="#7c3aed"
+          className="liquid-glass-light faq-card-accordion"
+        >
           <h2>Frequently Asked Questions</h2>
           <div className="faq-floating-list">
             {FAQ_ITEMS.map((item, index) => {

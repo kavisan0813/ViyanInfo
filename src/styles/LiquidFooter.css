@@ -155,3 +155,55 @@
     border-radius: 24px;
   }
 }
+
+/* Light Mode Footer Styling overrides */
+.footer-glass.footer-glass--light * {
+  color: #4c1d95 !important; /* dark purple */
+  text-shadow: none !important;
+}
+
+.footer-glass.footer-glass--light .text-white {
+  color: #2e1065 !important; /* deep rich purple for headings */
+}
+
+.footer-glass.footer-glass--light p,
+.footer-glass.footer-glass--light span {
+  color: #3b0764 !important; /* dark purple for body/info text */
+}
+
+.footer-glass.footer-glass--light .footer-links a {
+  color: #5b21b6 !important; /* medium-dark purple for links */
+}
+
+.footer-glass.footer-glass--light .footer-links a:hover {
+  color: #7b2ff7 !important; /* Viyan brand purple on hover */
+}
+
+.footer-glass.footer-glass--light .footer-links a::after {
+  background: #7b2ff7 !important;
+}
+
+.footer-glass.footer-glass--light .footer-divider {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(123, 47, 247, 0.15),
+    transparent
+  ) !important;
+}
+
+.footer-glass.footer-glass--light .footer-social a {
+  background: rgba(123, 47, 247, 0.05) !important;
+  border: 1px solid rgba(123, 47, 247, 0.12) !important;
+  box-shadow: 0 4px 20px rgba(123, 47, 247, 0.08) !important;
+}
+
+.footer-glass.footer-glass--light .footer-social a:hover {
+  background: rgba(123, 47, 247, 0.12) !important;
+  box-shadow: 0 8px 30px rgba(123, 47, 247, 0.2) !important;
+}
+
+.footer-glass.footer-glass--light .group:hover * {
+  color: #7b2ff7 !important;
+}
+
