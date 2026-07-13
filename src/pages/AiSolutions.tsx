@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState, useRef } from "react";
 import { onHoverBurst } from "../utils/particleBurst";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -359,6 +359,7 @@ const AINetwork = () => {
 
 export default function AiSolutions() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);

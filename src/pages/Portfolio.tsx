@@ -194,7 +194,7 @@ function PremiumProductCard({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -403,8 +403,7 @@ export default function Portfolio() {
               Ready to build your solution?
             </span>
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 drop-shadow-md">
-              Let's coordinate on requirements and construct your
-              application.
+              Let's coordinate on requirements and construct your application.
             </p>
             <motion.div
               whileHover={{ scale: 1.05 }}

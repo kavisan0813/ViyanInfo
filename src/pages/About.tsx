@@ -24,13 +24,7 @@ import peter from "../assets/peter.webp";
 import aboutImg from "../assets/aboutus.webp";
 import { LiquidFooter } from "../components/LiquidFooter";
 import "../styles/About.css";
-import {
-  AboutStatsBg,
-  FounderHalo,
-} from "../components/AboutVisuals";
-import { IoRocketOutline } from "react-icons/io5";
-import { RiRobot2Line } from "react-icons/ri";
-import archIMG from "../assets/diagram.webp";
+import { AboutStatsBg, FounderHalo } from "../components/AboutVisuals";
 
 const VALUE_BG_IMAGES: Record<string, string> = {
   "Performance Absolute":
@@ -94,22 +88,15 @@ const StoryImmersiveSplit = () => {
             Digital Experiences
           </h2>
 
-          <p className="mb-12">
+          <p>
             We started Viyan with a vision to create impactful digital products
             that combine innovation, creativity, and technology.
           </p>
 
           <div className="story-points">
-            <div className="story-point">
-              <IoRocketOutline size={20} /> Startup Focused
-            </div>
-            <div className="story-point">
-              <RiRobot2Line size={20} /> AI Driven Innovation
-            </div>
-            <div className="story-point flex">
-              <img src={archIMG} style={{ width: "20px", height: "20px" }} />
-              <p className="mb-0">Scalable Architecture</p>
-            </div>
+            <div className="story-point">🚀 Startup Focused</div>
+            <div className="story-point">🤖 AI Driven Innovation</div>
+            <div className="story-point">⚡ Scalable Architecture</div>
           </div>
         </motion.div>
       </div>
@@ -123,7 +110,7 @@ const MissionVisionCinematic = () => {
     <section className="mv-section">
       {/* MISSION */}
       <div className="mv-row">
-        <motion.div 
+        <motion.div
           className="mv-image-wrapper"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -138,7 +125,7 @@ const MissionVisionCinematic = () => {
           <div className="mv-image-overlay"></div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="mv-content-card"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -150,56 +137,51 @@ const MissionVisionCinematic = () => {
             Empowering Businesses <br /> Through Innovation
           </h2>
           <p>
-            We engineer intelligent digital products, scalable systems, and AI-powered experiences that help businesses grow faster and operate smarter.
+            We engineer intelligent digital products, scalable systems, and
+            AI-powered experiences that help businesses grow faster and operate
+            smarter.
           </p>
         </motion.div>
       </div>
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 p-2 px-3 rounded-lg bg-slate-900 border border-slate-800 shadow-md text-xs font-mono font-bold text-[#10B981] flex items-center gap-1">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />{" "}
-        Cloud Native SaaS
+
+      {/* VISION */}
+      <div className="mv-row reverse">
+        <motion.div
+          className="mv-content-card"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="mv-tag">OUR VISION</span>
+          <h2>
+            Designing The Future <br /> Of Technology
+          </h2>
+          <p>
+            Our vision is to become a global technology partner shaping the
+            future through innovation, digital transformation, and impactful
+            experiences.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="mv-image-wrapper"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <img
+            src="/images/future-city.png"
+            alt="Vision"
+            className="mv-image"
+          />
+          <div className="mv-image-overlay"></div>
+        </motion.div>
       </div>
-    </motion.div>
-  </div>
-);
-
-// 3. Culture Section: Floating Team Gallery
-const CultureGalleryVisual = () => (
-  <div className="culture-gallery">
-    <div className="culture-photo-stack">
-      {/* Stacked glass photos */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="culture-photo culture-photo-1"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop&auto=format"
-          alt="Team collaboration"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <span className="absolute bottom-2 left-3 text-[10px] font-semibold text-white/90">
-          Sprint Planning
-        </span>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.15 }}
-        className="culture-photo culture-photo-2"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop&auto=format"
-          alt="Architecture review"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <span className="absolute bottom-2 left-3 text-[10px] font-semibold text-white/90">
-          Code Review
-        </span>
-      </motion.div>
+    </section>
+  );
+};
 
 // 3. Culture Section — Stacked Creative Wall
 const CultureCreativeWall = () => {
@@ -211,30 +193,33 @@ const CultureCreativeWall = () => {
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="culture-photo culture-photo-3"
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
         <img
-          src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?w=400&h=300&fit=crop&auto=format"
-          alt="Pair programming"
+          src="/images/team1.png"
+          alt="Team collaboration"
+          className="culture-card card1"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <span className="absolute bottom-2 left-3 text-[10px] font-semibold text-white/90">
-          Pair Programming
-        </span>
-      </motion.div>
+        <img
+          src="/images/team2.png"
+          alt="Architecture review"
+          className="culture-card card2"
+        />
+        <img
+          src="/images/team3.png"
+          alt="Pair programming"
+          className="culture-card card3"
+        />
 
-      {/* Floating notification chips */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.5, duration: 0.4 }}
-        className="culture-chip culture-chip-1"
-      >
-        <span className="chip-dot" style={{ backgroundColor: "#10B981" }} />
-        Team Online
-      </motion.div>
+        <motion.div
+          className="culture-note note1"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.4 }}
+        >
+          🚀 Innovation First
+        </motion.div>
 
         <motion.div
           className="culture-note note2"
@@ -670,91 +655,7 @@ export default function About() {
       <SectionDivider />
 
       {/* MISSION & VISION */}
-      <section className="py-24 bg-[#FAF7FF] relative">
-        <div className="container max-w-[1200px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center text-left mb-20">
-            {/* Mission/Transformation illustration */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <MissionIllustration />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-                Our Mission & Vision
-              </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A] mb-6 tracking-tight">
-                Architecting Resilient Futures
-              </h2>
-              <p className="text-lg leading-relaxed text-[#475569] mb-6">
-                To engineer stable, transparent, and scalable digital solutions
-                that eliminate operational friction and enable businesses to
-                expand systematically in the modern economy.
-              </p>
-              <p className="text-sm leading-relaxed text-[#475569]">
-                We envision becoming a premier global software architecture
-                partner recognized for strict quality controls, continuous
-                engineering innovation, and product-focused delivery frameworks.
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mission-card"
-            >
-              <div className="relative z-10">
-                <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-[#7B2FF7] mb-6">
-                  <Target className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-4">
-                  Our Mission
-                </h3>
-                <p className="text-sm leading-relaxed text-[#475569]">
-                  To engineer stable, transparent, and scalable digital
-                  solutions that eliminate operational friction and enable
-                  businesses to expand systematically.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="vision-card"
-            >
-              <div className="relative z-10">
-                <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-[#3B82F6] mb-6">
-                  <Compass className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-4">
-                  Our Vision
-                </h3>
-                <p className="text-sm leading-relaxed text-[#475569]">
-                  To become a premier global software architecture partner
-                  recognized for strict quality controls and product-focused
-                  delivery.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <MissionVisionCinematic />
 
       <SectionDivider />
 

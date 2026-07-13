@@ -449,7 +449,10 @@ export default function Contact() {
             {FAQ_ITEMS.map((item, index) => {
               const isOpen = activeFaq === index;
               return (
-                <div key={index} className={`faq-floating-card ${isOpen ? "active" : ""}`}>
+                <div
+                  key={index}
+                  className={`faq-floating-card ${isOpen ? "active" : ""}`}
+                >
                   <button
                     className="faq-card-top"
                     onClick={() => setActiveFaq(isOpen ? null : index)}
@@ -461,14 +464,16 @@ export default function Contact() {
                     <div className="faq-cinematic-plus">+</div>
                   </button>
 
-                  <div className={`faq-cinematic-answer ${isOpen ? "open" : "closed"}`}>
+                  <div
+                    className={`faq-cinematic-answer ${isOpen ? "open" : "closed"}`}
+                  >
                     <p>{item.answer}</p>
                   </div>
                 </div>
               );
             })}
           </div>
-        </div>
+        </LiquidGlassCard>
       </section>
 
       {/* ── COMBINED CTA + FOOTER SECTION ────────────── */}
