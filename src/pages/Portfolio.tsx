@@ -3,18 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { LiquidFooter } from "../components/LiquidFooter";
-import workImg from "../assets/work img.webp";
-import {
-  PortfolioHeroCarousel,
-  PortfolioFilterPills,
-  DarkProjectCard,
-  type DarkProjectData,
-} from "../components/PortfolioVisuals";
-import inventryImg from "../assets/inventry.webp";
-import emsImg from "../assets/ems.webp";
-import aboutImg from "../assets/about_what_we_do.webp";
-import saasHeroImg from "../assets/saas_hero_server.webp";
-import websitesImg from "../assets/website_final_product.webp";
+import workImg from "../assets/Workimg.webp";
 import { PortfolioHeroCarousel } from "../components/PortfolioVisuals";
 import "../styles/PremiumShowcase.css";
 
@@ -336,75 +325,43 @@ export default function Portfolio() {
         <div className="container max-w-[1280px] mx-auto px-6"></div>
       </section>
 
-      {/* ── FILTER + GRID ── */}
-      <section className="relative py-16">
-        <div className="container max-w-[1280px] mx-auto px-6">
-          {/* Filter pills */}
-          <div className="mb-10">
-            <PortfolioFilterPills
-              active={activeFilter}
-              onChange={setActiveFilter}
-            />
-          </div>
-
-          {/* Project grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeFilter}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start"
-            >
-              {filteredProjects.map((p) => (
-                <DarkProjectCard key={p.id} project={p} />
-              ))}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Empty state */}
-          {filteredProjects.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-24"
-            >
-              <p className="text-slate-500 text-sm">
-                No projects in this category yet — check back soon.
-              </p>
-            </motion.div>
-          )}
       {/* ── PREMIUM SHOWCASE GRID (redesigned) ── */}
-      <section className="showcase-section">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <h2 className="showcase-section__heading">
-            Our{" "}
-            <span
-              style={{
-                background: "linear-gradient(90deg, #7c3aed, #ec4899)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Projects
-            </span>
-          </h2>
-          <p className="showcase-section__sub">
-            Premium enterprise software built for modern businesses.
-            Each product is crafted with precision and deployed at scale.
-          </p>
-        </motion.div>
+      <section className="showcase-section py-16">
+        <div className="container max-w-[1280px] mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-12"
+          >
+            <h2 className="showcase-section__heading text-3xl sm:text-4xl font-display font-extrabold mb-4">
+              Our{" "}
+              <span
+                style={{
+                  background: "linear-gradient(90deg, #7c3aed, #ec4899)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Projects
+              </span>
+            </h2>
+            <p className="showcase-section__sub text-slate-500 max-w-xl mx-auto">
+              Premium enterprise software built for modern businesses. Each
+              product is crafted with precision and deployed at scale.
+            </p>
+          </motion.div>
 
-        <div className="showcase-grid">
-          {projects.map((project, i) => (
-            <PremiumProductCard key={project.id} project={project} index={i} />
-          ))}
+          <div className="showcase-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, i) => (
+              <PremiumProductCard
+                key={project.id}
+                project={project}
+                index={i}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -442,11 +399,12 @@ export default function Portfolio() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto flex flex-col items-center"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
+            <span className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
               Ready to build your solution?
-            </h2>
+            </span>
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 drop-shadow-md">
-              Let's coordinate on requirements and construct your application.
+              Let's coordinate on requirements and construct your
+              application.
             </p>
             <motion.div
               whileHover={{ scale: 1.05 }}
