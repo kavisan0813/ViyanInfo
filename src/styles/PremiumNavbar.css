@@ -59,8 +59,8 @@
   pointer-events: none;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.03)
+    rgba(226, 232, 240, 0.75),
+    rgba(241, 245, 249, 0.55)
   );
 }
 
@@ -152,7 +152,7 @@
 
   border-radius: 8px;
 
-  color: rgba(15, 23, 42, 0.75);
+  color: #0f172a;
 
   text-decoration: none;
 
@@ -165,13 +165,13 @@
 
 .nav-link:hover {
   color: #0f172a;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 /* Active link state */
 .nav-link.nav-active {
   color: #0f172a;
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 /* ───── Dropdown Trigger (Services / Company) ───── */
@@ -188,7 +188,7 @@
   border: none;
   background: transparent;
 
-  color: rgba(15, 23, 42, 0.75);
+  color: #0f172a;
 
   font-size: 0.875rem;
   font-weight: 700;
@@ -199,12 +199,12 @@
 
 .nav-dropdown-trigger:hover {
   color: #0f172a;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .nav-dropdown-trigger.nav-active {
   color: #0f172a;
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .nav-dropdown-trigger .chevron-icon {
@@ -234,8 +234,8 @@
 
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.03)
+    rgba(226, 232, 240, 0.85),
+    rgba(241, 245, 249, 0.65)
   );
   backdrop-filter: blur(12px) saturate(140%) url(#liquid-glass-filter-navbar);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
@@ -305,7 +305,7 @@
 
   border-radius: 14px;
 
-  color: rgba(15, 23, 42, 0.75);
+  color: #0f172a;
 
   text-decoration: none;
 
@@ -318,7 +318,7 @@
 }
 
 .dropdown-item:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(0, 0, 0, 0.06);
   color: #0f172a;
 }
 
