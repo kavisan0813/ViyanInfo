@@ -12,7 +12,7 @@ import {
   MapPin,
   Globe,
 } from "lucide-react";
-import logo1 from "../assets/Logoimage.svg";
+import logo1 from "../assets/logo-img.svg";
 import img1 from "../assets/img 1.webp";
 
 function FooterParticles() {
@@ -102,11 +102,11 @@ function FooterParticles() {
 
 function Fireflies() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
-    
+
     const particles = Array.from({ length: 30 }).map(() => {
       const el = document.createElement("div");
       const size = Math.random() * 3 + 1.5;
@@ -116,7 +116,7 @@ function Fireflies() {
       el.style.left = `${Math.random() * 100}%`;
       el.style.top = `${Math.random() * 100}%`;
       el.style.boxShadow = "0 0 10px 2px rgba(253, 224, 71, 0.8)";
-      
+
       container.appendChild(el);
 
       gsap.to(el, {
@@ -183,12 +183,12 @@ export function Footer() {
       style={
         isInternship
           ? {
-              backgroundImage: `url(${img1})`,
-              backgroundSize: "cover",
-              backgroundPosition: "top center",
-              backgroundAttachment: "fixed",
-              backgroundRepeat: "no-repeat",
-            }
+            backgroundImage: `url(${img1})`,
+            backgroundSize: "cover",
+            backgroundPosition: "top center",
+            backgroundAttachment: "fixed",
+            backgroundRepeat: "no-repeat",
+          }
           : undefined
       }
       className={`relative overflow-hidden ${isHome ? "pt-[20px]" : "pt-[80px]"} pb-[40px] border-t ${borderColor} ${textColor} font-body ${bgColor}`}
@@ -266,11 +266,10 @@ export function Footer() {
                   rel="noopener noreferrer"
                   aria-label={social.label}
                   whileHover={isInternship ? { y: -5, scale: 1.08 } : { y: -3, scale: 1.05 }}
-                  className={`w-9 h-9 flex items-center justify-center transition-all duration-300 relative z-20 ${
-                    isInternship 
-                      ? `rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white ${social.hoverColor}`
-                      : `rounded-lg ${socialBg} text-[#C9C6D8] hover:text-[#7B2FF7] border border-transparent hover:border-[#7B2FF7]/20 hover:shadow-[0_0_12px_rgba(123,47,247,0.4)]`
-                  }`}
+                  className={`w-9 h-9 flex items-center justify-center transition-all duration-300 relative z-20 ${isInternship
+                    ? `rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white ${social.hoverColor}`
+                    : `rounded-lg ${socialBg} text-[#C9C6D8] hover:text-[#7B2FF7] border border-transparent hover:border-[#7B2FF7]/20 hover:shadow-[0_0_12px_rgba(123,47,247,0.4)]`
+                    }`}
                 >
                   {social.icon}
                 </motion.a>

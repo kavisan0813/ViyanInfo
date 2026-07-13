@@ -438,21 +438,27 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ── FULL WIDTH FAQ ACCORDION SECTION ───────────── */}
-      <section className="faq-accordion-section">
-        <LiquidGlassCard
-          accent="#7c3aed"
-          className="liquid-glass-light faq-card-accordion"
-        >
+      {/* ── FAQ CINEMATIC SECTION ───────────── */}
+      <section className="faq-cinematic-section">
+        {/* LEFT IMAGE */}
+        <div className="faq-image-side">
+          <img
+            src="/images/support-team.jpg"
+            alt="FAQ"
+            className="faq-main-image"
+          />
+          <div className="faq-image-overlay"></div>
+        </div>
+
+        {/* RIGHT CONTENT */}
+        <div className="faq-content-side">
+          <span className="faq-tag">FAQ</span>
           <h2>Frequently Asked Questions</h2>
           <div className="faq-floating-list">
             {FAQ_ITEMS.map((item, index) => {
               const isOpen = activeFaq === index;
               return (
-                <div
-                  key={index}
-                  className={`faq-floating-card ${isOpen ? "active" : ""}`}
-                >
+                <div key={index} className={`faq-floating-card ${isOpen ? "active" : ""}`}>
                   <button
                     className="faq-card-top"
                     onClick={() => setActiveFaq(isOpen ? null : index)}
@@ -464,16 +470,14 @@ export default function Contact() {
                     <div className="faq-cinematic-plus">+</div>
                   </button>
 
-                  <div
-                    className={`faq-cinematic-answer ${isOpen ? "open" : "closed"}`}
-                  >
+                  <div className={`faq-cinematic-answer ${isOpen ? "open" : "closed"}`}>
                     <p>{item.answer}</p>
                   </div>
                 </div>
               );
             })}
           </div>
-        </LiquidGlassCard>
+        </div>
       </section>
 
       {/* ── COMBINED CTA + FOOTER SECTION ────────────── */}

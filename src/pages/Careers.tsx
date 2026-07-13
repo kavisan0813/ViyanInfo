@@ -149,7 +149,7 @@ export default function Careers() {
               {/* Image Section */}
               <div className="relative w-full h-full">
                 <img
-                  src="../public/images/team-collab.webp"
+                  src="src\assets\team-collab.webp"
                   alt=""
                   className="absolute inset-0 w-full h-full object-cover"
                 />

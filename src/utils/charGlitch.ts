@@ -4,7 +4,7 @@ export function glitchText(
   element: HTMLElement,
   finalText: string,
   duration: number = 500,
-  iterations: number = 8
+  iterations: number = 8,
 ) {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   let count = 0;

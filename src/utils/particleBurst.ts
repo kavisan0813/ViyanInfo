@@ -5,7 +5,7 @@ export function burst(
   count: number = 16,
   colors: string[] = ["#7B2FF7", "#06B6D4", "#EC4899", "#10B981", "#3B82F6"],
   spread: number = 120,
-  duration: number = 800
+  duration: number = 800,
 ) {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -42,11 +42,16 @@ export function burst(
 
     function tick(now: number) {
       const elapsed = now - start;
-      if (elapsed < 0) { requestAnimationFrame(tick); return; }
+      if (elapsed < 0) {
+        requestAnimationFrame(tick);
+        return;
+      }
       const prog = Math.min(elapsed / dur, 1);
       const ease = 1 - Math.pow(1 - prog, 3);
       p.style.transform = `translate(calc(-50% + ${tx * ease}px), calc(-50% + ${ty * ease}px)) scale(${1 - prog * 0.5})`;
-      p.style.opacity = String(prog < 0.3 ? prog / 0.3 : 1 - (prog - 0.3) / 0.7);
+      p.style.opacity = String(
+        prog < 0.3 ? prog / 0.3 : 1 - (prog - 0.3) / 0.7,
+      );
       if (prog < 1) requestAnimationFrame(tick);
       else p.remove();
     }
@@ -55,5 +60,11 @@ export function burst(
 }
 
 export const onHoverBurst = (e: React.MouseEvent<HTMLElement>) => {
-  burst(e.currentTarget, 12, ["#7B2FF7", "#3B82F6", "#EC4899", "#10B981"], 80, 700);
+  burst(
+    e.currentTarget,
+    12,
+    ["#7B2FF7", "#3B82F6", "#EC4899", "#10B981"],
+    80,
+    700,
+  );
 };

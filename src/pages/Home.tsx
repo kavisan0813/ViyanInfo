@@ -13,6 +13,12 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Star,
+  Rocket,
+  Shield,
+  Layers,
+  Zap,
+  Handshake,
+  Gem,
 } from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
 import inventryImg from "../assets/inventry.webp";
@@ -610,7 +616,7 @@ export default function Home() {
               >
                 {/* Persistent Subtle Pulse Glow */}
                 <div
-                  className={`absolute -inset-4 rounded-3xl bg-gradient-to-br ${stat.borderGlow} opacity-[0.15] blur-xl animate-pulse pointer-events-none z-0`}
+                  className={`absolute -inset-1 rounded-3xl bg-gradient-to-br ${stat.borderGlow} opacity-[0.05] blur-md animate-pulse pointer-events-none z-0`}
                 ></div>
 
                 {/* Hover Glow background effect */}
@@ -1188,32 +1194,32 @@ export default function Home() {
               {
                 title: "Startup Friendly",
                 desc: "Speed is our default. We help build MVP drafts and iteratively expand them as you validate coordinates.",
-                icon: "🚀",
+                icon: <Rocket className="w-6 h-6 text-[#7B2FF7]" />,
               },
               {
                 title: "Enterprise Ready",
                 desc: "We follow industry security practices, data encryption standards, and construct clean, modular systems.",
-                icon: "🛡️",
+                icon: <Shield className="w-6 h-6 text-[#3B82F6]" />,
               },
               {
                 title: "Scalable Architecture",
                 desc: "Modular designs and serverless setups built to handle traffic growth effortlessly.",
-                icon: "🏗️",
+                icon: <Layers className="w-6 h-6 text-[#EC4899]" />,
               },
               {
                 title: "Fast Delivery",
                 desc: "Weekly reviews, continuous delivery pipelines, and optimized coordination to launch on time.",
-                icon: "⚡",
+                icon: <Zap className="w-6 h-6 text-[#F97316]" />,
               },
               {
                 title: "Dedicated Support",
                 desc: "Direct communication channels with the engineering team. Quick response times without red tape.",
-                icon: "🤝",
+                icon: <Handshake className="w-6 h-6 text-[#06B6D4]" />,
               },
               {
                 title: "Affordable Pricing",
                 desc: "Highly optimized engineering overheads allow us to offer world-class developer talent at realistic costs.",
-                icon: "💎",
+                icon: <Gem className="w-6 h-6 text-[#10B981]" />,
               },
             ].map((item, idx) => (
               <motion.div

@@ -18,19 +18,26 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background-image: 
+  background-image:
     linear-gradient(rgba(123, 47, 247, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(123, 47, 247, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
   background-position: center center;
-  transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+  transform: perspective(500px) rotateX(60deg) translateY(-100px)
+    translateZ(-200px);
   animation: gridMove 20s linear infinite;
   opacity: 0.8;
 }
 
 @keyframes gridMove {
-  0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
-  100% { transform: perspective(500px) rotateX(60deg) translateY(60px) translateZ(-200px); }
+  0% {
+    transform: perspective(500px) rotateX(60deg) translateY(0)
+      translateZ(-200px);
+  }
+  100% {
+    transform: perspective(500px) rotateX(60deg) translateY(60px)
+      translateZ(-200px);
+  }
 }
 
 /* 2. Radial Blur Glowing Orbs */
@@ -48,7 +55,7 @@
   left: -10%;
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(circle, #7B2FF7, transparent);
+  background: radial-gradient(circle, #7b2ff7, transparent);
   animation-delay: 0s;
 }
 
@@ -57,7 +64,7 @@
   right: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, #3B82F6, transparent);
+  background: radial-gradient(circle, #3b82f6, transparent);
   animation-delay: -5s;
 }
 
@@ -66,7 +73,7 @@
   left: 60%;
   width: 40vw;
   height: 40vw;
-  background: radial-gradient(circle, #9333EA, transparent);
+  background: radial-gradient(circle, #9333ea, transparent);
   animation-delay: -10s;
 }
 

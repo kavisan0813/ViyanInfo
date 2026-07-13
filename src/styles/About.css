@@ -1221,10 +1221,7 @@
   position: absolute;
   width: 250px;
   height: 250px;
-  background: radial-gradient(
-    rgba(123, 97, 255, 0.22),
-    transparent 70%
-  );
+  background: radial-gradient(rgba(123, 97, 255, 0.22), transparent 70%);
   top: -120px;
   right: -120px;
 }

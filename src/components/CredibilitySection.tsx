@@ -43,21 +43,21 @@ export function CredibilitySection() {
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         const section = sectionRef.current;
         const dots = gsap.utils.toArray<HTMLElement>(".credibility-dot");
-        
+
         if (section) {
           section.addEventListener("mousemove", (e) => {
             const mouseX = e.clientX;
             const mouseY = e.clientY;
-            
+
             dots.forEach(dot => {
               const rect = dot.getBoundingClientRect();
               const dotCenterX = rect.left + rect.width / 2;
               const dotCenterY = rect.top + rect.height / 2;
-              
+
               const distX = mouseX - dotCenterX;
               const distY = mouseY - dotCenterY;
               const distance = Math.sqrt(distX * distX + distY * distY);
-              
+
               // 60px radius for pull effect
               if (distance < 60) {
                 // The closer we are, the stronger the pull

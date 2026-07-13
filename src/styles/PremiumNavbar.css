@@ -2,6 +2,10 @@
 
 /* ───── Core Shell ───── */
 .premium-navbar {
+  --px: 50%;
+  --py: 50%;
+  --accent: #7b2ff7;
+
   position: fixed;
   top: 0;
   left: 50%;
@@ -20,16 +24,13 @@
 
   border-radius: 1.5625em;
 
-  background-color: #212936cc;
-
-  -webkit-backdrop-filter: blur(11px);
-  backdrop-filter: blur(11px);
-
-  border: 1px solid #42516b;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
 
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.04);
+    0 20px 60px rgba(4, 6, 22, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 12px rgba(0, 0, 0, 0.2);
 
   transition: all 0.4s ease;
   overflow: visible;
@@ -39,33 +40,77 @@
 .premium-navbar.navbar-scrolled {
   margin-top: 1em;
 
-  background-color: #212936ee;
-
-  border: 1px solid #52617b;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
 
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    0 25px 70px rgba(4, 6, 22, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* ───── Internal Glow ───── */
-.navbar-glow {
+/* ───── Liquid Glass Background ───── */
+.navbar-liquid-bg {
   position: absolute;
   inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 0;
   pointer-events: none;
-  border-radius: 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
+  );
+}
 
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(255, 255, 255, 0.04),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(255, 255, 255, 0.02),
-      transparent 40%
-    );
+.navbar-liquid-backdrop {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(12px) saturate(140%) url(#liquid-glass-filter-navbar);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+}
+
+.navbar-liquid-specular {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    300px circle at var(--px) var(--py),
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.06) 40%,
+    transparent 70%
+  );
+  mix-blend-mode: overlay;
+  transition: background 0.15s ease-out;
+}
+
+.navbar-liquid-rim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--accent) 65%, transparent),
+    transparent 35%,
+    transparent 65%,
+    color-mix(in srgb, var(--accent) 45%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.7;
+}
+
+.liquid-glass-distortion {
+  position: absolute;
+  width: 0;
+  height: 0;
 }
 
 /* ───── Logo ───── */
@@ -82,7 +127,6 @@
   height: 32px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
   transition: transform 0.3s ease;
 }
 
@@ -108,26 +152,26 @@
 
   border-radius: 8px;
 
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(15, 23, 42, 0.75);
 
   text-decoration: none;
 
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 700;
 
   transition: all 0.3s ease;
   overflow: hidden;
 }
 
 .nav-link:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.08);
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.04);
 }
 
 /* Active link state */
 .nav-link.nav-active {
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.06);
 }
 
 /* ───── Dropdown Trigger (Services / Company) ───── */
@@ -144,23 +188,23 @@
   border: none;
   background: transparent;
 
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(15, 23, 42, 0.75);
 
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 700;
 
   cursor: default;
   transition: all 0.3s ease;
 }
 
 .nav-dropdown-trigger:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.08);
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .nav-dropdown-trigger.nav-active {
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .nav-dropdown-trigger .chevron-icon {
@@ -171,7 +215,7 @@
 
 .nav-dropdown-trigger .chevron-icon.chevron-open {
   transform: rotate(180deg);
-  color: white;
+  color: #0f172a;
 }
 
 /* ───── Dropdown Panel ───── */
@@ -186,20 +230,54 @@
   min-width: 300px;
 
   border-radius: 1em;
+  overflow: hidden;
 
-  background: #212936f0;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
+  );
+  backdrop-filter: blur(12px) saturate(140%) url(#liquid-glass-filter-navbar);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
 
-  border: 1px solid #42516b;
+  border: 1px solid rgba(255, 255, 255, 0.16);
 
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 20px 60px rgba(4, 6, 22, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 12px rgba(0, 0, 0, 0.2);
 
   display: flex;
   flex-direction: column;
   gap: 2px;
 
   animation: dropdownFade 0.2s ease forwards;
+}
+
+.nav-dropdown-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--accent) 65%, transparent),
+    transparent 35%,
+    transparent 65%,
+    color-mix(in srgb, var(--accent) 45%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: -1;
 }
 
 @keyframes dropdownFade {
@@ -227,19 +305,21 @@
 
   border-radius: 14px;
 
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(15, 23, 42, 0.75);
 
   text-decoration: none;
 
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 700;
 
   transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .dropdown-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
+  background: rgba(0, 0, 0, 0.04);
+  color: #0f172a;
 }
 
 .dropdown-item-icon {
@@ -252,15 +332,15 @@
 
   border-radius: 10px;
 
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 
   transition: background 0.2s ease;
 }
 
 .dropdown-item:hover .dropdown-item-icon {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 /* ───── Right Side ───── */
@@ -307,7 +387,7 @@
   background: transparent;
   border: none;
 
-  color: white;
+  color: #0f172a;
 
   cursor: pointer;
   padding: 4px;

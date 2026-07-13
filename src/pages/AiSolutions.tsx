@@ -19,7 +19,6 @@ import {
   Zap,
   ArrowRight,
 } from "lucide-react";
-import { TechBadge } from "../components/TechBadge";
 import { SectionDivider } from "../components/SectionDivider";
 import "../styles/AINetwork.css";
 import aiSolutionsImg from "../assets/Aisolutions.webp";
@@ -357,6 +356,15 @@ const AINetwork = () => {
   );
 };
 
+const techStack = [
+  { n: "OpenAI", c: "#10A37F" },
+  { n: "LangChain", c: "#3B82F6" },
+  { n: "Vector Databases", c: "#EAB308" },
+  { n: "Anthropic", c: "#F97316" },
+  { n: "Pinecone", c: "#EC4899" },
+  { n: "LlamaIndex", c: "#8B5CF6" },
+];
+
 export default function AiSolutions() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -642,39 +650,33 @@ export default function AiSolutions() {
         </div>
       </section>
 
-      {/* TECHNOLOGY SECTION */}
-      <section className="py-24 bg-[#FAF7FF]">
-        <div className="container max-w-[1000px] mx-auto px-6 text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-pink-50 border border-pink-100 text-[#EC4899] text-xs font-semibold uppercase tracking-wider mb-4">
-            Tech Ecosystem
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight mb-4">
-            Interactive AI Stack
+      {/* TECH STACK */}
+      <section className="relative z-10 py-24 bg-[#FAF7FF]">
+        <div className="container max-w-[960px] mx-auto px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 mb-4">
+            Our AI Tech Stack
           </h2>
-          <p className="text-base sm:text-lg text-slate-500 mb-12">
-            We utilize state-of-the-art frameworks to orchestrate and query
-            language models.
+          <p className="text-slate-500 text-base sm:text-lg mb-12">
+            Modern tools, proven in production.
           </p>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              { name: "OpenAI", glow: "rgba(236, 72, 153, 0.15)" },
-              { name: "LangChain", glow: "rgba(123, 47, 247, 0.15)" },
-              { name: "Vector Databases", glow: "rgba(6, 182, 212, 0.15)" },
-              { name: "Anthropic", glow: "rgba(236, 72, 153, 0.15)" },
-              { name: "Pinecone", glow: "rgba(6, 182, 212, 0.15)" },
-              { name: "LlamaIndex", glow: "rgba(124, 58, 237, 0.15)" },
-            ].map((tech, i) => (
+          <div className="flex flex-wrap justify-center gap-3">
+            {techStack.map((t, i) => (
               <motion.div
-                key={i}
-                whileHover={{
-                  scale: 1.05,
-                  y: -2,
-                  boxShadow: `0 10px 25px ${tech.glow}`,
+                key={t.n}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                whileHover={{ scale: 1.1, y: -4 }}
+                className="px-5 py-2.5 rounded-xl text-sm font-semibold cursor-default"
+                style={{
+                  background: "#ffffff",
+                  border: `1px solid ${t.c}25`,
+                  color: t.c,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
                 }}
-                className="bg-white border border-slate-100 rounded-2xl px-6 py-4 cursor-default shadow-xs transition-all duration-300"
               >
-                <TechBadge name={tech.name} />
+                {t.n}
               </motion.div>
             ))}
           </div>

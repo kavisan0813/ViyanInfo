@@ -318,14 +318,14 @@ export default function Internships() {
                           animate={
                             isHighlighted
                               ? {
-                                  y: [-4, 4, -4],
-                                  scale: 1.08,
-                                  rotate: [0, 5, -5, 0],
-                                }
+                                y: [-4, 4, -4],
+                                scale: 1.08,
+                                rotate: [0, 5, -5, 0],
+                              }
                               : {
-                                  y: 0,
-                                  scale: 1,
-                                }
+                                y: 0,
+                                scale: 1,
+                              }
                           }
                           transition={{
                             repeat: isHighlighted ? Infinity : 0,

@@ -15,7 +15,6 @@ import { LiquidFooter } from "../components/LiquidFooter";
 import uiuxImg from "../assets/uiux_img.webp";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TechBadge } from "../components/TechBadge";
 import { SectionDivider } from "../components/SectionDivider";
 import "../styles/DesignPillarsFlip.css";
 import {
@@ -451,6 +450,15 @@ function DesignPillarsFlip() {
   );
 }
 
+const techStack = [
+  { n: "Figma", c: "#F24E1E" },
+  { n: "Miro", c: "#2563EB" },
+  { n: "Adobe Illustrator", c: "#FF9A00" },
+  { n: "Lottie Files", c: "#019FB6" },
+  { n: "Prototyping", c: "#EC4899" },
+  { n: "Design Tokens", c: "#7B2FF7" },
+];
+
 export default function UiUxDesign() {
   return (
     <div className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden">
@@ -626,39 +634,33 @@ export default function UiUxDesign() {
         </div>
       </section>
 
-      {/* TECHNICAL STANDARDS */}
-      <section className="py-24 bg-[#FAF7FF]">
-        <div className="container max-w-[1000px] mx-auto px-6 text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-amber-50 border border-amber-100 text-[#F59E0B] text-xs font-semibold uppercase tracking-wider mb-4">
-            Design Stack
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight mb-4">
-            Interactive Ecosystem
+      {/* TECH STACK */}
+      <section className="relative z-10 py-24 bg-[#FAF7FF]">
+        <div className="container max-w-[960px] mx-auto px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 mb-4">
+            Our Design Tech Stack
           </h2>
-          <p className="text-base sm:text-lg text-slate-500 mb-12">
-            We use industry-standard design programs and coordinate closely with
-            development teams.
+          <p className="text-slate-500 text-base sm:text-lg mb-12">
+            Modern tools, proven in production.
           </p>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              { name: "Figma", glow: "rgba(245, 158, 11, 0.15)" },
-              { name: "Miro", glow: "rgba(123, 47, 247, 0.15)" },
-              { name: "Adobe Illustrator", glow: "rgba(236, 72, 153, 0.15)" },
-              { name: "Lottie Files", glow: "rgba(6, 182, 212, 0.15)" },
-              { name: "Prototyping", glow: "rgba(245, 158, 11, 0.15)" },
-              { name: "Design Tokens", glow: "rgba(124, 58, 237, 0.15)" },
-            ].map((tech, i) => (
+          <div className="flex flex-wrap justify-center gap-3">
+            {techStack.map((t, i) => (
               <motion.div
-                key={i}
-                whileHover={{
-                  scale: 1.05,
-                  y: -2,
-                  boxShadow: `0 10px 25px ${tech.glow}`,
+                key={t.n}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                whileHover={{ scale: 1.1, y: -4 }}
+                className="px-5 py-2.5 rounded-xl text-sm font-semibold cursor-default"
+                style={{
+                  background: "#ffffff",
+                  border: `1px solid ${t.c}25`,
+                  color: t.c,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
                 }}
-                className="bg-white border border-slate-100 rounded-2xl px-6 py-4 cursor-default shadow-xs transition-all duration-300"
               >
-                <TechBadge name={tech.name} />
+                {t.n}
               </motion.div>
             ))}
           </div>

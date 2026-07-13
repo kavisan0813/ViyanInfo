@@ -23,7 +23,7 @@ import {
   FileText,
 } from "lucide-react";
 // import { Menu } from "./Menu";
-import logo1 from "../assets/Logo image 1.svg";
+import logo1 from "../assets/logo-img.svg";
 import "../styles/PremiumNavbar.css";
 
 export function Navbar() {
@@ -100,6 +100,23 @@ export function Navbar() {
     );
   }, []);
 
+  const handlePointerMove = useCallback((e: React.PointerEvent<HTMLElement>) => {
+    const el = navRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    el.style.setProperty("--px", `${px * 100}%`);
+    el.style.setProperty("--py", `${py * 100}%`);
+  }, []);
+
+  const handlePointerLeave = useCallback(() => {
+    const el = navRef.current;
+    if (!el) return;
+    el.style.setProperty("--px", `50%`);
+    el.style.setProperty("--py", `50%`);
+  }, []);
+
   const isActive = (path: string) => location.pathname === path;
   const isServicesActive = () => location.pathname.startsWith("/services");
   const isCompanyActive = () =>
@@ -109,10 +126,35 @@ export function Navbar() {
     <>
       <nav
         ref={navRef}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
         className={`premium-navbar ${isScrolled ? "navbar-scrolled" : ""}`}
       >
-        {/* Internal glow */}
-        <div className="navbar-glow" />
+        {/* Liquid Glass Background */}
+        <div className="navbar-liquid-bg">
+          <svg className="liquid-glass-distortion" aria-hidden="true">
+            <filter id="liquid-glass-filter-navbar">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.008 0.012"
+                numOctaves="2"
+                seed="7"
+                result="noise"
+              />
+              <feGaussianBlur in="noise" stdDeviation="2" result="blurredNoise" />
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="blurredNoise"
+                scale="18"
+                xChannelSelector="R"
+                yChannelSelector="G"
+              />
+            </filter>
+          </svg>
+          <div className="navbar-liquid-backdrop" />
+          <div className="navbar-liquid-specular" />
+          <div className="navbar-liquid-rim" />
+        </div>
 
         {/* Logo */}
         <Link to="/" className="navbar-logo">

@@ -33,7 +33,7 @@
 
 .network-circle {
   fill: none;
-  stroke: #7B2FF7;
+  stroke: #7b2ff7;
   stroke-width: 2.5;
   stroke-dasharray: 12;
   opacity: 0.25;
@@ -41,8 +41,12 @@
 }
 
 @keyframes orbit {
-  from { stroke-dashoffset: 0; }
-  to   { stroke-dashoffset: -100; }
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
 }
 
 /* ── Node Cards ── */
@@ -72,14 +76,25 @@
 }
 
 /* Stagger the float animation per card */
-.ai-node:nth-child(2) { animation-delay: -1s; }
-.ai-node:nth-child(3) { animation-delay: -2s; }
-.ai-node:nth-child(4) { animation-delay: -3s; }
-.ai-node:nth-child(5) { animation-delay: -4s; }
-.ai-node:nth-child(6) { animation-delay: -0.5s; }
+.ai-node:nth-child(2) {
+  animation-delay: -1s;
+}
+.ai-node:nth-child(3) {
+  animation-delay: -2s;
+}
+.ai-node:nth-child(4) {
+  animation-delay: -3s;
+}
+.ai-node:nth-child(5) {
+  animation-delay: -4s;
+}
+.ai-node:nth-child(6) {
+  animation-delay: -0.5s;
+}
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) translateY(0px);
   }
   50% {
@@ -118,7 +133,7 @@
 .ai-node h3 {
   font-size: 17px;
   font-weight: 700;
-  color: #1E1B4B;
+  color: #1e1b4b;
   font-family: var(--font-display, "Sora", sans-serif);
   letter-spacing: -0.01em;
   line-height: 1.3;
@@ -133,7 +148,7 @@
 .card-details p {
   font-size: 13px;
   line-height: 1.65;
-  color: #64748B;
+  color: #64748b;
   margin-bottom: 14px;
 }
 
@@ -175,7 +190,7 @@
   border-radius: 9999px;
   background: rgba(236, 72, 153, 0.06);
   border: 1px solid rgba(236, 72, 153, 0.12);
-  color: #EC4899;
+  color: #ec4899;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 4px;
@@ -186,7 +201,7 @@
 
 .ai-network-header h2 {
   font-size: clamp(26px, 4vw, 40px);
-  color: #0F172A;
+  color: #0f172a;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -195,7 +210,7 @@
 
 .ai-network-header p {
   font-size: 15px;
-  color: #64748B;
+  color: #64748b;
   margin-top: 8px;
   max-width: 520px;
   margin-left: auto;

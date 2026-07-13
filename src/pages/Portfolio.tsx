@@ -234,8 +234,8 @@ function PremiumProductCard({
 
         {/* Content Section */}
         <div className="showcase-card__content">
-          <h3 className="showcase-card__title">{project.title}</h3>
-          <p className="showcase-card__desc">{project.description}</p>
+          <span className="showcase-card__title">{project.title}</span>
+          <p className=" showcase-card__desc">{project.description}</p>
 
           {/* Feature Chips */}
           <div className="showcase-card__chips">

@@ -155,11 +155,10 @@ export function FigmaCanvasHero() {
               <button
                 key={i}
                 onClick={() => setActiveTool(i)}
-                className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
-                  activeTool === i
-                    ? "bg-[#7B2FF7]/40 text-[#9b77f5]"
-                    : "text-slate-500 hover:text-slate-300"
-                }`}
+                className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all ${activeTool === i
+                  ? "bg-[#7B2FF7]/40 text-[#9b77f5]"
+                  : "text-slate-500 hover:text-slate-300"
+                  }`}
               >
                 <Icon size={13} />
               </button>
