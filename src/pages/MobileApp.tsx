@@ -1108,7 +1108,7 @@ export default function MobileApp() {
     <div className="bg-slate-50 min-h-screen text-slate-800 font-body overflow-hidden relative">
       <MobileBg />
       {/* HERO SECTION */}
-      <section className="relative z-10 pt-28 pb-16">
+      <section className="relative z-10 pt-28 pb-24">
         <div className="container max-w-[1240px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left */}

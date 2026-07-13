@@ -9,7 +9,6 @@ import {
   MapPin,
   Loader2,
   CheckCircle2,
-  ChevronDown,
   Clock,
   Send,
 } from "lucide-react";
@@ -155,12 +154,10 @@ export default function Contact() {
       <div className="bg-orb orb-1"></div>
       <div className="bg-orb orb-2"></div>
       <div className="bg-orb orb-3"></div>
-      <div className="bg-line line-1"></div>
-      <div className="bg-line line-2"></div>
 
       {/* ── HERO SECTION ─────────────────────────────── */}
-      <section className="hero-section">
-        <div className="hero-left">
+      <section className="contact-hero-v2">
+        <div className="contact-hero-left">
           <div className="hero-badge">CONTACT VIYAN INFO TECH</div>
 
           <h1>
@@ -194,6 +191,31 @@ export default function Contact() {
             >
               Schedule Call
             </button>
+          </div>
+        </div>
+
+        <div className="contact-hero-right">
+          <div className="hero-image-wrapper">
+            <img
+              src="/images/contact-dashboard.jpg"
+              alt="Contact Dashboard"
+              className="contact-hero-image"
+            />
+            <div className="hero-image-overlay"></div>
+
+            {/* FLOATING UI */}
+            <div className="hero-ui-card card-top">
+              <span>📨</span>
+              <p>Message Sent Successfully</p>
+            </div>
+            <div className="hero-ui-card card-middle">
+              <span>⚡</span>
+              <p>Response Within 1 Hour</p>
+            </div>
+            <div className="hero-ui-card card-bottom">
+              <span>🤝</span>
+              <p>Let's Build Together</p>
+            </div>
           </div>
         </div>
       </section>
@@ -272,201 +294,179 @@ export default function Contact() {
             </LiquidGlassCard>
           ) : (
             <LiquidGlassCard accent="#8b5cf6" className="liquid-glass-light contact-form-wrapper">
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <h2>Send Us A Message</h2>
+              <form className="contact-form" onSubmit={handleSubmit}>
+                <h2>Send Us A Message</h2>
 
-              <div className="form-row">
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="name">Full Name *</label>
+                    <input
+                      id="name"
+                      type="text"
+                      required
+                      placeholder="Your full name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className={errors.name ? "error-border" : ""}
+                    />
+                    {errors.name && (
+                      <span className="error-text">{errors.name}</span>
+                    )}
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="email">Company Email *</label>
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      placeholder="you@company.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={errors.email ? "error-border" : ""}
+                    />
+                    {errors.email && (
+                      <span className="error-text">{errors.email}</span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      placeholder="e.g. +91 98765 43210"
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="company">Company Name</label>
+                    <input
+                      id="company"
+                      type="text"
+                      placeholder="e.g. Acme Inc"
+                      value={formData.company}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="service">Service Type</label>
+                    <select
+                      id="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select Service...</option>
+                      <option value="Custom Software">
+                        Custom Software Development
+                      </option>
+                      <option value="Web Applications">
+                        Web Application Development
+                      </option>
+                      <option value="Mobile Applications">
+                        Mobile Application Development
+                      </option>
+                      <option value="AI Solutions">AI Solutions</option>
+                      <option value="UI/UX Design">UI/UX Design</option>
+                      <option value="Internship Programs">
+                        Internship Programs
+                      </option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="budget">Estimated Budget</label>
+                    <select
+                      id="budget"
+                      value={formData.budget}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select Budget Range...</option>
+                      <option value="< $5k">Less than $5,000</option>
+                      <option value="$5k - $15k">$5,000 - $15,000</option>
+                      <option value="$15k - $50k">$15,000 - $50,000</option>
+                      <option value="> $50k">More than $50,000</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="form-group">
-                  <label htmlFor="name">Full Name *</label>
-                  <input
-                    id="name"
-                    type="text"
+                  <label htmlFor="message">Project Requirements *</label>
+                  <textarea
+                    id="message"
+                    rows={5}
                     required
-                    placeholder="Your full name"
-                    value={formData.name}
+                    placeholder="Tell us about your project requirements, scope, or timeline goals..."
+                    value={formData.message}
                     onChange={handleChange}
-                    className={errors.name ? "error-border" : ""}
+                    className={errors.message ? "error-border" : ""}
                   />
-                  {errors.name && (
-                    <span className="error-text">{errors.name}</span>
+                  {errors.message && (
+                    <span className="error-text">{errors.message}</span>
                   )}
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">Company Email *</label>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    placeholder="you@company.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={errors.email ? "error-border" : ""}
-                  />
-                  {errors.email && (
-                    <span className="error-text">{errors.email}</span>
+                <button type="submit" disabled={isLoading} className="send-btn">
+                  {isLoading ? (
+                    <Loader2 className="animate-spin" size={20} />
+                  ) : (
+                    <>
+                      Send Message
+                      <Send size={18} />
+                    </>
                   )}
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="phone">Phone Number</label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    placeholder="e.g. +91 98765 43210"
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="company">Company Name</label>
-                  <input
-                    id="company"
-                    type="text"
-                    placeholder="e.g. Acme Inc"
-                    value={formData.company}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="service">Service Type</label>
-                  <select
-                    id="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Service...</option>
-                    <option value="Custom Software">
-                      Custom Software Development
-                    </option>
-                    <option value="Web Applications">
-                      Web Application Development
-                    </option>
-                    <option value="Mobile Applications">
-                      Mobile Application Development
-                    </option>
-                    <option value="AI Solutions">AI Solutions</option>
-                    <option value="UI/UX Design">UI/UX Design</option>
-                    <option value="Internship Programs">
-                      Internship Programs
-                    </option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="budget">Estimated Budget</label>
-                  <select
-                    id="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Budget Range...</option>
-                    <option value="< $5k">Less than $5,000</option>
-                    <option value="$5k - $15k">$5,000 - $15,000</option>
-                    <option value="$15k - $50k">$15,000 - $50,000</option>
-                    <option value="> $50k">More than $50,000</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="message">Project Requirements *</label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  required
-                  placeholder="Tell us about your project requirements, scope, or timeline goals..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  className={errors.message ? "error-border" : ""}
-                />
-                {errors.message && (
-                  <span className="error-text">{errors.message}</span>
-                )}
-              </div>
-
-              <button type="submit" disabled={isLoading} className="send-btn">
-                {isLoading ? (
-                  <Loader2 className="animate-spin" size={20} />
-                ) : (
-                  <>
-                    Send Message
-                    <Send size={18} />
-                  </>
-                )}
-              </button>
-            </form>
+                </button>
+              </form>
             </LiquidGlassCard>
           )}
         </div>
       </section>
 
-      {/* ── FULL WIDTH FAQ ACCORDION SECTION ───────────── */}
-      <section className="faq-accordion-section">
-        <LiquidGlassCard accent="#7c3aed" className="liquid-glass-light faq-card-accordion">
-          <h2>Frequently Asked Questions</h2>
-
-          {FAQ_ITEMS.map((item, idx) => {
-            const isOpen = activeFaq === idx;
-            return (
-              <div key={idx} className="faq-item">
-                <button onClick={() => setActiveFaq(isOpen ? null : idx)}>
-                  <span>{item.question}</span>
-                  <ChevronDown
-                    size={16}
-                    style={{
-                      transition: "transform 0.3s ease",
-                      transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                      color: isOpen ? "#7c3aed" : "#94a3b8",
-                      flexShrink: 0,
-                    }}
-                  />
-                </button>
-
-                <div className={`faq-answer ${isOpen ? "open" : "closed"}`}>
-                  <p>{item.answer}</p>
-                </div>
-              </div>
-            );
-          })}
-        </LiquidGlassCard>
-      </section>
-
-      {/* ── FAQ CARDS SECTION ────────────────────────── */}
-      <section className="faq-section">
-        <div className="faq-title">
-          <h2>Why Choose Viyan Info Tech?</h2>
+      {/* ── FAQ CINEMATIC SECTION ───────────── */}
+      <section className="faq-cinematic-section">
+        {/* LEFT IMAGE */}
+        <div className="faq-image-side">
+          <img
+            src="/images/support-team.jpg"
+            alt="FAQ"
+            className="faq-main-image"
+          />
+          <div className="faq-image-overlay"></div>
         </div>
 
-        <div className="faq-grid">
-          <div className="faq-card liquid-card">
-            <h3>Fast & Reliable Delivery</h3>
-            <p>
-              We deliver projects on time with agile sprints and continuous
-              feedback loops for maximum quality.
-            </p>
-          </div>
+        {/* RIGHT CONTENT */}
+        <div className="faq-content-side">
+          <span className="faq-tag">FAQ</span>
+          <h2>Frequently Asked Questions</h2>
+          <div className="faq-floating-list">
+            {FAQ_ITEMS.map((item, index) => {
+              const isOpen = activeFaq === index;
+              return (
+                <div key={index} className={`faq-floating-card ${isOpen ? "active" : ""}`}>
+                  <button
+                    className="faq-card-top"
+                    onClick={() => setActiveFaq(isOpen ? null : index)}
+                  >
+                    <div className="faq-top-content">
+                      <div className="faq-count">0{index + 1}</div>
+                      <h3>{item.question}</h3>
+                    </div>
+                    <div className="faq-cinematic-plus">+</div>
+                  </button>
 
-          <div className="faq-card liquid-card">
-            <h3>Full Post-Launch Support</h3>
-            <p>
-              Every product includes 30 days of complimentary support plus
-              optional SLA retainer plans.
-            </p>
-          </div>
-
-          <div className="faq-card liquid-card">
-            <h3>Dedicated Developer Teams</h3>
-            <p>
-              Hire skilled developers for your project with transparent pricing
-              and direct communication.
-            </p>
+                  <div className={`faq-cinematic-answer ${isOpen ? "open" : "closed"}`}>
+                    <p>{item.answer}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

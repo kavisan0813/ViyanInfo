@@ -19,6 +19,9 @@ import {
   Users,
   TrendingUp,
 } from "lucide-react";
+import astronautImg from "../assets/Astronaut.webp";
+import visionImg from "../assets/Vision.png";
+import saturnimage from "../assets/Saturn.webp";
 
 /* ── Liquid morphism blob ────────────────────────────────────────── */
 function LiquidBlob({

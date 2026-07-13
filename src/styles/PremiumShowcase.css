@@ -1,0 +1,401 @@
+/* ============================================================
+   PREMIUM SHOWCASE GRID — Viyan Portfolio
+   Glass cards · Gradient borders · Floating glow · Image zoom
+   ============================================================ */
+
+/* ── Section header ── */
+.showcase-section {
+  position: relative;
+  padding: clamp(80px, 10vw, 140px) 0;
+}
+
+.showcase-section__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.showcase-section__sub {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 540px;
+  margin: 0 auto 4rem;
+  line-height: 1.7;
+}
+
+/* ── Grid ── */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 900px) {
+  .showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+/* ── Card wrapper — gradient border trick ── */
+.showcase-card {
+  position: relative;
+  border-radius: 32px;
+  padding: 1.5px; /* gradient border thickness */
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.25),
+    rgba(236, 72, 153, 0.18),
+    rgba(99, 102, 241, 0.15),
+    rgba(255, 255, 255, 0.35)
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.showcase-card:hover {
+  transform: translateY(-10px) scale(1.012);
+  box-shadow:
+    0 30px 80px rgba(124, 58, 237, 0.12),
+    0 0 0 1px rgba(124, 58, 237, 0.08),
+    0 0 60px rgba(124, 58, 237, 0.06);
+}
+
+/* ── Floating glow behind card ── */
+.showcase-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 60%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse,
+    var(--card-accent, rgba(124, 58, 237, 0.12)) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.showcase-card:hover::before {
+  opacity: 1;
+}
+
+/* ── Card inner — glassmorphism ── */
+.showcase-card__inner {
+  position: relative;
+  border-radius: 31px; /* 32px - 1.5px border */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 540px;
+}
+
+/* Top shimmer edge */
+.showcase-card__inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.85),
+    transparent
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── Image container — 55% of card ── */
+.showcase-card__image {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 55%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.showcase-card__image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showcase-card:hover .showcase-card__image img {
+  transform: scale(1.08);
+}
+
+/* Gradient overlay on image */
+.showcase-card__image::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Category badge (floating) ── */
+.showcase-card__badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 3;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Content area — 45% of card ── */
+.showcase-card__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 28px 28px 24px;
+  position: relative;
+}
+
+.showcase-card__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.showcase-card:hover .showcase-card__title {
+  color: #7c3aed;
+}
+
+.showcase-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Feature chips ── */
+.showcase-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.showcase-card__chip {
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: rgba(124, 58, 237, 0.06);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  transition: all 0.25s ease;
+}
+
+.showcase-card:hover .showcase-card__chip {
+  background: rgba(124, 58, 237, 0.1);
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+/* ── Tech stack chips ── */
+.showcase-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.showcase-card__tech-chip {
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  transition: all 0.25s ease;
+}
+
+.showcase-card:hover .showcase-card__tech-chip {
+  border-color: rgba(124, 58, 237, 0.25);
+}
+
+/* ── CTA Button ── */
+.showcase-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: white;
+  background: linear-gradient(135deg, #7c3aed, #9333ea, #6366f1);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.25);
+  margin-top: auto;
+  width: fit-content;
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase-card__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.showcase-card:hover .showcase-card__cta::before {
+  transform: translateX(100%);
+}
+
+.showcase-card:hover .showcase-card__cta {
+  box-shadow:
+    0 8px 30px rgba(124, 58, 237, 0.35),
+    0 0 0 1px rgba(124, 58, 237, 0.1);
+  transform: translateY(-1px);
+}
+
+.showcase-card__cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+
+.showcase-card:hover .showcase-card__cta svg {
+  transform: translateX(3px);
+}
+
+/* ── Footer divider (chips / button separator) ── */
+.showcase-card__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(124, 58, 237, 0.06);
+}
+
+@media (max-width: 640px) {
+  .showcase-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+}
+
+/* ── Responsive card height adjustments ── */
+@media (max-width: 900px) {
+  .showcase-card__inner {
+    min-height: 480px;
+  }
+  .showcase-card__content {
+    padding: 22px 22px 20px;
+  }
+  .showcase-card__title {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .showcase-card__inner {
+    min-height: auto;
+  }
+  .showcase-card__image {
+    padding-bottom: 58%;
+  }
+  .showcase-card__content {
+    padding: 24px 20px 22px;
+  }
+}
+
+/* ── Scroll Reveal Animation ── */
+.showcase-card.revealed {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}

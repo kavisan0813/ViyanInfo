@@ -15,10 +15,8 @@ import {
 import { SectionDivider } from "../components/SectionDivider";
 import carrersImg from "../assets/Carrers img.webp";
 import { LiquidFooter } from "../components/LiquidFooter";
-
 import {
   CareersHeroBg,
-  CareersHeroImage,
   LifeAtViyanStrip,
   BenefitFloatIcon,
   PerksRow,
@@ -47,31 +45,37 @@ export default function Careers() {
   return (
     <div className="bg-[#FAF7FF] min-h-screen text-[#475569] font-body overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative pt-24 pb-24 overflow-hidden">
+      <section className="relative overflow-hidden min-h-[700px]">
         <CareersHeroBg />
+
+        {/* Background Gradient */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(123,47,247,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-        <div className="container max-w-[1300px] mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+
+        <div className="container max-w-[1400px] mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[700px]">
+
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-left"
+              className="text-center lg:text-left"
             >
               <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-6">
                 Careers at ViyanInfo
               </span>
+
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-[#0F172A] tracking-tight leading-tight mb-6">
                 Build The Future With ViyanInfo
               </h1>
-              <p className="text-lg leading-relaxed text-[#475569] max-w-xl mb-8">
-                Join our mission to build resilient enterprise systems, scalable
-                web applications, and automated AI workflows. We value
-                operational ownership, direct collaboration, and continuous
-                learning.
+
+              <p className="text-lg leading-relaxed text-[#475569] max-w-xl mx-auto lg:mx-0 mb-8">
+                Join our mission to build resilient enterprise systems, scalable web
+                applications, and automated AI workflows. We value operational
+                ownership, direct collaboration, and continuous learning.
               </p>
-              <div className="flex gap-4">
+
+              <div className="flex justify-center lg:justify-start">
                 <a href="#positions">
                   <button
                     onMouseEnter={onHoverBurst}
@@ -83,14 +87,20 @@ export default function Careers() {
               </div>
             </motion.div>
 
-            {/* Right Collaboration Illustration */}
+            {/* Right Large Illustration */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative flex items-center justify-center"
             >
-              <CareersHeroImage />
+              <img
+                src="/images/careersimage.webp"
+                alt="Careers Illustration"
+                className="max-w-[750px] lg:max-w-[500px] h-auto object-contain scale-105 lg:scale-125"
+              />
             </motion.div>
+
           </div>
         </div>
       </section>
@@ -132,28 +142,46 @@ export default function Careers() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-lg overflow-hidden flex flex-col justify-between aspect-video lg:aspect-square"
+              className="relative rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-lg overflow-hidden flex flex-col justify-between aspect-video lg:aspect-square"
             >
+              {/* Background Gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#7B2FF7]/5 to-[#3B82F6]/5"></div>
-              <div className="relative z-10 flex flex-col justify-between h-full">
-                <div className="flex justify-between items-start">
-                  <div className="p-3 rounded-xl bg-purple-500/10 text-[#7B2FF7]">
+
+              {/* Image Section */}
+              <div className="relative w-full h-full">
+                <img
+                  src="../public/images/team-collab.webp"
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+
+                {/* Top Overlay Content */}
+                <div className="absolute top-0 left-0 w-full z-20 flex justify-between items-start p-5">
+
+                  <div className="p-3 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 text-white">
                     <Users className="w-6 h-6" />
                   </div>
-                  <span className="text-[10px] font-mono font-bold text-[#8D92B2] uppercase tracking-wider">
+
+                  <span className="text-[10px] font-mono font-bold text-white uppercase tracking-wider bg-black/20 backdrop-blur-md px-3 py-2 rounded-lg border border-white/20">
                     Culture Pillars
                   </span>
                 </div>
-                <div>
-                  <h4 className="text-2xl font-display font-bold text-[#0F172A] mb-2">
+
+                {/* Bottom Content */}
+                <div className="absolute bottom-0 left-0 z-20 p-6">
+                  <span className="text-2xl font-display font-bold text-white mb-2">
                     Autonomy & Trust
-                  </h4>
-                  <p className="text-xs text-[#475569] leading-relaxed max-w-xs">
+                  </span>
+
+                  <p className="text-xs text-white/80 leading-relaxed max-w-xs">
                     We eliminate unnecessary blockers. We write code, review
                     PRs, and ship features without layers of corporate
                     hierarchy.
                   </p>
                 </div>
+
+                {/* Dark Overlay for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               </div>
             </motion.div>
           </div>
@@ -416,7 +444,7 @@ export default function Careers() {
         />
 
         {/* TOP AREA: CTA OVERLAY */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center pt-[100px] pb-12 px-6 mt-4 md:mt-8">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center pt-[100px] pb-12 px-6 mt-4 md:mt-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -424,9 +452,9 @@ export default function Careers() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto flex flex-col items-center"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-8 drop-shadow-xl">
+            <span className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-8 drop-shadow-xl">
               Don't see your role?
-            </h2>
+            </span>
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-8 drop-shadow-md">
               We are always looking for passionate backend developers, frontend
               engineers, and product designers. Get in touch with us directly.
