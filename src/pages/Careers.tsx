@@ -313,12 +313,14 @@ export default function Careers() {
 
       <SectionDivider />
 
-      <section className="py-12 bg-[#FAF7FF]">
-        <div className="container max-w-[1200px] mx-auto px-6">
-          <h3 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-6">
+      <section className="py-12">
+        <div className="container-fluid mx-auto px-4">
+          <h3 className="text-xs text-start px-50 md:px-70 font-mono text-slate-400 uppercase tracking-widest mb-6">
             Life at ViyanInfo
           </h3>
-          <LifeAtViyanStrip />
+          <div className="flex justify-center">
+            <LifeAtViyanStrip />
+          </div>
         </div>
       </section>
 

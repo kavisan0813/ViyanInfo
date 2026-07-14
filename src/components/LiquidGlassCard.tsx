@@ -2,27 +2,9 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import "../styles/LiquidGlassCard.css";
 
-/**
- * LiquidGlassCard
- * -----------------
- * Real Apple-style "Liquid Glass" surface — NOT flat backdrop-blur glassmorphism.
- * Uses an SVG feDisplacementMap to refract whatever sits behind the card,
- * plus a rotating specular highlight and an edge-light rim.
- *
- * Drop this around any footer column (Company / Links / Contact / Social)
- * inside LiquidFooter.tsx without touching existing footer markup.
- *
- * Usage:
- *   <LiquidGlassCard>
- *     <h4>Company</h4>
- *     <ul>...</ul>
- *   </LiquidGlassCard>
- */
-
 interface LiquidGlassCardProps {
   children: React.ReactNode;
   className?: string;
-  /** brand accent driving the rim-light + specular tint. Defaults to your purple token. */
   accent?: string;
 }
 
@@ -33,8 +15,6 @@ export const LiquidGlassCard = ({
 }: LiquidGlassCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Subtle pointer-tracked tilt — reuses the same low-cost approach as your tilt3d util,
-  // kept local here so this component has zero coupling to other utils.
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = cardRef.current;
     if (!el) return;
@@ -66,7 +46,6 @@ export const LiquidGlassCard = ({
       className={`liquid-glass-card ${className}`}
       style={{ ["--accent" as string]: accent }}
     >
-      {/* Distortion layer — this is what makes it "liquid" rather than blurred */}
       <svg className="liquid-glass-distortion" aria-hidden="true">
         <filter id="liquid-glass-filter">
           <feTurbulence

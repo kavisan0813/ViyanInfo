@@ -44,7 +44,13 @@ export function ProjectCard({
     return () => ctx.revert();
   }, []);
 
-  const isMobileProject = category.toLowerCase().includes("mobile") || tags.some(t => t.toLowerCase().includes("flutter") || t.toLowerCase().includes("react native"));
+  const isMobileProject =
+    category.toLowerCase().includes("mobile") ||
+    tags.some(
+      (t) =>
+        t.toLowerCase().includes("flutter") ||
+        t.toLowerCase().includes("react native"),
+    );
 
   return (
     <Link

@@ -48,8 +48,9 @@ export function ServiceCard({
       to={href}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`${elevated ? "glass-card-elevated" : "glass-card"
-        } p-6 md:p-7 flex flex-col h-full group relative overflow-hidden transition-transform duration-300 ease-out`}
+      className={`${
+        elevated ? "glass-card-elevated" : "glass-card"
+      } p-6 md:p-7 flex flex-col h-full group relative overflow-hidden transition-transform duration-300 ease-out`}
       style={
         {
           transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translate3d(var(--tx, 0), var(--ty, 0), 0)`,

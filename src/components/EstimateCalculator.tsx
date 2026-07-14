@@ -148,10 +148,11 @@ export function EstimateCalculator() {
                         type.id as "websites" | "mobile" | "saas",
                       )
                     }
-                    className={`glass-card p-6 text-left border flex flex-col justify-between h-full transition-all cursor-pointer ${projectType === type.id
-                      ? "border-(--color-rose-bright) bg-glass-3 shadow-md -translate-y-1"
-                      : "border-border-1 hover:border-border-2"
-                      }`}
+                    className={`glass-card p-6 text-left border flex flex-col justify-between h-full transition-all cursor-pointer ${
+                      projectType === type.id
+                        ? "border-(--color-rose-bright) bg-glass-3 shadow-md -translate-y-1"
+                        : "border-border-1 hover:border-border-2"
+                    }`}
                   >
                     <div>
                       <div className="flex items-center justify-between">
@@ -190,17 +191,19 @@ export function EstimateCalculator() {
                     <button
                       key={feat.id}
                       onClick={() => toggleFeature(feat.id)}
-                      className={`glass-card p-5 text-left border flex items-center justify-between cursor-pointer transition-all ${isChecked
-                        ? "border-(--color-rose-bright) bg-glass-3"
-                        : "border-border-1 hover:border-border-2"
-                        }`}
+                      className={`glass-card p-5 text-left border flex items-center justify-between cursor-pointer transition-all ${
+                        isChecked
+                          ? "border-(--color-rose-bright) bg-glass-3"
+                          : "border-border-1 hover:border-border-2"
+                      }`}
                     >
                       <div className="flex items-center gap-4">
                         <div
-                          className={`w-5 h-5 rounded flex items-center justify-center border transition-all ${isChecked
-                            ? "bg-(--color-rose-bright) border-(--color-rose-bright)"
-                            : "border-border-2"
-                            }`}
+                          className={`w-5 h-5 rounded flex items-center justify-center border transition-all ${
+                            isChecked
+                              ? "bg-(--color-rose-bright) border-(--color-rose-bright)"
+                              : "border-border-2"
+                          }`}
                         >
                           {isChecked && (
                             <Check size={12} className="text-white" />
@@ -255,10 +258,11 @@ export function EstimateCalculator() {
                           time.id as "standard" | "accelerated" | "relaxed",
                         )
                       }
-                      className={`glass-card p-5 text-left border cursor-pointer transition-all ${timeline === time.id
-                        ? "border-(--color-rose-bright) bg-glass-3"
-                        : "border-border-1 hover:border-border-2"
-                        }`}
+                      className={`glass-card p-5 text-left border cursor-pointer transition-all ${
+                        timeline === time.id
+                          ? "border-(--color-rose-bright) bg-glass-3"
+                          : "border-border-1 hover:border-border-2"
+                      }`}
                     >
                       <div className="flex justify-between items-center">
                         <span className="text-sm font-display font-semibold text-text-primary">

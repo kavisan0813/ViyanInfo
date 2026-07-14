@@ -110,7 +110,8 @@ function Fireflies() {
     const particles = Array.from({ length: 30 }).map(() => {
       const el = document.createElement("div");
       const size = Math.random() * 3 + 1.5;
-      el.className = "absolute rounded-full bg-[#fef08a] pointer-events-none z-0";
+      el.className =
+        "absolute rounded-full bg-[#fef08a] pointer-events-none z-0";
       el.style.width = `${size}px`;
       el.style.height = `${size}px`;
       el.style.left = `${Math.random() * 100}%`;
@@ -123,7 +124,7 @@ function Fireflies() {
         y: `-=${Math.random() * 100 + 50}`,
         x: `+=${Math.random() * 80 - 40}`,
         keyframes: {
-          opacity: [0, 0.8, 1, 0.8, 0]
+          opacity: [0, 0.8, 1, 0.8, 0],
         },
         duration: Math.random() * 5 + 4,
         repeat: -1,
@@ -138,7 +139,12 @@ function Fireflies() {
     };
   }, []);
 
-  return <div ref={containerRef} className="absolute inset-0 pointer-events-none z-0 overflow-hidden" />;
+  return (
+    <div
+      ref={containerRef}
+      className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+    />
+  );
 }
 
 export function Footer() {
@@ -150,10 +156,23 @@ export function Footer() {
   const isWebsites = normalizedPath === "/services/websites";
   const isAiSolutions = normalizedPath === "/services/ai";
   const isUiUx = normalizedPath === "/services/uiux";
-  const isBlog = normalizedPath === "/blog" || normalizedPath === "/resources/blog";
+  const isBlog =
+    normalizedPath === "/blog" || normalizedPath === "/resources/blog";
   const isHome = normalizedPath === "" || normalizedPath === "/";
 
-  if (isWebsites || isAiSolutions || isUiUx || isBlog || normalizedPath === "/careers" || normalizedPath === "/portfolio" || normalizedPath === "/services/mobile" || normalizedPath === "/contact") return null;
+  if (
+    isHome ||
+    normalizedPath === "/services" ||
+    isWebsites ||
+    isAiSolutions ||
+    isUiUx ||
+    isBlog ||
+    normalizedPath === "/careers" ||
+    normalizedPath === "/portfolio" ||
+    normalizedPath === "/services/mobile" ||
+    normalizedPath === "/contact"
+  )
+    return null;
 
   // Dynamic colors depending on the page
   const textColor = isInternship ? "text-white/90" : "text-[#C9C6D8]";
@@ -183,12 +202,12 @@ export function Footer() {
       style={
         isInternship
           ? {
-            backgroundImage: `url(${img1})`,
-            backgroundSize: "cover",
-            backgroundPosition: "top center",
-            backgroundAttachment: "fixed",
-            backgroundRepeat: "no-repeat",
-          }
+              backgroundImage: `url(${img1})`,
+              backgroundSize: "cover",
+              backgroundPosition: "top center",
+              backgroundAttachment: "fixed",
+              backgroundRepeat: "no-repeat",
+            }
           : undefined
       }
       className={`relative overflow-hidden ${isHome ? "pt-[20px]" : "pt-[80px]"} pb-[40px] border-t ${borderColor} ${textColor} font-body ${bgColor}`}
@@ -213,7 +232,9 @@ export function Footer() {
         </>
       )}
 
-      <div className={`w-[90%] mx-auto relative z-10 ${isInternship ? "bg-white/10 backdrop-blur-md border border-white/20 rounded-[32px] shadow-2xl py-12 px-6 lg:px-12 mb-8" : "px-6"}`}>
+      <div
+        className={`w-[90%] mx-auto relative z-10 ${isInternship ? "bg-white/10 backdrop-blur-md border border-white/20 rounded-[32px] shadow-2xl py-12 px-6 lg:px-12 mb-8" : "px-6"}`}
+      >
         {/* 4-COLUMN FOOTER GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12 text-left">
           {/* Column 1: Company Info */}
@@ -238,25 +259,29 @@ export function Footer() {
                   icon: <Linkedin className="w-[18px] h-[18px]" />,
                   href: "https://linkedin.com",
                   label: "LinkedIn",
-                  hoverColor: "hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:shadow-[0_0_15px_rgba(10,102,194,0.6)]",
+                  hoverColor:
+                    "hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:shadow-[0_0_15px_rgba(10,102,194,0.6)]",
                 },
                 {
                   icon: <Github className="w-[18px] h-[18px]" />,
                   href: "https://github.com",
                   label: "GitHub",
-                  hoverColor: "hover:bg-[#181717] hover:border-[#181717] hover:shadow-[0_0_15px_rgba(24,23,23,0.6)]",
+                  hoverColor:
+                    "hover:bg-[#181717] hover:border-[#181717] hover:shadow-[0_0_15px_rgba(24,23,23,0.6)]",
                 },
                 {
                   icon: <Instagram className="w-[18px] h-[18px]" />,
                   href: "https://instagram.com",
                   label: "Instagram",
-                  hoverColor: "hover:bg-[#E1306C] hover:border-[#E1306C] hover:shadow-[0_0_15px_rgba(225,48,108,0.6)]",
+                  hoverColor:
+                    "hover:bg-[#E1306C] hover:border-[#E1306C] hover:shadow-[0_0_15px_rgba(225,48,108,0.6)]",
                 },
                 {
                   icon: <Facebook className="w-[18px] h-[18px]" />,
                   href: "https://facebook.com",
                   label: "Facebook",
-                  hoverColor: "hover:bg-[#1877F2] hover:border-[#1877F2] hover:shadow-[0_0_15px_rgba(24,119,242,0.6)]",
+                  hoverColor:
+                    "hover:bg-[#1877F2] hover:border-[#1877F2] hover:shadow-[0_0_15px_rgba(24,119,242,0.6)]",
                 },
               ].map((social, sIdx) => (
                 <motion.a
@@ -265,11 +290,16 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  whileHover={isInternship ? { y: -5, scale: 1.08 } : { y: -3, scale: 1.05 }}
-                  className={`w-9 h-9 flex items-center justify-center transition-all duration-300 relative z-20 ${isInternship
-                    ? `rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white ${social.hoverColor}`
-                    : `rounded-lg ${socialBg} text-[#C9C6D8] hover:text-[#7B2FF7] border border-transparent hover:border-[#7B2FF7]/20 hover:shadow-[0_0_12px_rgba(123,47,247,0.4)]`
-                    }`}
+                  whileHover={
+                    isInternship
+                      ? { y: -5, scale: 1.08 }
+                      : { y: -3, scale: 1.05 }
+                  }
+                  className={`w-9 h-9 flex items-center justify-center transition-all duration-300 relative z-20 ${
+                    isInternship
+                      ? `rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white ${social.hoverColor}`
+                      : `rounded-lg ${socialBg} text-[#C9C6D8] hover:text-[#7B2FF7] border border-transparent hover:border-[#7B2FF7]/20 hover:shadow-[0_0_12px_rgba(123,47,247,0.4)]`
+                  }`}
                 >
                   {social.icon}
                 </motion.a>

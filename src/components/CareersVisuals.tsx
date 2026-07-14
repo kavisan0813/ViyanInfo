@@ -120,6 +120,11 @@ const lifePhotos = [
     label: "Sprint retro",
     span: false,
   },
+  {
+    src: "src/assets/image.webp",
+    label: "Design session",
+    span: false,
+  },
 ];
 
 export function LifeAtViyanStrip() {
