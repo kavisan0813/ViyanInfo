@@ -100,15 +100,18 @@ export function Navbar() {
     );
   }, []);
 
-  const handlePointerMove = useCallback((e: React.PointerEvent<HTMLElement>) => {
-    const el = navRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    el.style.setProperty("--px", `${px * 100}%`);
-    el.style.setProperty("--py", `${py * 100}%`);
-  }, []);
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLElement>) => {
+      const el = navRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width;
+      const py = (e.clientY - rect.top) / rect.height;
+      el.style.setProperty("--px", `${px * 100}%`);
+      el.style.setProperty("--py", `${py * 100}%`);
+    },
+    [],
+  );
 
   const handlePointerLeave = useCallback(() => {
     const el = navRef.current;
@@ -141,7 +144,11 @@ export function Navbar() {
                 seed="7"
                 result="noise"
               />
-              <feGaussianBlur in="noise" stdDeviation="2" result="blurredNoise" />
+              <feGaussianBlur
+                in="noise"
+                stdDeviation="2"
+                result="blurredNoise"
+              />
               <feDisplacementMap
                 in="SourceGraphic"
                 in2="blurredNoise"

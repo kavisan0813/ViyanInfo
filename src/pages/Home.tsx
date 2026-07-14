@@ -31,6 +31,7 @@ import astronautImg from "../assets/Astronaut.webp";
 import visionImg from "../assets/Vision.png";
 import saturnimage from "../assets/Saturn.webp";
 import { BackgroundEffects } from "../components/BackgroundEffects";
+import { LiquidFooter } from "../components/LiquidFooter";
 
 export default function Home() {
   const ctaContainerRef = useRef<HTMLDivElement>(null);
@@ -1005,104 +1006,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Categorized Tech Badges */}
-          {/* <div className="grid grid-cols-1 md:grid-cols-5 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                category: "Frontend",
-                items: ["React", "Next.js", "TypeScript", "TailwindCSS"],
-              },
-              {
-                category: "Backend Language",
-                items: ["Java", "Python", "JavaScript", "Go"],
-              },
-              {
-                category: "Framework",
-                items: ["SpringBoot", "FastAPI", "NodeJS", "Fiber, Gin"],
-              },
-              {
-                category: "Database",
-                items: ["PostgreSQL", "MongoDB", "MySQL", "SpaceTime DB"],
-              },
-              {
-                category: "Cloud",
-                items: ["AWS", "Docker", "Firebase", "Vercel"],
-              },
-              {
-                category: "AI & ML",
-                items: [
-                  "Fine Tuning`",
-                  "LangChain",
-                  "Vector DBs",
-                  "LlamaIndex",
-                ],
-              },
-            ].map((cat, idx) => {
-              const techColors: Record<string, string> = {
-                "react": "#61DAFB",
-                "next.js": "#000000",
-                "typescript": "#3178C6",
-                "tailwindcss": "#06B6D4",
-                "java": "#ED8B00",
-                "python": "#3776AB",
-                "javascript": "#F7DF1E",
-                "go": "#00ADD8",
-                "springboot": "#6DB33F",
-                "fastapi": "#009688",
-                "nodejs": "#339933",
-                "node.js": "#339933",
-                "fiber, gin": "#00ADD8",
-                "postgresql": "#336791",
-                "mongodb": "#47A248",
-                "mysql": "#00758F",
-                "spacetime db": "#7B2FF7",
-                "aws": "#FF9900",
-                "docker": "#2496ED",
-                "firebase": "#FFCA28",
-                "vercel": "#000000",
-                "fine tuning`": "#A855F7",
-                "langchain": "#00A389",
-                "vector dbs": "#8B5CF6",
-                "llamaindex": "#E24A8D",
-                "django": "#092E20",
-                "openai": "#10A37F"
-              };
-
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="p-6 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 text-left flex flex-col justify-between"
-                >
-                  <h3 className="font-display font-bold text-[#7B2FF7] text-sm uppercase tracking-wider border-b border-[#E9D5FF] pb-3 mb-4">
-                    {cat.category}
-                  </h3>
-                  <div className="flex flex-col gap-2.5">
-                    {cat.items.map((item, iIdx) => {
-                      const cleanKey = item.toLowerCase().trim();
-                      const color = techColors[cleanKey] || "#7B2FF7";
-                      return (
-                        <div
-                          key={iIdx}
-                          className="flex items-center gap-2 text-sm text-[#0F172A] font-semibold"
-                        >
-                          <span
-                            className="w-1.5 h-1.5 rounded-full"
-                            style={{ backgroundColor: color }}
-                          ></span>
-                          {item}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div> */}
-
           {/* Marquee Row */}
           <div className="mt-16 relative w-full overflow-hidden py-4 border-y border-[#E9D5FF]/30">
             <div className="flex w-[200%] gap-12 animate-[ticker-left_30s_linear_infinite]">
@@ -1334,27 +1237,7 @@ export default function Home() {
 
       <SectionDivider />
 
-      {/* SECTION 10: FAQ */}
-      {/* <section className="relative py-24 bg-[#FAF7FF] overflow-hidden">
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-              Questions
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <FAQAccordion />
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider /> */}
-
-      <section className="bg-black relative z-20">
+      <section className="bg-black relative z-20 pb-1">
         <div className="container-fluid mx-auto relative z-10">
           <motion.div
             ref={ctaContainerRef}
@@ -1432,6 +1315,7 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+        <LiquidFooter />
       </section>
     </div>
   );

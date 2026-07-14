@@ -25,7 +25,7 @@ export function SectionDivider() {
             end: "bottom 75%",
             scrub: 1.5,
           },
-        }
+        },
       );
     }, containerRef);
 
@@ -33,7 +33,10 @@ export function SectionDivider() {
   }, []);
 
   return (
-    <div ref={containerRef} className="container relative z-20 pointer-events-none my-6 md:my-10 h-[2px]">
+    <div
+      ref={containerRef}
+      className="container relative z-20 pointer-events-none my-6 md:my-10 h-[2px]"
+    >
       <div
         className="divider-line w-full h-[2px] opacity-80"
         style={{

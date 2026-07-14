@@ -131,6 +131,8 @@ export default function App() {
 
   const location = useLocation();
   const customFooterPaths = [
+    "/",
+    "/services",
     "/contact",
     "/services/websites",
     "/services/mobile",

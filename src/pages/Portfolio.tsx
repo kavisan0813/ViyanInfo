@@ -6,8 +6,6 @@ import { LiquidFooter } from "../components/LiquidFooter";
 import workImg from "../assets/Workimg.webp";
 import { PortfolioHeroCarousel } from "../components/PortfolioVisuals";
 import "../styles/PremiumShowcase.css";
-
-// ── Dashboard Images ──
 import erpImg from "../assets/erp_dashboard.png";
 import inventoryImg from "../assets/inventory_dashboard.png";
 import medassistImg from "../assets/medassist_dashboard.png";

@@ -641,8 +641,9 @@ export default function TechStack() {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    className={`w-16 h-16 rounded-2xl bg-white shadow-md border flex items-center justify-center cursor-pointer transition-all duration-300 relative ${isHovered ? "shadow-lg" : "border-slate-200"
-                      }`}
+                    className={`w-16 h-16 rounded-2xl bg-white shadow-md border flex items-center justify-center cursor-pointer transition-all duration-300 relative ${
+                      isHovered ? "shadow-lg" : "border-slate-200"
+                    }`}
                     style={{
                       boxShadow: isHovered
                         ? `0 10px 25px -5px ${node.color}25, 0 0 15px ${node.color}15`

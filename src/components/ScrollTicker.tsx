@@ -56,7 +56,9 @@ export function ScrollTicker({ items, speed = 2 }: ScrollTickerProps) {
             <span className="text-[15px] font-display font-semibold text-text-muted uppercase tracking-wider px-8">
               {item}
             </span>
-            <span className="text-(--color-text-accent) text-[10px] opacity-50">◆</span>
+            <span className="text-(--color-text-accent) text-[10px] opacity-50">
+              ◆
+            </span>
           </div>
         ))}
       </div>

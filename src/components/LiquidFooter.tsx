@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Github, Instagram, Facebook } from "lucide-react";
+import { Linkedin, Github, Instagram } from "lucide-react";
 import logo1 from "../assets/logo-img.svg";
 import { LiquidGlassCard } from "./LiquidGlassCard";
 import "../styles/LiquidFooter.css";
@@ -8,8 +8,9 @@ export function LiquidFooter({ isLight = false }: { isLight?: boolean }) {
   return (
     <LiquidGlassCard
       accent="#7B2FF7"
-      className={`relative z-10 w-[94%] md:w-[88%] max-w-[1450px] mx-auto mt-[70px] mb-10 footer-glass ${isLight ? "liquid-glass-light footer-glass--light" : ""
-        }`}
+      className={`relative z-10 w-[94%] md:w-[88%] max-w-[1450px] mx-auto mt-[70px] mb-10 footer-glass ${
+        isLight ? "liquid-glass-light footer-glass--light" : ""
+      }`}
     >
       <div className="footer-glow one"></div>
       <div className="footer-glow two"></div>
@@ -47,11 +48,6 @@ export function LiquidFooter({ isLight = false }: { isLight?: boolean }) {
                   icon: <Instagram size={18} />,
                   href: "https://instagram.com",
                   name: "instagram",
-                },
-                {
-                  icon: <Facebook size={18} />,
-                  href: "https://facebook.com",
-                  name: "facebook",
                 },
               ].map((social, idx) => (
                 <a

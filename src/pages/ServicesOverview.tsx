@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { LiquidFooter } from "../components/LiquidFooter";
 import {
   Globe,
   Smartphone,
@@ -594,6 +595,7 @@ export default function ServicesPage() {
           </motion.div>
         </div>
       </section>
+      <LiquidFooter isLight={true} />
     </div>
   );
 }

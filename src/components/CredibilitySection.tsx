@@ -49,7 +49,7 @@ export function CredibilitySection() {
             const mouseX = e.clientX;
             const mouseY = e.clientY;
 
-            dots.forEach(dot => {
+            dots.forEach((dot) => {
               const rect = dot.getBoundingClientRect();
               const dotCenterX = rect.left + rect.width / 2;
               const dotCenterY = rect.top + rect.height / 2;
@@ -63,15 +63,33 @@ export function CredibilitySection() {
                 // The closer we are, the stronger the pull
                 const pullX = distX * 0.4;
                 const pullY = distY * 0.4;
-                gsap.to(dot, { x: pullX, y: pullY, duration: 0.3, ease: "power2.out", overwrite: "auto" });
+                gsap.to(dot, {
+                  x: pullX,
+                  y: pullY,
+                  duration: 0.3,
+                  ease: "power2.out",
+                  overwrite: "auto",
+                });
               } else {
-                gsap.to(dot, { x: 0, y: 0, duration: 0.4, ease: "elastic.out(1, 0.3)", overwrite: "auto" });
+                gsap.to(dot, {
+                  x: 0,
+                  y: 0,
+                  duration: 0.4,
+                  ease: "elastic.out(1, 0.3)",
+                  overwrite: "auto",
+                });
               }
             });
           });
 
           section.addEventListener("mouseleave", () => {
-            gsap.to(dots, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)", overwrite: "auto" });
+            gsap.to(dots, {
+              x: 0,
+              y: 0,
+              duration: 0.5,
+              ease: "elastic.out(1, 0.3)",
+              overwrite: "auto",
+            });
           });
         }
       }
