@@ -33,50 +33,70 @@ gsap.registerPlugin(ScrollTrigger);
 const designPillars = [
   {
     title: "User Research",
+    badgeText: "Research",
     icon: Search,
-    accent: "#F59E0B",
-    backGradient: "linear-gradient(135deg, #FFFBEB, #FEF3C7)",
-    iconBg: "rgba(245, 158, 11, 0.1)",
+    glow: "#8B5CF6", // Purple (from AI)
+    glowRgba: "rgba(124,58,237,.25)",
+    badgeBg: "rgba(124,58,237,.12)",
+    badgeColor: "#7C3AED",
+    gradient: "linear-gradient(180deg, #FCF8FF 0%, #F3E8FF 100%)",
+    backGradient: "linear-gradient(135deg, #F3E8FF 0%, #FFFFFF 100%)",
     description:
       "Perform comprehensive interviews, mapping custom personas, and finding layout friction zones to align design specs.",
     tags: "Personas • User Testing • Surveys",
   },
   {
     title: "Wireframing",
+    badgeText: "Wireframes",
     icon: Layers,
-    accent: "#7B2FF7",
-    backGradient: "linear-gradient(135deg, #F5F3FF, #EDE9FE)",
-    iconBg: "rgba(123, 47, 247, 0.1)",
+    glow: "#22C55E", // Green (from Python)
+    glowRgba: "rgba(34,197,94,.25)",
+    badgeBg: "rgba(34,197,94,.12)",
+    badgeColor: "#16A34A",
+    gradient: "linear-gradient(180deg, #F2FFF8 0%, #E8FFF2 100%)",
+    backGradient: "linear-gradient(135deg, #E8FFF2 0%, #FFFFFF 100%)",
     description:
       "Drafting structural screen maps and navigation hierarchies to establish clean page logic before visual design.",
     tags: "Low-fi Mockups • User Flows • Miro",
   },
   {
     title: "UI Design",
+    badgeText: "UI",
     icon: Palette,
-    accent: "#EC4899",
-    backGradient: "linear-gradient(135deg, #FDF2F8, #FCE7F3)",
-    iconBg: "rgba(236, 72, 153, 0.1)",
+    glow: "#F59E0B", // Amber (from UI/UX)
+    glowRgba: "rgba(245,158,11,.25)",
+    badgeBg: "rgba(245,158,11,.12)",
+    badgeColor: "#D97706",
+    gradient: "linear-gradient(180deg, #FFFDF4 0%, #FFF7E6 100%)",
+    backGradient: "linear-gradient(135deg, #FFF7E6 0%, #FFFFFF 100%)",
     description:
       "Applying premium typographic structures, grid alignments, customized SVGs, and consistent color pallets in Figma.",
     tags: "Figma • Visual Styling • Vectors",
   },
   {
     title: "UX Optimization",
+    badgeText: "UX",
     icon: Eye,
-    accent: "#06B6D4",
-    backGradient: "linear-gradient(135deg, #ECFEFF, #CFFAFE)",
-    iconBg: "rgba(6, 182, 212, 0.1)",
+    glow: "#06B6D4", // Cyan (from Data Science)
+    glowRgba: "rgba(6,182,212,.25)",
+    badgeBg: "rgba(6,182,212,.12)",
+    badgeColor: "#0891B2",
+    gradient: "linear-gradient(180deg, #F3FCFF 0%, #E8F8FF 100%)",
+    backGradient: "linear-gradient(135deg, #E8F8FF 0%, #FFFFFF 100%)",
     description:
       "Refining checkout steps, form completions, and interaction states to remove user friction and improve retention.",
     tags: "Heuristics • Friction Audits • Analytics",
   },
   {
     title: "Design Systems",
+    badgeText: "Systems",
     icon: Settings,
-    accent: "#10B981",
-    backGradient: "linear-gradient(135deg, #ECFDF5, #D1FAE5)",
-    iconBg: "rgba(16, 185, 129, 0.1)",
+    glow: "#F97316", // Orange (from Full Stack)
+    glowRgba: "rgba(249,115,22,.25)",
+    badgeBg: "rgba(249,115,22,.12)",
+    badgeColor: "#EA580C",
+    gradient: "linear-gradient(180deg, #FFF8F3 0%, #FFF2EA 100%)",
+    backGradient: "linear-gradient(135deg, #FFF2EA 0%, #FFFFFF 100%)",
     description:
       "Building modular, component-based Figma libraries and styleguides to coordinate design changes and developer handoffs.",
     tags: "Figma Tokens • Component Kits",
@@ -138,297 +158,102 @@ function DesignPillarsFlip() {
               <div key={idx} className="dp-card">
                 <div className="dp-card-inner">
                   {/* FRONT FACE — Tarot Playing Card Style */}
-                  <div className="dp-card-front tarot-front">
+                  <div 
+                    className="dp-card-front tarot-front"
+                    style={{ background: pillar.gradient, "--card-glow": pillar.glow, "--card-glow-rgba": pillar.glowRgba } as React.CSSProperties}
+                  >
                     {/* SVG Geometric Decorations */}
                     <svg
                       className="tarot-geometry"
+                      style={{ color: pillar.glowRgba }}
                       viewBox="0 0 240 350"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       preserveAspectRatio="none"
                     >
                       {/* Outer border */}
-                      <rect
-                        x="8"
-                        y="8"
-                        width="224"
-                        height="334"
-                        rx="16"
-                        stroke="rgba(255,255,255,0.8)"
-                        strokeWidth="1.5"
-                      />
+                      <rect x="8" y="8" width="224" height="334" rx="16" stroke="currentColor" strokeWidth="1.5" />
                       {/* Inner border */}
-                      <rect
-                        x="16"
-                        y="16"
-                        width="208"
-                        height="318"
-                        rx="12"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1.5"
-                      />
+                      <rect x="16" y="16" width="208" height="318" rx="12" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
 
                       {/* Corner circles */}
-                      <circle
-                        cx="28"
-                        cy="28"
-                        r="4"
-                        stroke="rgba(255,255,255,0.7)"
-                        strokeWidth="2"
-                      />
-                      <circle
-                        cx="212"
-                        cy="28"
-                        r="4"
-                        stroke="rgba(255,255,255,0.7)"
-                        strokeWidth="2"
-                      />
-                      <circle
-                        cx="28"
-                        cy="322"
-                        r="4"
-                        stroke="rgba(255,255,255,0.7)"
-                        strokeWidth="2"
-                      />
-                      <circle
-                        cx="212"
-                        cy="322"
-                        r="4"
-                        stroke="rgba(255,255,255,0.7)"
-                        strokeWidth="2"
-                      />
+                      <circle cx="28" cy="28" r="4" stroke="currentColor" strokeWidth="2" />
+                      <circle cx="212" cy="28" r="4" stroke="currentColor" strokeWidth="2" />
+                      <circle cx="28" cy="322" r="4" stroke="currentColor" strokeWidth="2" />
+                      <circle cx="212" cy="322" r="4" stroke="currentColor" strokeWidth="2" />
 
                       {/* Corner dot fills */}
-                      <circle
-                        cx="28"
-                        cy="28"
-                        r="1"
-                        fill="rgba(255,255,255,0.8)"
-                      />
-                      <circle
-                        cx="212"
-                        cy="28"
-                        r="1"
-                        fill="rgba(255,255,255,0.8)"
-                      />
-                      <circle
-                        cx="28"
-                        cy="322"
-                        r="1"
-                        fill="rgba(255,255,255,0.8)"
-                      />
-                      <circle
-                        cx="212"
-                        cy="322"
-                        r="1"
-                        fill="rgba(255,255,255,0.8)"
-                      />
+                      <circle cx="28" cy="28" r="1" fill="currentColor" />
+                      <circle cx="212" cy="28" r="1" fill="currentColor" />
+                      <circle cx="28" cy="322" r="1" fill="currentColor" />
+                      <circle cx="212" cy="322" r="1" fill="currentColor" />
 
                       {/* Connecting lines from corners */}
-                      <line
-                        x1="34"
-                        y1="28"
-                        x2="80"
-                        y2="28"
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="1"
-                      />
-                      <line
-                        x1="160"
-                        y1="28"
-                        x2="206"
-                        y2="28"
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="1"
-                      />
-                      <line
-                        x1="34"
-                        y1="322"
-                        x2="80"
-                        y2="322"
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="1"
-                      />
-                      <line
-                        x1="160"
-                        y1="322"
-                        x2="206"
-                        y2="322"
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="1"
-                      />
-                      <line
-                        x1="28"
-                        y1="34"
-                        x2="28"
-                        y2="80"
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="1"
-                      />
-                      <line
-                        x1="28"
-                        y1="270"
-                        x2="28"
-                        y2="316"
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="1"
-                      />
-                      <line
-                        x1="212"
-                        y1="34"
-                        x2="212"
-                        y2="80"
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="1"
-                      />
-                      <line
-                        x1="212"
-                        y1="270"
-                        x2="212"
-                        y2="316"
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="1"
-                      />
+                      <line x1="34" y1="28" x2="80" y2="28" stroke="currentColor" strokeWidth="1" />
+                      <line x1="160" y1="28" x2="206" y2="28" stroke="currentColor" strokeWidth="1" />
+                      <line x1="34" y1="322" x2="80" y2="322" stroke="currentColor" strokeWidth="1" />
+                      <line x1="160" y1="322" x2="206" y2="322" stroke="currentColor" strokeWidth="1" />
+                      <line x1="28" y1="34" x2="28" y2="80" stroke="currentColor" strokeWidth="1" />
+                      <line x1="28" y1="270" x2="28" y2="316" stroke="currentColor" strokeWidth="1" />
+                      <line x1="212" y1="34" x2="212" y2="80" stroke="currentColor" strokeWidth="1" />
+                      <line x1="212" y1="270" x2="212" y2="316" stroke="currentColor" strokeWidth="1" />
 
                       {/* Top semi-circle */}
-                      <path
-                        d="M100 16 A20 20 0 0 1 140 16"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1"
-                        fill="none"
-                      />
+                      <path d="M100 16 A20 20 0 0 1 140 16" stroke="currentColor" strokeWidth="1" fill="none" />
                       {/* Bottom semi-circle */}
-                      <path
-                        d="M100 334 A20 20 0 0 0 140 334"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1"
-                        fill="none"
-                      />
+                      <path d="M100 334 A20 20 0 0 0 140 334" stroke="currentColor" strokeWidth="1" fill="none" />
 
                       {/* Top heart/chevron */}
-                      <path
-                        d="M115 40 L120 34 L125 40"
-                        stroke="rgba(255,255,255,0.7)"
-                        strokeWidth="1"
-                        fill="none"
-                        strokeLinecap="round"
-                      />
+                      <path d="M115 40 L120 34 L125 40" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" />
                       {/* Bottom heart/chevron (inverted) */}
-                      <path
-                        d="M115 310 L120 316 L125 310"
-                        stroke="rgba(255,255,255,0.7)"
-                        strokeWidth="1"
-                        fill="none"
-                        strokeLinecap="round"
-                      />
+                      <path d="M115 310 L120 316 L125 310" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" />
 
                       {/* Left diamond arrow */}
-                      <path
-                        d="M20 155 L28 145 L28 165 Z"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1"
-                        fill="rgba(255,255,255,0.2)"
-                      />
-                      <path
-                        d="M20 195 L28 185 L28 205 Z"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1"
-                        fill="rgba(255,255,255,0.2)"
-                      />
+                      <path d="M20 155 L28 145 L28 165 Z" stroke="currentColor" strokeWidth="1" fill="currentColor" />
+                      <path d="M20 195 L28 185 L28 205 Z" stroke="currentColor" strokeWidth="1" fill="currentColor" />
 
                       {/* Right diamond arrow */}
-                      <path
-                        d="M220 155 L212 145 L212 165 Z"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1"
-                        fill="rgba(255,255,255,0.2)"
-                      />
-                      <path
-                        d="M220 195 L212 185 L212 205 Z"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1"
-                        fill="rgba(255,255,255,0.2)"
-                      />
+                      <path d="M220 155 L212 145 L212 165 Z" stroke="currentColor" strokeWidth="1" fill="currentColor" />
+                      <path d="M220 195 L212 185 L212 205 Z" stroke="currentColor" strokeWidth="1" fill="currentColor" />
 
                       {/* Layer 2: Four tiny dots around the diamond */}
-                      <circle
-                        cx="120"
-                        cy="85"
-                        r="1.5"
-                        fill="rgba(255,255,255,0.8)"
-                      />
-                      <circle
-                        cx="120"
-                        cy="265"
-                        r="1.5"
-                        fill="rgba(255,255,255,0.8)"
-                      />
-                      <circle
-                        cx="30"
-                        cy="175"
-                        r="1.5"
-                        fill="rgba(255,255,255,0.8)"
-                      />
-                      <circle
-                        cx="210"
-                        cy="175"
-                        r="1.5"
-                        fill="rgba(255,255,255,0.8)"
-                      />
+                      <circle cx="120" cy="85" r="1.5" fill="currentColor" />
+                      <circle cx="120" cy="265" r="1.5" fill="currentColor" />
+                      <circle cx="30" cy="175" r="1.5" fill="currentColor" />
+                      <circle cx="210" cy="175" r="1.5" fill="currentColor" />
 
                       {/* Layer 2: Short rays extending outward */}
-                      <line
-                        x1="120"
-                        y1="92"
-                        x2="120"
-                        y2="102"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1.5"
-                      />
-                      <line
-                        x1="120"
-                        y1="248"
-                        x2="120"
-                        y2="258"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1.5"
-                      />
-                      <line
-                        x1="42"
-                        y1="175"
-                        x2="52"
-                        y2="175"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1.5"
-                      />
-                      <line
-                        x1="188"
-                        y1="175"
-                        x2="198"
-                        y2="175"
-                        stroke="rgba(255,255,255,0.6)"
-                        strokeWidth="1.5"
-                      />
+                      <line x1="120" y1="92" x2="120" y2="102" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="120" y1="248" x2="120" y2="258" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="42" y1="175" x2="52" y2="175" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="188" y1="175" x2="198" y2="175" stroke="currentColor" strokeWidth="1.5" />
                     </svg>
 
-                    {/* Circular Badge perfectly centered */}
-                    <div className="tarot-icon-badge">
+                    {/* Radial Glow Behind Icon */}
+                    <div 
+                      className="dp-icon-glow" 
+                      style={{ background: pillar.glow }}
+                    ></div>
+
+                    {/* Top Badge */}
+                    <div 
+                      className="dp-top-badge"
+                      style={{ background: pillar.badgeBg, color: pillar.badgeColor }}
+                    >
+                      {pillar.badgeText}
+                    </div>
+
+                    {/* Render Icon with Circular Glass Container */}
+                    <div className="dp-icon-glass">
                       <IconComp
-                        className="w-[32px] h-[32px]"
-                        style={{
-                          color: pillar.accent,
-                        }}
+                        className="dp-icon"
+                        style={{ color: pillar.glow }}
                       />
                     </div>
 
                     {/* Title positioned at bottom */}
                     <h3>{pillar.title}</h3>
-                    <span
-                      className="dp-card-label"
-                      style={{ color: pillar.accent }}
-                    >
-                      !
-                    </span>
+                    <p className="dp-card-label">Hover to reveal</p>
                   </div>
 
                   {/* BACK — Description + Tags */}
@@ -436,9 +261,55 @@ function DesignPillarsFlip() {
                     className="dp-card-back"
                     style={{ background: pillar.backGradient }}
                   >
-                    <span className="dp-back-title">{pillar.title}</span>
-                    <p className="dp-back-desc">{pillar.description}</p>
-                    <div className="dp-back-tags">{pillar.tags}</div>
+                    {/* SVG Blueprint Decorations */}
+                    <svg
+                      className="blueprint-geometry"
+                      style={{ color: pillar.glow }}
+                      viewBox="0 0 240 350"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Double rounded border */}
+                      <rect x="8" y="8" width="224" height="334" rx="16" stroke="currentColor" strokeWidth="1" strokeOpacity="0.8" />
+                      <rect x="14" y="14" width="212" height="322" rx="12" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.5" />
+
+                      {/* Decorative engineering corner brackets */}
+                      <path d="M 24 14 L 14 14 L 14 24" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="M 216 14 L 226 14 L 226 24" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="M 24 336 L 14 336 L 14 326" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="M 216 336 L 226 336 L 226 326" stroke="currentColor" strokeWidth="1.5" />
+
+                      {/* Tiny circular anchor points */}
+                      <circle cx="28" cy="28" r="2" fill="currentColor" opacity="0.6" />
+                      <circle cx="212" cy="28" r="2" fill="currentColor" opacity="0.6" />
+                      <circle cx="28" cy="322" r="2" fill="currentColor" opacity="0.6" />
+                      <circle cx="212" cy="322" r="2" fill="currentColor" opacity="0.6" />
+
+                      {/* Vertical center guide line */}
+                      <line x1="120" y1="14" x2="120" y2="336" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.4" />
+                      
+                      {/* Horizontal measurement lines */}
+                      <line x1="14" y1="60" x2="226" y2="60" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+                      <line x1="14" y1="290" x2="226" y2="290" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+
+                      {/* Small arrows on each side */}
+                      <path d="M 14 175 L 18 171 L 18 179 Z" fill="currentColor" opacity="0.5" />
+                      <path d="M 226 175 L 222 171 L 222 179 Z" fill="currentColor" opacity="0.5" />
+                      <path d="M 120 14 L 116 18 L 124 18 Z" fill="currentColor" opacity="0.5" />
+                      <path d="M 120 336 L 116 332 L 124 332 Z" fill="currentColor" opacity="0.5" />
+
+                      {/* Minimal HUD decorations */}
+                      <rect x="20" y="70" width="4" height="4" fill="currentColor" opacity="0.4" />
+                      <rect x="20" y="80" width="4" height="4" fill="currentColor" opacity="0.4" />
+                      <rect x="20" y="90" width="4" height="4" fill="currentColor" opacity="0.4" />
+                    </svg>
+                    
+                    <div className="back-content-wrapper z-10 relative flex flex-col items-center w-full justify-center h-full">
+                      <span className="dp-back-title" style={{ color: pillar.badgeColor }}>{pillar.title}</span>
+                      <p className="dp-back-desc">{pillar.description}</p>
+                      <div className="dp-back-tags">{pillar.tags}</div>
+                    </div>
                   </div>
                 </div>
               </div>

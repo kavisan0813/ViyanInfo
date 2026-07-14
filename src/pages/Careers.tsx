@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { burst, onHoverBurst } from "../utils/particleBurst";
 import {
   Briefcase,
@@ -11,6 +11,8 @@ import {
   Cpu,
   Users,
   MapPin,
+  Sparkles,
+  ShieldCheck,
 } from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
 import carrersImg from "../assets/Carrers img.webp";
@@ -21,6 +23,92 @@ import {
   BenefitFloatIcon,
   PerksRow,
 } from "../components/CareersVisuals";
+
+const FloatingGlassCard = ({ 
+  icon: Icon, 
+  title, 
+  iconColor, 
+  positionClass, 
+  rotate, 
+  floatDuration,
+  delay
+}: any) => {
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const rX = ((y / rect.height) - 0.5) * -12; 
+    const rY = ((x / rect.width) - 0.5) * 12; 
+    
+    setRotateX(rX);
+    setRotateY(rY);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
+
+  return (
+    <motion.div
+      className={`absolute z-30 hidden sm:block ${positionClass}`}
+      initial={{ y: 0 }}
+      animate={{ y: [-10, 10, -10] }}
+      transition={{
+        duration: floatDuration,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: delay,
+      }}
+      style={{ perspective: 1000 }}
+    >
+      <motion.div
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        animate={{ 
+          rotateX, 
+          rotateY, 
+          rotateZ: rotate 
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+        whileHover={{
+          y: -6,
+          scale: 1.03,
+          transition: { duration: 0.4, ease: "easeOut" }
+        }}
+        className="flex items-center gap-3 px-3 py-2 cursor-pointer"
+        style={{
+          width: "170px",
+          height: "60px",
+          borderRadius: "18px",
+          background: "rgba(255, 255, 255, 0.6)", 
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+          border: "1px solid rgba(255, 255, 255, 0.45)",
+          boxShadow: "0 20px 50px rgba(123,47,247,0.12)",
+          transformStyle: "preserve-3d"
+        }}
+      >
+        <div 
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white/80 shadow-[0_4px_10px_rgba(0,0,0,0.05)] shrink-0"
+          style={{ transform: "translateZ(20px)" }}
+        >
+          <Icon size={20} color={iconColor} />
+        </div>
+        <span 
+          className="font-display font-semibold text-[14px] text-[#0F172A]"
+          style={{ transform: "translateZ(10px)" }}
+        >
+          {title}
+        </span>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 export default function Careers() {
   useEffect(() => {
@@ -94,10 +182,76 @@ export default function Careers() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative flex items-center justify-center"
             >
+              {/* Purple glowing particles behind cards */}
+              <div className="absolute inset-0 z-0 pointer-events-none">
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={`particle-${i}`}
+                    className="absolute rounded-full bg-[#7B2FF7]"
+                    style={{
+                      width: Math.random() * 6 + 4 + "px",
+                      height: Math.random() * 6 + 4 + "px",
+                      top: `${Math.random() * 80 + 10}%`,
+                      left: `${Math.random() * 80 + 10}%`,
+                      filter: "blur(2px)",
+                      opacity: Math.random() * 0.4 + 0.2,
+                    }}
+                    animate={{
+                      y: [0, -40, 0],
+                      x: [0, Math.random() * 30 - 15, 0],
+                      opacity: [0.2, 0.6, 0.2]
+                    }}
+                    transition={{
+                      duration: 4 + Math.random() * 5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: Math.random() * 2
+                    }}
+                  />
+                ))}
+              </div>
+
               <img
                 src="/images/careersimage.webp"
                 alt="Careers Illustration"
-                className="max-w-[750px] lg:max-w-[500px] h-auto object-contain scale-105 lg:scale-125"
+                className="max-w-[750px] lg:max-w-[500px] h-auto object-contain scale-105 lg:scale-125 relative z-10"
+              />
+
+              <FloatingGlassCard 
+                icon={Sparkles}
+                title="Innovation"
+                iconColor="#7B2FF7"
+                positionClass="top-[5%] -left-[5%] lg:top-[5%] lg:-left-[15%]"
+                rotate={-4}
+                floatDuration={5}
+                delay={0}
+              />
+              <FloatingGlassCard 
+                icon={Users}
+                title="Team Work"
+                iconColor="#3B82F6"
+                positionClass="top-[15%] -right-[5%] lg:top-[12%] lg:-right-[12%]"
+                rotate={3}
+                floatDuration={6}
+                delay={1}
+              />
+              <FloatingGlassCard 
+                icon={ShieldCheck}
+                title="Transparency"
+                iconColor="#8B5CF6"
+                positionClass="bottom-[15%] -left-[5%] lg:bottom-[12%] lg:-left-[15%]"
+                rotate={-2}
+                floatDuration={7}
+                delay={2}
+              />
+              <FloatingGlassCard 
+                icon={TrendingUp}
+                title="Growth"
+                iconColor="#10B981"
+                positionClass="bottom-[5%] -right-[5%] lg:bottom-[5%] lg:-right-[12%]"
+                rotate={2}
+                floatDuration={8}
+                delay={3}
               />
             </motion.div>
           </div>

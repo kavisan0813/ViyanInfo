@@ -111,18 +111,45 @@
 }
 
 /* ── Front face — Tarot Playing Card ── */
+.expertise-card {
+  position: relative;
+}
+
+.expertise-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: var(--card-glow, transparent);
+  filter: blur(24px);
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.expertise-card:hover::before {
+  opacity: 0.15;
+  transform: scale(1.05);
+}
+
 .expertise-card-front.tarot-front {
-  background: #1a018e;
-  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  color: var(--card-glow-rgba, rgba(124, 58, 237, 0.25));
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.35s ease;
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    color 0.45s ease;
   cursor: pointer;
+  box-shadow: 0 20px 45px rgba(124, 58, 237, 0.08);
 }
 
 .expertise-card:hover .expertise-card-front.tarot-front {
-  transform: translateY(-8px) scale(1.03);
-  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-12px) scale(1.03);
+  border-color: var(--card-glow, #7B2FF7);
+  color: var(--card-glow, #7B2FF7);
+  box-shadow: 0 30px 60px rgba(124, 58, 237, 0.18);
 }
 
 /* SVG geometry layer */
@@ -141,30 +168,67 @@
   opacity: 1;
 }
 
-/* Icon badge — Layer 3: Glassmorphic circle */
-.tarot-icon-badge {
+/* Icon Glass Container */
+.expertise-icon-glass {
   position: relative;
-  z-index: 5;
-  width: 65px;
-  height: 65px;
+  z-index: 10;
+  width: 95px;
+  height: 95px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
+  margin-bottom: 20px;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.12);
 }
 
-.expertise-card:hover .tarot-icon-badge {
-  transform: scale(1.08);
-  border-color: rgba(255, 255, 255, 0.45);
+.expertise-icon {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.expertise-card:hover .expertise-icon {
+  transform: rotate(8deg) scale(1.12);
+}
+
+/* Radial Glow Behind Icon */
+.expertise-icon-glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
+  filter: blur(80px);
+  opacity: 0.45;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.expertise-card:hover .expertise-icon-glow {
+  opacity: 0.65;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Top Badge */
+.expertise-top-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono, "Space Mono", monospace);
+  z-index: 10;
 }
 
 /* Diamond outer rotation on hover */
@@ -184,7 +248,7 @@
   font-size: 18px;
   font-weight: 700;
   text-align: center;
-  color: white;
+  color: #0f172a;
   font-family: var(--font-display, "Sora", sans-serif);
   letter-spacing: -0.01em;
   line-height: 1.3;
@@ -204,7 +268,7 @@
   text-transform: uppercase;
   letter-spacing: 6px;
   font-family: var(--font-mono, "Space Mono", monospace);
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(15, 23, 42, 0.45);
   z-index: 5;
 }
 
@@ -213,9 +277,29 @@
   transform: rotateY(180deg);
   color: #0f172a;
   justify-content: flex-start;
+  box-shadow: none;
+  border: none;
+  position: relative;
+}
+
+.blueprint-geometry {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.back-content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
   padding-top: 40px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .expertise-card-back .back-title {
