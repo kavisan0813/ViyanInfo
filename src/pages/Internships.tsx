@@ -859,62 +859,50 @@ function InternshipExpertiseSection() {
                     <p className="card-label">Hover to reveal</p>
                   </div>
 
-                  {/* BACK FACE — Skills list */}
+                  {/* BACK FACE — Premium SaaS Style */}
                   <div
-                    className="expertise-card-back"
+                    className="expertise-card-back saas-back"
                     style={{ background: program.backGradient }}
                   >
-                    {/* SVG Blueprint Decorations */}
-                    <svg
-                      className="blueprint-geometry"
-                      style={{ color: program.glow }}
-                      viewBox="0 0 240 350"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      preserveAspectRatio="none"
-                    >
-                      {/* Double rounded border */}
-                      <rect x="8" y="8" width="224" height="334" rx="16" stroke="currentColor" strokeWidth="1" strokeOpacity="0.8" />
-                      <rect x="14" y="14" width="212" height="322" rx="12" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.5" />
+                    {/* Large Watermark Icon */}
+                    <IconComp 
+                      className="watermark-icon" 
+                      style={{ color: program.glow }} 
+                    />
 
-                      {/* Decorative engineering corner brackets */}
-                      <path d="M 24 14 L 14 14 L 14 24" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="M 216 14 L 226 14 L 226 24" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="M 24 336 L 14 336 L 14 326" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="M 216 336 L 226 336 L 226 326" stroke="currentColor" strokeWidth="1.5" />
+                    <div className="back-content-wrapper z-10 relative flex flex-col items-start w-full h-full p-5 justify-between">
+                      <div className="w-full">
+                        <span className="back-title block mb-4 font-bold text-[15px]" style={{ color: program.badgeColor }}>
+                          {program.title}
+                        </span>
+                        
+                        <div className="flex justify-between items-center w-full mb-5 text-[10px] font-bold text-slate-700 uppercase tracking-wider">
+                          <span className="bg-white/60 px-2 py-1 rounded border border-white/80 shadow-sm backdrop-blur-sm">6 Months</span>
+                          <span className="bg-white/60 px-2 py-1 rounded border border-white/80 shadow-sm backdrop-blur-sm">All Levels</span>
+                        </div>
 
-                      {/* Tiny circular anchor points */}
-                      <circle cx="28" cy="28" r="2" fill="currentColor" opacity="0.6" />
-                      <circle cx="212" cy="28" r="2" fill="currentColor" opacity="0.6" />
-                      <circle cx="28" cy="322" r="2" fill="currentColor" opacity="0.6" />
-                      <circle cx="212" cy="322" r="2" fill="currentColor" opacity="0.6" />
+                        <ul className="back-features text-[12px] text-slate-700 space-y-3 font-semibold">
+                          <li className="flex items-center gap-2">
+                            <svg className="w-4 h-4 flex-shrink-0" style={{ color: program.glow }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                            Live Mentor Support
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <svg className="w-4 h-4 flex-shrink-0" style={{ color: program.glow }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                            Internship Certificate
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <svg className="w-4 h-4 flex-shrink-0" style={{ color: program.glow }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                            Real Industry Project
+                          </li>
+                        </ul>
+                      </div>
 
-                      {/* Vertical center guide line */}
-                      <line x1="120" y1="14" x2="120" y2="336" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.4" />
-                      
-                      {/* Horizontal measurement lines */}
-                      <line x1="14" y1="60" x2="226" y2="60" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
-                      <line x1="14" y1="290" x2="226" y2="290" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
-
-                      {/* Small arrows on each side */}
-                      <path d="M 14 175 L 18 171 L 18 179 Z" fill="currentColor" opacity="0.5" />
-                      <path d="M 226 175 L 222 171 L 222 179 Z" fill="currentColor" opacity="0.5" />
-                      <path d="M 120 14 L 116 18 L 124 18 Z" fill="currentColor" opacity="0.5" />
-                      <path d="M 120 336 L 116 332 L 124 332 Z" fill="currentColor" opacity="0.5" />
-
-                      {/* Minimal HUD decorations */}
-                      <rect x="20" y="70" width="4" height="4" fill="currentColor" opacity="0.4" />
-                      <rect x="20" y="80" width="4" height="4" fill="currentColor" opacity="0.4" />
-                      <rect x="20" y="90" width="4" height="4" fill="currentColor" opacity="0.4" />
-                    </svg>
-
-                    <div className="back-content-wrapper z-10 relative flex flex-col items-center w-full">
-                      <span className="back-title" style={{ color: program.badgeColor }}>{program.title}</span>
-                      <ul>
-                        {program.skills.map((skill, sIdx) => (
-                          <li key={sIdx}>{skill}</li>
-                        ))}
-                      </ul>
+                      <button 
+                        className="w-full py-2.5 mt-4 rounded-xl font-bold text-white shadow-lg transition-transform hover:scale-[1.03] active:scale-[0.97] text-[13px]" 
+                        style={{ background: program.glow, boxShadow: `0 8px 20px ${program.glowRgba}` }}
+                      >
+                        Explore Program &rarr;
+                      </button>
                     </div>
                   </div>
                 </div>

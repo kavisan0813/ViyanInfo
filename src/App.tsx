@@ -24,6 +24,7 @@ const Careers = lazy(() => import("./pages/Careers"));
 const Blog = lazy(() => import("./pages/Blog"));
 const AiSolutions = lazy(() => import("./pages/AiSolutions"));
 const UiUxDesign = lazy(() => import("./pages/UiUxDesign"));
+const Products = lazy(() => import("./pages/Products"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -148,6 +149,7 @@ export default function App() {
     "/tech-stack",
     "/industries",
     "/faq",
+    "/products",
   ];
   const hideGlobalFooter =
     customFooterPaths.includes(location.pathname) ||
@@ -172,6 +174,7 @@ export default function App() {
             <Route path="/services/websites" element={<WebsitesDev />} />
             <Route path="/services/mobile" element={<MobileApp />} />
             <Route path="/services/saas" element={<SaasDev />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/about" element={<About />} />
             <Route path="/internship" element={<Internships />} />

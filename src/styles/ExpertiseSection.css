@@ -98,7 +98,7 @@
 .expertise-card-back {
   position: absolute;
   inset: 0;
-  border-radius: 24px;
+  border-radius: 28px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   overflow: hidden;
@@ -113,40 +113,43 @@
 /* ── Front face — Tarot Playing Card ── */
 .expertise-card {
   position: relative;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.expertise-card:hover {
+  transform: translateY(-8px) scale(1.02);
 }
 
 .expertise-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 20px;
+  border-radius: 28px;
   background: var(--card-glow, transparent);
   filter: blur(24px);
   opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
   z-index: -1;
   pointer-events: none;
 }
 
 .expertise-card:hover::before {
-  opacity: 0.15;
-  transform: scale(1.05);
+  opacity: 0.25;
+  transform: scale(1.08);
 }
 
 .expertise-card-front.tarot-front {
   border: 1px solid rgba(124, 58, 237, 0.15);
   color: var(--card-glow-rgba, rgba(124, 58, 237, 0.25));
   transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.45s ease,
-    box-shadow 0.45s ease,
-    color 0.45s ease;
+    border-color 0.8s ease,
+    box-shadow 0.8s ease,
+    color 0.8s ease;
   cursor: pointer;
   box-shadow: 0 20px 45px rgba(124, 58, 237, 0.08);
 }
 
 .expertise-card:hover .expertise-card-front.tarot-front {
-  transform: translateY(-12px) scale(1.03);
   border-color: var(--card-glow, #7B2FF7);
   color: var(--card-glow, #7B2FF7);
   box-shadow: 0 30px 60px rgba(124, 58, 237, 0.18);
@@ -272,23 +275,29 @@
   z-index: 5;
 }
 
-/* ── Back face (Light Theme) ── */
-.expertise-card-back {
+/* ── Back face (Premium SaaS) ── */
+.expertise-card-back.saas-back {
   transform: rotateY(180deg);
   color: #0f172a;
-  justify-content: flex-start;
-  box-shadow: none;
-  border: none;
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(123, 47, 247, 0.12);
+  border-radius: 28px;
   position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-.blueprint-geometry {
+.watermark-icon {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  top: -20px;
+  right: -20px;
+  width: 150px;
+  height: 150px;
+  opacity: 0.08;
   z-index: 1;
+  pointer-events: none;
+  transform: rotate(-15deg);
 }
 
 .back-content-wrapper {
@@ -296,41 +305,34 @@
   z-index: 10;
   width: 100%;
   height: 100%;
-  padding-top: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .expertise-card-back .back-title {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 24px;
-  opacity: 0.85;
-  font-family: var(--font-mono, "Space Mono", monospace);
-  text-align: center;
+  font-family: var(--font-display, "Sora", sans-serif);
+  line-height: 1.2;
+  text-align: left;
 }
 
-.expertise-card-back ul {
+.expertise-card-back ul.back-features {
   list-style: none;
   padding: 0;
   margin: 0;
   width: 100%;
+  text-align: left;
 }
 
-.expertise-card-back ul li {
-  font-size: 15px;
-  font-weight: 600;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  text-align: center;
-  letter-spacing: 0.02em;
-}
-
-.expertise-card-back ul li:last-child {
+.expertise-card-back ul.back-features li {
+  padding: 0;
   border-bottom: none;
+  text-align: left;
+  letter-spacing: normal;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* ── Responsive: medium screens ── */

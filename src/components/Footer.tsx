@@ -12,7 +12,7 @@ import {
   MapPin,
   Globe,
 } from "lucide-react";
-import logo1 from "../assets/logo-img.svg";
+import logo1 from "../assets/logo.webp";
 import img1 from "../assets/img 1.webp";
 
 function FooterParticles() {

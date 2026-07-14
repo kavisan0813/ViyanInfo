@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Github, Instagram } from "lucide-react";
-import logo1 from "../assets/logo-img.svg";
+import logo1 from "../assets/logo.webp";
 import { LiquidGlassCard } from "./LiquidGlassCard";
 import "../styles/LiquidFooter.css";
 

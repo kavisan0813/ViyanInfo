@@ -23,7 +23,7 @@ import {
   FileText,
 } from "lucide-react";
 // import { Menu } from "./Menu";
-import logo1 from "../assets/logo-img.svg";
+import logo1 from "../assets/logo.webp";
 import "../styles/PremiumNavbar.css";
 
 export function Navbar() {
@@ -254,6 +254,14 @@ export function Navbar() {
               </div>
             )}
           </div>
+
+          {/* Products */}
+          <Link
+            to="/products"
+            className={`nav-link ${isActive("/products") ? "nav-active" : ""}`}
+          >
+            Products
+          </Link>
 
           {/* Work */}
           <Link
