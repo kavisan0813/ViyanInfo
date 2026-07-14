@@ -557,7 +557,6 @@ export default function WebsitesDev() {
           </motion.div>
         </div>
 
-        {/* BOTTOM AREA: GLASSMORPHISM FOOTER */}
         <LiquidFooter />
       </section>
     </div>

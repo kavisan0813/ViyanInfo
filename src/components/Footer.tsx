@@ -315,11 +315,21 @@ export function Footer() {
               Services
             </span>
             {[
-              { label: "Custom Software Development", path: "/services" },
-              { label: "Web Applications", path: "/services/websites" },
-              { label: "Mobile Applications", path: "/services/mobile" },
-              { label: "AI Solutions", path: "/services" },
-              { label: "UI/UX Design", path: "/services" },
+              {
+                label: "Custom Software Development",
+                path: "/services/custom-software",
+              },
+              {
+                label: "SaaS Product Engineering",
+                path: "/services/saas-development",
+              },
+              { label: "Web Applications", path: "/services/web-development" },
+              {
+                label: "Mobile Applications",
+                path: "/services/mobile-development",
+              },
+              { label: "AI & Automation", path: "/services/ai-automation" },
+              { label: "UI/UX Product Design", path: "/services/ui-ux-design" },
               { label: "Internship Programs", path: "/internship" },
             ].map((link, lIdx) => (
               <div key={lIdx} className="w-fit">
@@ -342,6 +352,7 @@ export function Footer() {
               Resources
             </span>
             {[
+              { label: "Products", path: "/products" },
               { label: "Portfolio", path: "/portfolio" },
               { label: "Case Studies", path: "/portfolio" },
               { label: "Careers", path: "/careers" },

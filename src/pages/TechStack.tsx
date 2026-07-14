@@ -3,285 +3,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Code2,
   Cpu,
-  Layers,
-  CheckCircle2,
   Database,
-  Cloud,
   Terminal,
   ShieldCheck,
   TrendingUp,
   Zap,
   ArrowRight,
   Sparkles,
-  Eye,
-  LineChart,
 } from "lucide-react";
+import {
+  TechStacks,
+  TechStacks1,
+  TechStacks2,
+  TechStacks3,
+  TechStacks4,
+  TechStacks5,
+} from "../components/ArrayContent";
 import { SectionDivider } from "../components/SectionDivider";
 import { LiquidFooter } from "../components/LiquidFooter";
-
-// ==========================================
-// CUSTOM OFFICIAL BRAND SVG ICONS
-// ==========================================
-const ReactIcon = () => (
-  <svg
-    className="w-8 h-8"
-    viewBox="0 0 100 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="50" cy="50" r="8" fill="#61DAFB" />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="14"
-      stroke="#61DAFB"
-      strokeWidth="3"
-      transform="rotate(0 50 50)"
-    />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="14"
-      stroke="#61DAFB"
-      strokeWidth="3"
-      transform="rotate(60 50 50)"
-    />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="14"
-      stroke="#61DAFB"
-      strokeWidth="3"
-      transform="rotate(120 50 50)"
-    />
-  </svg>
-);
-
-const NextjsIcon = () => (
-  <svg
-    className="w-8 h-8"
-    viewBox="0 0 100 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle
-      cx="50"
-      cy="50"
-      r="46"
-      fill="#000000"
-      stroke="#333"
-      strokeWidth="2"
-    />
-    <path
-      d="M72 70L42 34H36V66H41V42.5L68 73.5C70 72.3 71 71.2 72 70Z"
-      fill="white"
-    />
-    <rect x="58" y="34" width="5" height="32" fill="white" />
-  </svg>
-);
-
-const TypeScriptIcon = () => (
-  <svg
-    className="w-8 h-8 rounded-lg overflow-hidden"
-    viewBox="0 0 100 100"
-    fill="none"
-  >
-    <rect width="100" height="100" fill="#3178C6" />
-    <text
-      x="90"
-      y="85"
-      fill="white"
-      fontSize="42"
-      fontWeight="bold"
-      fontFamily="sans-serif"
-      textAnchor="end"
-    >
-      TS
-    </text>
-  </svg>
-);
-
-const TailwindIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M26 50C26 38 35.5 32.5 44.5 32.5C56.5 32.5 59.5 41.5 68.5 41.5C74.5 41.5 80 37 80 32.5C80 44.5 70.5 50 61.5 50C49.5 50 46.5 41 37.5 41C31.5 41 26 45.5 26 50Z"
-      fill="#38BDF8"
-    />
-    <path
-      d="M14 62.5C14 50.5 23.5 45 32.5 45C44.5 45 47.5 54 56.5 54C62.5 54 68 49.5 68 45C68 57 58.5 62.5 49.5 62.5C37.5 62.5 34.5 53.5 25.5 53.5C19.5 53.5 14 58 14 62.5Z"
-      fill="#06B6D4"
-    />
-  </svg>
-);
-
-const NodejsIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M48 22.5L25 35.5V62L48 75L71 62V35.5L48 22.5Z"
-      stroke="#339933"
-      strokeWidth="4"
-      strokeLinejoin="round"
-    />
-    <path d="M48 22.5L25 35.5V62L48 75V22.5Z" fill="#339933" opacity="0.1" />
-    <path
-      d="M48 40V65"
-      stroke="#339933"
-      strokeWidth="5"
-      strokeLinecap="round"
-    />
-    <circle cx="48" cy="32" r="3" fill="#339933" />
-  </svg>
-);
-
-const PythonIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M50 12C38 12 37 17 37 23.5V31.5H50V33.5H30.5C23.5 33.5 19 37.5 19 49C19 60.5 23.5 64.5 30.5 64.5H35.5V58.5C35.5 50.5 41.5 44.5 49.5 44.5H62.5V36.5C62.5 24.5 58.5 12 50 12Z"
-      fill="#3776AB"
-    />
-    <path
-      d="M50 88C62 88 63 83 63 76.5V68.5H50V66.5H69.5C76.5 66.5 81 62.5 81 51C81 39.5 76.5 35.5 69.5 35.5H64.5V41.5C64.5 49.5 58.5 55.5 50.5 55.5H37.5V63.5C37.5 75.5 41.5 88 50 88Z"
-      fill="#FFE052"
-    />
-    <circle cx="44" cy="21" r="2.5" fill="white" />
-    <circle cx="56" cy="79" r="2.5" fill="black" />
-  </svg>
-);
-
-const DjangoIcon = () => (
-  <svg
-    className="w-8 h-8 rounded-lg overflow-hidden"
-    viewBox="0 0 100 100"
-    fill="none"
-  >
-    <rect width="100" height="100" fill="#092E20" />
-    <text
-      x="50"
-      y="65"
-      fill="#0FEE90"
-      fontSize="56"
-      fontWeight="bold"
-      fontFamily="serif"
-      textAnchor="middle"
-    >
-      d
-    </text>
-  </svg>
-);
-
-const FastApiIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" stroke="#009688" strokeWidth="4" />
-    <path d="M52 24L32 50H48L44 76L68 44H50L52 24Z" fill="#009688" />
-  </svg>
-);
-
-const ExpressIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" fill="#353535" />
-    <text
-      x="50"
-      y="58"
-      fill="white"
-      fontSize="28"
-      fontWeight="bold"
-      fontFamily="monospace"
-      textAnchor="middle"
-    >
-      Ex
-    </text>
-  </svg>
-);
-
-const FlutterIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M55 18L73 36L46 63L28 45L55 18Z" fill="#02569B" />
-    <path d="M46 63L64 81L46 99L28 81L46 63Z" fill="#0175C2" />
-    <path d="M46 63L64 45L73 54L55 72L46 63Z" fill="#13B9FD" />
-  </svg>
-);
-
-const ReactNativeIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="6" fill="#00D8FF" />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="12"
-      stroke="#00D8FF"
-      strokeWidth="3.5"
-      transform="rotate(30 50 50)"
-    />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="12"
-      stroke="#00D8FF"
-      strokeWidth="3.5"
-      transform="rotate(90 50 50)"
-    />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="12"
-      stroke="#00D8FF"
-      strokeWidth="3.5"
-      transform="rotate(150 50 50)"
-    />
-  </svg>
-);
-
-const FirebaseIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M22 75L50 20L60 40L22 75Z" fill="#FFC229" />
-    <path d="M78 75L50 20L58 36L78 75Z" fill="#FFA000" />
-    <path d="M22 75L50 88L78 75L60 40L50 50L22 75Z" fill="#F44336" />
-  </svg>
-);
-
-const OpenAiIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M50 28C44 28 39 31 36 36C33 33 28 32 24 35C20 38 19 44 22 48C18 51 17 57 20 61C23 65 29 66 33 63C36 67 41 69 46 67C49 71 55 72 59 69C63 66 64 60 61 56C65 53 66 47 63 43C60 39 54 38 50 41C47 37 42 35 37 37"
-      stroke="#10A37F"
-      strokeWidth="4.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <circle cx="50" cy="50" r="4" fill="#10A37F" />
-  </svg>
-);
-
-const LangChainIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <rect
-      x="25"
-      y="35"
-      width="30"
-      height="30"
-      rx="8"
-      stroke="#38BDF8"
-      strokeWidth="5"
-      transform="rotate(-15 40 50)"
-    />
-    <rect
-      x="45"
-      y="35"
-      width="30"
-      height="30"
-      rx="8"
-      stroke="#10A37F"
-      strokeWidth="5"
-      transform="rotate(15 60 50)"
-    />
-  </svg>
-);
 
 const PostgreSQLIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
@@ -296,24 +35,6 @@ const PostgreSQLIcon = () => (
       stroke="#336791"
       strokeWidth="4"
     />
-  </svg>
-);
-
-const MongodbIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M50 12C50 12 32 32 32 54C32 68 41 76 50 88C50 88 50 82 50 78"
-      stroke="#47A248"
-      strokeWidth="4.5"
-      strokeLinecap="round"
-    />
-    <path
-      d="M50 12C50 12 68 32 68 54C68 68 59 76 50 88"
-      stroke="#47A248"
-      strokeWidth="4.5"
-      strokeLinecap="round"
-    />
-    <path d="M50 28V68" stroke="#3F3F3F" strokeWidth="4" />
   </svg>
 );
 
@@ -380,85 +101,7 @@ export default function TechStack() {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
   // Ecosystem nodes layout data (angles in radians, radii)
-  const nodes = [
-    {
-      name: "React",
-      icon: <ReactIcon />,
-      angle: 0,
-      color: "#61DAFB",
-      desc: "Interactive Frontend Framework",
-    },
-    {
-      name: "Node.js",
-      icon: <NodejsIcon />,
-      angle: (2 * Math.PI) / 11,
-      color: "#339933",
-      desc: "Scalable Event-Driven APIs",
-    },
-    {
-      name: "Python",
-      icon: <PythonIcon />,
-      angle: (4 * Math.PI) / 11,
-      color: "#3776AB",
-      desc: "Data Operations & AI Scripting",
-    },
-    {
-      name: "Django",
-      icon: <DjangoIcon />,
-      angle: (6 * Math.PI) / 11,
-      color: "#092E20",
-      desc: "Rapid Secure Backend Admin",
-    },
-    {
-      name: "FastAPI",
-      icon: <FastApiIcon />,
-      angle: (8 * Math.PI) / 11,
-      color: "#009688",
-      desc: "Ultra-fast Modern Python APIs",
-    },
-    {
-      name: "Flutter",
-      icon: <FlutterIcon />,
-      angle: (10 * Math.PI) / 11,
-      color: "#02569B",
-      desc: "Cross-platform Mobile UI Engine",
-    },
-    {
-      name: "PostgreSQL",
-      icon: <PostgreSQLIcon />,
-      angle: (12 * Math.PI) / 11,
-      color: "#336791",
-      desc: "Robust Relational ACID Storage",
-    },
-    {
-      name: "MongoDB",
-      icon: <MongodbIcon />,
-      angle: (14 * Math.PI) / 11,
-      color: "#47A248",
-      desc: "Flexible Dynamic Document Store",
-    },
-    {
-      name: "Docker",
-      icon: <DockerIcon />,
-      angle: (16 * Math.PI) / 11,
-      color: "#2496ED",
-      desc: "Immutable Isolated Containers",
-    },
-    {
-      name: "AWS",
-      icon: <AwsIcon />,
-      angle: (18 * Math.PI) / 11,
-      color: "#FF9900",
-      desc: "Resilient Global Cloud Hosting",
-    },
-    {
-      name: "OpenAI",
-      icon: <OpenAiIcon />,
-      angle: (20 * Math.PI) / 11,
-      color: "#10A37F",
-      desc: "Advanced LLM Integration Hub",
-    },
-  ];
+  const nodes = TechStacks3;
 
   return (
     <div className="bg-[#FAF7FF] min-h-screen text-[#475569] font-body overflow-x-hidden relative">
@@ -704,44 +347,7 @@ export default function TechStack() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                name: "React",
-                icon: <ReactIcon />,
-                color: "#61DAFB",
-                bg: "bg-[#61DAFB]/5 border-[#61DAFB]/20",
-                level: "Expertise: Principal",
-                usage: "ViyanInfo ERP Platform, Client Portal UIs",
-                desc: "High-performance SPA library utilizing component hierarchies, custom hook pipelines, and virtual state bindings.",
-              },
-              {
-                name: "Next.js",
-                icon: <NextjsIcon />,
-                color: "#000000",
-                bg: "bg-black/5 border-black/10",
-                level: "Expertise: Architect",
-                usage: "Public Landing Pages, SEO Blogs",
-                desc: "Server-side rendering, static generation, React Server Components (RSC), and edge-routing file structures.",
-              },
-              {
-                name: "TypeScript",
-                icon: <TypeScriptIcon />,
-                color: "#3178C6",
-                bg: "bg-[#3178C6]/5 border-[#3178C6]/20",
-                level: "Expertise: Strict Standard",
-                usage: "All In-House Modules",
-                desc: "Static type-safety audits, strict null checks, generic interface systems, and type declarations.",
-              },
-              {
-                name: "Tailwind CSS",
-                icon: <TailwindIcon />,
-                color: "#06B6D4",
-                bg: "bg-[#06B6D4]/5 border-[#06B6D4]/20",
-                level: "Expertise: Expert Utility",
-                usage: "Component Libraries, Design Tokens",
-                desc: "CSS-first utility compiling, responsive grid columns, design token variables, and lightweight production bundles.",
-              },
-            ].map((tech, idx) => (
+            {TechStacks5.map((tech, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
@@ -841,38 +447,7 @@ export default function TechStack() {
 
             {/* Right Column grid cards */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                {
-                  name: "Node.js",
-                  icon: <NodejsIcon />,
-                  color: "#339933",
-                  desc: "Non-blocking event loop framework compiling scalable web network servers.",
-                },
-                {
-                  name: "Python",
-                  icon: <PythonIcon />,
-                  color: "#3776AB",
-                  desc: "Flexible processing script engine handling calculations and data pipelines.",
-                },
-                {
-                  name: "Django",
-                  icon: <DjangoIcon />,
-                  color: "#092E20",
-                  desc: "MVT clean framework configured with an integrated SQL administration panel.",
-                },
-                {
-                  name: "FastAPI",
-                  icon: <FastApiIcon />,
-                  color: "#009688",
-                  desc: "Teal lighting-fast Python REST router generating auto OpenAPI docs.",
-                },
-                {
-                  name: "Express",
-                  icon: <ExpressIcon />,
-                  color: "#353535",
-                  desc: "Minimalist and flexible Node.js web application framework for robust APIs.",
-                },
-              ].map((tech, idx) => (
+              {TechStacks2.map((tech, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -1024,29 +599,7 @@ export default function TechStack() {
               </p>
 
               <div className="space-y-6">
-                {[
-                  {
-                    name: "Flutter",
-                    icon: <FlutterIcon />,
-                    color: "#02569B",
-                    label: "Dart Compiled Core",
-                    desc: "Fluid rendering engine delivering 120Hz interface redraws.",
-                  },
-                  {
-                    name: "React Native",
-                    icon: <ReactNativeIcon />,
-                    color: "#00D8FF",
-                    label: "Bridge Native Modules",
-                    desc: "Cross-platform execution leveraging existing React logic pipelines.",
-                  },
-                  {
-                    name: "Firebase",
-                    icon: <FirebaseIcon />,
-                    color: "#FFC229",
-                    label: "NoSQL DB / Cloud Functions",
-                    desc: "Real-time key-value database sync, secure serverless auth.",
-                  },
-                ].map((tech, idx) => (
+                {TechStacks4.map((tech, idx) => (
                   <div
                     key={idx}
                     className="flex gap-4 items-start p-5 rounded-2xl bg-white border border-slate-200/60 shadow-2xs"
@@ -1092,43 +645,7 @@ export default function TechStack() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[
-              {
-                name: "OpenAI",
-                icon: <OpenAiIcon />,
-                color: "#10A37F",
-                badge: "GPT-4o / Embeddings",
-                desc: "Contextual processing engines, custom fine-tunes.",
-              },
-              {
-                name: "LangChain",
-                icon: <LangChainIcon />,
-                color: "#10A37F",
-                badge: "LLM Orchestrator",
-                desc: "Agentic toolchains, sequence maps, and memory variables.",
-              },
-              {
-                name: "RAG Systems",
-                icon: <Cpu className="w-8 h-8 text-pink-500" />,
-                color: "#EC4899",
-                badge: "Retrieval Augmented",
-                desc: "Semantic context injection directly matching internal document vaults.",
-              },
-              {
-                name: "Vector Databases",
-                icon: <Database className="w-8 h-8 text-cyan-500" />,
-                color: "#06B6D4",
-                badge: "Qdrant / Pinecone",
-                desc: "Fast cosine distance search on high-dimension coordinate embeddings.",
-              },
-              {
-                name: "AI Automation",
-                icon: <Sparkles className="w-8 h-8 text-amber-500" />,
-                color: "#F59E0B",
-                badge: "Workflow Pipelines",
-                desc: "Autonomous cron scheduling agentic chains mapping to webhooks.",
-              },
-            ].map((tech, idx) => (
+            {TechStacks1.map((tech, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
@@ -1371,44 +888,7 @@ export default function TechStack() {
 
             {/* Steps Row */}
             <div className="relative z-10 grid grid-cols-6 gap-4">
-              {[
-                {
-                  name: "Discovery",
-                  color: "#7B2FF7",
-                  icon: <Eye className="w-5 h-5" />,
-                  desc: "Understand goals, requirements, user needs, and scoping parameters.",
-                },
-                {
-                  name: "Design",
-                  color: "#9333EA",
-                  icon: <Layers className="w-5 h-5" />,
-                  desc: "Mockups, interactive visual flows, prototyping, and layout systems.",
-                },
-                {
-                  name: "Development",
-                  color: "#3B82F6",
-                  icon: <Code2 className="w-5 h-5" />,
-                  desc: "Compile clean database queries, build responsive pages, and set up routing.",
-                },
-                {
-                  name: "Testing",
-                  color: "#06B6D4",
-                  icon: <CheckCircle2 className="w-5 h-5" />,
-                  desc: "Deploy unit testing logic, automated UI tests, and load audits.",
-                },
-                {
-                  name: "Deployment",
-                  color: "#10B981",
-                  icon: <Cloud className="w-5 h-5" />,
-                  desc: "Spin up isolated Docker containers on AWS servers securely.",
-                },
-                {
-                  name: "Monitoring",
-                  color: "#F59E0B",
-                  icon: <LineChart className="w-5 h-5" />,
-                  desc: "Track error instances, memory logs, and sync status hooks.",
-                },
-              ].map((step, idx) => (
+              {TechStacks.map((step, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}

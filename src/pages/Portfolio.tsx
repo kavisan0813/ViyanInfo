@@ -10,18 +10,8 @@ import erpImg from "../assets/erp_dashboard.png";
 import inventoryImg from "../assets/inventory_dashboard.png";
 import medassistImg from "../assets/medassist_dashboard.png";
 import billingImg from "../assets/billing_dashboard.png";
-import employmentImg from "../assets/employment_dashboard.png";
 import crmImg from "../assets/crm_dashboard.png";
 
-// Unsplash fallback for AI & Training (image gen quota reached)
-const aiDashImg =
-  "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=1400&h=800&fit=crop&auto=format&q=90";
-const trainingImg =
-  "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1400&h=800&fit=crop&auto=format&q=90";
-
-// ─────────────────────────────────────────
-// PROJECT DATA — 8 premium products
-// ─────────────────────────────────────────
 interface ShowcaseProject {
   id: string;
   title: string;
@@ -36,20 +26,25 @@ interface ShowcaseProject {
 
 const projects: ShowcaseProject[] = [
   {
-    id: "erp-platform",
-    title: "ERP Platform",
+    id: "erp-platform-finflow",
+    title: "ERP Platform for FinFlow",
     description:
-      "Enterprise Resource Planning platform that centralizes HR, CRM, Finance, Procurement, Inventory, and Business Operations into one intelligent system.",
-    category: "Enterprise",
+      "Enterprise Resource Planning platform designed to automate bookkeeping, employee payroll cycles, and real-time ledger reporting.",
+    category: "Financial Services",
     image: erpImg,
-    features: ["HR", "Inventory", "CRM", "Finance", "Reports", "Analytics"],
-    techStack: ["React", "Node", "MongoDB", "Express"],
+    features: [
+      "Automated Ledger",
+      "Payroll Engine",
+      "Department Controls",
+      "Audit Logs",
+    ],
+    techStack: ["React", "Node.js", "MongoDB"],
     accentColor: "#7c3aed",
     accentBg: "rgba(124, 58, 237, 0.12)",
   },
   {
-    id: "inventory-system",
-    title: "Inventory Management System",
+    id: "medassist-medgroup",
+    title: "MedAssist for MedGroup",
     description:
       "Real-time inventory solution with warehouse tracking, supplier management, barcode scanning, and stock analytics.",
     category: "Logistics",
@@ -74,97 +69,48 @@ const projects: ShowcaseProject[] = [
     category: "Healthcare",
     image: medassistImg,
     features: [
-      "Medicine",
-      "Prescription",
-      "Inventory",
-      "Billing",
-      "Doctors",
-      "Patients",
+      "Prescriptions",
+      "GST Billing",
+      "Expiry Alert Engine",
+      "Supplier Portal",
     ],
-    techStack: ["React", "Node", "MongoDB"],
+    techStack: ["React", "Express.js", "MongoDB"],
     accentColor: "#06b6d4",
     accentBg: "rgba(6, 182, 212, 0.12)",
   },
   {
-    id: "billing-pos",
-    title: "Billing & POS System",
+    id: "billing-ledgertech",
+    title: "POS Ecosystem for LedgerTech",
     description:
-      "Smart billing software with POS terminals, GST invoices, inventory integration, and sales reports.",
-    category: "Retail",
+      "High-volume sales and checkout terminal network shipped to LedgerTech retail branches, integrated with real-time stock sync.",
+    category: "Retail Operations",
     image: billingImg,
-    features: ["Billing", "GST", "POS", "Sales", "Invoices", "Reports"],
-    techStack: ["React", "Node", "MongoDB"],
+    features: [
+      "Sales Registers",
+      "Offline Mode",
+      "Cloud Sync",
+      "Multi-branch GST",
+    ],
+    techStack: ["React", "Fastify", "PostgreSQL"],
     accentColor: "#f59e0b",
     accentBg: "rgba(245, 158, 11, 0.12)",
   },
   {
-    id: "employment-system",
-    title: "Employment Management System",
+    id: "crm-propgroup",
+    title: "CRM System for PropGroup",
     description:
-      "Comprehensive HR platform for employee management, attendance, payroll, leave, departments, and performance tracking.",
-    category: "HR Tech",
-    image: employmentImg,
-    features: [
-      "Attendance",
-      "Payroll",
-      "Leave",
-      "Departments",
-      "Employees",
-      "Performance",
-    ],
-    techStack: ["React", "Node", "MongoDB"],
-    accentColor: "#10b981",
-    accentBg: "rgba(16, 185, 129, 0.12)",
-  },
-  {
-    id: "viyan-crm",
-    title: "Viyan CRM Platform",
-    description:
-      "Customer relationship platform for managing leads, sales pipeline, customer interactions, and business growth.",
-    category: "SaaS",
+      "Lead tracking dashboard and agent communication workflow platform with automated email follow-up templates.",
+    category: "Real Estate Tech",
     image: crmImg,
-    features: ["CRM", "Leads", "Pipeline", "Tasks", "Reports", "Automation"],
-    techStack: ["React", "Node", "MongoDB"],
+    features: [
+      "Lead Tracker",
+      "Agent Assignment",
+      "Email Automation",
+      "Metrics",
+    ],
+    techStack: ["React", "Node.js", "MongoDB"],
     accentColor: "#8b5cf6",
     accentBg: "rgba(139, 92, 246, 0.12)",
-  },
-  {
-    id: "ai-dashboard",
-    title: "AI Analytical Dashboard",
-    description:
-      "AI-powered business intelligence dashboard delivering predictive insights and interactive analytics.",
-    category: "AI / ML",
-    image: aiDashImg,
-    features: [
-      "AI",
-      "Analytics",
-      "Predictions",
-      "Charts",
-      "Insights",
-      "Reports",
-    ],
-    techStack: ["Python", "OpenAI", "React"],
-    accentColor: "#ec4899",
-    accentBg: "rgba(236, 72, 153, 0.12)",
-  },
-  {
-    id: "training-portal",
-    title: "Training & Internship Portal",
-    description:
-      "Learning Management System for students, mentors, assignments, attendance, certificates, and internship tracking.",
-    category: "EdTech",
-    image: trainingImg,
-    features: [
-      "Courses",
-      "Assignments",
-      "Certificates",
-      "Attendance",
-      "Progress",
-      "Students",
-    ],
-    techStack: ["React", "Python", "MongoDB"],
-    accentColor: "#22c55e",
-    accentBg: "rgba(34, 197, 94, 0.12)",
   },
 ];
 
@@ -293,10 +239,10 @@ export default function Portfolio() {
             className="text-center mb-10"
           >
             <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#7B2FF7] mb-3 block">
-              Our Work
+              Client Case Studies
             </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-[#0F172A] mb-4 leading-tight">
-              Products that{" "}
+              Software Shipped for{" "}
               <span
                 style={{
                   background: "linear-gradient(90deg,#7B2FF7,#EC4899)",
@@ -304,12 +250,12 @@ export default function Portfolio() {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                move needles
+                Our Clients
               </span>
             </h1>
             <p className="text-slate-500 text-lg max-w-xl mx-auto">
-              End-to-end digital products shipped from discovery to production
-              for ambitious teams.
+              Custom software, specialized enterprise platforms, and
+              integrations designed and engineered by ViyanInfo for businesses.
             </p>
           </motion.div>
 
@@ -334,7 +280,7 @@ export default function Portfolio() {
             className="text-center mb-12"
           >
             <h2 className="showcase-section__heading text-3xl sm:text-4xl font-display font-extrabold mb-4">
-              Our{" "}
+              Client{" "}
               <span
                 style={{
                   background: "linear-gradient(90deg, #7c3aed, #ec4899)",
@@ -342,12 +288,12 @@ export default function Portfolio() {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Projects
+                Case Studies
               </span>
             </h2>
             <p className="showcase-section__sub text-slate-500 max-w-xl mx-auto">
-              Premium enterprise software built for modern businesses. Each
-              product is crafted with precision and deployed at scale.
+              Tailored digital transformations shipped from discovery to
+              production.
             </p>
           </motion.div>
 

@@ -1,23 +1,7 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef } from "react";
 import { onHoverBurst } from "../utils/particleBurst";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Code,
-  BrainCircuit,
-  Database,
-  Palette,
-  Award,
-  ClipboardList,
-  FileQuestion,
-  Clock,
-  CheckCircle2,
-  Bookmark,
-  BookOpen,
-} from "lucide-react";
-import { FaPython } from "react-icons/fa";
-import { TbWorldCode } from "react-icons/tb";
+import { Award, Clock, CheckCircle2, Bookmark } from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
 import { CTABlock } from "../components/CTABlock";
 import {
@@ -28,6 +12,8 @@ import {
 } from "../components/InternshipVisuals";
 import "../styles/ExpertiseSection.css";
 import "../index.css";
+import { Intern } from "../components/ArrayContent";
+import { InternshipExpertiseSection } from "../components/Internship";
 
 // Abstract illustration of students collaborating
 
@@ -42,74 +28,6 @@ export default function Internships() {
   });
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
-  const roadmapStages = [
-    {
-      step: "01",
-      title: "Apply",
-      desc: "Submit your resume and select your preferred training track.",
-      duration: "1-2 Days",
-      requirements: "Resume submission & track selection",
-      outcome: "Application review & initial tracking link",
-      color: "#7B2FF7", // Purple
-      shadowColor: "rgba(123, 47, 247, 0.15)",
-      bgLight: "bg-purple-50/50",
-      borderGlow: "group-hover:border-[#7B2FF7]/40",
-      icon: <ClipboardList className="w-6 h-6 text-[#7B2FF7]" />,
-    },
-    {
-      step: "02",
-      title: "Interview",
-      desc: "Complete a basic logic and coding evaluation review.",
-      duration: "30-45 Mins",
-      requirements: "Core programming & technical orientation",
-      outcome: "Direct feedback & onboarding verification",
-      color: "#3B82F6", // Blue
-      shadowColor: "rgba(59, 130, 246, 0.15)",
-      bgLight: "bg-blue-50/50",
-      borderGlow: "group-hover:border-[#3B82F6]/40",
-      icon: <FileQuestion className="w-6 h-6 text-[#3B82F6]" />,
-    },
-    {
-      step: "03",
-      title: "Training",
-      desc: "Spend 2-4 weeks building foundational stack proficiencies.",
-      duration: "2-4 Weeks",
-      requirements: "Self-paced modules & weekly sandbox tasks",
-      outcome: "Foundational stack proficiency certified",
-      color: "#EC4899", // Pink
-      shadowColor: "rgba(236, 72, 153, 0.15)",
-      bgLight: "bg-pink-50/50",
-      borderGlow: "group-hover:border-[#EC4899]/40",
-      icon: <BookOpen className="w-6 h-6 text-[#EC4899]" />,
-    },
-    {
-      step: "04",
-      title: "Projects",
-      desc: "Collaborate in sprints to construct production modules.",
-      duration: "4-8 Weeks",
-      requirements: "Team sprints, Git reviews & deployment setups",
-      outcome: "Live features deployed & portfolio contributions",
-      color: "#F97316", // Orange
-      shadowColor: "rgba(249, 115, 22, 0.15)",
-      bgLight: "bg-orange-50/50",
-      borderGlow: "group-hover:border-[#F97316]/40",
-      icon: <Code className="w-6 h-6 text-[#F97316]" />,
-    },
-    {
-      step: "05",
-      title: "Certification",
-      desc: "Receive your verified certificate and feedback summary.",
-      duration: "1 Day",
-      requirements: "Final showcase demo & architect code review",
-      outcome: "Verified company certificate & referral channels",
-      color: "#10B981", // Green
-      shadowColor: "rgba(16, 185, 129, 0.15)",
-      bgLight: "bg-emerald-50/50",
-      borderGlow: "group-hover:border-[#10B981]/40",
-      icon: <Award className="w-6 h-6 text-[#10B981]" />,
-    },
-  ];
 
   return (
     <div className="bg-[#FAF7FF] min-h-screen text-[#475569] font-body overflow-hidden">
@@ -189,27 +107,6 @@ export default function Internships() {
 
       <SectionDivider />
 
-      {/* INTERN JOURNEY TIMELINE */}
-      {/* <section className="py-24 bg-[#FAF7FF] relative">
-        <div className="container max-w-[1200px] mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-              Your Journey
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
-              From Day One to Placement
-            </h2>
-            <p className="text-lg text-[#475569]">
-              A structured path that takes you from onboarding to career readiness.
-            </p>
-          </div>
-
-          <InternJourneyTimeline />
-        </div>
-      </section> */}
-
-      <SectionDivider />
-
       {/* PROGRAM FLOW (ROADMAP) */}
       <section className="py-24 bg-[#FAF7FF] relative">
         <div className="container max-w-[1000px] mx-auto px-6">
@@ -236,7 +133,7 @@ export default function Internships() {
             />
 
             <div className="space-y-12">
-              {roadmapStages.map((flow, idx) => {
+              {Intern.map((flow, idx) => {
                 const isHovered = hoveredIdx === idx;
                 const isActive = activeIdx === idx;
                 const isHighlighted = isHovered || isActive;
@@ -556,38 +453,6 @@ export default function Internships() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Fog & Mist Layers fading into the footer
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#D6BADB] via-[#E4D1E8]/60 to-transparent z-0 pointer-events-none" />
-        <motion.div 
-          className="absolute inset-x-0 bottom-0 h-40 bg-[#D6BADB] blur-3xl z-0 opacity-70 pointer-events-none"
-          animate={{ opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        />
-         */}
-        {/* Floating Fog Particles
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={`fog-${i}`}
-            className="absolute rounded-full bg-white/20 blur-3xl pointer-events-none z-0"
-            style={{
-              width: `${Math.random() * 400 + 300}px`,
-              height: `${Math.random() * 200 + 100}px`,
-              left: `${Math.random() * 80}%`,
-              bottom: `-50px`,
-            }}
-            animate={{
-              x: [0, Math.random() * 100 - 50, 0],
-              y: [0, Math.random() * 40 - 20, 0],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))} */}
-
         {/* CTA Content */}
         <div className="relative z-10 pt-16 pb-32 md:pb-48 pl-4 md:pl-12 lg:pl-24">
           <CTABlock
@@ -600,329 +465,5 @@ export default function Internships() {
         </div>
       </section>
     </div>
-  );
-}
-
-/* ─────────────────────────────────────────
-   LUSION "AREA OF EXPERTISE" – ALL CARDS VISIBLE,
-   SIMULTANEOUS SCROLL-DRIVEN FLIP
-   ───────────────────────────────────────── */
-const expertisePrograms = [
-  {
-    title: "Python Development",
-    badgeText: "Python",
-    icon: FaPython,
-    glow: "#22C55E",
-    glowRgba: "rgba(34,197,94,.25)",
-    badgeBg: "rgba(34,197,94,.12)",
-    badgeColor: "#16A34A",
-    gradient: "linear-gradient(180deg, #F2FFF8 0%, #E8FFF2 100%)",
-    backGradient: "linear-gradient(135deg, #E8FFF2 0%, #FFFFFF 100%)",
-    skills: ["Django", "FastAPI", "PostgreSQL", "Algorithms", "REST APIs"],
-  },
-  {
-    title: "Full Stack Development",
-    badgeText: "Full Stack",
-    icon: TbWorldCode,
-    glow: "#F97316",
-    glowRgba: "rgba(249,115,22,.25)",
-    badgeBg: "rgba(249,115,22,.12)",
-    badgeColor: "#EA580C",
-    gradient: "linear-gradient(180deg, #FFF8F3 0%, #FFF2EA 100%)",
-    backGradient: "linear-gradient(135deg, #FFF2EA 0%, #FFFFFF 100%)",
-    skills: ["React", "TypeScript", "Node.js", "Next.js", "Tailwind"],
-  },
-  {
-    title: "AI & Machine Learning",
-    badgeText: "AI",
-    icon: BrainCircuit,
-    glow: "#8B5CF6",
-    glowRgba: "rgba(124,58,237,.25)",
-    badgeBg: "rgba(124,58,237,.12)",
-    badgeColor: "#7C3AED",
-    gradient: "linear-gradient(180deg, #FCF8FF 0%, #F3E8FF 100%)",
-    backGradient: "linear-gradient(135deg, #F3E8FF 0%, #FFFFFF 100%)",
-    skills: ["OpenAI", "LangChain", "RAG", "HuggingFace", "Automation"],
-  },
-  {
-    title: "Data Science",
-    badgeText: "Data",
-    icon: Database,
-    glow: "#06B6D4",
-    glowRgba: "rgba(6,182,212,.25)",
-    badgeBg: "rgba(6,182,212,.12)",
-    badgeColor: "#0891B2",
-    gradient: "linear-gradient(180deg, #F3FCFF 0%, #E8F8FF 100%)",
-    backGradient: "linear-gradient(135deg, #E8F8FF 0%, #FFFFFF 100%)",
-    skills: ["Pandas", "Scikit-Learn", "Tableau", "SQL", "Power BI"],
-  },
-  {
-    title: "UI/UX Design",
-    badgeText: "UI/UX",
-    icon: Palette,
-    glow: "#F59E0B",
-    glowRgba: "rgba(245,158,11,.25)",
-    badgeBg: "rgba(245,158,11,.12)",
-    badgeColor: "#D97706",
-    gradient: "linear-gradient(180deg, #FFFDF4 0%, #FFF7E6 100%)",
-    backGradient: "linear-gradient(135deg, #FFF7E6 0%, #FFFFFF 100%)",
-    skills: [
-      "Figma",
-      "Wireframing",
-      "Prototyping",
-      "User Research",
-      "Design Systems",
-    ],
-  },
-];
-
-function InternshipExpertiseSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const cardInners = gsap.utils.toArray(
-      section.querySelectorAll(".expertise-card-inner"),
-    ) as HTMLElement[];
-
-    if (cardInners.length === 0) return;
-
-    const ctx = gsap.context(() => {
-      // Heading mask reveal
-      gsap.from(".expertise-heading", {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        ease: "expo.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-        },
-      });
-
-      // The main scroll-driven flip timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=3000",
-          scrub: true,
-          pin: true,
-          anticipatePin: 1,
-        },
-      });
-
-      // All cards flip simultaneously with staggered offsets
-      // This is the core Lusion feel — each card starts its flip
-      // slightly after the previous one (i * 0.15)
-      cardInners.forEach((cardInner, i) => {
-        tl.to(
-          cardInner,
-          {
-            rotateY: 180,
-            rotateX: -6,
-            z: 100,
-            duration: 1,
-            ease: "none",
-          },
-          i * 0.15,
-        );
-      });
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section id="programs" ref={sectionRef} className="expertise-section">
-      <div className="expertise-viewport">
-        {/* Heading */}
-        <div className="expertise-heading">
-          <span className="label">Training Tracks</span>
-          <h2>Our Internship Programs</h2>
-          <p>
-            Choose from 5 industry-mapped development and design
-            specializations.
-          </p>
-        </div>
-
-        {/* All cards visible in a row */}
-        <div className="expertise-cards-row">
-          {expertisePrograms.map((program, idx) => {
-            const IconComp = program.icon;
-            return (
-              <div 
-                key={idx} 
-                className="expertise-card"
-                style={{ '--card-glow': program.glow } as React.CSSProperties}
-              >
-                <div className="expertise-card-inner">
-                  {/* FRONT FACE — Tarot Playing Card Style */}
-                  <div
-                    className="expertise-card-front tarot-front"
-                    style={{ background: program.gradient }}
-                  >
-                    {/* SVG Geometric Decorations */}
-                    <svg
-                      className="tarot-geometry"
-                      viewBox="0 0 240 350"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      preserveAspectRatio="none"
-                    >
-                      {/* Outer border */}
-                      <rect x="8" y="8" width="224" height="334" rx="16" stroke="currentColor" strokeWidth="1.5" />
-                      {/* Inner border */}
-                      <rect x="16" y="16" width="208" height="318" rx="12" stroke="currentColor" strokeWidth="1.5" />
-
-                      {/* Corner circles */}
-                      <circle cx="28" cy="28" r="4" stroke="currentColor" strokeWidth="2" />
-                      <circle cx="212" cy="28" r="4" stroke="currentColor" strokeWidth="2" />
-                      <circle cx="28" cy="322" r="4" stroke="currentColor" strokeWidth="2" />
-                      <circle cx="212" cy="322" r="4" stroke="currentColor" strokeWidth="2" />
-
-                      {/* Corner dot fills */}
-                      <circle cx="28" cy="28" r="1" fill="currentColor" />
-                      <circle cx="212" cy="28" r="1" fill="currentColor" />
-                      <circle cx="28" cy="322" r="1" fill="currentColor" />
-                      <circle cx="212" cy="322" r="1" fill="currentColor" />
-
-                      {/* Connecting lines from corners */}
-                      <line x1="34" y1="28" x2="80" y2="28" stroke="currentColor" strokeWidth="1" />
-                      <line x1="160" y1="28" x2="206" y2="28" stroke="currentColor" strokeWidth="1" />
-                      <line x1="34" y1="322" x2="80" y2="322" stroke="currentColor" strokeWidth="1" />
-                      <line x1="160" y1="322" x2="206" y2="322" stroke="currentColor" strokeWidth="1" />
-                      <line x1="28" y1="34" x2="28" y2="80" stroke="currentColor" strokeWidth="1" />
-                      <line x1="28" y1="270" x2="28" y2="316" stroke="currentColor" strokeWidth="1" />
-                      <line x1="212" y1="34" x2="212" y2="80" stroke="currentColor" strokeWidth="1" />
-                      <line x1="212" y1="270" x2="212" y2="316" stroke="currentColor" strokeWidth="1" />
-
-                      {/* Top semi-circle */}
-                      <path d="M100 16 A20 20 0 0 1 140 16" stroke="currentColor" strokeWidth="1" fill="none" />
-                      {/* Bottom semi-circle */}
-                      <path d="M100 334 A20 20 0 0 0 140 334" stroke="currentColor" strokeWidth="1" fill="none" />
-
-                      {/* Top heart/chevron */}
-                      <path d="M115 40 L120 34 L125 40" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" />
-                      {/* Bottom heart/chevron (inverted) */}
-                      <path d="M115 310 L120 316 L125 310" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" />
-
-                      {/* Left diamond arrow */}
-                      <path d="M20 155 L28 145 L28 165 Z" stroke="currentColor" strokeWidth="1" fill="currentColor" />
-                      <path d="M20 195 L28 185 L28 205 Z" stroke="currentColor" strokeWidth="1" fill="currentColor" />
-
-                      {/* Right diamond arrow */}
-                      <path d="M220 155 L212 145 L212 165 Z" stroke="currentColor" strokeWidth="1" fill="currentColor" />
-                      <path d="M220 195 L212 185 L212 205 Z" stroke="currentColor" strokeWidth="1" fill="currentColor" />
-
-                      {/* Layer 2: Four tiny dots around the diamond */}
-                      <circle cx="120" cy="85" r="1.5" fill="currentColor" />
-                      <circle cx="120" cy="265" r="1.5" fill="currentColor" />
-                      <circle cx="30" cy="175" r="1.5" fill="currentColor" />
-                      <circle cx="210" cy="175" r="1.5" fill="currentColor" />
-
-                      {/* Layer 2: Short rays extending outward */}
-                      <line x1="120" y1="92" x2="120" y2="102" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="120" y1="248" x2="120" y2="258" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="42" y1="175" x2="52" y2="175" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="188" y1="175" x2="198" y2="175" stroke="currentColor" strokeWidth="1.5" />
-                    </svg>
-
-                    {/* Radial Glow Behind Icon */}
-                    <div 
-                      className="expertise-icon-glow" 
-                      style={{ background: program.glow }}
-                    ></div>
-
-                    {/* Top Badge */}
-                    <div 
-                      className="expertise-top-badge"
-                      style={{ background: program.badgeBg, color: program.badgeColor }}
-                    >
-                      {program.badgeText}
-                    </div>
-
-                    {/* Render Icon with Circular Glass Container */}
-                    <div className="expertise-icon-glass">
-                      <IconComp
-                        className="expertise-icon"
-                        style={{ color: program.glow }}
-                      />
-                    </div>
-
-                    {/* Title positioned at bottom */}
-                    <h3>{program.title}</h3>
-                    <p className="card-label">Hover to reveal</p>
-                  </div>
-
-                  {/* BACK FACE — Skills list */}
-                  <div
-                    className="expertise-card-back"
-                    style={{ background: program.backGradient }}
-                  >
-                    {/* SVG Blueprint Decorations */}
-                    <svg
-                      className="blueprint-geometry"
-                      style={{ color: program.glow }}
-                      viewBox="0 0 240 350"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      preserveAspectRatio="none"
-                    >
-                      {/* Double rounded border */}
-                      <rect x="8" y="8" width="224" height="334" rx="16" stroke="currentColor" strokeWidth="1" strokeOpacity="0.8" />
-                      <rect x="14" y="14" width="212" height="322" rx="12" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.5" />
-
-                      {/* Decorative engineering corner brackets */}
-                      <path d="M 24 14 L 14 14 L 14 24" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="M 216 14 L 226 14 L 226 24" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="M 24 336 L 14 336 L 14 326" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="M 216 336 L 226 336 L 226 326" stroke="currentColor" strokeWidth="1.5" />
-
-                      {/* Tiny circular anchor points */}
-                      <circle cx="28" cy="28" r="2" fill="currentColor" opacity="0.6" />
-                      <circle cx="212" cy="28" r="2" fill="currentColor" opacity="0.6" />
-                      <circle cx="28" cy="322" r="2" fill="currentColor" opacity="0.6" />
-                      <circle cx="212" cy="322" r="2" fill="currentColor" opacity="0.6" />
-
-                      {/* Vertical center guide line */}
-                      <line x1="120" y1="14" x2="120" y2="336" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.4" />
-                      
-                      {/* Horizontal measurement lines */}
-                      <line x1="14" y1="60" x2="226" y2="60" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
-                      <line x1="14" y1="290" x2="226" y2="290" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
-
-                      {/* Small arrows on each side */}
-                      <path d="M 14 175 L 18 171 L 18 179 Z" fill="currentColor" opacity="0.5" />
-                      <path d="M 226 175 L 222 171 L 222 179 Z" fill="currentColor" opacity="0.5" />
-                      <path d="M 120 14 L 116 18 L 124 18 Z" fill="currentColor" opacity="0.5" />
-                      <path d="M 120 336 L 116 332 L 124 332 Z" fill="currentColor" opacity="0.5" />
-
-                      {/* Minimal HUD decorations */}
-                      <rect x="20" y="70" width="4" height="4" fill="currentColor" opacity="0.4" />
-                      <rect x="20" y="80" width="4" height="4" fill="currentColor" opacity="0.4" />
-                      <rect x="20" y="90" width="4" height="4" fill="currentColor" opacity="0.4" />
-                    </svg>
-
-                    <div className="back-content-wrapper z-10 relative flex flex-col items-center w-full">
-                      <span className="back-title" style={{ color: program.badgeColor }}>{program.title}</span>
-                      <ul>
-                        {program.skills.map((skill, sIdx) => (
-                          <li key={sIdx}>{skill}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
   );
 }
