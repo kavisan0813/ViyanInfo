@@ -12,6 +12,7 @@ const WebsitesDev = lazy(() => import("./pages/WebsitesDev"));
 const MobileApp = lazy(() => import("./pages/MobileApp"));
 const SaasDev = lazy(() => import("./pages/SaasDev"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Products = lazy(() => import("./pages/Products"));
 const About = lazy(() => import("./pages/About"));
 const Process = lazy(() => import("./pages/Process"));
 const TechStack = lazy(() => import("./pages/TechStack"));
@@ -24,7 +25,6 @@ const Careers = lazy(() => import("./pages/Careers"));
 const Blog = lazy(() => import("./pages/Blog"));
 const AiSolutions = lazy(() => import("./pages/AiSolutions"));
 const UiUxDesign = lazy(() => import("./pages/UiUxDesign"));
-const Products = lazy(() => import("./pages/Products"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -138,6 +138,7 @@ export default function App() {
     "/services/websites",
     "/services/mobile",
     "/portfolio",
+    "/products",
     "/about",
     "/careers",
     "/blog",
@@ -149,7 +150,14 @@ export default function App() {
     "/tech-stack",
     "/industries",
     "/faq",
-    "/products",
+    "/services/custom-software",
+    "/services/saas-development",
+    "/services/web-development",
+    "/services/mobile-development",
+    "/services/ai-automation",
+    "/services/cloud-devops",
+    "/services/enterprise-software",
+    "/services/ui-ux-design",
   ];
   const hideGlobalFooter =
     customFooterPaths.includes(location.pathname) ||
@@ -176,12 +184,30 @@ export default function App() {
             <Route path="/services/saas" element={<SaasDev />} />
             <Route path="/products" element={<Products />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/about" element={<About />} />
             <Route path="/internship" element={<Internships />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/services/ai" element={<AiSolutions />} />
             <Route path="/services/uiux" element={<UiUxDesign />} />
+            <Route
+              path="/services/custom-software"
+              element={<ServicesOverview />}
+            />
+            <Route path="/services/saas-development" element={<SaasDev />} />
+            <Route path="/services/web-development" element={<WebsitesDev />} />
+            <Route
+              path="/services/mobile-development"
+              element={<MobileApp />}
+            />
+            <Route path="/services/ai-automation" element={<AiSolutions />} />
+            <Route path="/services/cloud-devops" element={<TechStack />} />
+            <Route
+              path="/services/enterprise-software"
+              element={<ServicesOverview />}
+            />
+            <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
             <Route path="/process" element={<Process />} />
             <Route path="/tech-stack" element={<TechStack />} />
             <Route path="/industries" element={<Industries />} />

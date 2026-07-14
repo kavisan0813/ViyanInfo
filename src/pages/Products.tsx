@@ -30,7 +30,7 @@ function ProductsHero() {
   return (
     <section className="products-hero products-container relative z-10">
       <div className="hero-grid">
-        <motion.div 
+        <motion.div
           className="hero-content"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -40,9 +40,9 @@ function ProductsHero() {
             <span className="w-2 h-2 rounded-full bg-[#7C3AED]"></span>
             <span className="text-[12px] font-body font-semibold text-[#7C3AED] uppercase tracking-wider">ViyanInfo Products</span>
           </div>
-          <h1 className="text-[clamp(34px,4.5vw,56px)] font-display font-bold text-[#1F1430] leading-[1.1] tracking-tight mb-6">Enterprise Software<br/>Built For Modern Businesses</h1>
+          <h1 className="text-[clamp(34px,4.5vw,56px)] font-display font-bold text-[#1F1430] leading-[1.1] tracking-tight mb-6">Enterprise Software<br />Built For Modern Businesses</h1>
           <p className="body-copy text-[#6B7280] max-w-readable mb-10 text-[15px] leading-relaxed">
-            Discover scalable software solutions designed to streamline operations, 
+            Discover scalable software solutions designed to streamline operations,
             improve productivity and accelerate business growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -55,7 +55,7 @@ function ProductsHero() {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="hero-visual"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -68,7 +68,7 @@ function ProductsHero() {
             <div className="eco-connection" style={{ width: '450px', height: '450px', animationDirection: 'reverse' }} />
 
             {/* Center Node */}
-            <motion.div 
+            <motion.div
               className="eco-card center"
               animate={{ y: [-10, 10, -10] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
@@ -169,7 +169,7 @@ function ProductRow({ product, index }: { product: typeof PRODUCTS_DATA[0], inde
   const isReverse = index % 2 !== 0;
 
   return (
-    <motion.div 
+    <motion.div
       ref={ref}
       className={`product-row glass-panel ${isReverse ? 'reverse' : ''}`}
       initial={{ opacity: 0, y: 50 }}
@@ -208,7 +208,7 @@ function ProductsFeatured() {
   return (
     <section id="featured-products" className="featured-section products-container">
       <div className="section-header">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -249,7 +249,7 @@ function ProductsIndustries() {
     <section className="industries-section">
       <div className="products-container">
         <div className="section-header">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -265,7 +265,7 @@ function ProductsIndustries() {
         </div>
         <div className="bento-grid">
           {INDUSTRIES.map((ind, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               className={`bento-item ${ind.class}`}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -310,7 +310,7 @@ function ProductsWhyChoose() {
       </div>
       <div className="why-grid">
         {REASONS.map((reason, i) => (
-          <motion.div 
+          <motion.div
             key={i}
             className="why-card"
             initial={{ opacity: 0, y: 30 }}
@@ -449,8 +449,8 @@ function ProductsFAQ() {
       </div>
       <div className="faq-list">
         {FAQS.map((faq, i) => (
-          <div 
-            key={i} 
+          <div
+            key={i}
             className={`faq-item ${openIdx === i ? 'open' : ''}`}
             onClick={() => setOpenIdx(openIdx === i ? null : i)}
           >

@@ -20,10 +20,10 @@ import { WorkTechStack } from "../components/WorkTechStack";
 // ─────────────────────────────────────────
 function useCounter(end: number, duration: number = 2000, startInView: boolean = false) {
   const [count, setCount] = useState(0);
-  
+
   useEffect(() => {
     if (!startInView) return;
-    
+
     let startTime: number | null = null;
     let animationFrame: number;
 
@@ -31,7 +31,7 @@ function useCounter(end: number, duration: number = 2000, startInView: boolean =
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
       const percentage = Math.min(progress / duration, 1);
-      
+
       // Easing out cubic
       const easeOut = 1 - Math.pow(1 - percentage, 3);
       setCount(Math.floor(end * easeOut));
@@ -54,7 +54,7 @@ function StatCard({ label, endValue, suffix = "", index }: { label: string, endV
   const count = useCounter(endValue, 2500, isInView);
 
   return (
-    <motion.div 
+    <motion.div
       ref={ref}
       className="work-stat-card"
       initial={{ opacity: 0, y: 30 }}
@@ -83,16 +83,16 @@ export default function Portfolio() {
       {/* SECTION 2: Portfolio Overview Stats */}
       <section className="work-overview">
         <div className="work-overview__container">
-          <motion.h2 
+          <motion.h2
             className="work-overview__heading"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            Software That <span>Powers Businesses</span>
-          </motion.h2>
-          <motion.p 
+            Software That < span > Powers Businesses</span >
+          </motion.h2 >
+          <motion.p
             className="work-overview__desc"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -108,39 +108,40 @@ export default function Portfolio() {
             <StatCard label="Industries" endValue={2} suffix="+" index={2} />
             <StatCard label="Support" endValue={24} suffix="/7" index={3} />
           </div>
-        </div>
-      </section>
+        </div >
+      </section >
 
       {/* SECTION 3: Featured Solutions */}
-      <WorkFeaturedSolutions />
+      < WorkFeaturedSolutions />
 
       {/* SECTION 4: Project Gallery Bento Grid */}
-      <WorkBentoGallery />
+      < WorkBentoGallery />
 
       {/* SECTION 5: Technology Stack */}
-      <WorkTechStack />
+      < WorkTechStack />
 
       {/* ── CTA + FOOTER SECTION (unchanged from original) ── */}
-      <section
+      < section
         className="relative w-[94%] md:w-full mx-auto overflow-hidden rounded-t-[32px] rounded-b-none md:rounded-t-[40px] md:rounded-b-none z-10"
         style={{
           minHeight: "950px",
           marginTop: "80px",
           paddingTop: "70px",
           paddingBottom: "40px",
-        }}
+        }
+        }
       >
         {/* Background image */}
-        <div className="absolute inset-0 z-0">
+        < div className="absolute inset-0 z-0" >
           <img
             src={workImg}
             alt="Work Background"
             className="w-full h-full object-cover object-center"
           />
-        </div>
+        </div >
 
         {/* Cinematic overlay */}
-        <div
+        < div
           className="absolute inset-0 z-0 pointer-events-none"
           style={{ background: "rgba(10, 10, 20, 0.45)" }}
         />
@@ -186,7 +187,7 @@ export default function Portfolio() {
 
         {/* Footer remains unchanged */}
         <LiquidFooter />
-      </section>
-    </div>
+      </section >
+    </div >
   );
 }

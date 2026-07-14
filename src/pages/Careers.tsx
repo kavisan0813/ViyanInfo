@@ -24,14 +24,14 @@ import {
   PerksRow,
 } from "../components/CareersVisuals";
 
-const FloatingGlassCard = ({ 
-  icon: Icon, 
-  title, 
-  iconColor, 
-  positionClass, 
-  rotate, 
+const FloatingGlassCard = ({
+  icon: Icon,
+  title,
+  iconColor,
+  positionClass,
+  rotate,
   floatDuration,
-  delay
+  delay,
 }: any) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
@@ -40,10 +40,10 @@ const FloatingGlassCard = ({
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
-    const rX = ((y / rect.height) - 0.5) * -12; 
-    const rY = ((x / rect.width) - 0.5) * 12; 
-    
+
+    const rX = (y / rect.height - 0.5) * -12;
+    const rY = (x / rect.width - 0.5) * 12;
+
     setRotateX(rX);
     setRotateY(rY);
   };
@@ -69,37 +69,38 @@ const FloatingGlassCard = ({
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        animate={{ 
-          rotateX, 
-          rotateY, 
-          rotateZ: rotate 
+        animate={{
+          rotateX,
+          rotateY,
+          rotateZ: rotate,
         }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
         whileHover={{
           y: -6,
           scale: 1.03,
-          transition: { duration: 0.4, ease: "easeOut" }
+          transition: { duration: 0.4, ease: "easeOut" },
         }}
         className="flex items-center gap-3 px-3 py-2 cursor-pointer"
         style={{
           width: "170px",
           height: "60px",
+          right: "20%",
           borderRadius: "18px",
-          background: "rgba(255, 255, 255, 0.6)", 
+          background: "rgba(255, 255, 255, 0.6)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
           border: "1px solid rgba(255, 255, 255, 0.45)",
           boxShadow: "0 20px 50px rgba(123,47,247,0.12)",
-          transformStyle: "preserve-3d"
+          transformStyle: "preserve-3d",
         }}
       >
-        <div 
+        <div
           className="flex items-center justify-center w-10 h-10 rounded-full bg-white/80 shadow-[0_4px_10px_rgba(0,0,0,0.05)] shrink-0"
           style={{ transform: "translateZ(20px)" }}
         >
           <Icon size={20} color={iconColor} />
         </div>
-        <span 
+        <span
           className="font-display font-semibold text-[14px] text-[#0F172A]"
           style={{ transform: "translateZ(10px)" }}
         >
@@ -132,15 +133,14 @@ export default function Careers() {
 
   return (
     <div className="bg-[#FAF7FF] min-h-screen text-[#475569] font-body overflow-hidden">
-      {/* HERO SECTION */}
-      <section className="relative overflow-hidden min-h-[700px]">
+      <section className="relative overflow-hidden min-h-screen flex items-center pt-20 lg:pt-24 pb-12">
         <CareersHeroBg />
 
         {/* Background Gradient */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(123,47,247,0.04)_0%,transparent_60%)] pointer-events-none"></div>
 
-        <div className="container max-w-[1400px] mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[700px]">
+        <div className="container max-w-[1400px] mx-auto px-6 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -199,13 +199,13 @@ export default function Careers() {
                     animate={{
                       y: [0, -40, 0],
                       x: [0, Math.random() * 30 - 15, 0],
-                      opacity: [0.2, 0.6, 0.2]
+                      opacity: [0.2, 0.6, 0.2],
                     }}
                     transition={{
                       duration: 4 + Math.random() * 5,
                       repeat: Infinity,
                       ease: "easeInOut",
-                      delay: Math.random() * 2
+                      delay: Math.random() * 2,
                     }}
                   />
                 ))}
@@ -217,16 +217,16 @@ export default function Careers() {
                 className="max-w-[750px] lg:max-w-[500px] h-auto object-contain scale-105 lg:scale-125 relative z-10"
               />
 
-              <FloatingGlassCard 
+              <FloatingGlassCard
                 icon={Sparkles}
                 title="Innovation"
                 iconColor="#7B2FF7"
-                positionClass="top-[5%] -left-[5%] lg:top-[5%] lg:-left-[15%]"
+                positionClass="-top-[5%] -left-[2%] lg:-top-[10%] lg:-left-[6%]"
                 rotate={-4}
                 floatDuration={5}
                 delay={0}
               />
-              <FloatingGlassCard 
+              <FloatingGlassCard
                 icon={Users}
                 title="Team Work"
                 iconColor="#3B82F6"
@@ -235,7 +235,7 @@ export default function Careers() {
                 floatDuration={6}
                 delay={1}
               />
-              <FloatingGlassCard 
+              <FloatingGlassCard
                 icon={ShieldCheck}
                 title="Transparency"
                 iconColor="#8B5CF6"
@@ -244,7 +244,7 @@ export default function Careers() {
                 floatDuration={7}
                 delay={2}
               />
-              <FloatingGlassCard 
+              <FloatingGlassCard
                 icon={TrendingUp}
                 title="Growth"
                 iconColor="#10B981"
@@ -631,9 +631,6 @@ export default function Careers() {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* BOTTOM AREA: GLASSMORPHISM FOOTER */}
-        {/* BOTTOM AREA: GLASSMORPHISM FOOTER */}
         <LiquidFooter />
       </section>
     </div>

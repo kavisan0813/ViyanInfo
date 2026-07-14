@@ -186,6 +186,14 @@ export function Navbar() {
             Home
           </Link>
 
+          {/* Products */}
+          <Link
+            to="/products"
+            className={`nav-link ${isActive("/products") ? "nav-active" : ""}`}
+          >
+            Products
+          </Link>
+
           {/* Services Dropdown */}
           <div
             className="relative flex items-center"
@@ -212,27 +220,27 @@ export function Navbar() {
                 {[
                   {
                     label: "Custom Software Development",
-                    path: "/services",
+                    path: "/services/custom-software",
                     icon: <Code className="w-4 h-4 text-[#7B2FF7]" />,
                   },
                   {
                     label: "Web Applications",
-                    path: "/services/websites",
+                    path: "/services/web-development",
                     icon: <Globe className="w-4 h-4 text-[#3B82F6]" />,
                   },
                   {
                     label: "Mobile Applications",
-                    path: "/services/mobile",
+                    path: "/services/mobile-development",
                     icon: <Smartphone className="w-4 h-4 text-[#06B6D4]" />,
                   },
                   {
                     label: "AI Solutions",
-                    path: "/services/ai",
+                    path: "/services/ai-automation",
                     icon: <Brain className="w-4 h-4 text-[#EC4899]" />,
                   },
                   {
                     label: "UI/UX Design",
-                    path: "/services/uiux",
+                    path: "/services/ui-ux-design",
                     icon: <Paintbrush className="w-4 h-4 text-[#F59E0B]" />,
                   },
                   {
@@ -255,15 +263,7 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Products */}
-          <Link
-            to="/products"
-            className={`nav-link ${isActive("/products") ? "nav-active" : ""}`}
-          >
-            Products
-          </Link>
-
-          {/* Work */}
+          {/* Portfolio */}
           <Link
             to="/portfolio"
             className={`nav-link ${isActive("/portfolio") ? "nav-active" : ""}`}

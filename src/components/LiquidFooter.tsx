@@ -69,11 +69,24 @@ export function LiquidFooter({ isLight = false }: { isLight?: boolean }) {
             </span>
             <ul className="space-y-4 footer-links">
               {[
-                { name: "Custom Software Development", path: "/services" },
-                { name: "Web Applications", path: "/services/websites" },
-                { name: "Mobile Applications", path: "/services/mobile" },
-                { name: "AI Solutions", path: "/services" },
-                { name: "UI/UX Design", path: "/services/uiux" },
+                {
+                  name: "Custom Software Development",
+                  path: "/services/custom-software",
+                },
+                {
+                  name: "SaaS Product Engineering",
+                  path: "/services/saas-development",
+                },
+                { name: "Web Applications", path: "/services/web-development" },
+                {
+                  name: "Mobile Applications",
+                  path: "/services/mobile-development",
+                },
+                { name: "AI & Automation", path: "/services/ai-automation" },
+                {
+                  name: "UI/UX Product Design",
+                  path: "/services/ui-ux-design",
+                },
                 { name: "Internship Programs", path: "/internship" },
               ].map((item, idx) => (
                 <li key={idx}>
@@ -95,6 +108,7 @@ export function LiquidFooter({ isLight = false }: { isLight?: boolean }) {
             </span>
             <ul className="space-y-4 footer-links">
               {[
+                { name: "Products", path: "/products" },
                 { name: "Portfolio", path: "/portfolio" },
                 { name: "Case Studies", path: "/portfolio" },
                 { name: "Careers", path: "/careers" },

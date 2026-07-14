@@ -504,7 +504,7 @@ export default function About() {
           transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         >
           <img
-            src="/images/about-tech-room.png"
+            src="src/assets/about-tech-room.png"
             alt="Developer Workspace"
             className="hero-main-image"
           />
