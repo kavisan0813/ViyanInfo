@@ -1,7 +1,7 @@
 import { useRef, useLayoutEffect } from "react";
 import { Check, Award } from "lucide-react";
 import { Intern1 } from "./ArrayContent";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function InternshipExpertiseSection() {
