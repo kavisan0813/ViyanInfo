@@ -24,6 +24,16 @@ import {
   PerksRow,
 } from "../components/CareersVisuals";
 
+interface FloatingGlassCardProps {
+  icon: React.ElementType;
+  title: string;
+  iconColor: string;
+  positionClass: string;
+  rotate: number;
+  floatDuration: number;
+  delay: number;
+}
+
 const FloatingGlassCard = ({
   icon: Icon,
   title,
@@ -32,7 +42,7 @@ const FloatingGlassCard = ({
   rotate,
   floatDuration,
   delay,
-}: any) => {
+}: FloatingGlassCardProps) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
 

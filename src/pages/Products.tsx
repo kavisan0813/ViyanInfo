@@ -2,13 +2,9 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Check, Plus, Minus, Server, Activity, Briefcase, HeartPulse, ShoppingBag, GraduationCap, Cpu, Shield, Cloud, Zap, Headphones, X } from "lucide-react";
-
 import { LiquidFooter } from "../components/LiquidFooter";
 import { SectionDivider } from "../components/SectionDivider";
-import { BackgroundEffects } from "../components/BackgroundEffects";
 import workImg from "../assets/Workimg.webp";
-
-// Existing Concept Images
 import erpImg from "../assets/work_erp_concept.png";
 import crmImg from "../assets/work_crm_concept.png";
 import inventoryImg from "../assets/work_inventory_concept.png";
@@ -17,9 +13,18 @@ import posImg from "../assets/work_billing_concept.png";
 import lmsImg from "../assets/work_training_concept.png";
 import aiImg from "../assets/work_ai_concept.png";
 import financeImg from "../assets/work_employment_concept.png";
-
+import "../styles/BackgroundEffects.css";
 import "../styles/ProductsPage.css";
 
+
+function BackgroundEffects() {
+  return (
+    <div className="bg-effects-wrapper" aria-hidden="true">
+      {/* Soft animated grid */}
+      <div className="bg-effects-grid"></div>
+    </div>
+  );
+}
 // ─────────────────────────────────────────
 // HERO SECTION
 // ─────────────────────────────────────────

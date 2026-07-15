@@ -1,5 +1,7 @@
 import { useRef, useLayoutEffect } from "react";
 import { Intern1 } from "./ArrayContent";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function InternshipExpertiseSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -353,7 +355,7 @@ export function InternshipExpertiseSection() {
                   {/* BACK FACE — Skills list */}
                   <div
                     className="expertise-card-back"
-                    style={{ background: program.backGradient }}
+                    style={{ background: program.backGradient, transform: "rotateY(180deg)"}}
                   >
                     {/* SVG Blueprint Decorations */}
                     <svg
@@ -519,16 +521,25 @@ export function InternshipExpertiseSection() {
                       />
                     </svg>
 
-                    <div className="back-content-wrapper z-10 relative flex flex-col items-center w-full">
+                    <div 
+                      className="z-10 absolute flex flex-col"
+                      style={{ top: '75px', bottom: '70px', left: '26px', right: '26px' }}
+                    >
                       <span
-                        className="back-title"
+                        className="font-bold text-[14px] mb-4 leading-tight"
                         style={{ color: program.badgeColor }}
                       >
                         {program.title}
                       </span>
-                      <ul>
+                      <ul className="flex flex-col gap-2 text-[13px] text-slate-700 font-medium">
                         {program.skills.map((skill, sIdx) => (
-                          <li key={sIdx}>{skill}</li>
+                          <li key={sIdx} className="flex items-center gap-2">
+                            <span 
+                              className="w-[4px] h-[4px] rounded-full opacity-70 flex-shrink-0" 
+                              style={{ backgroundColor: program.badgeColor }} 
+                            />
+                            {skill}
+                          </li>
                         ))}
                       </ul>
                     </div>

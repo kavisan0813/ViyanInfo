@@ -13,7 +13,6 @@ import dashboardImg from "../assets/Strategy.webp";
 import { motion } from "framer-motion";
 import { burst } from "../utils/particleBurst";
 import visionImg from "../assets/Vision.png";
-import { BackgroundEffects } from "../components/BackgroundEffects";
 import { HorizontalTiltCard } from "../components/HorizontalTiltCard";
 import {
   Homecontent1,
@@ -30,6 +29,17 @@ import {
   Homecontent8,
   Homecontent9,
 } from "../components/ArrayContent";
+import { HomeVisuals } from "../components/HomeVisuals";
+import "../styles/BackgroundEffects.css";
+
+function BackgroundEffects() {
+  return (
+    <div className="bg-effects-wrapper" aria-hidden="true">
+      {/* Soft animated grid */}
+      <div className="bg-effects-grid"></div>
+    </div>
+  );
+}
 
 export default function Home() {
   const onHoverBurst = (e: React.MouseEvent<HTMLElement>) => {
@@ -784,6 +794,7 @@ export default function Home() {
       </section>
 
       <SectionDivider />
+      <HomeVisuals />
     </div>
   );
 }
