@@ -1424,7 +1424,7 @@ export const Intern1 = [
     badgeColor: "#16A34A",
     gradient: "linear-gradient(180deg, #F2FFF8 0%, #E8FFF2 100%)",
     backGradient: "linear-gradient(135deg, #E8FFF2 0%, #FFFFFF 100%)",
-    skills: ["Django", "FastAPI", "PostgreSQL", "Algorithms", "REST APIs"],
+    skills: ["Problem Solving", "REST API Development", "Database Design", "Backend Architecture", "Cloud Deployment"],
   },
   {
     title: "Full Stack Development",
@@ -1436,7 +1436,7 @@ export const Intern1 = [
     badgeColor: "#EA580C",
     gradient: "linear-gradient(180deg, #FFF8F3 0%, #FFF2EA 100%)",
     backGradient: "linear-gradient(135deg, #FFF2EA 0%, #FFFFFF 100%)",
-    skills: ["React", "TypeScript", "Node.js", "Next.js", "Tailwind"],
+    skills: ["Responsive UI", "Backend APIs", "Authentication", "Performance Optimization", "Git Workflow"],
   },
   {
     title: "AI & Machine Learning",
@@ -1448,7 +1448,7 @@ export const Intern1 = [
     badgeColor: "#7C3AED",
     gradient: "linear-gradient(180deg, #FCF8FF 0%, #F3E8FF 100%)",
     backGradient: "linear-gradient(135deg, #F3E8FF 0%, #FFFFFF 100%)",
-    skills: ["OpenAI", "LangChain", "RAG", "HuggingFace", "Automation"],
+    skills: ["Prompt Engineering", "LLM Integration", "AI Automation", "RAG Development", "Model Deployment"],
   },
   {
     title: "Data Science",
@@ -1460,7 +1460,7 @@ export const Intern1 = [
     badgeColor: "#0891B2",
     gradient: "linear-gradient(180deg, #F3FCFF 0%, #E8F8FF 100%)",
     backGradient: "linear-gradient(135deg, #E8F8FF 0%, #FFFFFF 100%)",
-    skills: ["Pandas", "Scikit-Learn", "Tableau", "SQL", "Power BI"],
+    skills: ["Data Analysis", "Machine Learning", "Data Visualization", "Statistical Modeling", "Business Intelligence"],
   },
   {
     title: "UI/UX Design",
@@ -1473,11 +1473,11 @@ export const Intern1 = [
     gradient: "linear-gradient(180deg, #FFFDF4 0%, #FFF7E6 100%)",
     backGradient: "linear-gradient(135deg, #FFF7E6 0%, #FFFFFF 100%)",
     skills: [
-      "Figma",
-      "Wireframing",
-      "Prototyping",
       "User Research",
+      "Wireframing",
+      "Interactive Prototyping",
       "Design Systems",
+      "Usability Testing",
     ],
   },
 ];

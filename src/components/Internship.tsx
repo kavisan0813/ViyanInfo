@@ -1,4 +1,5 @@
 import { useRef, useLayoutEffect } from "react";
+import { Check, Award } from "lucide-react";
 import { Intern1 } from "./ArrayContent";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -355,193 +356,54 @@ export function InternshipExpertiseSection() {
                   {/* BACK FACE — Skills list */}
                   <div
                     className="expertise-card-back"
-                    style={{ background: program.backGradient, transform: "rotateY(180deg)"}}
+                    style={{ background: program.backGradient, transform: "rotateY(180deg)" }}
                   >
-                    {/* SVG Blueprint Decorations */}
-                    <svg
-                      className="blueprint-geometry"
-                      style={{ color: program.glow }}
-                      viewBox="0 0 240 350"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      preserveAspectRatio="none"
+
+
+                    <div
+                      className="z-10 absolute inset-0 flex flex-col justify-between items-center text-center"
+                      style={{ padding: '36px 20px 28px' }}
                     >
-                      {/* Double rounded border */}
-                      <rect
-                        x="8"
-                        y="8"
-                        width="224"
-                        height="334"
-                        rx="16"
-                        stroke="currentColor"
-                        strokeWidth="1"
-                        strokeOpacity="0.8"
-                      />
-                      <rect
-                        x="14"
-                        y="14"
-                        width="212"
-                        height="322"
-                        rx="12"
-                        stroke="currentColor"
-                        strokeWidth="0.5"
-                        strokeOpacity="0.5"
+                      {/* Watermark Icon */}
+                      <IconComp
+                        className="absolute -top-5 -right-5 pointer-events-none -rotate-12"
+                        style={{ opacity: 0.1, color: program.badgeColor, width: '140px', height: '140px' }}
                       />
 
-                      {/* Decorative engineering corner brackets */}
-                      <path
-                        d="M 24 14 L 14 14 L 14 24"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M 216 14 L 226 14 L 226 24"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M 24 336 L 14 336 L 14 326"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M 216 336 L 226 336 L 226 326"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
+                      {/* Top Section */}
+                      <div className="flex flex-col items-center w-full z-10 relative">
+                        <span
+                          className="font-bold text-[9px] uppercase w-full text-center"
+                          style={{ color: program.badgeColor, letterSpacing: '4px' }}
+                        >
+                          {program.title}
+                        </span>
 
-                      {/* Tiny circular anchor points */}
-                      <circle
-                        cx="28"
-                        cy="28"
-                        r="2"
-                        fill="currentColor"
-                        opacity="0.6"
-                      />
-                      <circle
-                        cx="212"
-                        cy="28"
-                        r="2"
-                        fill="currentColor"
-                        opacity="0.6"
-                      />
-                      <circle
-                        cx="28"
-                        cy="322"
-                        r="2"
-                        fill="currentColor"
-                        opacity="0.6"
-                      />
-                      <circle
-                        cx="212"
-                        cy="322"
-                        r="2"
-                        fill="currentColor"
-                        opacity="0.6"
-                      />
+                        <h4 className="text-[11px] font-bold text-slate-800 mt-5 tracking-wider">
+                          SKILLS YOU'LL GAIN
+                        </h4>
+                      </div>
 
-                      {/* Vertical center guide line */}
-                      <line
-                        x1="120"
-                        y1="14"
-                        x2="120"
-                        y2="336"
-                        stroke="currentColor"
-                        strokeWidth="0.5"
-                        strokeDasharray="4 4"
-                        opacity="0.4"
-                      />
-
-                      {/* Horizontal measurement lines */}
-                      <line
-                        x1="14"
-                        y1="60"
-                        x2="226"
-                        y2="60"
-                        stroke="currentColor"
-                        strokeWidth="0.5"
-                        opacity="0.3"
-                      />
-                      <line
-                        x1="14"
-                        y1="290"
-                        x2="226"
-                        y2="290"
-                        stroke="currentColor"
-                        strokeWidth="0.5"
-                        opacity="0.3"
-                      />
-
-                      {/* Small arrows on each side */}
-                      <path
-                        d="M 14 175 L 18 171 L 18 179 Z"
-                        fill="currentColor"
-                        opacity="0.5"
-                      />
-                      <path
-                        d="M 226 175 L 222 171 L 222 179 Z"
-                        fill="currentColor"
-                        opacity="0.5"
-                      />
-                      <path
-                        d="M 120 14 L 116 18 L 124 18 Z"
-                        fill="currentColor"
-                        opacity="0.5"
-                      />
-                      <path
-                        d="M 120 336 L 116 332 L 124 332 Z"
-                        fill="currentColor"
-                        opacity="0.5"
-                      />
-
-                      {/* Minimal HUD decorations */}
-                      <rect
-                        x="20"
-                        y="70"
-                        width="4"
-                        height="4"
-                        fill="currentColor"
-                        opacity="0.4"
-                      />
-                      <rect
-                        x="20"
-                        y="80"
-                        width="4"
-                        height="4"
-                        fill="currentColor"
-                        opacity="0.4"
-                      />
-                      <rect
-                        x="20"
-                        y="90"
-                        width="4"
-                        height="4"
-                        fill="currentColor"
-                        opacity="0.4"
-                      />
-                    </svg>
-
-                    <div 
-                      className="z-10 absolute flex flex-col"
-                      style={{ top: '75px', bottom: '70px', left: '26px', right: '26px' }}
-                    >
-                      <span
-                        className="font-bold text-[14px] mb-4 leading-tight"
-                        style={{ color: program.badgeColor }}
-                      >
-                        {program.title}
-                      </span>
-                      <ul className="flex flex-col gap-2 text-[13px] text-slate-700 font-medium">
+                      {/* Skills List */}
+                      <ul className="flex flex-col gap-4 text-[12px] text-slate-700 font-semibold w-full text-left mt-4 z-10 relative px-1">
                         {program.skills.map((skill, sIdx) => (
-                          <li key={sIdx} className="flex items-center gap-2">
-                            <span 
-                              className="w-[4px] h-[4px] rounded-full opacity-70 flex-shrink-0" 
-                              style={{ backgroundColor: program.badgeColor }} 
-                            />
+                          <li key={sIdx} className="flex items-center gap-3">
+                            <Check size={16} strokeWidth={2} style={{ color: program.badgeColor }} className="flex-shrink-0" />
                             {skill}
                           </li>
                         ))}
                       </ul>
+
+                      {/* Bottom Section */}
+                      <div className="w-full flex flex-col items-center z-10 relative mt-auto pt-3">
+                        <div className="w-16 h-[2px] rounded-full mb-3" style={{ background: `linear-gradient(90deg, transparent, ${program.badgeColor}, transparent)` }} />
+                        <div className="flex items-center gap-2">
+                          <Award size={18} style={{ color: program.badgeColor }} className="flex-shrink-0" />
+                          <span className="text-[9px] font-bold text-slate-800 uppercase tracking-widest text-left leading-tight">
+                            Internship Certificate<br />Included
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
