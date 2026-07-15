@@ -9,30 +9,22 @@ import {
   Server,
   Activity,
   Briefcase,
-  HeartPulse,
   ShoppingBag,
-  GraduationCap,
   Cpu,
-  Shield,
-  Cloud,
-  Zap,
-  Headphones,
   X,
 } from "lucide-react";
 import { LiquidFooter } from "../components/LiquidFooter";
 import { SectionDivider } from "../components/SectionDivider";
-import erpImg from "../assets/work_erp_concept.png";
-import crmImg from "../assets/work_crm_concept.png";
-import inventoryImg from "../assets/work_inventory_concept.png";
-import medassistImg from "../assets/work_pharmacy_concept.png";
-import posImg from "../assets/work_billing_concept.png";
-import lmsImg from "../assets/work_training_concept.png";
 import productImg from "../assets/product_img.webp";
-import aiImg from "../assets/work_ai_concept.png";
-import financeImg from "../assets/work_employment_concept.png";
-import heroIsometricOfficeImg from "../assets/hero_isometric_office.png";
 import "../styles/BackgroundEffects.css";
 import "../styles/ProductsPage.css";
+import {
+  ProductContent,
+  ProductContent1,
+  ProductContent2,
+  ProductContent3,
+  ProductContent4,
+} from "../components/ArrayContent";
 
 function BackgroundEffects() {
   return (
@@ -192,111 +184,11 @@ function ProductsHero() {
   );
 }
 
-// ─────────────────────────────────────────
-// FEATURED PRODUCTS
-// ─────────────────────────────────────────
-const PRODUCTS_DATA = [
-  {
-    id: "erp",
-    name: "Viyan ERP",
-    subtitle: "Enterprise Resource Planning",
-    desc: "A complete enterprise resource planning platform designed to simplify HR, finance, payroll, inventory and business operations through one unified ecosystem.",
-    features: [
-      "HR Management",
-      "Payroll",
-      "CRM",
-      "Inventory",
-      "Procurement",
-      "Finance",
-      "Reports",
-    ],
-    image: erpImg,
-  },
-  {
-    id: "crm",
-    name: "Viyan CRM",
-    subtitle: "Customer Relationship Management",
-    desc: "Manage customer relationships, automate sales workflows and track every lead with a centralized CRM platform.",
-    features: [
-      "Lead Management",
-      "Sales Pipeline",
-      "Customer Database",
-      "Automation",
-      "Analytics",
-    ],
-    image: crmImg,
-  },
-  {
-    id: "inventory",
-    name: "Viyan Inventory",
-    subtitle: "Inventory & Warehouse Platform",
-    desc: "Monitor inventory, suppliers and warehouse operations in real time with smart stock management.",
-    features: [
-      "Stock Tracking",
-      "Barcode",
-      "Purchase Orders",
-      "Warehouse",
-      "Suppliers",
-    ],
-    image: inventoryImg,
-  },
-  {
-    id: "medassist",
-    name: "Viyan MedAssist",
-    subtitle: "Healthcare Management Platform",
-    desc: "A healthcare platform helping pharmacies and clinics manage medicines, prescriptions and billing efficiently.",
-    features: [
-      "Pharmacy Billing",
-      "Medicine Stock",
-      "Prescriptions",
-      "GST",
-      "Patients",
-    ],
-    image: medassistImg,
-  },
-  {
-    id: "pos",
-    name: "Viyan POS",
-    subtitle: "Retail Billing Platform",
-    desc: "Cloud-based retail billing software for faster transactions, inventory synchronization and business reporting.",
-    features: ["Billing", "Inventory", "GST", "Reports", "Payments"],
-    image: posImg,
-  },
-  {
-    id: "lms",
-    name: "Viyan LMS",
-    subtitle: "Training & Internship Portal",
-    desc: "Learning management platform for training centers, institutions and internship programs.",
-    features: [
-      "Student Dashboard",
-      "Mentor Dashboard",
-      "Attendance",
-      "Certificates",
-      "Assignments",
-    ],
-    image: lmsImg,
-  },
-  {
-    id: "ai",
-    name: "Viyan AI Analytics",
-    subtitle: "Business Intelligence Platform",
-    desc: "AI-powered analytics platform that transforms raw business data into actionable insights.",
-    features: [
-      "AI Predictions",
-      "Reports",
-      "Dashboards",
-      "Forecasting",
-      "Business Intelligence",
-    ],
-    image: aiImg,
-  },
-];
-
 function ProductRow({
   product,
   index,
 }: {
-  product: (typeof PRODUCTS_DATA)[0];
+  product: (typeof ProductContent2)[0];
   index: number;
 }) {
   const ref = useRef(null);
@@ -374,69 +266,36 @@ function ProductsFeatured() {
           </p>
         </motion.div>
       </div>
+
+      {/* Optional Timeline Flow */}
+      <div className="max-w-5xl mx-auto mb-20 text-center">
+        <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest mb-8">
+          Our Product Engineering Lifecycle
+        </h4>
+        <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 max-w-4xl mx-auto">
+          {ProductContent.map((step, idx) => (
+            <div key={idx} className="flex items-center gap-2 sm:gap-4">
+              <div className="px-4 py-2.5 rounded-xl bg-white border border-[#E9D5FF] text-xs font-bold text-[#0F172A] shadow-2xs hover:border-[#7B2FF7] hover:text-[#7B2FF7] transition-all">
+                {step}
+              </div>
+              {idx < 6 && (
+                <span className="text-[#7B2FF7] font-bold text-sm shrink-0">
+                  →
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="product-showcase">
-        {PRODUCTS_DATA.map((product, idx) => (
+        {ProductContent2.map((product, idx) => (
           <ProductRow key={product.id} product={product} index={idx} />
         ))}
       </div>
     </section>
   );
 }
-
-// ─────────────────────────────────────────
-// INDUSTRIES BENTO GRID
-// ─────────────────────────────────────────
-const INDUSTRIES = [
-  {
-    title: "Enterprise",
-    desc: "Scalable ERP solutions for large organizations.",
-    icon: <Briefcase />,
-    class: "bento-large",
-    bg: erpImg,
-  },
-  {
-    title: "Healthcare",
-    desc: "Management platforms for clinics & pharmacies.",
-    icon: <HeartPulse />,
-    class: "",
-    bg: medassistImg,
-  },
-  {
-    title: "Retail",
-    desc: "POS and inventory for modern retail.",
-    icon: <ShoppingBag />,
-    class: "",
-    bg: posImg,
-  },
-  {
-    title: "Education",
-    desc: "LMS and training portals.",
-    icon: <GraduationCap />,
-    class: "bento-wide",
-    bg: lmsImg,
-  },
-  {
-    title: "Artificial Intelligence",
-    desc: "Predictive analytics and smart reporting.",
-    icon: <Cpu />,
-    class: "bento-wide",
-    bg: aiImg,
-  },
-  {
-    title: "Finance",
-    desc: "Integrated accounting and payroll.",
-    icon: <Activity />,
-    class: "",
-    bg: financeImg,
-  },
-  {
-    title: "CRM",
-    desc: "Customer relationship automation.",
-    icon: <Briefcase />,
-    class: "",
-    bg: crmImg,
-  },
-];
 
 function ProductsIndustries() {
   return (
@@ -464,7 +323,7 @@ function ProductsIndustries() {
           </motion.div>
         </div>
         <div className="bento-grid">
-          {INDUSTRIES.map((ind, i) => (
+          {ProductContent1.map((ind, i) => (
             <motion.div
               key={i}
               className={`bento-item ${ind.class}`}
@@ -493,42 +352,6 @@ function ProductsIndustries() {
   );
 }
 
-// ─────────────────────────────────────────
-// WHY CHOOSE US
-// ─────────────────────────────────────────
-const REASONS = [
-  {
-    title: "Secure",
-    desc: "Enterprise-grade security and data encryption to keep your business safe.",
-    icon: <Shield size={32} strokeWidth={1.5} />,
-  },
-  {
-    title: "Scalable",
-    desc: "Built to grow with your business from startup to enterprise scale.",
-    icon: <Activity size={32} strokeWidth={1.5} />,
-  },
-  {
-    title: "Cloud Ready",
-    desc: "Access your data anywhere, anytime with our robust cloud infrastructure.",
-    icon: <Cloud size={32} strokeWidth={1.5} />,
-  },
-  {
-    title: "Fast Deployment",
-    desc: "Get up and running quickly with streamlined onboarding.",
-    icon: <Zap size={32} strokeWidth={1.5} />,
-  },
-  {
-    title: "AI Powered",
-    desc: "Leverage artificial intelligence for smarter business insights.",
-    icon: <Cpu size={32} strokeWidth={1.5} />,
-  },
-  {
-    title: "24/7 Support",
-    desc: "Dedicated technical support team ready to assist you anytime.",
-    icon: <Headphones size={32} strokeWidth={1.5} />,
-  },
-];
-
 function ProductsWhyChoose() {
   return (
     <section className="why-section products-container">
@@ -538,7 +361,7 @@ function ProductsWhyChoose() {
         <p>Engineered for reliability, performance, and exponential growth.</p>
       </div>
       <div className="why-grid">
-        {REASONS.map((reason, i) => (
+        {ProductContent3.map((reason, i) => (
           <motion.div
             key={i}
             className="why-card"
@@ -716,28 +539,6 @@ function ProductsComparison() {
   );
 }
 
-// ─────────────────────────────────────────
-// FAQ
-// ─────────────────────────────────────────
-const FAQS = [
-  {
-    q: "Can I integrate Viyan products with my existing software?",
-    a: "Yes, our platforms are built with API-first architecture, allowing seamless integration with popular third-party tools, accounting software, and payment gateways.",
-  },
-  {
-    q: "Is the data stored securely?",
-    a: "Absolutely. We use enterprise-grade encryption and host on secure cloud infrastructure (AWS/Azure) with regular automated backups to ensure your data is always safe.",
-  },
-  {
-    q: "Do you offer customization?",
-    a: "Yes, while our flagship products cover most standard use cases, we offer customization services to tailor workflows, reports, and modules specifically to your business requirements.",
-  },
-  {
-    q: "How long does deployment take?",
-    a: "Standard deployments take between 3 to 7 days, including initial setup and data migration. Highly customized enterprise deployments may take 2 to 4 weeks.",
-  },
-];
-
 function ProductsFAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
@@ -749,7 +550,7 @@ function ProductsFAQ() {
         <p>Everything you need to know about our platforms.</p>
       </div>
       <div className="faq-list">
-        {FAQS.map((faq, i) => (
+        {ProductContent4.map((faq, i) => (
           <div
             key={i}
             className={`faq-item ${openIdx === i ? "open" : ""}`}
