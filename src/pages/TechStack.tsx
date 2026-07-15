@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   Code2,
   Cpu,
@@ -18,84 +19,14 @@ import {
   TechStacks3,
   TechStacks4,
   TechStacks5,
+  DockerIcon,
+  PostgreSQLIcon,
+  AwsIcon,
+  RedisIcon,
 } from "../components/ArrayContent";
 import { SectionDivider } from "../components/SectionDivider";
 import { LiquidFooter } from "../components/LiquidFooter";
-
-const PostgreSQLIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M50 16C31.5 16 22 28.5 22 43.5C22 56 31 66.5 41 71.5L34 82H45L51 72.5C59.5 73.5 68 70 73 62C78 54 78 41 78 32.5C78 24 71.5 16 50 16Z"
-      stroke="#336791"
-      strokeWidth="4.5"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M38 34C35 34 32 37 32 41C32 45 35 48 38 48"
-      stroke="#336791"
-      strokeWidth="4"
-    />
-  </svg>
-);
-
-const AwsIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M22 62C27 68 37 72 50 72C63 72 73 68 78 62"
-      stroke="#FF9900"
-      strokeWidth="5.5"
-      strokeLinecap="round"
-    />
-    <path d="M74 61L81 67L79 56L74 61Z" fill="#FF9900" />
-    <text
-      x="50"
-      y="50"
-      fill="white"
-      fontSize="26"
-      fontWeight="extrabold"
-      fontFamily="sans-serif"
-      textAnchor="middle"
-    >
-      AWS
-    </text>
-  </svg>
-);
-
-const DockerIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <rect x="22" y="44" width="12" height="12" rx="2" fill="#2496ED" />
-    <rect x="38" y="44" width="12" height="12" rx="2" fill="#2496ED" />
-    <rect x="54" y="44" width="12" height="12" rx="2" fill="#2496ED" />
-    <rect x="38" y="28" width="12" height="12" rx="2" fill="#2496ED" />
-    <path
-      d="M14 62C24 62 26 52 48 52C70 52 72 62 86 62C86 72 74 78 50 78C26 78 14 72 14 62Z"
-      fill="#2496ED"
-    />
-  </svg>
-);
-
-const RedisIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M18 30L50 16L82 30L50 44L18 30Z"
-      fill="#DC382D"
-      stroke="#A81C14"
-      strokeWidth="2"
-    />
-    <path
-      d="M18 48L50 34L82 48L50 62L18 48Z"
-      fill="#DC382D"
-      stroke="#A81C14"
-      strokeWidth="2"
-    />
-    <path
-      d="M18 66L50 52L82 66L50 80L18 66Z"
-      fill="#DC382D"
-      stroke="#A81C14"
-      strokeWidth="2"
-    />
-  </svg>
-);
+import techstackImg from "../assets/techstack_img.webp";
 
 export default function TechStack() {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
@@ -1055,53 +986,75 @@ export default function TechStack() {
         </div>
       </section>
 
-      <SectionDivider />
+      {/* ── CTA + FOOTER SECTION ── */}
+      <section
+        className="relative w-[94%] md:w-full mx-auto overflow-hidden rounded-t-[32px] rounded-b-none md:rounded-t-[40px] md:rounded-b-none z-10"
+        style={{
+          minHeight: "950px",
+          marginTop: "80px",
+          paddingTop: "70px",
+          paddingBottom: "40px",
+        }}
+      >
+        {/* Background image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={techstackImg}
+            alt="Tech Stack Background"
+            className="w-full h-full object-cover object-center opacity-80"
+          />
+        </div>
 
-      {/* CTA SECTION */}
-      <section className="py-24 bg-[#FAF7FF] relative">
-        <div className="container max-w-[1000px] mx-auto px-6 relative z-10">
+        {/* Cinematic overlay */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(10, 10, 25, 0.2), rgba(8, 8, 18, 0.6))",
+          }}
+        />
+
+        {/* CTA */}
+        <div className="relative z-10 flex justify-start px-8 md:px-16 lg:px-24">
           <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-8 md:p-12 rounded-3xl bg-gradient-to-tr from-[#7B2FF7] to-[#9333EA] text-center text-white relative overflow-hidden shadow-xl"
+            transition={{ duration: 0.8 }}
+            className="w-full max-w-3xl flex flex-col items-start text-left"
           >
-            {/* Ambient background particles */}
-            <div className="absolute inset-0 pointer-events-none opacity-20">
-              <div className="absolute w-80 h-80 bg-white rounded-full blur-3xl top-[-100px] left-[-100px]" />
-              <div className="absolute w-80 h-80 bg-white rounded-full blur-3xl bottom-[-100px] right-[-100px]" />
-            </div>
-
-            <span className="relative z-10 inline-block px-3 py-1 rounded-full bg-white/20 border border-white/30 text-xs font-mono font-extrabold tracking-wider uppercase mb-6">
-              Connect With Us
+            <span className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
+              Ready to build with modern tech?
             </span>
-            <h2 className="relative z-10 text-4xl sm:text-5xl font-display font-black tracking-tight mb-4">
-              Build With Modern Technology
-            </h2>
-            <p className="relative z-10 text-lg text-purple-100 max-w-xl mx-auto mb-10">
-              Let's create scalable, secure software powered by the latest
-              technologies.
+
+            <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 drop-shadow-md">
+              Let's coordinate on requirements and engineer a custom, scalable
+              solution for your business.
             </p>
 
-            <div className="relative z-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="/contact"
-                className="w-full sm:w-auto px-8 py-4 bg-white text-[#7B2FF7] font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-md hover:bg-slate-50 transition-colors flex items-center justify-center gap-2"
-              >
-                Start Project <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href="/contact"
-                className="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-extrabold text-xs uppercase tracking-wider rounded-xl transition-colors"
-              >
-                Schedule Consultation
-              </a>
-            </div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className="self-start"
+            >
+              <Link to="/contact" className="block relative group">
+                <div className="absolute inset-0 bg-[#7c3aed] blur-[40px] opacity-55 group-hover:opacity-85 transition-opacity duration-300 rounded-full" />
+
+                <button
+                  className="relative px-[48px] py-[18px] text-white font-semibold text-sm uppercase tracking-wider rounded-full shadow-[0_0_40px_rgba(124,58,237,0.55)] transition-all duration-300 border border-white/10 flex items-center gap-2"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #7c3aed, #9333ea, #6366f1)",
+                  }}
+                >
+                  Start Project <ArrowRight size={16} />
+                </button>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
+        <LiquidFooter />
       </section>
-
-      <LiquidFooter isLight={true} />
     </div>
   );
 }
