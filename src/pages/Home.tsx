@@ -794,7 +794,17 @@ export default function Home() {
       </section>
 
       <SectionDivider />
-      <HomeVisuals />
+      <HomeVisuals
+        heroRef={heroRef}
+        heroContentRef={heroContentRef}
+        containerRef={containerRef}
+        dashRef={dashRef}
+        flowerRef={flowerRef}
+        servicesSectionRef={servicesSectionRef}
+        servicesTrackRef={servicesTrackRef}
+        servicesBlob1Ref={servicesBlob1Ref}
+        servicesBlob2Ref={servicesBlob2Ref}
+      />
     </div>
   );
 }

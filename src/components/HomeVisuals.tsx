@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useEffect } from "react";
+import { useRef, useLayoutEffect, useEffect, type RefObject } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
@@ -10,21 +10,36 @@ import { CTAParticles } from "../components/CTAParticles";
 import { burst } from "../utils/particleBurst";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function HomeVisuals() {
+gsap.registerPlugin(ScrollTrigger);
+
+
+interface HomeVisualsProps {
+  heroRef: RefObject<HTMLElement | null>;
+  heroContentRef: RefObject<HTMLDivElement | null>;
+  containerRef: RefObject<HTMLDivElement | null>;
+  dashRef: RefObject<HTMLImageElement | null>;
+  flowerRef: RefObject<HTMLImageElement | null>;
+  servicesSectionRef: RefObject<HTMLElement | null>;
+  servicesTrackRef: RefObject<HTMLDivElement | null>;
+  servicesBlob1Ref: RefObject<HTMLDivElement | null>;
+  servicesBlob2Ref: RefObject<HTMLDivElement | null>;
+}
+
+export function HomeVisuals({
+  heroRef,
+  heroContentRef,
+  dashRef,
+  flowerRef,
+  servicesSectionRef,
+  servicesTrackRef,
+  servicesBlob1Ref,
+  servicesBlob2Ref,
+}: HomeVisualsProps) {
   const ctaContainerRef = useRef<HTMLDivElement>(null);
   const astronautRef = useRef<HTMLImageElement>(null);
   const saturnRef = useRef<HTMLImageElement>(null);
   const heroBgLayerRef = useRef<HTMLDivElement>(null);
   const heroBgBlobRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const heroContentRef = useRef<HTMLDivElement>(null);
-  const dashRef = useRef<HTMLImageElement>(null);
-  const flowerRef = useRef<HTMLImageElement>(null);
-  const servicesSectionRef = useRef<HTMLElement>(null);
-  const servicesTrackRef = useRef<HTMLDivElement>(null);
-  const servicesBlob1Ref = useRef<HTMLDivElement>(null);
-  const servicesBlob2Ref = useRef<HTMLDivElement>(null);
 
   const handleCtaMouseLeave = () => {
     if (astronautRef.current) {
@@ -139,11 +154,12 @@ export function HomeVisuals() {
   }, []);
 
   useLayoutEffect(() => {
-    if (!containerRef.current) return;
+    if (!servicesSectionRef.current || !heroRef.current) {
+      return;
+    }
 
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
-
       // ALL DESKTOP / TABLET UP ANIMATIONS (>= 769px)
       mm.add("(min-width: 769px)", () => {
         // --- Hero Entrance ---
@@ -386,7 +402,7 @@ export function HomeVisuals() {
           });
         }
       });
-    }, containerRef);
+    });
 
     return () => ctx.revert();
   }, []);
@@ -412,6 +428,7 @@ export function HomeVisuals() {
           <div className="absolute left-[2%] opacity-70 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_7s_ease-in-out_infinite] saturnimage  top-[20%]">
             {/* Saturn image floating in top left */}
             <img
+              ref={saturnRef}
               src={saturnimage}
               alt="Saturn"
               className="animate-[float-y_6s_ease-in-out_infinite] img-fluid w-[500px] md:w-[700px]"
