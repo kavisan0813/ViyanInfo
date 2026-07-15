@@ -13,12 +13,9 @@ import {
   Network,
   Bell,
   Wifi,
-  Activity,
   Search,
   Rocket,
   TrendingUp,
-  HeartPulse,
-  Briefcase,
   MapPin,
   Award,
   CreditCard,
@@ -32,13 +29,11 @@ import {
   Eye,
   Database,
   CheckCircle2,
-  Headphones,
   Shield,
   Zap,
   ShieldAlert,
   BrainCircuit,
   Handshake,
-  ShoppingBag,
   LineChart,
   Infinity as InfinityIcon,
 } from "lucide-react";
@@ -48,15 +43,560 @@ import inventryImg from "../assets/inventry.webp";
 import medassistimg from "../assets/work_medassist.png";
 import emsImg from "../assets/ems.webp";
 import billingsImg from "../assets/work_billing.png";
-import inventoryImg from "../assets/work_inventory_concept.png";
-import erpImg from "../assets/work_erp_concept.png";
-import crmImg from "../assets/work_crm_concept.png";
-import medassistImg from "../assets/work_pharmacy_concept.png";
-import posImg from "../assets/work_billing_concept.png";
-import lmsImg from "../assets/work_training_concept.png";
-import aiImg from "../assets/work_ai_concept.png";
-import financeImg from "../assets/work_employment_concept.png"
 
+export const PostgreSQLIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path
+      d="M50 16C31.5 16 22 28.5 22 43.5C22 56 31 66.5 41 71.5L34 82H45L51 72.5C59.5 73.5 68 70 73 62C78 54 78 41 78 32.5C78 24 71.5 16 50 16Z"
+      stroke="#336791"
+      strokeWidth="4.5"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M38 34C35 34 32 37 32 41C32 45 35 48 38 48"
+      stroke="#336791"
+      strokeWidth="4"
+    />
+  </svg>
+);
+
+export const AwsIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path
+      d="M22 62C27 68 37 72 50 72C63 72 73 68 78 62"
+      stroke="#FF9900"
+      strokeWidth="5.5"
+      strokeLinecap="round"
+    />
+    <path d="M74 61L81 67L79 56L74 61Z" fill="#FF9900" />
+    <text
+      x="50"
+      y="50"
+      fill="white"
+      fontSize="26"
+      fontWeight="extrabold"
+      fontFamily="sans-serif"
+      textAnchor="middle"
+    >
+      AWS
+    </text>
+  </svg>
+);
+
+export const DockerIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <rect x="22" y="44" width="12" height="12" rx="2" fill="#2496ED" />
+    <rect x="38" y="44" width="12" height="12" rx="2" fill="#2496ED" />
+    <rect x="54" y="44" width="12" height="12" rx="2" fill="#2496ED" />
+    <rect x="38" y="28" width="12" height="12" rx="2" fill="#2496ED" />
+    <path
+      d="M14 62C24 62 26 52 48 52C70 52 72 62 86 62C86 72 74 78 50 78C26 78 14 72 14 62Z"
+      fill="#2496ED"
+    />
+  </svg>
+);
+
+export const RedisIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path
+      d="M18 30L50 16L82 30L50 44L18 30Z"
+      fill="#DC382D"
+      stroke="#A81C14"
+      strokeWidth="2"
+    />
+    <path
+      d="M18 48L50 34L82 48L50 62L18 48Z"
+      fill="#DC382D"
+      stroke="#A81C14"
+      strokeWidth="2"
+    />
+    <path
+      d="M18 66L50 52L82 66L50 80L18 66Z"
+      fill="#DC382D"
+      stroke="#A81C14"
+      strokeWidth="2"
+    />
+  </svg>
+);
+
+const OpenAiIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path
+      d="M50 28C44 28 39 31 36 36C33 33 28 32 24 35C20 38 19 44 22 48C18 51 17 57 20 61C23 65 29 66 33 63C36 67 41 69 46 67C49 71 55 72 59 69C63 66 64 60 61 56C65 53 66 47 63 43C60 39 54 38 50 41C47 37 42 35 37 37"
+      stroke="#10A37F"
+      strokeWidth="4.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle cx="50" cy="50" r="4" fill="#10A37F" />
+  </svg>
+);
+
+const LangChainIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <rect
+      x="25"
+      y="35"
+      width="30"
+      height="30"
+      rx="8"
+      stroke="#38BDF8"
+      strokeWidth="5"
+      transform="rotate(-15 40 50)"
+    />
+    <rect
+      x="45"
+      y="35"
+      width="30"
+      height="30"
+      rx="8"
+      stroke="#10A37F"
+      strokeWidth="5"
+      transform="rotate(15 60 50)"
+    />
+  </svg>
+);
+
+const ExpressIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="44" fill="#353535" />
+    <text
+      x="50"
+      y="58"
+      fill="white"
+      fontSize="28"
+      fontWeight="bold"
+      fontFamily="monospace"
+      textAnchor="middle"
+    >
+      Ex
+    </text>
+  </svg>
+);
+
+const FastApiIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="44" stroke="#009688" strokeWidth="4" />
+    <path d="M52 24L32 50H48L44 76L68 44H50L52 24Z" fill="#009688" />
+  </svg>
+);
+
+const NodejsIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path
+      d="M48 22.5L25 35.5V62L48 75L71 62V35.5L48 22.5Z"
+      stroke="#339933"
+      strokeWidth="4"
+      strokeLinejoin="round"
+    />
+    <path d="M48 22.5L25 35.5V62L48 75V22.5Z" fill="#339933" opacity="0.1" />
+    <path
+      d="M48 40V65"
+      stroke="#339933"
+      strokeWidth="5"
+      strokeLinecap="round"
+    />
+    <circle cx="48" cy="32" r="3" fill="#339933" />
+  </svg>
+);
+
+const PythonIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path
+      d="M50 12C38 12 37 17 37 23.5V31.5H50V33.5H30.5C23.5 33.5 19 37.5 19 49C19 60.5 23.5 64.5 30.5 64.5H35.5V58.5C35.5 50.5 41.5 44.5 49.5 44.5H62.5V36.5C62.5 24.5 58.5 12 50 12Z"
+      fill="#3776AB"
+    />
+    <path
+      d="M50 88C62 88 63 83 63 76.5V68.5H50V66.5H69.5C76.5 66.5 81 62.5 81 51C81 39.5 76.5 35.5 69.5 35.5H64.5V41.5C64.5 49.5 58.5 55.5 50.5 55.5H37.5V63.5C37.5 75.5 41.5 88 50 88Z"
+      fill="#FFE052"
+    />
+    <circle cx="44" cy="21" r="2.5" fill="white" />
+    <circle cx="56" cy="79" r="2.5" fill="black" />
+  </svg>
+);
+
+const DjangoIcon = () => (
+  <svg
+    className="w-8 h-8 rounded-lg overflow-hidden"
+    viewBox="0 0 100 100"
+    fill="none"
+  >
+    <rect width="100" height="100" fill="#092E20" />
+    <text
+      x="50"
+      y="65"
+      fill="#0FEE90"
+      fontSize="56"
+      fontWeight="bold"
+      fontFamily="serif"
+      textAnchor="middle"
+    >
+      d
+    </text>
+  </svg>
+);
+
+const ReactIcon = () => (
+  <svg
+    className="w-8 h-8"
+    viewBox="0 0 100 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="50" cy="50" r="8" fill="#61DAFB" />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="14"
+      stroke="#61DAFB"
+      strokeWidth="3"
+      transform="rotate(0 50 50)"
+    />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="14"
+      stroke="#61DAFB"
+      strokeWidth="3"
+      transform="rotate(60 50 50)"
+    />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="14"
+      stroke="#61DAFB"
+      strokeWidth="3"
+      transform="rotate(120 50 50)"
+    />
+  </svg>
+);
+
+const MongodbIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path
+      d="M50 12C50 12 32 32 32 54C32 68 41 76 50 88C50 88 50 82 50 78"
+      stroke="#47A248"
+      strokeWidth="4.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M50 12C50 12 68 32 68 54C68 68 59 76 50 88"
+      stroke="#47A248"
+      strokeWidth="4.5"
+      strokeLinecap="round"
+    />
+    <path d="M50 28V68" stroke="#3F3F3F" strokeWidth="4" />
+  </svg>
+);
+
+const FlutterIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M55 18L73 36L46 63L28 45L55 18Z" fill="#02569B" />
+    <path d="M46 63L64 81L46 99L28 81L46 63Z" fill="#0175C2" />
+    <path d="M46 63L64 45L73 54L55 72L46 63Z" fill="#13B9FD" />
+  </svg>
+);
+
+const ReactNativeIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="6" fill="#00D8FF" />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="12"
+      stroke="#00D8FF"
+      strokeWidth="3.5"
+      transform="rotate(30 50 50)"
+    />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="12"
+      stroke="#00D8FF"
+      strokeWidth="3.5"
+      transform="rotate(90 50 50)"
+    />
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="38"
+      ry="12"
+      stroke="#00D8FF"
+      strokeWidth="3.5"
+      transform="rotate(150 50 50)"
+    />
+  </svg>
+);
+
+const FirebaseIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path d="M22 75L50 20L60 40L22 75Z" fill="#FFC229" />
+    <path d="M78 75L50 20L58 36L78 75Z" fill="#FFA000" />
+    <path d="M22 75L50 88L78 75L60 40L50 50L22 75Z" fill="#F44336" />
+  </svg>
+);
+
+const NextjsIcon = () => (
+  <svg
+    className="w-8 h-8"
+    viewBox="0 0 100 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="50"
+      cy="50"
+      r="46"
+      fill="#000000"
+      stroke="#333"
+      strokeWidth="2"
+    />
+    <path
+      d="M72 70L42 34H36V66H41V42.5L68 73.5C70 72.3 71 71.2 72 70Z"
+      fill="white"
+    />
+    <rect x="58" y="34" width="5" height="32" fill="white" />
+  </svg>
+);
+
+const TypeScriptIcon = () => (
+  <svg
+    className="w-8 h-8 rounded-lg overflow-hidden"
+    viewBox="0 0 100 100"
+    fill="none"
+  >
+    <rect width="100" height="100" fill="#3178C6" />
+    <text
+      x="90"
+      y="85"
+      fill="white"
+      fontSize="42"
+      fontWeight="bold"
+      fontFamily="sans-serif"
+      textAnchor="end"
+    >
+      TS
+    </text>
+  </svg>
+);
+
+const TailwindIcon = () => (
+  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
+    <path
+      d="M26 50C26 38 35.5 32.5 44.5 32.5C56.5 32.5 59.5 41.5 68.5 41.5C74.5 41.5 80 37 80 32.5C80 44.5 70.5 50 61.5 50C49.5 50 46.5 41 37.5 41C31.5 41 26 45.5 26 50Z"
+      fill="#38BDF8"
+    />
+    <path
+      d="M14 62.5C14 50.5 23.5 45 32.5 45C44.5 45 47.5 54 56.5 54C62.5 54 68 49.5 68 45C68 57 58.5 62.5 49.5 62.5C37.5 62.5 34.5 53.5 25.5 53.5C19.5 53.5 14 58 14 62.5Z"
+      fill="#06B6D4"
+    />
+  </svg>
+);
+
+export function TestimonialCarousel() {
+  const reviews = [
+    {
+      text: "ViyanInfo developed our ERP platform. The design is beautiful, and the API speeds are outstanding. They delivered a week ahead of schedule.",
+      name: "Sarah Jenkins",
+      role: "Operations Director, MedGroup",
+      stars: 5,
+    },
+    {
+      text: "The web application we built together has scaled to 10k daily users without issue. Excellent engineering work and reliable customer support.",
+      name: "David K.",
+      role: "Founder, LedgerTech",
+      stars: 5,
+    },
+    {
+      text: "Invaluable partners for custom backend tools. Their team writes clean code, sets up CI/CD pipelines, and keeps architecture extremely tidy.",
+      name: "Michelle Ross",
+      role: "CTO, FinFlow",
+      stars: 5,
+    },
+  ];
+
+  const duplicatedReviews = [...reviews, ...reviews, ...reviews];
+
+  return (
+    <div className="relative w-full overflow-hidden flex pt-4 pb-8">
+      {/* Left/Right Gradient Masks */}
+      <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
+
+      <div className="flex gap-6 w-max animate-[ticker-left_40s_linear_infinite] hover:[animation-play-state:paused]">
+        {duplicatedReviews.map((review, idx) => (
+          <div
+            key={idx}
+            className="w-[350px] sm:w-[450px] p-8 rounded-3xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[0_10px_30px_rgba(123,47,247,0.03)] flex flex-col justify-between shrink-0"
+          >
+            <div className="mb-6">
+              <div className="flex gap-1 mb-4">
+                {Array(review.stars)
+                  .fill(0)
+                  .map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-amber-400 text-amber-400"
+                    />
+                  ))}
+              </div>
+              <p className="text-lg text-[#0F172A] font-display leading-relaxed">
+                "{review.text}"
+              </p>
+            </div>
+            <div>
+              <h4 className="font-display font-bold text-[#0F172A] text-[15px]">
+                {review.name}
+              </h4>
+              <span className="text-sm text-[#7B2FF7] font-medium">
+                {review.role}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function CountUp({
+  end,
+  duration = 2.5,
+}: {
+  end: number;
+  duration?: number;
+}) {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    let observer: IntersectionObserver;
+    let startTimestamp: number | null = null;
+
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min(
+        (timestamp - startTimestamp) / (duration * 1000),
+        1,
+      );
+      setCount(Math.floor(progress * end));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    if (elementRef.current) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            window.requestAnimationFrame(step);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 },
+      );
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+    };
+  }, [end, duration]);
+
+  return <span ref={elementRef}>{count}</span>;
+}
+
+export function Ourtools() {
+  return (
+    <section className="relative py-24 bg-[#FAF7FF] overflow-hidden">
+      <div className="container relative z-10">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+            Our Tools
+          </span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
+            Technology Stack
+          </h2>
+          <p className="text-lg text-[#475569] max-w-readable mx-auto">
+            We leverage modern language frameworks and cloud standards to deploy
+            resilient services.
+          </p>
+        </div>
+
+        {/* Marquee Row */}
+        <div className="mt-16 relative w-full overflow-hidden py-4 border-y border-[#E9D5FF]/30">
+          <div className="flex w-[200%] gap-12 animate-[ticker-left_30s_linear_infinite]">
+            {Array(2)
+              .fill([
+                "React",
+                "Next.js",
+                "Node.js",
+                "Python",
+                "Django",
+                "PostgreSQL",
+                "MongoDB",
+                "MySQL",
+                "AWS",
+                "Docker",
+                "Firebase",
+                "TailwindCSS",
+                "TypeScript",
+                "OpenAI",
+              ])
+              .flat()
+              .map((tech, idx) => {
+                const techColors: Record<string, string> = {
+                  react: "#61DAFB",
+                  "next.js": "#000000",
+                  typescript: "#3178C6",
+                  tailwindcss: "#06B6D4",
+                  java: "#ED8B00",
+                  python: "#3776AB",
+                  javascript: "#F7DF1E",
+                  go: "#00ADD8",
+                  springboot: "#6DB33F",
+                  fastapi: "#009688",
+                  nodejs: "#339933",
+                  "node.js": "#339933",
+                  "fiber, gin": "#00ADD8",
+                  postgresql: "#336791",
+                  mongodb: "#47A248",
+                  mysql: "#00758F",
+                  "spacetime db": "#7B2FF7",
+                  aws: "#FF9900",
+                  docker: "#2496ED",
+                  firebase: "#FFCA28",
+                  vercel: "#000000",
+                  "fine tuning`": "#A855F7",
+                  langchain: "#00A389",
+                  "vector dbs": "#8B5CF6",
+                  llamaindex: "#E24A8D",
+                  django: "#092E20",
+                  openai: "#10A37F",
+                };
+                const cleanKey = tech.toLowerCase().trim();
+                const color = techColors[cleanKey] || "#7B2FF7";
+                return (
+                  <div
+                    key={idx}
+                    className="px-6 py-2.5 rounded-xl bg-white/70 border border-white font-mono font-bold text-sm shadow-2xs shrink-0"
+                    style={{ color: color }}
+                  >
+                    {tech}
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export const Homecontent1 = [
   {
@@ -381,350 +921,6 @@ export const ProductContent = [
   "Continuous Innovation",
 ];
 
-export const ProductContent1 = [
-  {
-    id: "erp",
-    name: "Viyan ERP",
-    subtitle: "Enterprise Resource Planning",
-    desc: "A complete enterprise resource planning platform designed to simplify HR, finance, payroll, inventory and business operations through one unified ecosystem.",
-    features: ["HR Management", "Payroll", "CRM", "Inventory", "Procurement", "Finance", "Reports"],
-    image: erpImg,
-  },
-  {
-    id: "crm",
-    name: "Viyan CRM",
-    subtitle: "Customer Relationship Management",
-    desc: "Manage customer relationships, automate sales workflows and track every lead with a centralized CRM platform.",
-    features: ["Lead Management", "Sales Pipeline", "Customer Database", "Automation", "Analytics"],
-    image: crmImg,
-  },
-  {
-    id: "inventory",
-    name: "Viyan Inventory",
-    subtitle: "Inventory & Warehouse Platform",
-    desc: "Monitor inventory, suppliers and warehouse operations in real time with smart stock management.",
-    features: ["Stock Tracking", "Barcode", "Purchase Orders", "Warehouse", "Suppliers"],
-    image: inventoryImg,
-  },
-  {
-    id: "medassist",
-    name: "Viyan MedAssist",
-    subtitle: "Healthcare Management Platform",
-    desc: "A healthcare platform helping pharmacies and clinics manage medicines, prescriptions and billing efficiently.",
-    features: ["Pharmacy Billing", "Medicine Stock", "Prescriptions", "GST", "Patients"],
-    image: medassistImg,
-  },
-  {
-    id: "pos",
-    name: "Viyan POS",
-    subtitle: "Retail Billing Platform",
-    desc: "Cloud-based retail billing software for faster transactions, inventory synchronization and business reporting.",
-    features: ["Billing", "Inventory", "GST", "Reports", "Payments"],
-    image: posImg,
-  },
-  {
-    id: "lms",
-    name: "Viyan LMS",
-    subtitle: "Training & Internship Portal",
-    desc: "Learning management platform for training centers, institutions and internship programs.",
-    features: ["Student Dashboard", "Mentor Dashboard", "Attendance", "Certificates", "Assignments"],
-    image: lmsImg,
-  },
-  {
-    id: "ai",
-    name: "Viyan AI Analytics",
-    subtitle: "Business Intelligence Platform",
-    desc: "AI-powered analytics platform that transforms raw business data into actionable insights.",
-    features: ["AI Predictions", "Reports", "Dashboards", "Forecasting", "Business Intelligence"],
-    image: aiImg,
-  }
-];
-
-export const ProductContent2 = [
-  {
-    id: "erp",
-    name: "Viyan ERP",
-    subtitle: "Enterprise Resource Planning",
-    desc: "A complete enterprise resource planning platform designed to simplify HR, finance, payroll, inventory and business operations through one unified ecosystem.",
-    features: ["HR Management", "Payroll", "CRM", "Inventory", "Procurement", "Finance", "Reports"],
-    image: erpImg,
-  },
-  {
-    id: "crm",
-    name: "Viyan CRM",
-    subtitle: "Customer Relationship Management",
-    desc: "Manage customer relationships, automate sales workflows and track every lead with a centralized CRM platform.",
-    features: ["Lead Management", "Sales Pipeline", "Customer Database", "Automation", "Analytics"],
-    image: crmImg,
-  },
-  {
-    id: "inventory",
-    name: "Viyan Inventory",
-    subtitle: "Inventory & Warehouse Platform",
-    desc: "Monitor inventory, suppliers and warehouse operations in real time with smart stock management.",
-    features: ["Stock Tracking", "Barcode", "Purchase Orders", "Warehouse", "Suppliers"],
-    image: inventoryImg,
-  },
-  {
-    id: "medassist",
-    name: "Viyan MedAssist",
-    subtitle: "Healthcare Management Platform",
-    desc: "A healthcare platform helping pharmacies and clinics manage medicines, prescriptions and billing efficiently.",
-    features: ["Pharmacy Billing", "Medicine Stock", "Prescriptions", "GST", "Patients"],
-    image: medassistImg,
-  },
-  {
-    id: "pos",
-    name: "Viyan POS",
-    subtitle: "Retail Billing Platform",
-    desc: "Cloud-based retail billing software for faster transactions, inventory synchronization and business reporting.",
-    features: ["Billing", "Inventory", "GST", "Reports", "Payments"],
-    image: posImg,
-  },
-  {
-    id: "lms",
-    name: "Viyan LMS",
-    subtitle: "Training & Internship Portal",
-    desc: "Learning management platform for training centers, institutions and internship programs.",
-    features: ["Student Dashboard", "Mentor Dashboard", "Attendance", "Certificates", "Assignments"],
-    image: lmsImg,
-  },
-  {
-    id: "ai",
-    name: "Viyan AI Analytics",
-    subtitle: "Business Intelligence Platform",
-    desc: "AI-powered analytics platform that transforms raw business data into actionable insights.",
-    features: ["AI Predictions", "Reports", "Dashboards", "Forecasting", "Business Intelligence"],
-    image: aiImg,
-  }
-];
-
-export const ProductContent3 = [
-  { title: "Enterprise", desc: "Scalable ERP solutions for large organizations.", icon: <Briefcase />, class: "bento-large", bg: erpImg },
-  { title: "Healthcare", desc: "Management platforms for clinics & pharmacies.", icon: <HeartPulse />, class: "", bg: medassistImg },
-  { title: "Retail", desc: "POS and inventory for modern retail.", icon: <ShoppingBag />, class: "", bg: posImg },
-  { title: "Education", desc: "LMS and training portals.", icon: <GraduationCap />, class: "bento-wide", bg: lmsImg },
-  { title: "Artificial Intelligence", desc: "Predictive analytics and smart reporting.", icon: <Cpu />, class: "bento-wide", bg: aiImg },
-  { title: "Finance", desc: "Integrated accounting and payroll.", icon: <Activity />, class: "", bg: financeImg },
-  { title: "CRM", desc: "Customer relationship automation.", icon: <Briefcase />, class: "", bg: crmImg },
-];
-
-export const ProductContent4 = [
-  { title: "Secure", desc: "Enterprise-grade security and data encryption to keep your business safe.", icon: <Shield size={32} strokeWidth={1.5} /> },
-  { title: "Scalable", desc: "Built to grow with your business from startup to enterprise scale.", icon: <Activity size={32} strokeWidth={1.5} /> },
-  { title: "Cloud Ready", desc: "Access your data anywhere, anytime with our robust cloud infrastructure.", icon: <Cloud size={32} strokeWidth={1.5} /> },
-  { title: "Fast Deployment", desc: "Get up and running quickly with streamlined onboarding.", icon: <Zap size={32} strokeWidth={1.5} /> },
-  { title: "AI Powered", desc: "Leverage artificial intelligence for smarter business insights.", icon: <Cpu size={32} strokeWidth={1.5} /> },
-  { title: "24/7 Support", desc: "Dedicated technical support team ready to assist you anytime.", icon: <Headphones size={32} strokeWidth={1.5} /> },
-];
-
-export const ProductContent5 = [
-  { q: "Can I integrate Viyan products with my existing software?", a: "Yes, our platforms are built with API-first architecture, allowing seamless integration with popular third-party tools, accounting software, and payment gateways." },
-  { q: "Is the data stored securely?", a: "Absolutely. We use enterprise-grade encryption and host on secure cloud infrastructure (AWS/Azure) with regular automated backups to ensure your data is always safe." },
-  { q: "Do you offer customization?", a: "Yes, while our flagship products cover most standard use cases, we offer customization services to tailor workflows, reports, and modules specifically to your business requirements." },
-  { q: "How long does deployment take?", a: "Standard deployments take between 3 to 7 days, including initial setup and data migration. Highly customized enterprise deployments may take 2 to 4 weeks." },
-];
-
-export function TestimonialCarousel() {
-  const reviews = [
-    {
-      text: "ViyanInfo developed our ERP platform. The design is beautiful, and the API speeds are outstanding. They delivered a week ahead of schedule.",
-      name: "Sarah Jenkins",
-      role: "Operations Director, MedGroup",
-      stars: 5,
-    },
-    {
-      text: "The web application we built together has scaled to 10k daily users without issue. Excellent engineering work and reliable customer support.",
-      name: "David K.",
-      role: "Founder, LedgerTech",
-      stars: 5,
-    },
-    {
-      text: "Invaluable partners for custom backend tools. Their team writes clean code, sets up CI/CD pipelines, and keeps architecture extremely tidy.",
-      name: "Michelle Ross",
-      role: "CTO, FinFlow",
-      stars: 5,
-    },
-  ];
-
-  const duplicatedReviews = [...reviews, ...reviews, ...reviews];
-
-  return (
-    <div className="relative w-full overflow-hidden flex pt-4 pb-8">
-      {/* Left/Right Gradient Masks */}
-      <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-[#FAF7FF] to-transparent z-10 pointer-events-none"></div>
-
-      <div className="flex gap-6 w-max animate-[ticker-left_40s_linear_infinite] hover:[animation-play-state:paused]">
-        {duplicatedReviews.map((review, idx) => (
-          <div
-            key={idx}
-            className="w-[350px] sm:w-[450px] p-8 rounded-3xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[0_10px_30px_rgba(123,47,247,0.03)] flex flex-col justify-between shrink-0"
-          >
-            <div className="mb-6">
-              <div className="flex gap-1 mb-4">
-                {Array(review.stars)
-                  .fill(0)
-                  .map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-amber-400 text-amber-400"
-                    />
-                  ))}
-              </div>
-              <p className="text-lg text-[#0F172A] font-display leading-relaxed">
-                "{review.text}"
-              </p>
-            </div>
-            <div>
-              <h4 className="font-display font-bold text-[#0F172A] text-[15px]">
-                {review.name}
-              </h4>
-              <span className="text-sm text-[#7B2FF7] font-medium">
-                {review.role}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export function CountUp({
-  end,
-  duration = 2.5,
-}: {
-  end: number;
-  duration?: number;
-}) {
-  const [count, setCount] = useState(0);
-  const elementRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    let observer: IntersectionObserver;
-    let startTimestamp: number | null = null;
-
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min(
-        (timestamp - startTimestamp) / (duration * 1000),
-        1,
-      );
-      setCount(Math.floor(progress * end));
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-
-    if (elementRef.current) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            window.requestAnimationFrame(step);
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.1 },
-      );
-      observer.observe(elementRef.current);
-    }
-
-    return () => {
-      if (observer) observer.disconnect();
-    };
-  }, [end, duration]);
-
-  return <span ref={elementRef}>{count}</span>;
-}
-
-export function Ourtools() {
-  return (
-    <section className="relative py-24 bg-[#FAF7FF] overflow-hidden">
-      <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-            Our Tools
-          </span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
-            Technology Stack
-          </h2>
-          <p className="text-lg text-[#475569] max-w-readable mx-auto">
-            We leverage modern language frameworks and cloud standards to deploy
-            resilient services.
-          </p>
-        </div>
-
-        {/* Marquee Row */}
-        <div className="mt-16 relative w-full overflow-hidden py-4 border-y border-[#E9D5FF]/30">
-          <div className="flex w-[200%] gap-12 animate-[ticker-left_30s_linear_infinite]">
-            {Array(2)
-              .fill([
-                "React",
-                "Next.js",
-                "Node.js",
-                "Python",
-                "Django",
-                "PostgreSQL",
-                "MongoDB",
-                "MySQL",
-                "AWS",
-                "Docker",
-                "Firebase",
-                "TailwindCSS",
-                "TypeScript",
-                "OpenAI",
-              ])
-              .flat()
-              .map((tech, idx) => {
-                const techColors: Record<string, string> = {
-                  react: "#61DAFB",
-                  "next.js": "#000000",
-                  typescript: "#3178C6",
-                  tailwindcss: "#06B6D4",
-                  java: "#ED8B00",
-                  python: "#3776AB",
-                  javascript: "#F7DF1E",
-                  go: "#00ADD8",
-                  springboot: "#6DB33F",
-                  fastapi: "#009688",
-                  nodejs: "#339933",
-                  "node.js": "#339933",
-                  "fiber, gin": "#00ADD8",
-                  postgresql: "#336791",
-                  mongodb: "#47A248",
-                  mysql: "#00758F",
-                  "spacetime db": "#7B2FF7",
-                  aws: "#FF9900",
-                  docker: "#2496ED",
-                  firebase: "#FFCA28",
-                  vercel: "#000000",
-                  "fine tuning`": "#A855F7",
-                  langchain: "#00A389",
-                  "vector dbs": "#8B5CF6",
-                  llamaindex: "#E24A8D",
-                  django: "#092E20",
-                  openai: "#10A37F",
-                };
-                const cleanKey = tech.toLowerCase().trim();
-                const color = techColors[cleanKey] || "#7B2FF7";
-                return (
-                  <div
-                    key={idx}
-                    className="px-6 py-2.5 rounded-xl bg-white/70 border border-white font-mono font-bold text-sm shadow-2xs shrink-0"
-                    style={{ color: color }}
-                  >
-                    {tech}
-                  </div>
-                );
-              })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export const HomecontentProducts = [
   {
     name: "Viyan MedAssist",
@@ -808,44 +1004,6 @@ export const TechStacks = [
   },
 ];
 
-const OpenAiIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M50 28C44 28 39 31 36 36C33 33 28 32 24 35C20 38 19 44 22 48C18 51 17 57 20 61C23 65 29 66 33 63C36 67 41 69 46 67C49 71 55 72 59 69C63 66 64 60 61 56C65 53 66 47 63 43C60 39 54 38 50 41C47 37 42 35 37 37"
-      stroke="#10A37F"
-      strokeWidth="4.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <circle cx="50" cy="50" r="4" fill="#10A37F" />
-  </svg>
-);
-
-const LangChainIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <rect
-      x="25"
-      y="35"
-      width="30"
-      height="30"
-      rx="8"
-      stroke="#38BDF8"
-      strokeWidth="5"
-      transform="rotate(-15 40 50)"
-    />
-    <rect
-      x="45"
-      y="35"
-      width="30"
-      height="30"
-      rx="8"
-      stroke="#10A37F"
-      strokeWidth="5"
-      transform="rotate(15 60 50)"
-    />
-  </svg>
-);
-
 export const TechStacks1 = [
   {
     name: "OpenAI",
@@ -884,85 +1042,6 @@ export const TechStacks1 = [
   },
 ];
 
-const ExpressIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" fill="#353535" />
-    <text
-      x="50"
-      y="58"
-      fill="white"
-      fontSize="28"
-      fontWeight="bold"
-      fontFamily="monospace"
-      textAnchor="middle"
-    >
-      Ex
-    </text>
-  </svg>
-);
-
-const FastApiIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" stroke="#009688" strokeWidth="4" />
-    <path d="M52 24L32 50H48L44 76L68 44H50L52 24Z" fill="#009688" />
-  </svg>
-);
-
-const NodejsIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M48 22.5L25 35.5V62L48 75L71 62V35.5L48 22.5Z"
-      stroke="#339933"
-      strokeWidth="4"
-      strokeLinejoin="round"
-    />
-    <path d="M48 22.5L25 35.5V62L48 75V22.5Z" fill="#339933" opacity="0.1" />
-    <path
-      d="M48 40V65"
-      stroke="#339933"
-      strokeWidth="5"
-      strokeLinecap="round"
-    />
-    <circle cx="48" cy="32" r="3" fill="#339933" />
-  </svg>
-);
-
-const PythonIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M50 12C38 12 37 17 37 23.5V31.5H50V33.5H30.5C23.5 33.5 19 37.5 19 49C19 60.5 23.5 64.5 30.5 64.5H35.5V58.5C35.5 50.5 41.5 44.5 49.5 44.5H62.5V36.5C62.5 24.5 58.5 12 50 12Z"
-      fill="#3776AB"
-    />
-    <path
-      d="M50 88C62 88 63 83 63 76.5V68.5H50V66.5H69.5C76.5 66.5 81 62.5 81 51C81 39.5 76.5 35.5 69.5 35.5H64.5V41.5C64.5 49.5 58.5 55.5 50.5 55.5H37.5V63.5C37.5 75.5 41.5 88 50 88Z"
-      fill="#FFE052"
-    />
-    <circle cx="44" cy="21" r="2.5" fill="white" />
-    <circle cx="56" cy="79" r="2.5" fill="black" />
-  </svg>
-);
-
-const DjangoIcon = () => (
-  <svg
-    className="w-8 h-8 rounded-lg overflow-hidden"
-    viewBox="0 0 100 100"
-    fill="none"
-  >
-    <rect width="100" height="100" fill="#092E20" />
-    <text
-      x="50"
-      y="65"
-      fill="#0FEE90"
-      fontSize="56"
-      fontWeight="bold"
-      fontFamily="serif"
-      textAnchor="middle"
-    >
-      d
-    </text>
-  </svg>
-);
-
 export const TechStacks2 = [
   {
     name: "Node.js",
@@ -995,122 +1074,6 @@ export const TechStacks2 = [
     desc: "Minimalist and flexible Node.js web application framework for robust APIs.",
   },
 ];
-
-const ReactIcon = () => (
-  <svg
-    className="w-8 h-8"
-    viewBox="0 0 100 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="50" cy="50" r="8" fill="#61DAFB" />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="14"
-      stroke="#61DAFB"
-      strokeWidth="3"
-      transform="rotate(0 50 50)"
-    />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="14"
-      stroke="#61DAFB"
-      strokeWidth="3"
-      transform="rotate(60 50 50)"
-    />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="14"
-      stroke="#61DAFB"
-      strokeWidth="3"
-      transform="rotate(120 50 50)"
-    />
-  </svg>
-);
-
-const FlutterIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M55 18L73 36L46 63L28 45L55 18Z" fill="#02569B" />
-    <path d="M46 63L64 81L46 99L28 81L46 63Z" fill="#0175C2" />
-    <path d="M46 63L64 45L73 54L55 72L46 63Z" fill="#13B9FD" />
-  </svg>
-);
-
-const PostgreSQLIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M50 16C31.5 16 22 28.5 22 43.5C22 56 31 66.5 41 71.5L34 82H45L51 72.5C59.5 73.5 68 70 73 62C78 54 78 41 78 32.5C78 24 71.5 16 50 16Z"
-      stroke="#336791"
-      strokeWidth="4.5"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M38 34C35 34 32 37 32 41C32 45 35 48 38 48"
-      stroke="#336791"
-      strokeWidth="4"
-    />
-  </svg>
-);
-
-const MongodbIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M50 12C50 12 32 32 32 54C32 68 41 76 50 88C50 88 50 82 50 78"
-      stroke="#47A248"
-      strokeWidth="4.5"
-      strokeLinecap="round"
-    />
-    <path
-      d="M50 12C50 12 68 32 68 54C68 68 59 76 50 88"
-      stroke="#47A248"
-      strokeWidth="4.5"
-      strokeLinecap="round"
-    />
-    <path d="M50 28V68" stroke="#3F3F3F" strokeWidth="4" />
-  </svg>
-);
-
-const AwsIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M22 62C27 68 37 72 50 72C63 72 73 68 78 62"
-      stroke="#FF9900"
-      strokeWidth="5.5"
-      strokeLinecap="round"
-    />
-    <path d="M74 61L81 67L79 56L74 61Z" fill="#FF9900" />
-    <text
-      x="50"
-      y="50"
-      fill="white"
-      fontSize="26"
-      fontWeight="extrabold"
-      fontFamily="sans-serif"
-      textAnchor="middle"
-    >
-      AWS
-    </text>
-  </svg>
-);
-
-const DockerIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <rect x="22" y="44" width="12" height="12" rx="2" fill="#2496ED" />
-    <rect x="38" y="44" width="12" height="12" rx="2" fill="#2496ED" />
-    <rect x="54" y="44" width="12" height="12" rx="2" fill="#2496ED" />
-    <rect x="38" y="28" width="12" height="12" rx="2" fill="#2496ED" />
-    <path
-      d="M14 62C24 62 26 52 48 52C70 52 72 62 86 62C86 72 74 78 50 78C26 78 14 72 14 62Z"
-      fill="#2496ED"
-    />
-  </svg>
-);
 
 export const TechStacks3 = [
   {
@@ -1192,47 +1155,6 @@ export const TechStacks3 = [
   },
 ];
 
-const ReactNativeIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="6" fill="#00D8FF" />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="12"
-      stroke="#00D8FF"
-      strokeWidth="3.5"
-      transform="rotate(30 50 50)"
-    />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="12"
-      stroke="#00D8FF"
-      strokeWidth="3.5"
-      transform="rotate(90 50 50)"
-    />
-    <ellipse
-      cx="50"
-      cy="50"
-      rx="38"
-      ry="12"
-      stroke="#00D8FF"
-      strokeWidth="3.5"
-      transform="rotate(150 50 50)"
-    />
-  </svg>
-);
-
-const FirebaseIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path d="M22 75L50 20L60 40L22 75Z" fill="#FFC229" />
-    <path d="M78 75L50 20L58 36L78 75Z" fill="#FFA000" />
-    <path d="M22 75L50 88L78 75L60 40L50 50L22 75Z" fill="#F44336" />
-  </svg>
-);
-
 export const TechStacks4 = [
   {
     name: "Flutter",
@@ -1256,63 +1178,6 @@ export const TechStacks4 = [
     desc: "Real-time key-value database sync, secure serverless auth.",
   },
 ];
-
-const NextjsIcon = () => (
-  <svg
-    className="w-8 h-8"
-    viewBox="0 0 100 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle
-      cx="50"
-      cy="50"
-      r="46"
-      fill="#000000"
-      stroke="#333"
-      strokeWidth="2"
-    />
-    <path
-      d="M72 70L42 34H36V66H41V42.5L68 73.5C70 72.3 71 71.2 72 70Z"
-      fill="white"
-    />
-    <rect x="58" y="34" width="5" height="32" fill="white" />
-  </svg>
-);
-
-const TypeScriptIcon = () => (
-  <svg
-    className="w-8 h-8 rounded-lg overflow-hidden"
-    viewBox="0 0 100 100"
-    fill="none"
-  >
-    <rect width="100" height="100" fill="#3178C6" />
-    <text
-      x="90"
-      y="85"
-      fill="white"
-      fontSize="42"
-      fontWeight="bold"
-      fontFamily="sans-serif"
-      textAnchor="end"
-    >
-      TS
-    </text>
-  </svg>
-);
-
-const TailwindIcon = () => (
-  <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
-    <path
-      d="M26 50C26 38 35.5 32.5 44.5 32.5C56.5 32.5 59.5 41.5 68.5 41.5C74.5 41.5 80 37 80 32.5C80 44.5 70.5 50 61.5 50C49.5 50 46.5 41 37.5 41C31.5 41 26 45.5 26 50Z"
-      fill="#38BDF8"
-    />
-    <path
-      d="M14 62.5C14 50.5 23.5 45 32.5 45C44.5 45 47.5 54 56.5 54C62.5 54 68 49.5 68 45C68 57 58.5 62.5 49.5 62.5C37.5 62.5 34.5 53.5 25.5 53.5C19.5 53.5 14 58 14 62.5Z"
-      fill="#06B6D4"
-    />
-  </svg>
-);
 
 export const TechStacks5 = [
   {
@@ -1599,7 +1464,13 @@ export const Intern1 = [
     badgeColor: "#16A34A",
     gradient: "linear-gradient(180deg, #F2FFF8 0%, #E8FFF2 100%)",
     backGradient: "linear-gradient(135deg, #E8FFF2 0%, #FFFFFF 100%)",
-    skills: ["Problem Solving", "REST API Development", "Database Design", "Backend Architecture", "Cloud Deployment"],
+    skills: [
+      "Problem Solving",
+      "REST API Development",
+      "Database Design",
+      "Backend Architecture",
+      "Cloud Deployment",
+    ],
   },
   {
     title: "Full Stack Development",
@@ -1611,7 +1482,13 @@ export const Intern1 = [
     badgeColor: "#EA580C",
     gradient: "linear-gradient(180deg, #FFF8F3 0%, #FFF2EA 100%)",
     backGradient: "linear-gradient(135deg, #FFF2EA 0%, #FFFFFF 100%)",
-    skills: ["Responsive UI", "Backend APIs", "Authentication", "Performance Optimization", "Git Workflow"],
+    skills: [
+      "Responsive UI",
+      "Backend APIs",
+      "Authentication",
+      "Performance Optimization",
+      "Git Workflow",
+    ],
   },
   {
     title: "AI & Machine Learning",
@@ -1623,7 +1500,13 @@ export const Intern1 = [
     badgeColor: "#7C3AED",
     gradient: "linear-gradient(180deg, #FCF8FF 0%, #F3E8FF 100%)",
     backGradient: "linear-gradient(135deg, #F3E8FF 0%, #FFFFFF 100%)",
-    skills: ["Prompt Engineering", "LLM Integration", "AI Automation", "RAG Development", "Model Deployment"],
+    skills: [
+      "Prompt Engineering",
+      "LLM Integration",
+      "AI Automation",
+      "RAG Development",
+      "Model Deployment",
+    ],
   },
   {
     title: "Data Science",
@@ -1635,7 +1518,13 @@ export const Intern1 = [
     badgeColor: "#0891B2",
     gradient: "linear-gradient(180deg, #F3FCFF 0%, #E8F8FF 100%)",
     backGradient: "linear-gradient(135deg, #E8F8FF 0%, #FFFFFF 100%)",
-    skills: ["Data Analysis", "Machine Learning", "Data Visualization", "Statistical Modeling", "Business Intelligence"],
+    skills: [
+      "Data Analysis",
+      "Machine Learning",
+      "Data Visualization",
+      "Statistical Modeling",
+      "Business Intelligence",
+    ],
   },
   {
     title: "UI/UX Design",

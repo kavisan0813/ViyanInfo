@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { LiquidFooter } from "../components/LiquidFooter";
-import workImg from "../assets/Workimg.webp";
+import serviceOverviewImg from "../assets/service_overview_img.webp";
 import {
   Smartphone,
   Brain,
@@ -645,9 +645,9 @@ export default function ServicesPage() {
         {/* BACKGROUND IMAGE */}
         <div className="absolute inset-0 z-0">
           <img
-            src={workImg}
+            src={serviceOverviewImg}
             alt="Services Background"
-            className="w-full h-full object-cover object-center opacity-30"
+            className="w-full h-full object-cover object-center opacity-80"
           />
         </div>
 
@@ -656,7 +656,7 @@ export default function ServicesPage() {
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(10, 10, 25, 0.4), rgba(8, 8, 18, 0.85))",
+              "linear-gradient(to bottom, rgba(10, 10, 25, 0.2), rgba(8, 8, 18, 0.6))",
           }}
         />
 
