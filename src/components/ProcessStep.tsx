@@ -6,6 +6,7 @@ export function ProcessStep({
   number,
   title,
   description,
+  deliverables,
   isLast,
 }: ProcessStepProps) {
   const stepRef = useRef<HTMLDivElement>(null);
@@ -76,9 +77,22 @@ export function ProcessStep({
           <h3 className="text-2xl md:text-[28px] font-display font-semibold text-text-primary mb-4">
             {title}
           </h3>
-          <p className="text-[17px] text-text-secondary leading-relaxed">
+          <p className="text-[17px] text-text-secondary leading-relaxed mb-6">
             {description}
           </p>
+          {deliverables && deliverables.length > 0 && (
+            <div className="border-t border-border-1 pt-6">
+              <span className="text-xs font-mono uppercase tracking-wider text-text-muted block mb-3">Key Focus & Deliverables</span>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {deliverables.map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-2.5 text-text-secondary text-[15px]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-(--color-text-accent) shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>

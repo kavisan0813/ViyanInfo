@@ -26,7 +26,6 @@ import {
   CountUp,
   Ourtools,
   HomecontentProducts,
-  Homecontent8,
   Homecontent9,
 } from "../components/ArrayContent";
 import { HomeVisuals } from "../components/HomeVisuals";
@@ -472,53 +471,94 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-20">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-              How We Work
+              OUR PROCESS
             </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
-              Our Development Process
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-6">
+              A Simple Process.
+              <br />
+              Built for Successful Products.
             </h2>
-            <p className="text-lg text-[#475569] max-w-readable mx-auto">
-              A structured lifecycle designed to transform vague requirements
-              into scalable, robust digital platforms.
+            <p className="text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
+              Every successful digital product follows a clear path. Our
+              engineering process keeps projects transparent, efficient, and
+              focused on delivering measurable value.
             </p>
           </div>
 
           {/* Timeline Grid */}
-          <div className="relative max-w-5xl mx-auto">
-            {/* Center Timeline Path Line */}
-            <div className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-[#E9D5FF] -translate-x-1/2 z-0"></div>
+          <div className="relative max-w-6xl mx-auto px-4">
+            {/* Desktop Horizontal Connecting Line */}
+            <div className="hidden lg:block absolute left-12 right-12 top-[44px] h-[3px] bg-gradient-to-r from-blue-300 via-purple-300 to-amber-300 z-0 rounded-full"></div>
 
-            <div className="space-y-16">
-              {Homecontent4.map((step, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6 }}
-                  className={`flex flex-col lg:flex-row relative z-10 ${idx % 2 === 0 ? "lg:flex-row-reverse" : ""}`}
-                >
-                  {/* Icon Indicator Circle */}
-                  <div className="absolute left-8 lg:left-1/2 top-0 w-8 h-8 rounded-full bg-white border-4 border-[#7B2FF7] -translate-x-1/2 flex items-center justify-center shadow-md z-20"></div>
-
-                  <div className="w-full lg:w-1/2 pl-16 lg:pl-0 lg:px-12 text-left">
+            {/* Grid Container */}
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-8 relative z-10">
+              {Homecontent4.map((step, idx) => {
+                const IconComponent = step.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    whileHover={{ y: -8 }}
+                    className="relative flex flex-col items-center text-center group cursor-default"
+                  >
+                    {/* Circle Node on Desktop Line / Icon Container */}
                     <div
-                      className={`p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-xs hover:border-[#7B2FF7]/30 transition-colors duration-300 relative group`}
+                      className={`relative w-20 h-20 rounded-2xl bg-white border-2 border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-center mb-6 z-10 group-hover:border-purple-300 group-hover:shadow-[0_15px_35px_rgba(124,58,237,0.1)] transition-all duration-300`}
                     >
-                      <span className="absolute top-4 right-6 text-4xl font-mono font-extrabold text-[#7B2FF7]/10 group-hover:text-[#7B2FF7]/20 transition-colors">
+                      {/* Step Number Badge */}
+                      <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-[#7B2FF7] to-[#9D5CFF] text-[10px] font-mono font-bold text-white flex items-center justify-center shadow-md">
                         {step.step}
                       </span>
-                      <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">
+
+                      {/* Icon */}
+                      <div
+                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300`}
+                      >
+                        <IconComponent size={22} className={step.iconColor} />
+                      </div>
+                    </div>
+
+                    {/* Step Card */}
+                    <div className="w-full flex-1">
+                      <h3 className="text-xl font-display font-bold text-[#0F172A] mb-3 group-hover:text-purple-600 transition-colors">
                         {step.title}
                       </h3>
-                      <p className="text-[#475569] leading-relaxed text-sm">
+
+                      <p className="text-[13px] text-[#475569] leading-relaxed max-w-[200px] mx-auto">
                         {step.desc}
                       </p>
                     </div>
-                  </div>
-                  <div className="hidden lg:block w-1/2"></div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Bottom CTA Block */}
+          <div className="mt-24 max-w-2xl mx-auto text-center border-t border-[#E9D5FF] pt-16 relative z-10">
+            <h3 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A] mb-3">
+              Want to See How We Build Software?
+            </h3>
+            <p className="text-base text-[#475569] mb-10 max-w-lg mx-auto leading-relaxed">
+              Explore our complete engineering methodology, delivery framework,
+              quality standards, and collaboration process.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <Link
+                to="/process"
+                className="bg-[#6D28D9] text-white font-semibold text-xs uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 w-full sm:w-auto"
+              >
+                How We Work
+              </Link>
+              <Link
+                to="/services"
+                className="bg-white/80 border border-[#E9D5FF] text-[#1F1430] font-semibold text-xs uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto"
+              >
+                Our Services
+              </Link>
             </div>
           </div>
         </div>
@@ -643,26 +683,6 @@ export default function Home() {
             })}
           </div>
 
-          {/* Supporting Statistics Block */}
-          <div className="max-w-5xl mx-auto mb-20 p-8 sm:p-10 rounded-3xl bg-white border border-[#E9D5FF]/40 shadow-[0_10px_30px_rgba(0,0,0,0.02)]">
-            <h4 className="text-xs font-mono font-bold text-[#7B2FF7] uppercase tracking-widest text-center mb-8">
-              Verified Engineering Capabilities
-            </h4>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
-              {Homecontent8.map((stat, sIdx) => (
-                <div key={sIdx}>
-                  <div className="text-3xl sm:text-4xl font-display font-black text-[#0F172A] mb-2 flex justify-center items-baseline">
-                    <CountUp end={stat.count} duration={2.5} />
-                    <span className="text-[#7B2FF7] ml-0.5">+</span>
-                  </div>
-                  <span className="text-xs text-slate-500 font-bold tracking-wider uppercase">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Optional Timeline Flow */}
           <div className="max-w-5xl mx-auto mb-20 text-center">
             <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest mb-8">
@@ -681,41 +701,6 @@ export default function Home() {
                   )}
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* CTA Banner Card */}
-          <div className="max-w-5xl mx-auto p-10 sm:p-12 rounded-3xl bg-slate-900 border border-slate-800 text-left relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none" />
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-              <div className="lg:col-span-8">
-                <span className="inline-block px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-mono font-bold uppercase tracking-widest mb-4">
-                  Technical Partnership
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight mb-4">
-                  Looking for a Technology Partner, Not Just a Vendor?
-                </h3>
-                <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-                  Whether you're building a new SaaS platform, modernizing
-                  enterprise software, or launching your next digital product,
-                  ViyanInfo works alongside your team from concept to continuous
-                  growth.
-                </p>
-              </div>
-              <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end items-stretch sm:items-center lg:items-stretch w-full">
-                <Link to="/contact" className="w-full">
-                  <button className="w-full px-6 py-3.5 bg-[#7B2FF7] hover:bg-[#6D28D9] text-white font-bold text-xs rounded-xl shadow-lg transition-all cursor-pointer">
-                    Start a Conversation
-                  </button>
-                </Link>
-                <Link to="/services" className="w-full">
-                  <button className="w-full px-6 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs rounded-xl transition-all cursor-pointer">
-                    Explore Our Services
-                  </button>
-                </Link>
-              </div>
             </div>
           </div>
         </div>

@@ -41,6 +41,7 @@ export interface ProcessStepProps {
   number: string;
   title: string;
   description: string;
+  deliverables?: string[];
   isLast?: boolean;
 }
 

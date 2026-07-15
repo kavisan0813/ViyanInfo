@@ -101,39 +101,80 @@ export default function Process() {
         </div>
 
         <div className="container max-w-4xl relative z-10">
-          <div className="flex flex-col">
-            <ProcessStep
-              number="01"
-              title="Discovery & Alignment"
-              description="We interview stakeholders, audit existing systems, map the competitive landscape, and define KPIs before writing a single line of code. Duration: 1–2 weeks."
-            />
-            <ProcessStep
-              number="02"
-              title="UI/UX System Design"
-              description="Our designers build a comprehensive Figma atomic system — responsive layouts, typography scales, micro-interaction states, and full prototype testing. Duration: 2–3 weeks."
-            />
-            <ProcessStep
-              number="03"
-              title="Architecture Planning"
-              description="We select the optimal stack. SQL vs NoSQL, REST vs GraphQL, caching layers (Redis), and frontend frameworks (React/Next.js) based on your specific scale requirements."
-            />
-            <ProcessStep
-              number="04"
-              title="Agile Sprint Engineering"
-              description="Development in two-week sprints with continuous delivery to staging. You get daily commits, weekly demos, and the ability to pivot in real-time."
-            />
-            <ProcessStep
-              number="05"
-              title="QA & Security Automation"
-              description="TDD methodology. Every PR passes Cypress E2E tests, Jest unit tests, automated vulnerability scanning, and accessibility audits (WCAG 2.1 AA)."
-            />
-            <ProcessStep
-              number="06"
-              title="Launch & Growth Infrastructure"
-              description="Datadog monitoring, auto-scaling Kubernetes clusters, CDN configuration, and a 30-day post-launch SLA. Go-live is the beginning, not the end."
-              isLast
-            />
-          </div>
+          <ProcessStep
+            number="01"
+            title="Discover"
+            description="We understand your business goals, users, challenges, and project requirements before writing a single line of code."
+            deliverables={[
+              "Stakeholder Workshops",
+              "Business Analysis",
+              "Requirement Gathering",
+              "Competitor Research",
+              "Product Vision",
+            ]}
+          />
+          <ProcessStep
+            number="02"
+            title="Design"
+            description="We transform ideas into intuitive user experiences, scalable architecture, and clear implementation plans."
+            deliverables={[
+              "UX Research",
+              "Wireframes",
+              "UI Design",
+              "Prototyping",
+              "Architecture Planning",
+            ]}
+          />
+          <ProcessStep
+            number="03"
+            title="Build"
+            description="Our engineering team develops secure, scalable, and maintainable software using modern technologies and best practices."
+            deliverables={[
+              "Sprint Planning",
+              "Development",
+              "API Design",
+              "Testing",
+              "Documentation",
+            ]}
+          />
+          <ProcessStep
+            number="04"
+            title="Validate"
+            description="Every feature is tested for functionality, usability, security, and performance before release."
+            deliverables={[
+              "QA",
+              "Automation Testing",
+              "Performance Testing",
+              "Security Review",
+              "User Acceptance Testing",
+            ]}
+          />
+          <ProcessStep
+            number="05"
+            title="Launch"
+            description="We deploy your application with reliable infrastructure, monitoring, and production-ready environments."
+            deliverables={[
+              "Production Deployment",
+              "Monitoring",
+              "Optimization",
+              "Training",
+              "Go-Live Support",
+            ]}
+          />
+          <ProcessStep
+            number="06"
+            title="Scale"
+            description="After launch, we continue improving your product through feature enhancements, performance optimization, and long-term technical support."
+            deliverables={[
+              "Continuous Development",
+              "Maintenance",
+              "Feature Releases",
+              "Infrastructure Scaling",
+              "AI Enhancements",
+              "Business Analytics",
+            ]}
+            isLast
+          />
         </div>
       </section>
 
