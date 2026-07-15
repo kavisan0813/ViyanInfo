@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 // Concept scene illustrations
-import erpImg from "../assets/work_erp_concept.png";
-import inventoryImg from "../assets/work_inventory_concept.png";
-import pharmacyImg from "../assets/work_pharmacy_concept.png";
-import billingImg from "../assets/work_billing_concept.png";
-import employmentImg from "../assets/work_employment_concept.png";
-import crmImg from "../assets/work_crm_concept.png";
-import aiImg from "../assets/work_ai_concept.png";
-import trainingImg from "../assets/work_training_concept.png";
+import erpImg from "../assets/work_erp_real.png";
+import inventoryImg from "../assets/work_inventory_real.png";
+import pharmacyImg from "../assets/work_pharmacy_real.png";
+import billingImg from "../assets/work_billing_real.png";
+import employmentImg from "../assets/work_ems_real.png";
+import crmImg from "../assets/work_crm_real.png";
+import aiImg from "../assets/work_ai_real.png";
+import trainingImg from "../assets/work_training_real.png";
 
 // ─────────────────────────────────────────
 // SLIDE DATA
