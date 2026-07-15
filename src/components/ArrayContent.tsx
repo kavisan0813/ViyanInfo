@@ -13,9 +13,12 @@ import {
   Network,
   Bell,
   Wifi,
+  Activity,
   Search,
   Rocket,
   TrendingUp,
+  HeartPulse,
+  Briefcase,
   MapPin,
   Award,
   CreditCard,
@@ -29,18 +32,31 @@ import {
   Eye,
   Database,
   CheckCircle2,
+  Headphones,
   Shield,
   Zap,
   ShieldAlert,
   BrainCircuit,
   Handshake,
+  ShoppingBag,
   LineChart,
   Infinity as InfinityIcon,
 } from "lucide-react";
 import { FaPython } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
 import inventryImg from "../assets/inventry.webp";
+import medassistimg from "../assets/work_medassist.png";
 import emsImg from "../assets/ems.webp";
+import billingsImg from "../assets/work_billing.png";
+import inventoryImg from "../assets/work_inventory_concept.png";
+import erpImg from "../assets/work_erp_concept.png";
+import crmImg from "../assets/work_crm_concept.png";
+import medassistImg from "../assets/work_pharmacy_concept.png";
+import posImg from "../assets/work_billing_concept.png";
+import lmsImg from "../assets/work_training_concept.png";
+import aiImg from "../assets/work_ai_concept.png";
+import financeImg from "../assets/work_employment_concept.png"
+
 
 export const Homecontent1 = [
   {
@@ -171,7 +187,7 @@ export const Homecontent3 = [
     title: "MedAssist Pharmacy Management",
     category: "Healthcare SaaS",
     desc: "Integrated pharmacy inventory control and smart billing engine used by medical franchises.",
-    image: inventryImg,
+    image: medassistimg,
     tags: ["React.js", "Node.js", "PostgreSQL", "WebSockets"],
   },
   {
@@ -185,7 +201,7 @@ export const Homecontent3 = [
     title: "Billing Software",
     category: "Fintech",
     desc: "Sub-second ledger calculations, invoice generator pipelines, and automated multi-gate payment settlement.",
-    image: inventryImg,
+    image: billingsImg,
     tags: ["React.js", "Express", "MongoDB", "ChartJS"],
   },
   {
@@ -355,7 +371,7 @@ export const Homecontent7 = [
   { text: "Businesses.", color: "" },
 ];
 
-export const Homecontent9 = [
+export const ProductContent = [
   "Idea",
   "Strategy",
   "Design",
@@ -363,6 +379,150 @@ export const Homecontent9 = [
   "Launch",
   "Growth",
   "Continuous Innovation",
+];
+
+export const ProductContent1 = [
+  {
+    id: "erp",
+    name: "Viyan ERP",
+    subtitle: "Enterprise Resource Planning",
+    desc: "A complete enterprise resource planning platform designed to simplify HR, finance, payroll, inventory and business operations through one unified ecosystem.",
+    features: ["HR Management", "Payroll", "CRM", "Inventory", "Procurement", "Finance", "Reports"],
+    image: erpImg,
+  },
+  {
+    id: "crm",
+    name: "Viyan CRM",
+    subtitle: "Customer Relationship Management",
+    desc: "Manage customer relationships, automate sales workflows and track every lead with a centralized CRM platform.",
+    features: ["Lead Management", "Sales Pipeline", "Customer Database", "Automation", "Analytics"],
+    image: crmImg,
+  },
+  {
+    id: "inventory",
+    name: "Viyan Inventory",
+    subtitle: "Inventory & Warehouse Platform",
+    desc: "Monitor inventory, suppliers and warehouse operations in real time with smart stock management.",
+    features: ["Stock Tracking", "Barcode", "Purchase Orders", "Warehouse", "Suppliers"],
+    image: inventoryImg,
+  },
+  {
+    id: "medassist",
+    name: "Viyan MedAssist",
+    subtitle: "Healthcare Management Platform",
+    desc: "A healthcare platform helping pharmacies and clinics manage medicines, prescriptions and billing efficiently.",
+    features: ["Pharmacy Billing", "Medicine Stock", "Prescriptions", "GST", "Patients"],
+    image: medassistImg,
+  },
+  {
+    id: "pos",
+    name: "Viyan POS",
+    subtitle: "Retail Billing Platform",
+    desc: "Cloud-based retail billing software for faster transactions, inventory synchronization and business reporting.",
+    features: ["Billing", "Inventory", "GST", "Reports", "Payments"],
+    image: posImg,
+  },
+  {
+    id: "lms",
+    name: "Viyan LMS",
+    subtitle: "Training & Internship Portal",
+    desc: "Learning management platform for training centers, institutions and internship programs.",
+    features: ["Student Dashboard", "Mentor Dashboard", "Attendance", "Certificates", "Assignments"],
+    image: lmsImg,
+  },
+  {
+    id: "ai",
+    name: "Viyan AI Analytics",
+    subtitle: "Business Intelligence Platform",
+    desc: "AI-powered analytics platform that transforms raw business data into actionable insights.",
+    features: ["AI Predictions", "Reports", "Dashboards", "Forecasting", "Business Intelligence"],
+    image: aiImg,
+  }
+];
+
+export const ProductContent2 = [
+  {
+    id: "erp",
+    name: "Viyan ERP",
+    subtitle: "Enterprise Resource Planning",
+    desc: "A complete enterprise resource planning platform designed to simplify HR, finance, payroll, inventory and business operations through one unified ecosystem.",
+    features: ["HR Management", "Payroll", "CRM", "Inventory", "Procurement", "Finance", "Reports"],
+    image: erpImg,
+  },
+  {
+    id: "crm",
+    name: "Viyan CRM",
+    subtitle: "Customer Relationship Management",
+    desc: "Manage customer relationships, automate sales workflows and track every lead with a centralized CRM platform.",
+    features: ["Lead Management", "Sales Pipeline", "Customer Database", "Automation", "Analytics"],
+    image: crmImg,
+  },
+  {
+    id: "inventory",
+    name: "Viyan Inventory",
+    subtitle: "Inventory & Warehouse Platform",
+    desc: "Monitor inventory, suppliers and warehouse operations in real time with smart stock management.",
+    features: ["Stock Tracking", "Barcode", "Purchase Orders", "Warehouse", "Suppliers"],
+    image: inventoryImg,
+  },
+  {
+    id: "medassist",
+    name: "Viyan MedAssist",
+    subtitle: "Healthcare Management Platform",
+    desc: "A healthcare platform helping pharmacies and clinics manage medicines, prescriptions and billing efficiently.",
+    features: ["Pharmacy Billing", "Medicine Stock", "Prescriptions", "GST", "Patients"],
+    image: medassistImg,
+  },
+  {
+    id: "pos",
+    name: "Viyan POS",
+    subtitle: "Retail Billing Platform",
+    desc: "Cloud-based retail billing software for faster transactions, inventory synchronization and business reporting.",
+    features: ["Billing", "Inventory", "GST", "Reports", "Payments"],
+    image: posImg,
+  },
+  {
+    id: "lms",
+    name: "Viyan LMS",
+    subtitle: "Training & Internship Portal",
+    desc: "Learning management platform for training centers, institutions and internship programs.",
+    features: ["Student Dashboard", "Mentor Dashboard", "Attendance", "Certificates", "Assignments"],
+    image: lmsImg,
+  },
+  {
+    id: "ai",
+    name: "Viyan AI Analytics",
+    subtitle: "Business Intelligence Platform",
+    desc: "AI-powered analytics platform that transforms raw business data into actionable insights.",
+    features: ["AI Predictions", "Reports", "Dashboards", "Forecasting", "Business Intelligence"],
+    image: aiImg,
+  }
+];
+
+export const ProductContent3 = [
+  { title: "Enterprise", desc: "Scalable ERP solutions for large organizations.", icon: <Briefcase />, class: "bento-large", bg: erpImg },
+  { title: "Healthcare", desc: "Management platforms for clinics & pharmacies.", icon: <HeartPulse />, class: "", bg: medassistImg },
+  { title: "Retail", desc: "POS and inventory for modern retail.", icon: <ShoppingBag />, class: "", bg: posImg },
+  { title: "Education", desc: "LMS and training portals.", icon: <GraduationCap />, class: "bento-wide", bg: lmsImg },
+  { title: "Artificial Intelligence", desc: "Predictive analytics and smart reporting.", icon: <Cpu />, class: "bento-wide", bg: aiImg },
+  { title: "Finance", desc: "Integrated accounting and payroll.", icon: <Activity />, class: "", bg: financeImg },
+  { title: "CRM", desc: "Customer relationship automation.", icon: <Briefcase />, class: "", bg: crmImg },
+];
+
+export const ProductContent4 = [
+  { title: "Secure", desc: "Enterprise-grade security and data encryption to keep your business safe.", icon: <Shield size={32} strokeWidth={1.5} /> },
+  { title: "Scalable", desc: "Built to grow with your business from startup to enterprise scale.", icon: <Activity size={32} strokeWidth={1.5} /> },
+  { title: "Cloud Ready", desc: "Access your data anywhere, anytime with our robust cloud infrastructure.", icon: <Cloud size={32} strokeWidth={1.5} /> },
+  { title: "Fast Deployment", desc: "Get up and running quickly with streamlined onboarding.", icon: <Zap size={32} strokeWidth={1.5} /> },
+  { title: "AI Powered", desc: "Leverage artificial intelligence for smarter business insights.", icon: <Cpu size={32} strokeWidth={1.5} /> },
+  { title: "24/7 Support", desc: "Dedicated technical support team ready to assist you anytime.", icon: <Headphones size={32} strokeWidth={1.5} /> },
+];
+
+export const ProductContent5 = [
+  { q: "Can I integrate Viyan products with my existing software?", a: "Yes, our platforms are built with API-first architecture, allowing seamless integration with popular third-party tools, accounting software, and payment gateways." },
+  { q: "Is the data stored securely?", a: "Absolutely. We use enterprise-grade encryption and host on secure cloud infrastructure (AWS/Azure) with regular automated backups to ensure your data is always safe." },
+  { q: "Do you offer customization?", a: "Yes, while our flagship products cover most standard use cases, we offer customization services to tailor workflows, reports, and modules specifically to your business requirements." },
+  { q: "How long does deployment take?", a: "Standard deployments take between 3 to 7 days, including initial setup and data migration. Highly customized enterprise deployments may take 2 to 4 weeks." },
 ];
 
 export function TestimonialCarousel() {

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Check, Plus, Minus, Server, Activity, Briefcase, HeartPulse, ShoppingBag, GraduationCap, Cpu, Shield, Cloud, Zap, Headphones, X } from "lucide-react";
+import { ArrowRight, Check, Plus, Minus, Activity, Briefcase, HeartPulse, ShoppingBag, GraduationCap, Cpu, Shield, Cloud, Zap, Headphones, X } from "lucide-react";
 import { LiquidFooter } from "../components/LiquidFooter";
 import { SectionDivider } from "../components/SectionDivider";
 import workImg from "../assets/Workimg.webp";
@@ -13,6 +13,7 @@ import posImg from "../assets/work_billing_concept.png";
 import lmsImg from "../assets/work_training_concept.png";
 import aiImg from "../assets/work_ai_concept.png";
 import financeImg from "../assets/work_employment_concept.png";
+import heroIsometricOfficeImg from "../assets/hero_isometric_office.png";
 import "../styles/BackgroundEffects.css";
 import "../styles/ProductsPage.css";
 
@@ -45,7 +46,20 @@ function ProductsHero() {
             <span className="w-2 h-2 rounded-full bg-[#7C3AED]"></span>
             <span className="text-[12px] font-body font-semibold text-[#7C3AED] uppercase tracking-wider">ViyanInfo Products</span>
           </div>
-          <h1 className="text-[clamp(34px,4.5vw,56px)] font-display font-bold text-[#1F1430] leading-[1.1] tracking-tight mb-6">Enterprise Software<br />Built For Modern Businesses</h1>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold leading-[1.1] tracking-tight mb-5">
+                <span className="text-white" style={{ color: "#000000ff" }}>
+                  Enterprise Software
+                </span>{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(90deg, #9D5CFF, #7B2FF7)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Built for Modern Businesses
+                </span>
+              </h1>
           <p className="body-copy text-[#6B7280] max-w-readable mb-10 text-[15px] leading-relaxed">
             Discover scalable software solutions designed to streamline operations,
             improve productivity and accelerate business growth.
@@ -67,39 +81,7 @@ function ProductsHero() {
           transition={{ duration: 1, delay: 0.2 }}
           style={{ y: y1 }}
         >
-          <div className="ecosystem-container">
-            {/* Connection Rings */}
-            <div className="eco-connection" style={{ width: '300px', height: '300px', animationDuration: '40s' }} />
-            <div className="eco-connection" style={{ width: '450px', height: '450px', animationDirection: 'reverse' }} />
-
-            {/* Center Node */}
-            <motion.div
-              className="eco-card center"
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            >
-              <div className="eco-icon"><Server size={28} /></div>
-              <span>Viyan Core</span>
-            </motion.div>
-
-            {/* Orbiting Nodes */}
-            <motion.div className="eco-card orbit" style={{ top: '5%', left: '5%' }} animate={{ y: [10, -10, 10] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}>
-              <div className="eco-icon"><Briefcase size={20} /></div>
-              <span>ERP</span>
-            </motion.div>
-            <motion.div className="eco-card orbit" style={{ top: '15%', right: '0%' }} animate={{ y: [-15, 15, -15] }} transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}>
-              <div className="eco-icon"><Activity size={20} /></div>
-              <span>CRM</span>
-            </motion.div>
-            <motion.div className="eco-card orbit" style={{ bottom: '15%', left: '0%' }} animate={{ y: [12, -12, 12] }} transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}>
-              <div className="eco-icon"><ShoppingBag size={20} /></div>
-              <span>POS</span>
-            </motion.div>
-            <motion.div className="eco-card orbit" style={{ bottom: '5%', right: '10%' }} animate={{ y: [-8, 8, -8] }} transition={{ repeat: Infinity, duration: 6.5, ease: "easeInOut" }}>
-              <div className="eco-icon"><Cpu size={20} /></div>
-              <span>AI</span>
-            </motion.div>
-          </div>
+          <img src={heroIsometricOfficeImg} alt="ViyanInfo Enterprise Suite" className="w-full h-auto object-contain drop-shadow-2xl" />
         </motion.div>
       </div>
     </section>
@@ -282,7 +264,7 @@ function ProductsIndustries() {
               <div className="bento-overlay" />
               <div className="bento-content relative z-10">
                 <div className="bento-icon">{ind.icon}</div>
-                <h4 className="bento-title">{ind.title}</h4>
+                <span className="bento-title">{ind.title}</span>
                 <p className="bento-desc">{ind.desc}</p>
               </div>
             </motion.div>

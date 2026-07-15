@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 import { LiquidFooter } from "../components/LiquidFooter";
+import { SectionDivider } from "../components/SectionDivider";
 import workImg from "../assets/Workimg.webp";
 
 // New Work Page Components
@@ -111,12 +112,15 @@ export default function Portfolio() {
         </div >
       </section >
 
+      <SectionDivider />
       {/* SECTION 3: Featured Solutions */}
       < WorkFeaturedSolutions />
 
+      <SectionDivider />
       {/* SECTION 4: Project Gallery Bento Grid */}
       < WorkBentoGallery />
 
+      <SectionDivider />
       {/* SECTION 5: Technology Stack */}
       < WorkTechStack />
 

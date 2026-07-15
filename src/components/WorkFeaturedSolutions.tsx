@@ -7,7 +7,7 @@ import { ArrowUpRight, ArrowRight, Sparkles } from "lucide-react";
 import erpImg from "../assets/work_erp_real.png";
 import inventoryImg from "../assets/work_inventory_real.png";
 import medassistImg from "../assets/work_pharmacy_real.png";
-import billingImg from "../assets/work_billing_real.png";
+import billingImg from "../assets/work_billing_real.webp";
 import employmentImg from "../assets/work_ems_real.png";
 import crmImg from "../assets/work_crm_real.png";
 
