@@ -535,6 +535,31 @@ export default function Home() {
               })}
             </div>
           </div>
+
+          {/* Bottom CTA Block */}
+          <div className="mt-24 max-w-2xl mx-auto text-center border-t border-[#E9D5FF] pt-16 relative z-10">
+            <h3 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A] mb-3">
+              Want to See How We Build Software?
+            </h3>
+            <p className="text-base text-[#475569] mb-10 max-w-lg mx-auto leading-relaxed">
+              Explore our complete engineering methodology, delivery framework,
+              quality standards, and collaboration process.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <Link
+                to="/process"
+                className="bg-[#6D28D9] text-white font-semibold text-xs uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 w-full sm:w-auto"
+              >
+                How We Work
+              </Link>
+              <Link
+                to="/services"
+                className="bg-white/80 border border-[#E9D5FF] text-[#1F1430] font-semibold text-xs uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto"
+              >
+                Our Services
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
