@@ -26,7 +26,6 @@ import {
   CountUp,
   Ourtools,
   HomecontentProducts,
-  Homecontent9,
 } from "../components/ArrayContent";
 import { HomeVisuals } from "../components/HomeVisuals";
 import "../styles/BackgroundEffects.css";
@@ -681,27 +680,6 @@ export default function Home() {
                 </motion.div>
               );
             })}
-          </div>
-
-          {/* Optional Timeline Flow */}
-          <div className="max-w-5xl mx-auto mb-20 text-center">
-            <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest mb-8">
-              Our Product Engineering Lifecycle
-            </h4>
-            <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 max-w-4xl mx-auto">
-              {Homecontent9.map((step, idx) => (
-                <div key={idx} className="flex items-center gap-2 sm:gap-4">
-                  <div className="px-4 py-2.5 rounded-xl bg-white border border-[#E9D5FF] text-xs font-bold text-[#0F172A] shadow-2xs hover:border-[#7B2FF7] hover:text-[#7B2FF7] transition-all">
-                    {step}
-                  </div>
-                  {idx < 6 && (
-                    <span className="text-[#7B2FF7] font-bold text-sm shrink-0">
-                      →
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
