@@ -68,7 +68,7 @@ export function WorkTechStack() {
             Technologies We{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #10b981, #06b6d4)",
+                background: "linear-gradient(135deg, #7B2FF7, #9D5CFF)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}

@@ -13,6 +13,11 @@ import {
   Activity,
   Briefcase,
   X,
+  Shield,
+  Cloud,
+  Cpu,
+  Zap,
+  Headphones,
 } from "lucide-react";
 import { LiquidFooter } from "../components/LiquidFooter";
 import { SectionDivider } from "../components/SectionDivider";
@@ -78,7 +83,7 @@ function ProductsHero() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <button
-              className="bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-3.5 rounded-xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+              className="bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
               onClick={() =>
                 document
                   .getElementById("featured-products")
@@ -90,7 +95,7 @@ function ProductsHero() {
             </button>
             <Link
               to="/contact"
-              className="bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-3.5 rounded-xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
+              className="bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
             >
               Book Demo
             </Link>
@@ -541,7 +546,7 @@ function ProductsIndustries() {
               <div className="bento-overlay" />
               <div className="bento-content relative z-10">
                 <div className="bento-icon">{ind.icon}</div>
-                <h4 className="bento-title">{ind.title}</h4>
+                <span className="bento-title">{ind.title}</span>
                 <p className="bento-desc">{ind.desc}</p>
               </div>
             </motion.div>
@@ -552,29 +557,151 @@ function ProductsIndustries() {
   );
 }
 
+const premiumFeatures = [
+  {
+    title: "Secure",
+    desc: "Enterprise-grade security and data encryption to keep your business safe.",
+    icon: Shield,
+    badge: "Enterprise",
+    gradient: "from-blue-500/20 to-purple-500/20",
+    iconColor: "text-blue-600",
+  },
+  {
+    title: "Cloud Ready",
+    desc: "Access your data anywhere, anytime with our robust cloud infrastructure.",
+    icon: Cloud,
+    badge: "Cloud Native",
+    gradient: "from-sky-500/20 to-indigo-500/20",
+    iconColor: "text-sky-600",
+  },
+  {
+    title: "AI Powered",
+    desc: "Leverage artificial intelligence for smarter business insights.",
+    icon: Cpu,
+    badge: "AI",
+    gradient: "from-purple-500/20 to-pink-500/20",
+    iconColor: "text-purple-600",
+  },
+  {
+    title: "Fast Deployment",
+    desc: "Get up and running quickly with streamlined onboarding.",
+    icon: Zap,
+    badge: "Reliable",
+    gradient: "from-amber-500/20 to-orange-500/20",
+    iconColor: "text-amber-600",
+  },
+  {
+    title: "Scalable",
+    desc: "Built to grow with your business from startup to enterprise scale.",
+    icon: Activity,
+    badge: "Scalable",
+    gradient: "from-emerald-500/20 to-teal-500/20",
+    iconColor: "text-emerald-600",
+  },
+  {
+    title: "24/7 Support",
+    desc: "Dedicated technical support team ready to assist you anytime.",
+    icon: Headphones,
+    badge: "Support",
+    gradient: "from-rose-500/20 to-red-500/20",
+    iconColor: "text-rose-600",
+  },
+];
+
 function ProductsWhyChoose() {
   return (
-    <section className="why-section products-container">
-      <div className="section-header">
-        <div className="section-tag">Advantages</div>
-        <h2>Why Choose Viyan Products</h2>
-        <p>Engineered for reliability, performance, and exponential growth.</p>
-      </div>
-      <div className="why-grid">
-        {ProductContent3.map((reason, i) => (
-          <motion.div
-            key={i}
-            className="why-card"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-          >
-            <div className="why-card-icon">{reason.icon}</div>
-            <h3>{reason.title}</h3>
-            <p>{reason.desc}</p>
-          </motion.div>
-        ))}
+    <section className="relative py-24 bg-[#FDFBFF] overflow-hidden font-sans">
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(3deg); }
+        }
+        @keyframes float-medium {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(-3deg); }
+        }
+        .animate-float-slow {
+          animation: float-slow 6s ease-in-out infinite;
+        }
+        .animate-float-medium {
+          animation: float-medium 8s ease-in-out infinite;
+        }
+        .workflow-grid {
+          background-size: 40px 40px;
+          background-image: 
+            linear-gradient(to right, rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+        }
+      `}} />
+      
+      {/* Grid background */}
+      <div className="absolute inset-0 workflow-grid pointer-events-none" />
+      
+      {/* Purple blur */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-300/10 rounded-full blur-[120px] pointer-events-none" />
+      
+      {/* Floating particles */}
+      <div className="absolute top-12 left-[10%] w-3 h-3 bg-purple-400/20 rounded-full blur-[1px] animate-float-slow" />
+      <div className="absolute bottom-16 right-[12%] w-4 h-4 bg-blue-400/15 rounded-full blur-[1px] animate-float-medium" />
+      <div className="absolute top-1/3 right-[15%] w-2 h-2 bg-indigo-400/20 rounded-full blur-[0.5px] animate-float-slow" />
+
+      <div className="max-w-[1320px] mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+            Advantages
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight mb-4">
+            Why Choose Viyan Products
+          </h2>
+          <p className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto">
+            Engineered for reliability, performance, and exponential growth.
+          </p>
+        </div>
+
+        {/* 3 columns, 2 rows grid container */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-[1024px] lg:max-w-none mx-auto">
+          {premiumFeatures.map((feature, i) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
+                key={i}
+                className="group relative flex flex-col justify-between w-[300px] h-[190px] p-5 rounded-[18px] bg-white/75 backdrop-blur-md border border-purple-100/80 transition-all duration-300 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] hover:border-purple-300 cursor-pointer overflow-hidden select-none"
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                whileHover={{ y: -6 }}
+              >
+                {/* Animated border effect */}
+                <div className="absolute inset-0 rounded-[18px] border-2 border-transparent group-hover:border-purple-300/40 pointer-events-none transition-all duration-300" />
+                
+                <div className="flex items-start gap-4">
+                  {/* Gradient Icon Circle */}
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
+                    <Icon className={`w-6 h-6 ${feature.iconColor} group-hover:scale-110 transition-transform duration-300`} strokeWidth={1.5} />
+                  </div>
+                  
+                  {/* Heading & description */}
+                  <div className="flex-grow min-w-0 text-left">
+                    <h3 className="text-base font-bold text-slate-800 tracking-tight mb-1">
+                      {feature.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 leading-normal line-clamp-3">
+                      {feature.desc}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Tiny bottom badge */}
+                <div className="mt-auto pt-2 flex justify-start">
+                  <span className="px-2.5 py-0.5 rounded-full bg-purple-50 text-[10px] font-semibold text-purple-600 uppercase tracking-wider border border-purple-100/50">
+                    {feature.badge}
+                  </span>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

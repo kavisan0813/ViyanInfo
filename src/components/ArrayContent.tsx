@@ -51,9 +51,12 @@ import erpImg from "../assets/work_erp_concept.png";
 import crmImg from "../assets/work_crm_concept.png";
 import inventoryImg from "../assets/work_inventory_concept.png";
 import medassistImg from "../assets/work_pharmacy_concept.png";
+import medassistsImg from "../assets/work_medassist.png";
 import posImg from "../assets/work_billing_concept.png";
 import lmsImg from "../assets/work_training_concept.png";
 import aiImg from "../assets/work_ai_concept.png";
+import billingImg from "../assets/work_billing.png";
+
 
 export const PostgreSQLIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
@@ -738,7 +741,7 @@ export const Homecontent3 = [
     title: "MedAssist Pharmacy Management",
     category: "Healthcare SaaS",
     desc: "Integrated pharmacy inventory control and smart billing engine used by medical franchises.",
-    image: inventryImg,
+    image: medassistsImg,
     tags: ["React.js", "Node.js", "PostgreSQL", "WebSockets"],
   },
   {
@@ -752,7 +755,7 @@ export const Homecontent3 = [
     title: "Billing Software",
     category: "Fintech",
     desc: "Sub-second ledger calculations, invoice generator pipelines, and automated multi-gate payment settlement.",
-    image: inventryImg,
+    image: billingImg,
     tags: ["React.js", "Express", "MongoDB", "ChartJS"],
   },
   {

@@ -105,7 +105,7 @@ export default function Home() {
                 <Link to="/portfolio" className="hero-cta">
                   <button
                     onMouseEnter={onHoverBurst}
-                    className="bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-3.5 rounded-xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+                    className="bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
                   >
                     Explore Our Products{" "}
                     <span className="text-lg leading-none font-normal">→</span>
@@ -114,7 +114,7 @@ export default function Home() {
                 <Link to="/contact" className="hero-cta">
                   <button
                     onMouseEnter={onHoverBurst}
-                    className="bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-3.5 rounded-xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
+                    className="bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
                   >
                     Start a Project
                   </button>

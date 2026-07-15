@@ -3,8 +3,11 @@ import { onHoverBurst } from "../utils/particleBurst";
 import { glitchText } from "../utils/charGlitch";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { gsap } from "gsap";
+import { CountUp } from "../components/ArrayContent";
 import {
   Cpu,
+  Bot,
   Star,
   Users,
   Activity,
@@ -92,9 +95,18 @@ const StoryImmersiveSplit = () => {
           </p>
 
           <div className="story-points">
-            <div className="story-point">🚀 Startup Focused</div>
-            <div className="story-point">🤖 AI Driven Innovation</div>
-            <div className="story-point">⚡ Scalable Architecture</div>
+            <div className="story-point">
+              <Rocket size={18} className="text-purple-600" />
+              <span>Startup Focused</span>
+            </div>
+            <div className="story-point">
+              <Bot size={18} className="text-blue-600" />
+              <span>AI Driven Innovation</span>
+            </div>
+            <div className="story-point">
+              <Zap size={18} className="text-amber-500" />
+              <span>Scalable Architecture</span>
+            </div>
           </div>
         </motion.div>
       </div>
@@ -485,14 +497,21 @@ export default function About() {
             experiences that help businesses innovate faster.
           </p>
 
-          <div className="hero-buttons">
-            <Link to="/contact">
-              <button onMouseEnter={onHoverBurst} className="primary-btn">
+          <div className="hero-buttons flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <Link to="/contact" className="hero-cta">
+              <button
+                onMouseEnter={onHoverBurst}
+                className="magnetic-button bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+              >
                 Start Project
               </button>
             </Link>
-            <Link to="/portfolio">
-              <button className="secondary-btn">Our Work</button>
+            <Link to="/portfolio" className="hero-cta">
+              <button
+                className="magnetic-button bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
+              >
+                Our Work
+              </button>
             </Link>
           </div>
         </motion.div>
@@ -548,52 +567,128 @@ export default function About() {
       <SectionDivider />
 
       {/* STATS SECTION */}
-      <section className="py-20 bg-[#FAF7FF] relative">
+      <section className="py-20 bg-[#FAF7FF] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(123,47,247,0.03)_0%,transparent_70%)] pointer-events-none"></div>
         <AboutStatsBg />
         <div className="container max-w-[1200px] mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
             {[
               {
-                val: "6+",
+                val: 6,
+                suffix: "+",
                 label: "Projects Delivered",
-                color: "text-[#7B2FF7]",
-                bg: "bg-purple-500/5 border-purple-500/10",
+                desc: "Enterprise software systems and web apps successfully deployed.",
+                color: "text-[#7C3AED]",
+                divider: "from-[#7C3AED] to-purple-400",
+                glow: "from-purple-500/5 to-indigo-500/5",
+                borderGlow: "from-[#7C3AED]/20 to-[#9333EA]/20",
               },
               {
-                val: "5+",
+                val: 5,
+                suffix: "+",
                 label: "Happy Clients",
+                desc: "Partnerships built on reliable delivery and technical expertise.",
                 color: "text-[#3B82F6]",
-                bg: "bg-blue-500/5 border-blue-500/10",
+                divider: "from-[#3B82F6] to-blue-400",
+                glow: "from-blue-500/5 to-cyan-500/5",
+                borderGlow: "from-[#3B82F6]/20 to-[#60A5FA]/20",
               },
               {
-                val: "1+",
+                val: 1,
+                suffix: "+",
                 label: "Experience",
+                desc: "Providing software services to modern startups and businesses.",
                 color: "text-[#06B6D4]",
-                bg: "bg-cyan-500/5 border-cyan-500/10",
+                divider: "from-[#06B6D4] to-cyan-400",
+                glow: "from-cyan-500/5 to-teal-500/5",
+                borderGlow: "from-[#06B6D4]/20 to-[#22D3EE]/20",
               },
               {
-                val: "98%",
+                val: 98,
+                suffix: "%",
                 label: "Success Rate",
+                desc: "Consistent product quality and exceptional client satisfaction.",
                 color: "text-[#10B981]",
-                bg: "bg-emerald-500/5 border-emerald-500/10",
+                divider: "from-[#10B981] to-emerald-400",
+                glow: "from-emerald-500/5 to-green-500/5",
+                borderGlow: "from-[#10B981]/20 to-[#34D399]/20",
               },
             ].map((stat, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`p-8 rounded-2xl border ${stat.bg} backdrop-blur-md text-center`}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                onMouseEnter={(e) => {
+                  if (
+                    window.matchMedia("(prefers-reduced-motion: reduce)")
+                      .matches
+                  )
+                    return;
+                  const currentCard = e.currentTarget;
+                  const allCards =
+                    gsap.utils.toArray<HTMLElement>(".about-stat-card");
+                  const siblings = allCards.filter(
+                    (card) => card !== currentCard,
+                  );
+
+                  gsap.to(siblings, { y: -6, scale: 0.97, duration: 0.3 });
+                  gsap.to(currentCard, {
+                    filter: "brightness(1.15)",
+                    y: -8,
+                    scale: 1.02,
+                    duration: 0.2,
+                  });
+                }}
+                onMouseLeave={() => {
+                  if (
+                    window.matchMedia("(prefers-reduced-motion: reduce)")
+                      .matches
+                  )
+                    return;
+                  const allCards =
+                    gsap.utils.toArray<HTMLElement>(".about-stat-card");
+
+                  gsap.to(allCards, {
+                    y: 0,
+                    scale: 1,
+                    filter: "brightness(1)",
+                    duration: 0.3,
+                  });
+                }}
+                className="about-stat-card relative group p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_10px_30px_rgba(123,47,247,0.03)] hover:shadow-[0_20px_40px_rgba(123,47,247,0.08)]"
               >
-                <span
-                  className={`block text-4xl sm:text-5xl font-display font-extrabold ${stat.color} mb-2`}
-                >
-                  {stat.val}
-                </span>
-                <span className="text-xs font-bold text-[#8D92B2] uppercase tracking-wider">
-                  {stat.label}
-                </span>
+                {/* Persistent Subtle Pulse Glow */}
+                <div
+                  className={`absolute -inset-1 rounded-3xl bg-gradient-to-br ${stat.borderGlow} opacity-[0.05] blur-md animate-pulse pointer-events-none z-0`}
+                ></div>
+
+                {/* Hover Glow background effect */}
+                <div
+                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${stat.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0`}
+                ></div>
+                <div
+                  className={`absolute -inset-px rounded-3xl bg-gradient-to-br ${stat.borderGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-xs z-0`}
+                ></div>
+
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <h3
+                    className={`text-5xl font-display font-extrabold ${stat.color} mb-2 tracking-tight`}
+                  >
+                    <CountUp end={stat.val} />
+                    {stat.suffix}
+                  </h3>
+                  <div
+                    className={`h-0.5 w-12 bg-gradient-to-r ${stat.divider} my-3 rounded-full`}
+                  ></div>
+                  <span className="text-lg font-display font-bold text-[#0F172A] mb-2">
+                    {stat.label}
+                  </span>
+                  <p className="text-sm text-[#475569] leading-relaxed">
+                    {stat.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>

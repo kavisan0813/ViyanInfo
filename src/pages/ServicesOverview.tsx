@@ -19,6 +19,7 @@ import {
   Palette,
 } from "lucide-react";
 import { onHoverBurst } from "../utils/particleBurst";
+import { DeliveryWorkflow } from "../components/DeliveryWorkflow";
 
 /* ── Liquid morphism blob ────────────────────────────────────────── */
 function LiquidBlob({
@@ -303,57 +304,6 @@ function OrbitalHero() {
   );
 }
 
-/* ── Process steps ───────────────────────────────────────────────── */
-const STEPS = ["Discover", "Design", "Build", "Launch"];
-const STEP_COLORS = ["#7B2FF7", "#3B82F6", "#10B981", "#F59E0B"];
-
-function ProcessSteps() {
-  return (
-    <div className="flex items-center justify-center flex-wrap gap-0 py-8 max-w-2xl mx-auto">
-      {STEPS.map((step, i) => (
-        <div key={step} className="flex items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", delay: i * 0.15 }}
-            className="flex flex-col items-center gap-2"
-          >
-            <motion.div
-              whileHover={{ scale: 1.15 }}
-              className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-sm"
-              style={{
-                background: STEP_COLORS[i],
-                boxShadow: `0 8px 24px ${STEP_COLORS[i]}40`,
-              }}
-            >
-              {String(i + 1).padStart(2, "0")}
-            </motion.div>
-            <span className="text-xs font-semibold text-slate-500 whitespace-nowrap">
-              {step}
-            </span>
-          </motion.div>
-          {i < STEPS.length - 1 && (
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 + 0.3 }}
-              style={{
-                transformOrigin: "left",
-                width: 48,
-                height: 1,
-                background: "linear-gradient(90deg,#CBD5E1,#E2E8F0)",
-                margin: "0 4px 16px",
-              }}
-            />
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /* ── Service card ────────────────────────────────────────────────── */
 function ServiceCard({ svc }: { svc: (typeof SERVICES)[0] }) {
   const [hov, setHov] = useState(false);
@@ -526,7 +476,7 @@ export default function ServicesPage() {
                 Engineering{" "}
                 <span
                   style={{
-                    background: "linear-gradient(90deg,#7B2FF7,#3B82F6)",
+                    background: "linear-gradient(135deg, #7B2FF7, #9D5CFF)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}
@@ -557,16 +507,11 @@ export default function ServicesPage() {
                 ))}
               </div>
               <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.04, y: -2 }}
-                  className="px-7 py-3.5 rounded-full text-sm font-bold text-white cursor-pointer"
-                  style={{
-                    background: "linear-gradient(135deg,#7B2FF7,#9333EA)",
-                    boxShadow: "0 0 32px rgba(123,47,247,.35)",
-                  }}
+                <button
+                  className="magnetic-button bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
                 >
                   Book a Free Consultation →
-                </motion.button>
+                </button>
               </Link>
             </motion.div>
             <motion.div
@@ -581,14 +526,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── PROCESS ── */}
-      <section className="py-8 relative">
-        <div className="container max-w-[1280px] mx-auto px-6">
-          <p className="text-center text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2">
-            How we work
-          </p>
-          <ProcessSteps />
-        </div>
-      </section>
+      <DeliveryWorkflow />
 
       {/* ── SERVICE CARDS ── */}
       <section className="relative py-20 overflow-hidden">

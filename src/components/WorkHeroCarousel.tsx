@@ -326,11 +326,17 @@ export function WorkHeroCarousel() {
             </motion.div>
 
             {/* Buttons */}
-            <motion.div variants={childVariants} className="work-hero__buttons">
-              <Link to="/contact" className="work-hero__btn work-hero__btn--primary">
+            <motion.div variants={childVariants} className="work-hero__buttons flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <Link
+                to="/contact"
+                className="magnetic-button bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+              >
                 View Project <ArrowRight size={15} />
               </Link>
-              <Link to="/contact" className="work-hero__btn work-hero__btn--secondary">
+              <Link
+                to="/contact"
+                className="magnetic-button bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer"
+              >
                 <Sparkles size={14} /> Explore Solution
               </Link>
             </motion.div>

@@ -109,8 +109,8 @@ export function LiquidFooter({ isLight = false }: { isLight?: boolean }) {
             <ul className="space-y-4 footer-links">
               {[
                 { name: "Products", path: "/products" },
-                { name: "Portfolio", path: "/portfolio" },
-                { name: "Case Studies", path: "/portfolio" },
+                { name: "About", path: "/about" },
+                { name: "Work", path: "/portfolio" },
                 { name: "Careers", path: "/careers" },
                 { name: "Blog", path: "/blog" },
                 { name: "Technology Stack", path: "/tech-stack" },

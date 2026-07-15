@@ -170,9 +170,9 @@ export default function Contact() {
             ready to transform your vision into powerful digital solutions.
           </p>
 
-          <div className="hero-buttons">
+          <div className="hero-buttons flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <button
-              className="primary-btn"
+              className="magnetic-button bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
               onClick={() =>
                 document
                   .querySelector(".split-contact-section")
@@ -182,7 +182,7 @@ export default function Contact() {
               Start Project
             </button>
             <button
-              className="secondary-btn"
+              className="magnetic-button bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
               onClick={() =>
                 document
                   .querySelector(".split-contact-section")

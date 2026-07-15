@@ -21,8 +21,8 @@ import {
   FigmaCanvasHero,
   DesignShowcaseGallery,
   BeforeAfterSlider,
-  DesignProcessSVG,
 } from "../components/FigmaCanvasHero";
+import { PremiumWorkflow } from "../components/PremiumWorkflow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -399,7 +399,7 @@ export default function UiUxDesign() {
               high-fidelity production handoff.
             </p>
           </div>
-          <DesignProcessSVG />
+          <PremiumWorkflow />
         </div>
       </section>
 

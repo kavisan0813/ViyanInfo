@@ -61,61 +61,147 @@ function useSmoothScroll() {
 }
 
 function useMagneticButtons() {
-  const { pathname } = useLocation();
-
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
-    const buttons = document.querySelectorAll<HTMLElement>(
-      ".btn-teal, .btn-glass, .hero-badge, .menu-nav-link",
-    );
+    let activeBtn: HTMLElement | null = null;
 
-    const moveButton = (e: MouseEvent, btn: Element) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
+    const handleMouseMove = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // Search for target button or matching parent
+      const btn = target.closest(
+        "button, .btn, .liquid-btn, .work-hero__btn, .btn-teal, .btn-glass, .magnetic-button, a.bg-\\[\\#6D28D9\\], button.bg-\\[\\#6D28D9\\], a.bg-white\\/80, a.bg-white\\/95, [role='button'], a.btn-primary, a.btn-secondary, input[type='button'], input[type='submit']"
+      ) as HTMLElement | null;
 
-      gsap.to(btn, {
-        x: x * 0.3,
-        y: y * 0.3,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+      if (btn) {
+        if (activeBtn && activeBtn !== btn) {
+          gsap.to(activeBtn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1.1, 0.4)" });
+        }
+        activeBtn = btn;
+
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(btn, {
+          x: x * 0.35,
+          y: y * 0.35,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      } else if (activeBtn) {
+        gsap.to(activeBtn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1.1, 0.4)" });
+        activeBtn = null;
+      }
     };
 
-    const resetButton = (btn: Element) => {
-      gsap.to(btn, {
-        x: 0,
-        y: 0,
-        duration: 0.5,
-        ease: "elastic.out(1.1, 0.4)",
-      });
+    const handleMouseLeave = () => {
+      if (activeBtn) {
+        gsap.to(activeBtn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1.1, 0.4)" });
+        activeBtn = null;
+      }
     };
 
-    const listeners: Array<{
-      btn: Element;
-      move: EventListener;
-      leave: EventListener;
-    }> = [];
-
-    buttons.forEach((btn) => {
-      const moveHandler = ((e: MouseEvent) =>
-        moveButton(e, btn)) as EventListener;
-      const leaveHandler = (() => resetButton(btn)) as EventListener;
-
-      btn.addEventListener("mousemove", moveHandler);
-      btn.addEventListener("mouseleave", leaveHandler);
-
-      listeners.push({ btn, move: moveHandler, leave: leaveHandler });
-    });
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      listeners.forEach(({ btn, move, leave }) => {
-        btn.removeEventListener("mousemove", move);
-        btn.removeEventListener("mouseleave", leave);
-      });
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      if (activeBtn) {
+        gsap.to(activeBtn, { x: 0, y: 0, duration: 0.1 });
+      }
     };
-  }, [pathname]);
+  }, []);
+}
+
+function useButtonParticleBurst() {
+  useEffect(() => {
+    const triggerBurst = (e: MouseEvent) => {
+      const scrollX = window.scrollX;
+      const scrollY = window.scrollY;
+
+      // Particle count and premium lavender/teal/blue color palette
+      const particleCount = 12;
+      const colors = ["#C084FC", "#7C3AED", "#8B5CF6", "#A78BFA", "#6366F1", "#3B82F6", "#14B8A6"];
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement("span");
+        
+        // Random particle size
+        const size = Math.random() * 5 + 4;
+        
+        // Position particle at the entry coordinates of the hover
+        const startX = e.clientX + scrollX;
+        const startY = e.clientY + scrollY;
+
+        particle.style.position = "absolute";
+        particle.style.left = `${startX}px`;
+        particle.style.top = `${startY}px`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.borderRadius = "50%";
+        particle.style.pointerEvents = "none";
+        particle.style.zIndex = "99999";
+        
+        document.body.appendChild(particle);
+
+        // Project outwards in a random circular vector
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 60 + 30; // shoot distance: 30px to 90px
+        
+        const targetX = Math.cos(angle) * distance;
+        const targetY = Math.sin(angle) * distance;
+
+        gsap.fromTo(
+          particle,
+          {
+            x: 0,
+            y: 0,
+            scale: 1,
+            opacity: 0.9,
+          },
+          {
+            x: targetX,
+            y: targetY,
+            scale: 0.2,
+            opacity: 0,
+            duration: Math.random() * 0.5 + 0.4,
+            ease: "power2.out",
+            onComplete: () => {
+              particle.remove();
+            },
+          }
+        );
+      }
+    };
+
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // Resolve element matching any button class or role
+      const btn = target.closest(
+        "button, .btn, .liquid-btn, .work-hero__btn, .btn-teal, .btn-glass, .magnetic-button, a.bg-\\[\\#6D28D9\\], button.bg-\\[\\#6D28D9\\], a.bg-white\\/80, a.bg-white\\/95, [role='button'], a.btn-primary, a.btn-secondary, input[type='button'], input[type='submit']"
+      ) as HTMLElement | null;
+
+      if (btn && btn.dataset.particleHovered !== "true") {
+        btn.dataset.particleHovered = "true";
+        triggerBurst(e);
+
+        const handleMouseLeave = () => {
+          btn.dataset.particleHovered = "false";
+          btn.removeEventListener("mouseleave", handleMouseLeave);
+        };
+        btn.addEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+
+    document.addEventListener("mouseover", handleMouseOver);
+
+    return () => {
+      document.removeEventListener("mouseover", handleMouseOver);
+    };
+  }, []);
 }
 
 function Loading() {
@@ -129,6 +215,7 @@ function Loading() {
 export default function App() {
   useSmoothScroll();
   useMagneticButtons();
+  useButtonParticleBurst();
 
   const location = useLocation();
   const customFooterPaths = [
