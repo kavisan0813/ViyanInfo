@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ClipboardList, Palette, Code2, Rocket } from "lucide-react";
+import { Search, ClipboardList, Palette, Code2, Rocket, type LucideIcon } from "lucide-react";
 
 interface WorkflowStep {
   step: string;
   title: string;
   desc: string;
   badge: string;
-  icon: any;
+  icon: LucideIcon;
   iconColor: string;
   gradient: string;
 }

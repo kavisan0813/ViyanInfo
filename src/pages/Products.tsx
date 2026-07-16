@@ -13,11 +13,6 @@ import {
   Activity,
   Briefcase,
   X,
-  Shield,
-  Cloud,
-  Cpu,
-  Zap,
-  Headphones,
 } from "lucide-react";
 import { LiquidFooter } from "../components/LiquidFooter";
 import { SectionDivider } from "../components/SectionDivider";
@@ -557,57 +552,6 @@ function ProductsIndustries() {
   );
 }
 
-const premiumFeatures = [
-  {
-    title: "Secure",
-    desc: "Enterprise-grade security and data encryption to keep your business safe.",
-    icon: Shield,
-    badge: "Enterprise",
-    gradient: "from-blue-500/20 to-purple-500/20",
-    iconColor: "text-blue-600",
-  },
-  {
-    title: "Cloud Ready",
-    desc: "Access your data anywhere, anytime with our robust cloud infrastructure.",
-    icon: Cloud,
-    badge: "Cloud Native",
-    gradient: "from-sky-500/20 to-indigo-500/20",
-    iconColor: "text-sky-600",
-  },
-  {
-    title: "AI Powered",
-    desc: "Leverage artificial intelligence for smarter business insights.",
-    icon: Cpu,
-    badge: "AI",
-    gradient: "from-purple-500/20 to-pink-500/20",
-    iconColor: "text-purple-600",
-  },
-  {
-    title: "Fast Deployment",
-    desc: "Get up and running quickly with streamlined onboarding.",
-    icon: Zap,
-    badge: "Reliable",
-    gradient: "from-amber-500/20 to-orange-500/20",
-    iconColor: "text-amber-600",
-  },
-  {
-    title: "Scalable",
-    desc: "Built to grow with your business from startup to enterprise scale.",
-    icon: Activity,
-    badge: "Scalable",
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    iconColor: "text-emerald-600",
-  },
-  {
-    title: "24/7 Support",
-    desc: "Dedicated technical support team ready to assist you anytime.",
-    icon: Headphones,
-    badge: "Support",
-    gradient: "from-rose-500/20 to-red-500/20",
-    iconColor: "text-rose-600",
-  },
-];
-
 function ProductsWhyChoose() {
   return (
     <section className="relative py-24 bg-[#FDFBFF] overflow-hidden font-sans">
@@ -660,7 +604,7 @@ function ProductsWhyChoose() {
 
         {/* 3 columns, 2 rows grid container */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-[1024px] lg:max-w-none mx-auto">
-          {premiumFeatures.map((feature, i) => {
+          {ProductContent3.map((feature, i) => {
             const Icon = feature.icon;
             return (
               <motion.div
