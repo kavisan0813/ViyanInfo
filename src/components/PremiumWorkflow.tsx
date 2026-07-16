@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Users, Layout, MousePointer, Code, Rocket } from "lucide-react";
+import { Search, Users, Layout, MousePointer, Code, Rocket, type LucideIcon } from "lucide-react";
 
 interface WorkflowStep {
   id: number;
   title: string;
   subtitle: string;
-  icon: any;
+  icon: LucideIcon;
   description: string;
 }
 
