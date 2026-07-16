@@ -11,6 +11,8 @@ import {
   CheckCircle2,
   Clock,
   Send,
+  Zap,
+  Users,
 } from "lucide-react";
 import contactImg from "../assets/contact_img.webp";
 import "../styles/ContactPage.css";
@@ -160,9 +162,18 @@ export default function Contact() {
         <div className="contact-hero-left">
           <div className="hero-badge">CONTACT VIYAN INFO TECH</div>
 
-          <h1>
+          <h1 className="text-[clamp(34px,4.5vw,56px)] font-display font-bold text-[#1F1430] leading-[1.1] tracking-tight mb-6">
             Let's Build Something
-            <span> Incredible Together</span>
+            <br />
+            <span
+              style={{
+                background: "linear-gradient(90deg, #9D5CFF, #7B2FF7)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Incredible Together
+            </span>
           </h1>
 
           <p>
@@ -205,15 +216,15 @@ export default function Contact() {
 
             {/* FLOATING UI */}
             <div className="hero-ui-card card-top">
-              <span>📨</span>
+              <Send size={16} className="text-purple-600" />
               <p>Message Sent Successfully</p>
             </div>
             <div className="hero-ui-card card-middle">
-              <span>⚡</span>
+              <Zap size={16} className="text-amber-500" />
               <p>Response Within 1 Hour</p>
             </div>
             <div className="hero-ui-card card-bottom">
-              <span>🤝</span>
+              <Users size={16} className="text-blue-600" />
               <p>Let's Build Together</p>
             </div>
           </div>

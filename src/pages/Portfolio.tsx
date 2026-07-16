@@ -157,7 +157,7 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="w-full max-w-3xl flex flex-col items-end text-right"
+            className="w-full max-w-3xl flex flex-col items-center text-center"
           >
             <span className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
               Ready to build your solution?

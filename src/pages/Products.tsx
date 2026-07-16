@@ -425,7 +425,7 @@ function ProductRow({
             Request Demo
           </Link>
           <Link
-            to={`/services/saas`}
+            to={`/portfolio`}
             className="bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-3.5 rounded-xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer"
           >
             Learn More <ArrowRight size={16} />
@@ -555,7 +555,8 @@ function ProductsIndustries() {
 function ProductsWhyChoose() {
   return (
     <section className="relative py-24 bg-[#FDFBFF] overflow-hidden font-sans">
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-10px) rotate(3deg); }
@@ -577,13 +578,13 @@ function ProductsWhyChoose() {
             linear-gradient(to bottom, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
         }
       `}} />
-      
+
       {/* Grid background */}
       <div className="absolute inset-0 workflow-grid pointer-events-none" />
-      
+
       {/* Purple blur */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-300/10 rounded-full blur-[120px] pointer-events-none" />
-      
+
       {/* Floating particles */}
       <div className="absolute top-12 left-[10%] w-3 h-3 bg-purple-400/20 rounded-full blur-[1px] animate-float-slow" />
       <div className="absolute bottom-16 right-[12%] w-4 h-4 bg-blue-400/15 rounded-full blur-[1px] animate-float-medium" />
@@ -618,13 +619,13 @@ function ProductsWhyChoose() {
               >
                 {/* Animated border effect */}
                 <div className="absolute inset-0 rounded-[18px] border-2 border-transparent group-hover:border-purple-300/40 pointer-events-none transition-all duration-300" />
-                
+
                 <div className="flex items-start gap-4">
                   {/* Gradient Icon Circle */}
                   <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
                     <Icon className={`w-6 h-6 ${feature.iconColor} group-hover:scale-110 transition-transform duration-300`} strokeWidth={1.5} />
                   </div>
-                  
+
                   {/* Heading & description */}
                   <div className="flex-grow min-w-0 text-left">
                     <h3 className="text-base font-bold text-slate-800 tracking-tight mb-1">
@@ -888,21 +889,20 @@ export default function Products() {
         />
 
         {/* CTA */}
-        <div className="relative z-10 flex justify-start px-8 md:px-16 lg:px-24">
+        <div className="relative z-10 flex justify-center px-8 md:px-16 lg:px-24 pt-4 md:pt-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="w-full max-w-3xl flex flex-col items-start text-left"
+            className="w-full flex flex-col items-center text-center"
           >
-            <span className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-6 drop-shadow-xl">
+            <span className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-white tracking-tight mb-4 drop-shadow-xl md:whitespace-nowrap">
               Ready to modernize your operations?
             </span>
 
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 drop-shadow-md">
-              Let's coordinate on requirements and deploy the perfect platform
-              for your business.
+            <p className="text-sm md:text-base lg:text-lg text-white/90 mb-8 drop-shadow-md md:whitespace-nowrap">
+              Let's coordinate on requirements and deploy the perfect platform for your business.
             </p>
 
             <motion.div

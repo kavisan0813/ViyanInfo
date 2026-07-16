@@ -11,18 +11,17 @@ import {
   Star,
   Users,
   Activity,
-  Linkedin,
-  Github,
   Mail,
-  Instagram,
   Shield,
   Zap,
   Rocket,
   Clock,
 } from "lucide-react";
+import { FiLinkedin, FiGithub, FiInstagram } from "react-icons/fi";
 import { SectionDivider } from "../components/SectionDivider";
 import { founders } from "../components/Founders";
 import aboutImg from "../assets/aboutus.webp";
+import logoBgImg from "../assets/logo_bg_img.png";
 import { LiquidFooter } from "../components/LiquidFooter";
 import "../styles/About.css";
 import { AboutStatsBg, FounderHalo } from "../components/AboutVisuals";
@@ -78,15 +77,24 @@ const StoryImmersiveSplit = () => {
           className="story-v2-content"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
+
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="section-tag">OUR STORY</span>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">OUR STORY</span>
 
           <h2>
             Transforming Ideas Into
             <br />
-            Digital Experiences
+            <span
+              style={{
+                background: "linear-gradient(90deg, #9D5CFF, #7B2FF7)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Digital Experiences
+            </span>
           </h2>
 
           <p>
@@ -142,7 +150,7 @@ const MissionVisionCinematic = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="mv-tag">OUR MISSION</span>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">OUR MISSION</span>
           <h2>
             Empowering Businesses <br /> Through Innovation
           </h2>
@@ -163,7 +171,7 @@ const MissionVisionCinematic = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="mv-tag">OUR VISION</span>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">OUR VISION</span>
           <h2>
             Designing The Future <br /> Of Technology
           </h2>
@@ -228,7 +236,10 @@ const CultureCreativeWall = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.4 }}
         >
-          🚀 Innovation First
+          <div className="flex items-center gap-2">
+            <Rocket size={16} className="text-purple-600" />
+            <span>Innovation First</span>
+          </div>
         </motion.div>
 
         <motion.div
@@ -238,7 +249,10 @@ const CultureCreativeWall = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.4 }}
         >
-          🤝 Team Collaboration
+          <div className="flex items-center gap-2">
+            <Users size={16} className="text-blue-600" />
+            <span>Team Collaboration</span>
+          </div>
         </motion.div>
 
         <motion.div
@@ -248,7 +262,10 @@ const CultureCreativeWall = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.8, duration: 0.4 }}
         >
-          ⚡ Fast Execution
+          <div className="flex items-center gap-2">
+            <Zap size={16} className="text-amber-500" />
+            <span>Fast Execution</span>
+          </div>
         </motion.div>
       </motion.div>
 
@@ -260,7 +277,7 @@ const CultureCreativeWall = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
       >
-        <span className="section-tag">OUR CULTURE</span>
+        <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">OUR CULTURE</span>
 
         <h2>
           Creativity Meets
@@ -355,6 +372,26 @@ function BentoCard({
     </motion.div>
   );
 }
+
+// 6. Founder Artwork Background
+const FounderArtwork = ({ scrollYProgress }: { scrollYProgress: any }) => {
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+
+  return (
+    <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+      <motion.div
+        style={{ opacity: logoOpacity }}
+        className="absolute w-full h-full flex items-center justify-center"
+      >
+        <img
+          src={logoBgImg}
+          alt="Founder Background Artwork"
+          className="w-full h-full object-contain object-right"
+        />
+      </motion.div>
+    </div>
+  );
+};
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -484,10 +521,18 @@ export default function About() {
         >
           <span className="hero-badge">ABOUT VIYAN INFO TECH</span>
 
-          <h1>
+          <h1 className="text-[clamp(34px,4.5vw,56px)] font-display font-bold text-[#1F1430] leading-[1.1] tracking-tight mb-6">
             Building Digital
             <br />
-            <span>Experiences</span>
+            <span
+              style={{
+                background: "linear-gradient(90deg, #9D5CFF, #7B2FF7)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Experiences
+            </span>
             <br />
             That Matter
           </h1>
@@ -533,7 +578,10 @@ export default function About() {
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            🚀 Startup Growth
+            <div className="flex items-center gap-2">
+              <Rocket size={16} className="text-purple-600" />
+              <span>Startup Growth</span>
+            </div>
           </motion.div>
 
           <motion.div
@@ -546,7 +594,10 @@ export default function About() {
               delay: 1,
             }}
           >
-            🤖 AI Solutions
+            <div className="flex items-center gap-2">
+              <Bot size={16} className="text-blue-600" />
+              <span>AI Solutions</span>
+            </div>
           </motion.div>
 
           <motion.div
@@ -559,7 +610,10 @@ export default function About() {
               delay: 2,
             }}
           >
-            ⚡ Fast Delivery
+            <div className="flex items-center gap-2">
+              <Zap size={16} className="text-amber-500" />
+              <span>Fast Delivery</span>
+            </div>
           </motion.div>
         </motion.div>
       </section>
@@ -574,7 +628,7 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
             {[
               {
-                val: 6,
+                val: 4,
                 suffix: "+",
                 label: "Projects Delivered",
                 desc: "Enterprise software systems and web apps successfully deployed.",
@@ -584,7 +638,7 @@ export default function About() {
                 borderGlow: "from-[#7C3AED]/20 to-[#9333EA]/20",
               },
               {
-                val: 5,
+                val: 3,
                 suffix: "+",
                 label: "Happy Clients",
                 desc: "Partnerships built on reliable delivery and technical expertise.",
@@ -752,7 +806,7 @@ export default function About() {
 
             {/* Card 3: Projects — Medium */}
             <BentoCard
-              number={50}
+              number={5}
               suffix="+"
               label="Projects Delivered"
               desc="Cross-industry digital products built to production standard."
@@ -876,6 +930,8 @@ export default function About() {
 
             {/* Founders Stories Map */}
             <div className="relative w-full h-[60vh] lg:h-[70vh] flex items-center justify-center">
+              <FounderArtwork scrollYProgress={scrollYProgress} />
+
               {founders.map((founder, idx) => {
                 const styleObj = getFounderStyle(idx, scrollVal);
                 return (
@@ -982,7 +1038,7 @@ export default function About() {
                           className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-md border border-white/60 shadow-xs flex items-center justify-center hover:shadow-md transition-all"
                           style={{ color: "#0A66C2" }}
                         >
-                          <Linkedin className="w-4.5 h-4.5" />
+                          <FiLinkedin className="w-4.5 h-4.5" />
                         </motion.a>
                         <motion.a
                           whileHover={{ scale: 1.1, y: -2 }}
@@ -992,7 +1048,7 @@ export default function About() {
                           className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-md border border-white/60 shadow-xs flex items-center justify-center hover:shadow-md transition-all"
                           style={{ color: "#181717" }}
                         >
-                          <Github className="w-4.5 h-4.5" />
+                          <FiGithub className="w-4.5 h-4.5" />
                         </motion.a>
                         <motion.a
                           whileHover={{ scale: 1.1, y: -2 }}
@@ -1013,7 +1069,7 @@ export default function About() {
                               "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)",
                           }}
                         >
-                          <Instagram className="w-4 h-4" />
+                          <FiInstagram className="w-4 h-4" />
                         </motion.a>
                       </div>
                     </div>

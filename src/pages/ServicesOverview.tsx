@@ -84,7 +84,7 @@ const SERVICES = [
   },
   {
     title: "SaaS Product Engineering",
-    href: "/services/saas-development",
+    href: "/products",
     color: "#3B82F6",
     Icon: Cloud,
     desc: "End-to-end SaaS product development—from product strategy and architecture to deployment, scaling, and continuous improvement.",
@@ -140,7 +140,7 @@ const SERVICES = [
   },
   {
     title: "Cloud & DevOps Engineering",
-    href: "/services/cloud-devops",
+    href: "/products",
     color: "#8B5CF6",
     Icon: Server,
     desc: "Cloud-native infrastructure, deployment pipelines, monitoring, security, and scalable environments for modern software applications.",
@@ -154,7 +154,7 @@ const SERVICES = [
   },
   {
     title: "Enterprise Software Solutions",
-    href: "/services/enterprise-software",
+    href: "/products",
     color: "#F59E0B",
     Icon: Building,
     desc: "Large-scale enterprise applications that integrate departments, automate business processes, and centralize organizational operations.",

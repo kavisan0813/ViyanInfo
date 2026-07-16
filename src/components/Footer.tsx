@@ -3,15 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import {
-  Linkedin,
-  Instagram,
-  Facebook,
-  Github,
   Mail,
   Phone,
   MapPin,
   Globe,
 } from "lucide-react";
+import { FiLinkedin, FiInstagram, FiFacebook, FiGithub } from "react-icons/fi";
 import logo1 from "../assets/logo.webp";
 import img1 from "../assets/img 1.webp";
 
@@ -256,28 +253,28 @@ export function Footer() {
             <div className="flex gap-3 mt-1 relative z-20">
               {[
                 {
-                  icon: <Linkedin className="w-[18px] h-[18px]" />,
+                  icon: <FiLinkedin className="w-[18px] h-[18px]" />,
                   href: "https://linkedin.com",
                   label: "LinkedIn",
                   hoverColor:
                     "hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:shadow-[0_0_15px_rgba(10,102,194,0.6)]",
                 },
                 {
-                  icon: <Github className="w-[18px] h-[18px]" />,
+                  icon: <FiGithub className="w-[18px] h-[18px]" />,
                   href: "https://github.com",
                   label: "GitHub",
                   hoverColor:
                     "hover:bg-[#181717] hover:border-[#181717] hover:shadow-[0_0_15px_rgba(24,23,23,0.6)]",
                 },
                 {
-                  icon: <Instagram className="w-[18px] h-[18px]" />,
+                  icon: <FiInstagram className="w-[18px] h-[18px]" />,
                   href: "https://instagram.com",
                   label: "Instagram",
                   hoverColor:
                     "hover:bg-[#E1306C] hover:border-[#E1306C] hover:shadow-[0_0_15px_rgba(225,48,108,0.6)]",
                 },
                 {
-                  icon: <Facebook className="w-[18px] h-[18px]" />,
+                  icon: <FiFacebook className="w-[18px] h-[18px]" />,
                   href: "https://facebook.com",
                   label: "Facebook",
                   hoverColor:

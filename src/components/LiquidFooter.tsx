@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Github, Instagram } from "lucide-react";
+import { FiLinkedin, FiGithub, FiInstagram } from "react-icons/fi";
 import logo1 from "../assets/logo.webp";
 import { LiquidGlassCard } from "./LiquidGlassCard";
 import "../styles/LiquidFooter.css";
@@ -35,17 +35,17 @@ export function LiquidFooter({ isLight = false }: { isLight?: boolean }) {
             <div className="flex gap-4 footer-social">
               {[
                 {
-                  icon: <Linkedin size={18} />,
+                  icon: <FiLinkedin size={18} />,
                   href: "https://linkedin.com",
                   name: "linkedin",
                 },
                 {
-                  icon: <Github size={18} />,
+                  icon: <FiGithub size={18} />,
                   href: "https://github.com",
                   name: "github",
                 },
                 {
-                  icon: <Instagram size={18} />,
+                  icon: <FiInstagram size={18} />,
                   href: "https://instagram.com",
                   name: "instagram",
                 },

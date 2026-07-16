@@ -155,11 +155,10 @@ export function FigmaCanvasHero() {
               <button
                 key={i}
                 onClick={() => setActiveTool(i)}
-                className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
-                  activeTool === i
+                className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all ${activeTool === i
                     ? "bg-[#7B2FF7]/40 text-[#9b77f5]"
                     : "text-slate-500 hover:text-slate-300"
-                }`}
+                  }`}
               >
                 <Icon size={13} />
               </button>
@@ -281,31 +280,31 @@ const designShowcase = [
   {
     title: "E-commerce Platform",
     type: "Web Design",
-    img: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=400&fit=crop&auto=format",
+    img: "https://plus.unsplash.com/premium_photo-1684785618727-378a3a5e91c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8RS1jb21tZXJjZSUyMFBsYXRmb3JtfGVufDB8fDB8fHww",
     color: "#7B2FF7",
   },
   {
-    title: "Fintech Mobile App",
+    title: "Mobile App Development",
     type: "iOS Design",
-    img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop&auto=format",
+    img: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1vYmlsZSUyMGFwcGxpY2F0aW9uJTIwZGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDA%3D",
     color: "#3B82F6",
   },
   {
     title: "SaaS Dashboard",
     type: "Web App",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&auto=format",
+    img: "https://plus.unsplash.com/premium_photo-1682126196145-d23f2022a8dd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2FhcyUyMGRhc2hib2FyZHxlbnwwfHwwfHx8MA%3D%3D",
     color: "#10B981",
   },
   {
     title: "Brand Identity System",
     type: "Branding",
-    img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop&auto=format",
+    img: "https://plus.unsplash.com/premium_photo-1726797661357-f7897f35f865?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTN8fGRlc2lnbiUyMHN5c3RlbXxlbnwwfHwwfHx8MA%3D%3D",
     color: "#EC4899",
   },
   {
     title: "Healthcare Platform",
     type: "UX Research",
-    img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop&auto=format",
+    img: "https://plus.unsplash.com/premium_photo-1681966624846-d341aa379a5b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTAxfHxoZWFsdGhjYXJlJTIwcGxhdGZvcm18ZW58MHx8MHx8fDA%3D",
     color: "#F59E0B",
   },
 ];

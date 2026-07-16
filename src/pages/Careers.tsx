@@ -163,7 +163,16 @@ export default function Careers() {
               </span>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-[#0F172A] tracking-tight leading-tight mb-6">
-                Build The Future With ViyanInfo
+                Build The
+                <span
+                  style={{
+                    background: "linear-gradient(90deg, #9D5CFF, #7B2FF7)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Future With ViyanInfo
+                </span>
               </h1>
 
               <p className="text-lg leading-relaxed text-[#475569] max-w-xl mx-auto lg:mx-0 mb-8">
