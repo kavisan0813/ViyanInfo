@@ -1,16 +1,33 @@
 import { motion } from "framer-motion";
-import { Smartphone, Layers, Cpu, ArrowRight } from "lucide-react";
+import { 
+  Smartphone, 
+  Layers, 
+  Cpu, 
+  ArrowRight, 
+  Bell,
+  ShieldCheck, 
+  Cloud, 
+  RefreshCw, 
+  Fingerprint, 
+  Zap, 
+  Download 
+} from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
 import { Link } from "react-router-dom";
 import { LiquidFooter } from "../components/LiquidFooter";
 import mobileappImg from "../assets/mobileapp_img.webp";
-import { Heart } from "lucide-react";
 import {
   MobileStack,
   MobileStack3,
   MobileStack4,
 } from "../components/ArrayContent";
 import { FeatureCardStack } from "../components/MobileVisuals";
+import {
+  FloatingGlassCard,
+  PremiumBankingScreen,
+  PremiumEcomScreen,
+  PremiumTaskScreen,
+} from "../components/MobileScreens";
 
 // ─────────────────────────────────────────
 // BACKGROUND BLOBS
@@ -121,126 +138,25 @@ function PhoneFrame({
       >
         {/* Dynamic island */}
         <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-12 h-3 bg-black rounded-full z-20" />
-        {/* Screen */}
-        <div className="w-full h-full rounded-[26px] overflow-hidden">
-          {screen}
+        {/* Screen with scale correction for standard 260x563 viewport */}
+        <div className="w-full h-full rounded-[26px] overflow-hidden relative bg-slate-50">
+          <div 
+            style={{
+              width: 260,
+              height: 563.33,
+              transform: `scale(${120 / 260})`,
+              transformOrigin: "top left",
+            }}
+          >
+            {screen}
+          </div>
         </div>
       </div>
     </motion.div>
   );
 }
 
-const FinanceScreen = () => (
-  <div className="h-full bg-gradient-to-b from-[#1A0535] to-[#120325] p-3 pt-6">
-    <div className="text-[7px] text-purple-300 mb-0.5">Portfolio</div>
-    <div className="text-[14px] font-black text-white mb-1">$24,831</div>
-    <div className="text-[7px] text-emerald-400 mb-3">▲ 12.4% this month</div>
-    <div className="bg-white/10 rounded-xl p-2 mb-2">
-      <div className="flex items-end gap-0.5 h-10">
-        {[40, 60, 45, 80, 55, 90, 70, 85, 65, 95].map((h, i) => (
-          <div
-            key={i}
-            className="flex-1 rounded-sm"
-            style={{
-              height: `${h}%`,
-              background: `rgba(139,92,246,${0.5 + i * 0.04})`,
-            }}
-          />
-        ))}
-      </div>
-    </div>
-    {[1, 2, 3].map((i) => (
-      <div
-        key={i}
-        className="flex items-center gap-1.5 py-1 border-t border-white/10"
-      >
-        <div className="w-4 h-4 rounded-full bg-white/20" />
-        <div className="flex-1 h-1 rounded bg-white/15" />
-        <div className="w-5 h-1 rounded bg-purple-400/40" />
-      </div>
-    ))}
-  </div>
-);
-
-const SocialScreen = () => (
-  <div className="h-full bg-white pt-6">
-    <div className="flex items-center justify-between px-3 py-2 border-b border-slate-100">
-      <div className="w-12 h-2 rounded bg-[#7B2FF7]/20" />
-      <div className="flex gap-1">
-        <div className="w-4 h-4 rounded bg-slate-100" />
-        <div className="w-4 h-4 rounded bg-slate-100" />
-      </div>
-    </div>
-    <div className="flex gap-2 px-3 py-2">
-      {["#7B2FF7", "#3B82F6", "#EC4899", "#10B981"].map((c, i) => (
-        <div
-          key={i}
-          className="flex-shrink-0 flex flex-col items-center gap-0.5"
-        >
-          <div
-            className="w-8 h-8 rounded-full border-2 border-white shadow-sm"
-            style={{ background: c, opacity: 0.7 }}
-          />
-          <div className="w-5 h-1 rounded bg-slate-200" />
-        </div>
-      ))}
-    </div>
-    {[1, 2].map((i) => (
-      <div
-        key={i}
-        className="mx-3 mb-2 rounded-xl border border-slate-100 overflow-hidden"
-      >
-        <div className="h-12 bg-gradient-to-r from-purple-50 to-blue-50" />
-        <div className="p-1.5 flex items-center justify-between">
-          <div className="w-2/3 h-1.5 rounded bg-slate-200" />
-          <div className="flex items-center gap-0.5">
-            <Heart size={8} className="text-red-400 fill-red-400" />
-            <span className="text-[7px] text-slate-400">24</span>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-);
-
-const EcomScreen = () => (
-  <div className="h-full bg-[#F8F5FF] pt-6">
-    <div className="px-3 mb-2">
-      <div className="bg-white rounded-lg px-2 py-1 text-[7px] text-slate-400 border border-slate-100">
-        🔍 Search...
-      </div>
-    </div>
-    <div className="grid grid-cols-2 gap-1.5 px-3">
-      {[
-        { c: "#7B2FF7", p: "$29" },
-        { c: "#3B82F6", p: "$45" },
-        { c: "#10B981", p: "$18" },
-        { c: "#EC4899", p: "$67" },
-      ].map((item, i) => (
-        <div
-          key={i}
-          className="bg-white rounded-xl overflow-hidden border border-slate-100"
-        >
-          <div
-            className="h-10 flex items-center justify-center"
-            style={{ background: `${item.c}15` }}
-          >
-            <div
-              className="w-6 h-6 rounded-lg"
-              style={{ background: `${item.c}30` }}
-            />
-          </div>
-          <div className="p-1.5">
-            <div className="w-full h-1 rounded bg-slate-100 mb-1" />
-            <div className="text-[8px] font-bold" style={{ color: item.c }}>
-              {item.p}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+// Screens imported from MobileScreens
 
 function PhoneClusterHero() {
   return (
@@ -294,7 +210,7 @@ function PhoneClusterHero() {
           delay={1.2}
           scale={0.84}
           z={1}
-          screen={<SocialScreen />}
+          screen={<PremiumTaskScreen />}
         />
       </div>
       {/* Center phone */}
@@ -304,7 +220,7 @@ function PhoneClusterHero() {
           delay={0}
           scale={1}
           z={3}
-          screen={<FinanceScreen />}
+          screen={<PremiumBankingScreen />}
         />
         {/* Glow under center phone */}
         <div
@@ -322,7 +238,7 @@ function PhoneClusterHero() {
           delay={2.4}
           scale={0.84}
           z={1}
-          screen={<EcomScreen />}
+          screen={<PremiumEcomScreen />}
         />
       </div>
       {/* Floating chips */}
@@ -482,6 +398,7 @@ interface AlternatingFeatureProps {
   color: string;
   screen: React.ReactNode;
   badges?: string[];
+  floatingElements?: React.ReactNode;
 }
 
 function AlternatingFeature({
@@ -493,6 +410,7 @@ function AlternatingFeature({
   color,
   screen,
   badges,
+  floatingElements,
 }: AlternatingFeatureProps) {
   return (
     <div
@@ -524,14 +442,35 @@ function AlternatingFeature({
           ))}
         </div>
       </div>
-      <div className="w-full lg:w-1/2 flex justify-center relative">
+      <div className="w-full lg:w-1/2 flex justify-center relative min-h-[440px] items-center">
+        {/* Soft Purple Glow Behind Phone */}
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-3xl pointer-events-none"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transition-all duration-500 group-hover:scale-110"
           style={{
-            background: `radial-gradient(circle, ${color}20 0%, transparent 70%)`,
+            width: 320,
+            height: 320,
+            background: "rgba(124,90,255,.12)",
+            filter: "blur(90px)",
           }}
         />
-        <PhoneFrame rotate={reverse ? 5 : -5} scale={1} z={1} screen={screen} />
+        
+        {/* Scroll entry animation & Hover wrapper */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative group cursor-default"
+        >
+          <motion.div
+            whileHover={{ y: -12, scale: 1.02 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="relative z-10"
+          >
+            <PhoneFrame rotate={reverse ? 5 : -5} scale={1} z={1} screen={screen} />
+          </motion.div>
+          {floatingElements}
+        </motion.div>
       </div>
     </div>
   );
@@ -626,7 +565,7 @@ export default function MobileApp() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-12 lg:gap-8">
             <AlternatingFeature
               title="Native iOS Applications"
               desc="Highly secure Apple iOS applications built using Swift and following strict Apple HIG guidelines for smooth store approvals. We deliver fluid animations and deep OS integrations."
@@ -634,10 +573,53 @@ export default function MobileApp() {
               Icon={Smartphone}
               color="#06B6D4"
               reverse={false}
-              screen={<FinanceScreen />}
+              screen={<PremiumBankingScreen />}
               badges={["Swift", "Apple App Store", "Cocoa Touch", "Core Data"]}
+              floatingElements={
+                <>
+                  <FloatingGlassCard top="10%" left="-140px" delay={0.2} className="text-[#10B981]">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center border border-emerald-200">
+                      <Fingerprint size={12} className="text-emerald-600" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Face ID</div>
+                      <div className="text-[8px] text-emerald-600 font-semibold flex items-center gap-1">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Verified
+                      </div>
+                    </div>
+                  </FloatingGlassCard>
+                  <FloatingGlassCard bottom="35%" right="-140px" delay={0.4} className="text-[#0F172A]">
+                    <div className="w-6 h-6 rounded-[6px] bg-black flex items-center justify-center">
+                      <span className="text-[10px] text-white font-bold">Pay</span>
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Apple Pay</div>
+                      <div className="text-[9px] font-bold text-emerald-500">₹2,450</div>
+                    </div>
+                  </FloatingGlassCard>
+                  <FloatingGlassCard top="60%" left="-160px" delay={0.6}>
+                    <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center border border-purple-200">
+                      <ShieldCheck size={12} className="text-purple-600" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Security</div>
+                      <div className="text-[8px] text-slate-500">256-bit Encryption</div>
+                    </div>
+                  </FloatingGlassCard>
+                  <FloatingGlassCard top="-5%" right="-120px" delay={0.8}>
+                    <div className="w-6 h-6 rounded-[8px] bg-red-100 flex items-center justify-center">
+                      <Bell size={12} className="text-red-600" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Payment Received</div>
+                      <div className="text-[9px] font-bold text-emerald-500">₹14,500</div>
+                    </div>
+                  </FloatingGlassCard>
+                </>
+              }
             />
             <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+            
             <AlternatingFeature
               title="Native Android Apps"
               desc="Performant Android apps built using Kotlin, featuring robust hardware integrations, offline-first architectures, and strict adherence to Material Design metrics."
@@ -645,10 +627,56 @@ export default function MobileApp() {
               Icon={Cpu}
               color="#10B981"
               reverse={true}
-              screen={<EcomScreen />}
+              screen={<PremiumEcomScreen />}
               badges={["Kotlin", "Google Play", "Gradle", "Jetpack Compose"]}
+              floatingElements={
+                <>
+                  <FloatingGlassCard top="15%" right="-140px" delay={0.3}>
+                    <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200">
+                      <svg viewBox="0 0 24 24" className="w-3 h-3">
+                        <path fill="#EA4335" d="M1.22 0L13.2 12 1.22 24C.55 23.65.1 22.95.1 22.1V1.9C.1 1.05.55.35 1.22 0z"/>
+                        <path fill="#FBBC04" d="M17.1 8.05L4.4.35l8.8 11.65 3.9-3.95z"/>
+                        <path fill="#4285F4" d="M21.15 10.4c.5.28.85.8.85 1.6s-.35 1.3-.85 1.6L17.1 15.9 13 12l4.1-3.95 4.05 2.35z"/>
+                        <path fill="#34A853" d="M4.4 23.65l12.7-7.75-3.9-3.9L4.4 23.65z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Google Play</div>
+                      <div className="text-[8px] text-emerald-500 font-semibold">Updated</div>
+                    </div>
+                  </FloatingGlassCard>
+                  <FloatingGlassCard bottom="30%" left="-150px" delay={0.5}>
+                    <div className="w-6 h-6 rounded-[8px] bg-[#10B981]/10 flex items-center justify-center">
+                       <Zap size={12} className="text-[#10B981]" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Material You</div>
+                      <div className="text-[8px] text-slate-500">Dynamic UI</div>
+                    </div>
+                  </FloatingGlassCard>
+                  <FloatingGlassCard top="65%" right="-130px" delay={0.7}>
+                    <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center">
+                      <Cloud size={12} className="text-blue-500" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Offline Sync</div>
+                      <div className="text-[8px] text-slate-500">Supported</div>
+                    </div>
+                  </FloatingGlassCard>
+                  <FloatingGlassCard top="-10%" left="-120px" delay={0.9}>
+                    <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center">
+                      <Download size={12} className="text-orange-500" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Instant App</div>
+                      <div className="text-[8px] text-slate-500">No install required</div>
+                    </div>
+                  </FloatingGlassCard>
+                </>
+              }
             />
             <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+            
             <AlternatingFeature
               title="Cross-Platform Solutions"
               desc="Single codebase systems built with React Native or Flutter, delivering 95% native performance across iOS and Android while reducing time-to-market and maintenance costs."
@@ -656,8 +684,65 @@ export default function MobileApp() {
               Icon={Layers}
               color="#7B2FF7"
               reverse={false}
-              screen={<SocialScreen />}
+              screen={<PremiumTaskScreen />}
               badges={["React Native", "Flutter", "Expo", "Single Codebase"]}
+              floatingElements={
+                <>
+                  <FloatingGlassCard top="12%" left="-150px" delay={0.2}>
+                    <div className="w-6 h-6 rounded-full bg-purple-50 flex items-center justify-center border border-purple-100">
+                      <Layers size={12} className="text-purple-600" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">One Codebase</div>
+                      <div className="text-[8px] text-slate-500">iOS & Android</div>
+                    </div>
+                  </FloatingGlassCard>
+                  <FloatingGlassCard bottom="25%" right="-150px" delay={0.4}>
+                    <div className="w-6 h-6 rounded-[8px] bg-indigo-50 flex items-center justify-center">
+                      <Cpu size={12} className="text-indigo-600" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Shared UI</div>
+                      <div className="text-[8px] text-slate-500">Fast Deployment</div>
+                    </div>
+                  </FloatingGlassCard>
+                  <FloatingGlassCard top="50%" left="-160px" delay={0.6}>
+                    <div className="w-6 h-6 rounded-full bg-sky-50 flex items-center justify-center">
+                      <RefreshCw size={12} className="text-sky-500 animate-spin-slow" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-slate-800">Cloud Sync</div>
+                      <div className="text-[8px] text-emerald-500 font-semibold flex items-center gap-1">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Active
+                      </div>
+                    </div>
+                  </FloatingGlassCard>
+                  
+                  {/* Connection Lines (SVGs) */}
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none -z-10 overflow-visible" style={{ left: '-60px' }}>
+                    <motion.path
+                      d="M20,60 C50,60 80,100 120,130"
+                      fill="none"
+                      stroke="#E9D5FF"
+                      strokeWidth="1.5"
+                      strokeDasharray="4 4"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      transition={{ duration: 1.5 }}
+                    />
+                    <motion.path
+                      d="M-20,230 C20,230 50,180 100,160"
+                      fill="none"
+                      stroke="#E9D5FF"
+                      strokeWidth="1.5"
+                      strokeDasharray="4 4"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      transition={{ duration: 1.5, delay: 0.3 }}
+                    />
+                  </svg>
+                </>
+              }
             />
           </div>
         </div>

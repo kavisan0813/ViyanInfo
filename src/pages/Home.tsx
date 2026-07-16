@@ -14,11 +14,11 @@ import { motion } from "framer-motion";
 import { burst } from "../utils/particleBurst";
 import visionImg from "../assets/Vision.png";
 import { HorizontalTiltCard } from "../components/HorizontalTiltCard";
+import { HomeProcess } from "../components/HomeProcess";
 import {
   Homecontent1,
   Homecontent2,
   Homecontent3,
-  Homecontent4,
   Homecontent5,
   Homecontent6,
   Homecontent7,
@@ -466,100 +466,12 @@ export default function Home() {
       <SectionDivider />
 
       {/* SECTION 4: DEVELOPMENT PROCESS */}
-      <section className="relative py-24 bg-[#FAF7FF] overflow-hidden">
+      <HomeProcess />
+
+      <section className="relative pb-24 bg-[#FAF7FF]">
         <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center mb-20">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
-              OUR PROCESS
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-6">
-              A Simple Process.
-              <br />
-              Built for Successful Products.
-            </h2>
-            <p className="text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
-              Every successful digital product follows a clear path. Our
-              engineering process keeps projects transparent, efficient, and
-              focused on delivering measurable value.
-            </p>
-          </div>
-
-          {/* Timeline Grid */}
-          <div className="relative max-w-6xl mx-auto px-4">
-            {/* Desktop Horizontal Connecting Line */}
-            <div className="hidden lg:block absolute left-12 right-12 top-[44px] h-[3px] bg-gradient-to-r from-blue-300 via-purple-300 to-amber-300 z-0 rounded-full"></div>
-
-            {/* Grid Container */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-8 relative z-10">
-              {Homecontent4.map((step, idx) => {
-                const IconComponent = step.icon;
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={{ y: -8 }}
-                    className="relative flex flex-col items-center text-center group cursor-default"
-                  >
-                    {/* Circle Node on Desktop Line / Icon Container */}
-                    <div
-                      className={`relative w-20 h-20 rounded-2xl bg-white border-2 border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-center mb-6 z-10 group-hover:border-purple-300 group-hover:shadow-[0_15px_35px_rgba(124,58,237,0.1)] transition-all duration-300`}
-                    >
-                      {/* Step Number Badge */}
-                      <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-[#7B2FF7] to-[#9D5CFF] text-[10px] font-mono font-bold text-white flex items-center justify-center shadow-md">
-                        {step.step}
-                      </span>
-
-                      {/* Icon */}
-                      <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300`}
-                      >
-                        <IconComponent size={22} className={step.iconColor} />
-                      </div>
-                    </div>
-
-                    {/* Step Card */}
-                    <div className="w-full flex-1">
-                      <h3 className="text-xl font-display font-bold text-[#0F172A] mb-3 group-hover:text-purple-600 transition-colors">
-                        {step.title}
-                      </h3>
-
-                      <p className="text-[13px] text-[#475569] leading-relaxed max-w-[200px] mx-auto">
-                        {step.desc}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-
           {/* Bottom CTA Block */}
-          <div className="mt-24 max-w-2xl mx-auto text-center border-t border-[#E9D5FF] pt-16 relative z-10">
-            <h3 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A] mb-3">
-              Want to See How We Build Software?
-            </h3>
-            <p className="text-base text-[#475569] mb-10 max-w-lg mx-auto leading-relaxed">
-              Explore our complete engineering methodology, delivery framework,
-              quality standards, and collaboration process.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link
-                to="/process"
-                className="bg-[#6D28D9] text-white font-semibold text-xs uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 w-full sm:w-auto"
-              >
-                How We Work
-              </Link>
-              <Link
-                to="/services"
-                className="bg-white/80 border border-[#E9D5FF] text-[#1F1430] font-semibold text-xs uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto"
-              >
-                Our Services
-              </Link>
-            </div>
-          </div>
+          
         </div>
       </section>
 

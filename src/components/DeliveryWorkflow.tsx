@@ -71,7 +71,7 @@ export function DeliveryWorkflow() {
   }, []);
 
   return (
-    <section className="relative py-[120px] bg-[#FDFBFF] overflow-hidden font-sans">
+    <section className="relative w-full py-24 bg-[#F8FAFC] font-sans overflow-x-hidden">
       {/* Inline styles for custom grid, moving light dashoffset, animations */}
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes workflowGrid {
@@ -91,13 +91,13 @@ export function DeliveryWorkflow() {
         .animate-float-card {
           animation: float-card 6s ease-in-out infinite;
         }
-        @keyframes moving-pipeline {
+        @keyframes moving-light {
           0% { stroke-dashoffset: 40; }
           100% { stroke-dashoffset: 0; }
         }
-        .moving-pipeline-path {
+        .moving-light-path {
           stroke-dasharray: 8 12;
-          animation: moving-pipeline 1.8s linear infinite;
+          animation: moving-light 1.8s linear infinite;
         }
       `}} />
 
@@ -119,7 +119,7 @@ export function DeliveryWorkflow() {
         <line x1="80%" y1="70%" x2="90%" y2="85%" stroke="#3B82F6" strokeWidth="1" />
       </svg>
 
-      <div className="max-w-[1280px] mx-auto px-6 relative z-10">
+      <div className="max-w-[1280px] mx-auto px-8 sm:px-12 lg:px-16 relative z-10">
         
         {/* Headers */}
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -135,7 +135,7 @@ export function DeliveryWorkflow() {
         </div>
 
         {/* Horizontal Scroll wrapper for desktop/tablet */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-1.5 xl:gap-4 overflow-x-auto px-4 lg:px-6 pb-8 pt-12 hide-scrollbar">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-3 lg:gap-1.5 xl:gap-2 pb-8 pt-12 hide-scrollbar">
           {steps.map((step, idx) => {
             const Icon = step.icon;
             const isActive = activeStep === (idx + 1);
@@ -157,14 +157,14 @@ export function DeliveryWorkflow() {
                     delay: idx * 0.15 
                   }}
                   whileHover={{ 
-                    y: -10, 
+                    y: -8, 
                     rotate: idx % 2 === 0 ? 1 : -1,
-                    boxShadow: "0 25px 65px rgba(123,47,247,0.18)"
+                    boxShadow: "0 20px 50px rgba(123,47,247,0.18)"
                   }}
-                  className={`group relative flex flex-col justify-between w-full sm:w-[180px] lg:w-[145px] xl:w-[170px] p-4 lg:py-5 lg:px-3 xl:p-5 rounded-[24px] cursor-pointer text-center bg-white/70 backdrop-blur-md border border-purple-100/80 transition-all duration-300 select-none
+                  className={`group relative flex flex-col justify-between w-full sm:w-[130px] lg:w-[110px] xl:w-[130px] p-3 lg:py-4 lg:px-2 xl:p-4 rounded-[16px] cursor-pointer text-center bg-white/70 backdrop-blur-md border border-purple-100/80 transition-all duration-300 select-none
                     ${isActive 
-                      ? "shadow-[0_0_30px_rgba(168,85,247,0.22)] border-purple-300 bg-white/95 scale-[1.03]" 
-                      : "shadow-[0_10px_25px_rgba(168,85,247,0.05)] hover:shadow-[0_0_25px_rgba(168,85,247,0.18)] hover:border-purple-200"
+                      ? "shadow-[0_0_25px_rgba(168,85,247,0.22)] border-purple-300 bg-white/95 scale-[1.02]" 
+                      : "shadow-[0_8px_20px_rgba(168,85,247,0.05)] hover:shadow-[0_0_20px_rgba(168,85,247,0.18)] hover:border-purple-200"
                     }
                     animate-float-card
                   `}
@@ -172,18 +172,18 @@ export function DeliveryWorkflow() {
                 >
                   {/* Gentle pulse effect on active */}
                   {isActive && (
-                    <div className="absolute inset-0 rounded-[24px] ring-2 ring-[#7B2FF7]/30 animate-pulse pointer-events-none" />
+                    <div className="absolute inset-0 rounded-[16px] ring-2 ring-[#7B2FF7]/30 animate-pulse pointer-events-none" />
                   )}
 
                   {/* Header row: Gradient Icon Circle & Step Number */}
                   <div className="flex items-center justify-between">
-                    <div className="mx-auto lg:mx-0 w-10 h-10 lg:w-11 lg:h-11 xl:w-12 xl:h-12 rounded-2xl bg-gradient-to-tr from-purple-50 to-indigo-50 flex items-center justify-center border border-purple-50 group-hover:border-purple-100 transition-all duration-300">
-                      <Icon className={`w-4 h-4 lg:w-5 lg:h-5 ${step.iconColor} group-hover:rotate-8 transition-transform duration-300`} strokeWidth={1.5} />
+                    <div className="mx-auto lg:mx-0 w-10 h-10 lg:w-10 lg:h-10 xl:w-11 xl:h-11 rounded-[14px] bg-gradient-to-tr from-purple-50 to-indigo-50 flex items-center justify-center border border-purple-50 group-hover:border-purple-100 transition-all duration-300">
+                      <Icon className="w-4 h-4 lg:w-4 lg:h-4 text-purple-600 group-hover:rotate-12 transition-transform duration-300" />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="mt-4 text-base font-bold text-slate-800 tracking-tight text-center">
+                  <h3 className="mt-4 text-sm font-bold text-slate-800 tracking-tight text-center">
                     {step.title}
                   </h3>
 
@@ -197,28 +197,28 @@ export function DeliveryWorkflow() {
 
                 {/* Animated Connection Line to Next Card */}
                 {!isLast && (
-                  <div className="flex items-center justify-center py-4 lg:py-0 w-8 lg:w-auto lg:flex-1 lg:max-w-[48px] lg:min-w-[12px] h-8 lg:h-auto">
-                    {/* Horizontal pipeline for Desktop */}
-                    <svg className="hidden lg:block w-full h-4" viewBox="0 0 60 16" fill="none" preserveAspectRatio="none">
+                  <div className="flex items-center justify-center py-4 lg:py-0 w-8 lg:w-auto lg:flex-1 lg:max-w-[40px] lg:min-w-[10px] h-8 lg:h-auto mx-1">
+                    {/* Horizontal line for Desktop */}
+                    <svg className="hidden lg:block w-full h-4" viewBox="0 0 40 16" fill="none" preserveAspectRatio="none">
                       <defs>
-                        <linearGradient id={`pipeline-h-${idx}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                        <linearGradient id={`grad-h-${idx}`} x1="0%" y1="0%" x2="100%" y2="0%">
                           <stop offset="0%" stopColor="#8B5CF6" />
                           <stop offset="100%" stopColor="#3B82F6" />
                         </linearGradient>
                       </defs>
                       <line 
-                        x1="0" y1="8" x2="60" y2="8" 
-                        stroke="rgba(123,47,247,0.12)" strokeWidth="2" 
+                        x1="0" y1="8" x2="40" y2="8" 
+                        stroke="#E2E8F0" strokeWidth="2" 
                         strokeDasharray="4 4" 
                       />
                       <line 
-                        x1="0" y1="8" x2="60" y2="8" 
-                        stroke={`url(#pipeline-h-${idx})`} strokeWidth="2.5" 
-                        className="moving-pipeline-path" 
+                        x1="0" y1="8" x2="40" y2="8" 
+                        stroke={`url(#grad-h-${idx})`} strokeWidth="2.5" 
+                        className="moving-light-path" 
                       />
                     </svg>
 
-                    {/* Vertical pipeline for Mobile */}
+                    {/* Vertical line for Mobile */}
                     <svg className="block lg:hidden w-4 h-12" viewBox="0 0 16 60" fill="none">
                       <defs>
                         <linearGradient id={`pipeline-v-${idx}`} x1="0%" y1="0%" x2="0%" y2="100%">
@@ -234,7 +234,7 @@ export function DeliveryWorkflow() {
                       <line 
                         x1="8" y1="0" x2="8" y2="60" 
                         stroke={`url(#pipeline-v-${idx})`} strokeWidth="2.5" 
-                        className="moving-pipeline-path" 
+                        className="moving-light-path" 
                       />
                     </svg>
                   </div>
@@ -253,7 +253,7 @@ export function DeliveryWorkflow() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25 }}
-              className="bg-white/80 backdrop-blur-md border border-purple-100/50 p-6 rounded-2xl shadow-sm text-center"
+              className="bg-white/80 backdrop-blur-md border border-purple-100/50 p-5 rounded-[20px] shadow-sm text-center relative overflow-hidden"
             >
               <h4 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-2">
                 Phase {activeStep}: {steps[activeStep - 1].title}

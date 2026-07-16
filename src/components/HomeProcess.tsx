@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Users, Layout, MousePointer, Code, Rocket } from "lucide-react";
+import { Search, Palette, Code, Shield, Rocket, TrendingUp } from "lucide-react";
 
 interface WorkflowStep {
   id: number;
@@ -13,49 +13,49 @@ interface WorkflowStep {
 const steps: WorkflowStep[] = [
   {
     id: 1,
-    title: "Discovery",
-    subtitle: "Identify Needs",
+    title: "Discover",
+    subtitle: "Phase 01",
     icon: Search,
-    description: "Aligning user goals, market gaps, and technological feasibility to define product scope.",
+    description: "We understand your business goals, users, challenges, and project requirements before writing code.",
   },
   {
     id: 2,
-    title: "Research",
-    subtitle: "Understand Users",
-    icon: Users,
-    description: "Conducting user interviews, persona mapping, and heuristic reviews of existing solutions.",
+    title: "Design",
+    subtitle: "Phase 02",
+    icon: Palette,
+    description: "We transform ideas into intuitive user experiences, scalable architecture, and clear implementation plans.",
   },
   {
     id: 3,
-    title: "Wireframe",
-    subtitle: "Blueprint Logic",
-    icon: Layout,
-    description: "Creating structural screen layouts and flow diagrams to establish application architecture.",
+    title: "Build",
+    subtitle: "Phase 03",
+    icon: Code,
+    description: "Our engineering team develops secure, scalable, and maintainable software using modern technologies.",
   },
   {
     id: 4,
-    title: "Prototype",
-    subtitle: "Interactive Model",
-    icon: MousePointer,
-    description: "Building high-fidelity interactive designs in Figma for user testing and stakeholder feedback.",
+    title: "Validate",
+    subtitle: "Phase 04",
+    icon: Shield,
+    description: "Every feature is tested for functionality, usability, security, and performance before release.",
   },
   {
     id: 5,
-    title: "Development",
-    subtitle: "Production Code",
-    icon: Code,
-    description: "Engineering clean, componentized codebases following modern frontend and backend architectures.",
+    title: "Launch",
+    subtitle: "Phase 05",
+    icon: Rocket,
+    description: "We deploy your application with reliable infrastructure, monitoring, and production-ready environments.",
   },
   {
     id: 6,
-    title: "Launch",
-    subtitle: "Go Live",
-    icon: Rocket,
-    description: "Deploying secure, optimized platforms to production with continuous delivery and metrics.",
+    title: "Scale",
+    subtitle: "Phase 06",
+    icon: TrendingUp,
+    description: "After launch, we continue improving your product through feature enhancements and support.",
   },
 ];
 
-export function PremiumWorkflow() {
+export function HomeProcess() {
   const [activeStep, setActiveStep] = useState(1);
 
   // Auto-cycle active step every 4 seconds
@@ -67,8 +67,7 @@ export function PremiumWorkflow() {
   }, []);
 
   return (
-    <div className="relative w-full py-16 bg-[#FDFBFF] font-sans overflow-x-hidden">
-      {/* Inline styles for custom grid, floating particles and moving light dashoffset */}
+    <div className="relative w-full py-16 bg-[#FAF7FF] font-sans overflow-x-hidden">
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes workflowGrid {
           0% { background-position: 0 0; }
@@ -116,10 +115,29 @@ export function PremiumWorkflow() {
       <div className="absolute top-1/3 right-[25%] w-2 h-2 bg-indigo-400/30 rounded-full blur-[0.5px] animate-float-slow" />
       <div className="absolute bottom-1/3 left-[20%] w-3 h-3 bg-purple-400/20 rounded-full blur-[1px] animate-float-medium" />
 
+      <div className="container relative z-10 mx-auto px-4 mb-16">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+            OUR PROCESS
+          </span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight mb-6">
+            A Simple Process.
+            <br />
+            Built for Successful Products.
+          </h2>
+          <p className="text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
+            Every successful digital product follows a clear path. Our
+            engineering process keeps projects transparent, efficient, and
+            focused on delivering measurable value.
+          </p>
+        </div>
+      </div>
+
+      {/* Main Workflow Container */}
       <div className="relative max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
         
-        {/* Horizontal Scroll wrapper for desktop/tablet */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-3 lg:gap-1.5 xl:gap-2 pb-8 pt-12 hide-scrollbar">
+        {/* Horizontal wrapper */}
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-3 lg:gap-1.5 xl:gap-2 pb-8 pt-4">
           {steps.map((step, idx) => {
             const Icon = step.icon;
             const isActive = activeStep === step.id;
@@ -220,7 +238,7 @@ export function PremiumWorkflow() {
               className="bg-white/80 backdrop-blur-md border border-purple-100/50 p-5 rounded-[20px] shadow-sm text-center"
             >
               <h4 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-2">
-                Phase {activeStep}: {steps[activeStep - 1].title}
+                {steps[activeStep - 1].subtitle}: {steps[activeStep - 1].title}
               </h4>
               <p className="text-sm text-slate-600 leading-relaxed">
                 {steps[activeStep - 1].description}
