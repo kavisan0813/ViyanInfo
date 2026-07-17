@@ -1,77 +1,88 @@
 import { useEffect, useLayoutEffect, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import type { MenuProps } from "../types";
+
+const navLinks = [
+  { label: "Home", path: "/" },
+  { label: "Products", path: "/products" },
+  { label: "Work", path: "/portfolio" },
+  { label: "Contact", path: "/contact" },
+];
+
+const serviceLinks = [
+  { label: "Custom Software", path: "/services/custom-software" },
+  { label: "Web Applications", path: "/services/web-development" },
+  { label: "Mobile Applications", path: "/services/mobile-development" },
+  { label: "AI Solutions", path: "/services/ai-automation" },
+  { label: "UI/UX Design", path: "/services/ui-ux-design" },
+  { label: "Internship Programs", path: "/internship" },
+];
+
+const companyLinks = [
+  { label: "About Us", path: "/about" },
+  { label: "Careers", path: "/careers" },
+  { label: "Blog", path: "/blog" },
+];
 
 export function Menu({ isOpen, onClose }: MenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
-  const onCloseRef = useRef(onClose);
 
-  useEffect(() => {
-    onCloseRef.current = onClose;
-  }, [onClose]);
-
+  // Build timeline once on mount
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const el = menuRef.current;
-      if (!el) return;
+    const el = menuRef.current;
+    if (!el) return;
 
-      const links = el.querySelectorAll(".menu-nav-link");
-      const infoItems = el.querySelectorAll(".menu-info-item");
+    const links = el.querySelectorAll<HTMLElement>(".menu-nav-link");
+    const infoItems = el.querySelectorAll<HTMLElement>(".menu-info-item");
 
-      // Hidden state
-      gsap.set(el, { yPercent: -100, autoAlpha: 0 });
-      gsap.set(links, { y: 60, opacity: 0 });
-      gsap.set(infoItems, { y: 20, opacity: 0 });
+    gsap.set(el, { opacity: 0, visibility: "hidden" });
+    gsap.set(links, { y: 60, opacity: 0 });
+    gsap.set(infoItems, { y: 20, opacity: 0 });
 
-      const tl = gsap.timeline({ paused: true });
+    const tl = gsap.timeline({ paused: true });
 
-      tl.to(el, {
-        yPercent: 0,
-        autoAlpha: 1,
-        duration: 0.8,
-        ease: "expo.inOut",
-      })
-        .to(
-          links,
-          { y: 0, opacity: 1, stagger: 0.04, duration: 0.7, ease: "expo.out" },
-          "-=0.5",
-        )
-        .to(
-          infoItems,
-          { y: 0, opacity: 1, stagger: 0.04, duration: 0.6 },
-          "-=0.5",
-        );
+    tl.to(el, {
+      opacity: 1,
+      visibility: "visible",
+      duration: 0.8,
+      ease: "expo.inOut",
+    })
+      .to(
+        links,
+        { y: 0, opacity: 1, stagger: 0.04, duration: 0.7, ease: "expo.out" },
+        "-=0.5",
+      )
+      .to(
+        infoItems,
+        { y: 0, opacity: 1, stagger: 0.04, duration: 0.6 },
+        "-=0.5",
+      );
 
-      tl.eventCallback("onReverseComplete", () => onCloseRef.current());
+    tlRef.current = tl;
 
-      tlRef.current = tl;
-    }, menuRef);
-
-    return () => ctx.revert();
+    return () => {
+      tl.kill();
+      tlRef.current = null;
+    };
   }, []);
 
-  // Drive timeline
+  // Drive timeline based on isOpen
   useEffect(() => {
+    const tl = tlRef.current;
+    if (!tl) return;
+
     if (isOpen) {
-      tlRef.current?.play();
-      tlRef.current?.eventCallback("onComplete", () => {
-        (
-          menuRef.current?.querySelector(
-            ".menu-nav-link a",
-          ) as HTMLElement | null
-        )?.focus();
-      });
-    } else {
-      if ((tlRef.current?.progress() ?? 0) > 0) {
-        tlRef.current?.reverse();
-      }
+      tl.play();
+    } else if (tl.progress() > 0) {
+      tl.reverse();
     }
   }, [isOpen]);
 
   const handleClose = useCallback(() => {
-    tlRef.current?.reverse();
-  }, []);
+    onClose();
+  }, [onClose]);
 
   // Keyboard: Escape and Tab trap
   useEffect(() => {
@@ -108,11 +119,69 @@ export function Menu({ isOpen, onClose }: MenuProps) {
     return () => window.removeEventListener("keydown", handler);
   }, [isOpen, handleClose]);
 
-  // Prevent scroll
+  // Prevent scroll when open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  return (
+    <div ref={menuRef} className="mobile-menu">
+      <div className="mobile-menu-inner">
+        <div className="mobile-menu-links">
+          {navLinks.map(({ label, path }) => (
+            <Link
+              key={path}
+              to={path}
+              className="menu-nav-link"
+              onClick={handleClose}
+            >
+              {label}
+            </Link>
+          ))}
+
+          <span className="menu-nav-link menu-section-label">Services</span>
+          <div className="menu-sub-links">
+            {serviceLinks.map(({ label, path }) => (
+              <Link
+                key={path}
+                to={path}
+                className="menu-nav-link menu-sub-link"
+                onClick={handleClose}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+
+          <span className="menu-nav-link menu-section-label">Company</span>
+          <div className="menu-sub-links">
+            {companyLinks.map(({ label, path }) => (
+              <Link
+                key={path}
+                to={path}
+                className="menu-nav-link menu-sub-link"
+                onClick={handleClose}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="menu-footer">
+          <Link
+            to="/contact"
+            className="menu-nav-link menu-cta"
+            onClick={handleClose}
+          >
+            Start Project
+          </Link>
+          <p className="menu-info-item">&copy; 2025 ViyanInfo</p>
+        </div>
+      </div>
+    </div>
+  );
 }

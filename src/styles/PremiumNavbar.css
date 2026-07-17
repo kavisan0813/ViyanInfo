@@ -411,11 +411,114 @@
 @media (max-width: 768px) {
   .premium-navbar {
     width: 94%;
-    height: 50px;
-    padding: 0 14px;
+    height: 56px;
+    padding: 0 20px;
+    margin-top: 16px;
   }
 
   .navbar-logo img {
-    height: 26px;
+    height: 28px;
+  }
+}
+
+/* ───── Mobile Menu Overlay ───── */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mobile-menu-inner {
+  width: 100%;
+  height: 100%;
+  padding: 5.5rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(
+    180deg,
+    rgba(248, 250, 252, 0.98),
+    rgba(226, 232, 240, 0.98)
+  );
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  pointer-events: auto;
+  overflow-y: auto;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.menu-nav-link {
+  display: block;
+  padding: 14px 20px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.menu-nav-link:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.menu-section-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7b2ff7;
+  padding: 16px 20px 8px;
+  opacity: 0.7;
+  cursor: default;
+}
+
+.menu-sub-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 20px 10px 32px;
+}
+
+.menu-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 1rem;
+}
+
+.menu-cta {
+  text-align: center;
+  background: #0f172a;
+  color: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.menu-cta:hover {
+  background: #1e293b;
+}
+
+.menu-info-item {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+}
+
+@media (min-width: 1101px) {
+  .mobile-menu {
+    display: none;
   }
 }

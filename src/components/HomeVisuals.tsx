@@ -12,7 +12,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
 interface HomeVisualsProps {
   heroRef: RefObject<HTMLElement | null>;
   heroContentRef: RefObject<HTMLDivElement | null>;
@@ -211,33 +210,39 @@ export function HomeVisuals({
         );
 
         // --- Hero Scroll Exit ---
-        gsap.to(heroContentRef.current, {
-          y: -140,
-          opacity: 0,
-          scale: 0.96,
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: () => `+=${(heroRef.current?.offsetHeight || 600) * 0.7}`,
-            scrub: 1.2,
-          },
-        });
+        if (heroContentRef.current && heroRef.current) {
+          gsap.to(heroContentRef.current, {
+            y: -140,
+            opacity: 0,
+            scale: 0.96,
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: "top top",
+              end: () => `+=${(heroRef.current?.offsetHeight || 600) * 0.7}`,
+              scrub: 1.2,
+            },
+          });
+        }
 
         // Floating Animations
-        gsap.to(dashRef.current, {
-          y: -15,
-          duration: 3,
-          yoyo: true,
-          repeat: -1,
-          ease: "sine.inOut",
-        });
-        gsap.to(flowerRef.current, {
-          y: 15,
-          duration: 4,
-          yoyo: true,
-          repeat: -1,
-          ease: "sine.inOut",
-        });
+        if (dashRef.current) {
+          gsap.to(dashRef.current, {
+            y: -15,
+            duration: 3,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+          });
+        }
+        if (flowerRef.current) {
+          gsap.to(flowerRef.current, {
+            y: 15,
+            duration: 4,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+          });
+        }
 
         // Mouse Parallax (Lusion-inspired layered movement)
         const handleMouseMove = (e: MouseEvent) => {
@@ -246,36 +251,44 @@ export function HomeVisuals({
           const y = e.clientY / window.innerHeight - 0.5;
 
           // Background Layer: 10px movement
-          gsap.to(heroBgLayerRef.current, {
-            x: x * 20, // max 10px each way
-            y: y * 20,
-            duration: 1.5,
-            ease: "power2.out",
-          });
+          if (heroBgLayerRef.current) {
+            gsap.to(heroBgLayerRef.current, {
+              x: x * 20, // max 10px each way
+              y: y * 20,
+              duration: 1.5,
+              ease: "power2.out",
+            });
+          }
 
           // Middle Layer (flower): 20px movement
-          gsap.to(flowerRef.current, {
-            x: -x * 40,
-            y: -y * 40,
-            duration: 1.2,
-            ease: "power2.out",
-          });
+          if (flowerRef.current) {
+            gsap.to(flowerRef.current, {
+              x: -x * 40,
+              y: -y * 40,
+              duration: 1.2,
+              ease: "power2.out",
+            });
+          }
 
           // Foreground Layer (dash): 30px movement
-          gsap.to(dashRef.current, {
-            x: x * 60,
-            y: y * 60,
-            duration: 0.8,
-            ease: "power2.out",
-          });
+          if (dashRef.current) {
+            gsap.to(dashRef.current, {
+              x: x * 60,
+              y: y * 60,
+              duration: 0.8,
+              ease: "power2.out",
+            });
+          }
 
           // Background Blobs tracking cursor slightly
-          gsap.to(heroBgBlobRef.current, {
-            x: x * 100,
-            y: y * 100,
-            duration: 2,
-            ease: "power2.out",
-          });
+          if (heroBgBlobRef.current) {
+            gsap.to(heroBgBlobRef.current, {
+              x: x * 100,
+              y: y * 100,
+              duration: 2,
+              ease: "power2.out",
+            });
+          }
         };
 
         if (heroRef.current) {
@@ -375,31 +388,35 @@ export function HomeVisuals({
           });
 
           // Parallax background blobs
-          gsap.to(servicesBlob1Ref.current, {
-            x: -300,
-            y: 100,
-            ease: "none",
-            scrollTrigger: {
-              trigger: servicesSectionRef.current,
-              start: "top top",
-              end: () =>
-                `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
-              scrub: 1.5,
-            },
-          });
+          if (servicesBlob1Ref.current) {
+            gsap.to(servicesBlob1Ref.current, {
+              x: -300,
+              y: 100,
+              ease: "none",
+              scrollTrigger: {
+                trigger: servicesSectionRef.current,
+                start: "top top",
+                end: () =>
+                  `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
+                scrub: 1.5,
+              },
+            });
+          }
 
-          gsap.to(servicesBlob2Ref.current, {
-            x: 300,
-            y: -100,
-            ease: "none",
-            scrollTrigger: {
-              trigger: servicesSectionRef.current,
-              start: "top top",
-              end: () =>
-                `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
-              scrub: 2,
-            },
-          });
+          if (servicesBlob2Ref.current) {
+            gsap.to(servicesBlob2Ref.current, {
+              x: 300,
+              y: -100,
+              ease: "none",
+              scrollTrigger: {
+                trigger: servicesSectionRef.current,
+                start: "top top",
+                end: () =>
+                  `+=${servicesTrackRef.current!.scrollWidth - window.innerWidth}`,
+                scrub: 2,
+              },
+            });
+          }
         }
       });
     });

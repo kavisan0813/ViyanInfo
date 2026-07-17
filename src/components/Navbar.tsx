@@ -22,7 +22,7 @@ import {
   Briefcase,
   FileText,
 } from "lucide-react";
-// import { Menu } from "./Menu";
+import { Menu } from "./Menu";
 import logo1 from "../assets/logo.webp";
 import "../styles/PremiumNavbar.css";
 
@@ -42,7 +42,7 @@ export function Navbar() {
   );
 
   // Stable close handler passed to Menu
-  // const handleMenuClose = useCallback(() => setIsMenuOpen(false), []);
+  const handleMenuClose = useCallback(() => setIsMenuOpen(false), []);
 
   // Entrance animation (runs once)
   useLayoutEffect(() => {
@@ -353,7 +353,7 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* <Menu isOpen={isMenuOpen} onClose={handleMenuClose} /> */}
+      <Menu isOpen={isMenuOpen} onClose={handleMenuClose} />
     </>
   );
 }

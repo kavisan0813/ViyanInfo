@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import { onHoverBurst } from "../utils/particleBurst";
 import { glitchText } from "../utils/charGlitch";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { gsap } from "gsap";
 import { CountUp } from "../components/ArrayContent";
 import {
@@ -22,6 +22,7 @@ import { SectionDivider } from "../components/SectionDivider";
 import { founders } from "../components/Founders";
 import aboutImg from "../assets/aboutus.webp";
 import logoBgImg from "../assets/logo_bg_img.png";
+import aboutTechRoom from "../assets/about-tech-room.png";
 import { LiquidFooter } from "../components/LiquidFooter";
 import "../styles/About.css";
 import { AboutStatsBg, FounderHalo } from "../components/AboutVisuals";
@@ -77,11 +78,12 @@ const StoryImmersiveSplit = () => {
           className="story-v2-content"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
-
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">OUR STORY</span>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+            OUR STORY
+          </span>
 
           <h2>
             Transforming Ideas Into
@@ -150,7 +152,9 @@ const MissionVisionCinematic = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">OUR MISSION</span>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+            OUR MISSION
+          </span>
           <h2>
             Empowering Businesses <br /> Through Innovation
           </h2>
@@ -171,7 +175,9 @@ const MissionVisionCinematic = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">OUR VISION</span>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+            OUR VISION
+          </span>
           <h2>
             Designing The Future <br /> Of Technology
           </h2>
@@ -277,7 +283,9 @@ const CultureCreativeWall = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
       >
-        <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">OUR CULTURE</span>
+        <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
+          OUR CULTURE
+        </span>
 
         <h2>
           Creativity Meets
@@ -374,24 +382,29 @@ function BentoCard({
 }
 
 // 6. Founder Artwork Background
-const FounderArtwork = ({ scrollYProgress }: { scrollYProgress: any }) => {
+function FounderArtwork({
+  scrollYProgress,
+}: {
+  scrollYProgress: MotionValue<number>;
+}) {
   const logoOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none z-0 opacity-20 lg:left-auto lg:right-0 lg:w-1/2 lg:opacity-100">
       <motion.div
         style={{ opacity: logoOpacity }}
-        className="absolute w-full h-full flex items-center justify-center"
+        className="absolute inset-0 flex items-center justify-center"
       >
         <img
           src={logoBgImg}
-          alt="Founder Background Artwork"
-          className="w-full h-full object-contain object-right"
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-contain object-center lg:object-right"
         />
       </motion.div>
     </div>
   );
-};
+}
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -552,9 +565,7 @@ export default function About() {
               </button>
             </Link>
             <Link to="/portfolio" className="hero-cta">
-              <button
-                className="magnetic-button bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
-              >
+              <button className="magnetic-button bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer">
                 Our Work
               </button>
             </Link>
@@ -568,7 +579,7 @@ export default function About() {
           transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         >
           <img
-            src="src/assets/about-tech-room.png"
+            src={aboutTechRoom}
             alt="Developer Workspace"
             className="hero-main-image"
           />
@@ -909,7 +920,10 @@ export default function About() {
       <SectionDivider />
 
       {/* SCROLL STORYTELLING FOUNDERS SECTION */}
-      <section ref={sectionRef} className="relative h-[350vh] bg-[#FAF7FF]">
+      <section
+        ref={sectionRef}
+        className="relative hidden lg:block h-[350vh] bg-[#FAF7FF]"
+      >
         <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
           <div className="container max-w-[1200px] mx-auto px-6 h-full flex flex-col justify-center relative">
             {/* Section Header (Fades out when scrolling) */}
@@ -1077,6 +1091,133 @@ export default function About() {
                 );
               })}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MOBILE FOUNDERS SECTION */}
+      <section className="relative lg:hidden overflow-hidden bg-[#FAF7FF] px-5 py-20">
+        {/* Mobile background artwork */}
+        <div className="absolute inset-0 pointer-events-none">
+          <img
+            src={logoBgImg}
+            alt=""
+            aria-hidden="true"
+            className="sticky top-20 mx-auto h-[70vh] w-full object-contain opacity-[0.07]"
+          />
+        </div>
+
+        <div className="relative z-10">
+          <div className="mb-12 text-center">
+            <span className="mb-3 inline-block rounded-full border border-[#E9D5FF] bg-[#E9D5FF]/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#7B2FF7]">
+              Leadership
+            </span>
+
+            <h2 className="text-3xl font-display font-bold tracking-tight text-[#0F172A]">
+              The Founders
+            </h2>
+          </div>
+
+          <div className="space-y-10">
+            {founders.map((founder, idx) => (
+              <motion.article
+                key={founder.name}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.55, delay: idx * 0.08 }}
+                className="relative overflow-hidden rounded-3xl border border-white/70 bg-white/60 p-6 text-center shadow-[0_18px_50px_rgba(123,47,247,0.08)] backdrop-blur-md"
+              >
+                {/* Founder-specific glow */}
+                <div
+                  className="absolute left-1/2 top-10 h-52 w-52 -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+                  style={{ backgroundColor: founder.accent }}
+                />
+
+                {/* Founder image */}
+                <div className="relative z-10 mx-auto mb-7 flex h-[220px] w-[220px] items-center justify-center">
+                  <FounderHalo accentColor={founder.accent}>
+                    <div className="h-[200px] w-[200px] overflow-hidden rounded-full bg-purple-50 shadow-lg flex items-center justify-center">
+                      <img
+                        src={founder.image}
+                        alt={founder.name}
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  </FounderHalo>
+                </div>
+
+                <div className="relative z-10">
+                  <span
+                    className="mb-2 block text-xs font-black uppercase tracking-wider"
+                    style={{ color: founder.accent }}
+                  >
+                    {founder.role}
+                  </span>
+
+                  <h3 className="mb-4 text-3xl font-display font-extrabold text-[#0F172A]">
+                    {founder.name}
+                  </h3>
+
+                  <p className="mb-6 text-sm leading-7 text-[#475569]">
+                    {founder.bio}
+                  </p>
+
+                  <div className="mb-7 flex flex-wrap justify-center gap-2">
+                    {founder.badges.map((badge) => (
+                      <span
+                        key={badge}
+                        className="rounded-xl border border-white/70 bg-white/60 px-3 py-2 text-xs font-bold text-slate-700 shadow-sm"
+                        style={{ borderLeft: `3px solid ${founder.accent}` }}
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-center gap-4">
+                    <a
+                      href={founder.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${founder.name} LinkedIn`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/70 shadow-sm"
+                    >
+                      <FiLinkedin className="h-4 w-4 text-[#0A66C2]" />
+                    </a>
+
+                    <a
+                      href={founder.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${founder.name} GitHub`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/70 shadow-sm"
+                    >
+                      <FiGithub className="h-4 w-4 text-slate-800" />
+                    </a>
+
+                    <a
+                      href={founder.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${founder.name} Instagram`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/70 shadow-sm"
+                    >
+                      <FiInstagram className="h-4 w-4 text-pink-600" />
+                    </a>
+
+                    <a
+                      href={founder.email}
+                      aria-label={`Email ${founder.name}`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/70 shadow-sm"
+                    >
+                      <Mail className="h-4 w-4 text-purple-600" />
+                    </a>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
       </section>

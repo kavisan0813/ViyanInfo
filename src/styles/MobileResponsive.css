@@ -1,0 +1,125 @@
+/* ─── MobileResponsive.css — fixes for all pages (< 1024px) ─── */
+/* Desktop (>= 1024px) is completely untouched.                  */
+
+@media (max-width: 1023px) {
+  /* ============================================================
+     PREVENT HORIZONTAL SCROLL
+     ============================================================ */
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* ============================================================
+     CTA SECTIONS — remove hardcoded min-height on mobile
+     All pages use inline minHeight, rendered as min-height in DOM
+     ============================================================ */
+  [style*="min-height: 95"],
+  [style*="min-height: 85"] {
+    min-height: auto !important;
+    padding-top: 60px !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* ============================================================
+     ABOUT PAGE — hero grid to single column
+     ============================================================ */
+  .about-hero-section {
+    grid-template-columns: 1fr !important;
+    padding: 100px 24px 60px !important;
+    gap: 40px !important;
+    min-height: auto !important;
+  }
+
+  [style*="350vh"] {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 60px 24px !important;
+  }
+
+  /* ============================================================
+     PORTFOLIO PAGE — stats grid 2-col
+     ============================================================ */
+  .work-overview__stats {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* ============================================================
+     SERVICES OVERVIEW — scale orbital hero down
+     ============================================================ */
+  div[style*="max-width: 420"][style*="height: 380"] {
+    transform: scale(0.55);
+    transform-origin: center center;
+  }
+
+  /* ============================================================
+     FIXED-WIDTH ELEMENTS — allow horizontal scroll
+     ============================================================ */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  [style*="min-width: 700"] {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  [style*="min-width: 380"] {
+    min-width: 100% !important;
+  }
+
+  [style*="min-width: 360"] {
+    min-width: 100% !important;
+  }
+
+  [style*="min-width: 320"] {
+    min-width: 100% !important;
+  }
+
+  /* ============================================================
+     CONTACT PAGE — hero to single column, fix image height
+     ============================================================ */
+  .contact-hero-v2 {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    padding: 100px 24px 60px !important;
+    min-height: auto !important;
+  }
+
+  .contact-hero-v2 .hero-image-wrapper {
+    height: 400px !important;
+  }
+
+  /* ============================================================
+     404 PAGE — reduce giant text
+     ============================================================ */
+  .text-9xl {
+    font-size: 5rem !important;
+  }
+
+  /* ============================================================
+     REDUCE SECTION VERTICAL SPACING
+     ============================================================ */
+  .py-24 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .py-28 {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  .pt-28 {
+    padding-top: 5rem !important;
+  }
+
+  .pt-24 {
+    padding-top: 3rem !important;
+  }
+}

@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { SectionDivider } from "../components/SectionDivider";
 import carrersImg from "../assets/Carrers img.webp";
+import teamCollab from "../assets/team-collab.webp";
 import { LiquidFooter } from "../components/LiquidFooter";
 import {
   CareersHeroBg,
@@ -143,7 +144,7 @@ export default function Careers() {
 
   return (
     <div className="bg-[#FAF7FF] min-h-screen text-[#475569] font-body overflow-hidden">
-      <section className="relative overflow-hidden min-h-screen flex items-center pt-20 lg:pt-24 pb-12">
+      <section className="relative overflow-hidden min-h-[75vh] lg:min-h-[85vh] flex items-center pt-24 lg:pt-32 pb-12 lg:pb-16">
         <CareersHeroBg />
 
         {/* Background Gradient */}
@@ -280,7 +281,7 @@ export default function Careers() {
       <SectionDivider />
 
       {/* COMPANY CULTURE SECTION */}
-      <section className="py-24 bg-[#FAF7FF] relative">
+      <section className="py-12 md:py-20 bg-[#FAF7FF] relative">
         <div className="container max-w-[1200px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center text-left">
             <motion.div
@@ -322,7 +323,7 @@ export default function Careers() {
               {/* Image Section */}
               <div className="relative w-full h-full">
                 <img
-                  src="src\assets\team-collab.webp"
+                  src={teamCollab}
                   alt=""
                   className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -362,7 +363,7 @@ export default function Careers() {
       <SectionDivider />
 
       {/* EMPLOYEE BENEFITS SECTION */}
-      <section className="py-24 bg-[#FAF7FF] relative">
+      <section className="py-12 md:py-20 bg-[#FAF7FF] relative">
         <div className="container max-w-[1200px] mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
@@ -437,7 +438,7 @@ export default function Careers() {
       <SectionDivider />
 
       {/* LEARNING ENVIRONMENT SECTION */}
-      <section className="py-24 bg-[#FAF7FF] relative">
+      <section className="py-12 md:py-20 bg-[#FAF7FF] relative">
         <div className="container max-w-[1200px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center text-left">
             <motion.div
@@ -486,9 +487,9 @@ export default function Careers() {
 
       <SectionDivider />
 
-      <section className="py-12">
-        <div className="container-fluid mx-auto px-4">
-          <h3 className="text-xs text-start px-50 md:px-70 font-mono text-slate-400 uppercase tracking-widest mb-6">
+      <section className="py-8 md:py-16">
+        <div className="container max-w-[1200px] mx-auto px-6">
+          <h3 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-6">
             Life at ViyanInfo
           </h3>
           <div className="flex justify-center">
@@ -498,7 +499,7 @@ export default function Careers() {
       </section>
 
       {/* OPEN POSITIONS SECTION */}
-      <section id="positions" className="py-24 bg-[#FAF7FF] relative">
+      <section id="positions" className="py-12 md:py-20 bg-[#FAF7FF] relative">
         <div className="container max-w-[1000px] mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#E9D5FF]/60 border border-[#E9D5FF] text-[#7B2FF7] text-xs font-semibold uppercase tracking-wider mb-4">
@@ -593,9 +594,9 @@ export default function Careers() {
       <section
         className="relative w-full overflow-hidden"
         style={{
-          minHeight: "950px",
-          paddingTop: "90px",
-          paddingBottom: "60px",
+          minHeight: "750px",
+          paddingTop: "60px",
+          paddingBottom: "40px",
         }}
       >
         {/* BACKGROUND IMAGE */}
@@ -617,7 +618,7 @@ export default function Careers() {
         />
 
         {/* TOP AREA: CTA OVERLAY */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center pt-[100px] pb-12 px-6 mt-4 md:mt-4">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center pt-16 pb-12 px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

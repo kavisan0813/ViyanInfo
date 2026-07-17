@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
+@import "./styles/MobileResponsive.css";
 
 /* ============================================================
    VIYAN INFOTECH — MIDNIGHT VIOLET × PARCHMENT THEME
@@ -107,8 +108,15 @@ body {
   background-attachment: fixed;
 }
 
-/* main {
-} */
+main {
+  padding-top: 95px;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-top: 80px;
+  }
+}
 section {
   overflow-x: clip;
 }
