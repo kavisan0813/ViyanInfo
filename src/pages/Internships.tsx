@@ -369,18 +369,18 @@ export default function Internships() {
                 training, build production-grade projects, and earn verified
                 industry certificates.
               </p>
-              <div className="flex flex-wrap gap-4 items-center">
-                <a href="#programs">
+              <div className="flex flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+                <a href="#programs" className="flex-1 sm:flex-none">
                   <button
                     onMouseEnter={onHoverBurst}
-                    className="px-6 py-3 bg-[#7B2FF7] text-white font-bold text-sm rounded-xl shadow-lg hover:bg-[#9333EA] transition-colors cursor-pointer"
+                    className="px-2 sm:px-6 py-3 bg-[#7B2FF7] text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg hover:bg-[#9333EA] transition-colors cursor-pointer w-full"
                   >
                     Explore Programs
                   </button>
                 </a>
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-6 py-3 rounded-xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
+                  className="bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-xs sm:text-[14px] px-2 sm:px-6 py-3 rounded-xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full flex-1 sm:flex-none sm:w-auto flex items-center justify-center cursor-pointer"
                 >
                   Enroll now
                 </button>

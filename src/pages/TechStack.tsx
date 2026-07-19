@@ -805,20 +805,21 @@ export default function TechStack() {
           </div>
 
           {/* Horizontal Roadmap Timeline */}
-          <div className="relative w-full overflow-x-auto pt-4 pb-12 select-none min-w-[700px]">
-            {/* Connecting progress line */}
-            <div className="absolute top-14 left-12 right-12 h-1 bg-slate-100 z-0">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "100%" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.8, ease: "easeInOut" }}
-                className="h-full bg-gradient-to-r from-[#7B2FF7] via-[#3B82F6] to-[#06B6D4]"
-              />
-            </div>
+          <div className="w-full overflow-x-auto pb-4">
+            <div className="relative w-full pt-4 pb-8 select-none min-w-[700px]">
+              {/* Connecting progress line */}
+              <div className="absolute top-14 left-12 right-12 h-1 bg-slate-100 z-0">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.8, ease: "easeInOut" }}
+                  className="h-full bg-gradient-to-r from-[#7B2FF7] via-[#3B82F6] to-[#06B6D4]"
+                />
+              </div>
 
-            {/* Steps Row */}
-            <div className="relative z-10 grid grid-cols-6 gap-4">
+              {/* Steps Row */}
+              <div className="relative z-10 grid grid-cols-6 gap-4">
               {TechStacks.map((step, idx) => (
                 <motion.div
                   key={idx}
@@ -857,6 +858,7 @@ export default function TechStack() {
                   </p>
                 </motion.div>
               ))}
+            </div>
             </div>
           </div>
         </div>

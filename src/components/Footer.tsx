@@ -233,9 +233,9 @@ export function Footer() {
         className={`w-[90%] mx-auto relative z-10 ${isInternship ? "bg-white/10 backdrop-blur-md border border-white/20 rounded-[32px] shadow-2xl py-12 px-6 lg:px-12 mb-8" : "px-6"}`}
       >
         {/* 4-COLUMN FOOTER GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12 text-center md:text-left">
           {/* Column 1: Company Info */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 items-center md:items-start">
             <Link to="/" className="block w-fit">
               <img
                 src={logo1}
@@ -305,7 +305,7 @@ export function Footer() {
           </div>
 
           {/* Column 2: Services */}
-          <div className="flex flex-col gap-3.5 relative z-20">
+          <div className="flex flex-col gap-3.5 relative z-20 items-center md:items-start">
             <span
               className={`font-display font-bold ${headingColor} text-[15px] uppercase tracking-wider mb-1`}
             >
@@ -342,7 +342,7 @@ export function Footer() {
           </div>
 
           {/* Column 3: Resources */}
-          <div className="flex flex-col gap-3.5 relative z-20">
+          <div className="flex flex-col gap-3.5 relative z-20 items-center md:items-start">
             <span
               className={`font-display font-bold ${headingColor} text-[15px] uppercase tracking-wider mb-1`}
             >
@@ -370,7 +370,7 @@ export function Footer() {
           </div>
 
           {/* Column 4: Contact */}
-          <div className="flex flex-col gap-3.5 relative z-20">
+          <div className="flex flex-col gap-3.5 relative z-20 items-center md:items-start">
             <span
               className={`font-display font-bold ${headingColor} text-[15px] uppercase tracking-wider mb-1`}
             >
