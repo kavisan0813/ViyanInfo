@@ -442,7 +442,7 @@ export function HomeVisuals({
 
           {/* Floating CSS particles with mouse repulsion */}
           <CTAParticles />
-          <div className="absolute left-[2%] opacity-70 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_7s_ease-in-out_infinite] saturnimage  top-[20%]">
+          <div className="hidden lg:block absolute left-[2%] opacity-70 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_7s_ease-in-out_infinite] saturnimage  top-[20%]">
             {/* Saturn image floating in top left */}
             <img
               ref={saturnRef}
@@ -453,7 +453,7 @@ export function HomeVisuals({
           </div>
 
           <div
-            className="absolute flip-horizontal right-4 opacity-80 pointer-events-none z-10 drop-shadow-2xl"
+            className="hidden lg:block absolute flip-horizontal right-4 opacity-80 pointer-events-none z-10 drop-shadow-2xl"
             style={{ bottom: "-80px" }}
           >
             {/* Astronaut Image floating in bottom right */}

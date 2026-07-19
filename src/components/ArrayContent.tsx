@@ -44,19 +44,19 @@ import {
 } from "lucide-react";
 import { FaPython } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
-import inventryImg from "../assets/inventry.webp";
+import employmentImg from "../assets/work_employment.png";
 import emsImg from "../assets/ems.webp";
 import financeImg from "../assets/work_employment_concept.png";
 import erpImg from "../assets/work_erp_concept.png";
 import crmImg from "../assets/work_crm_concept.png";
-import inventoryImg from "../assets/work_inventory_concept.png";
+import inventoryImg from "../assets/work_inventory.png";
 import medassistImg from "../assets/work_pharmacy_concept.png";
 import medassistsImg from "../assets/work_medassist.png";
 import posImg from "../assets/work_billing_concept.png";
 import lmsImg from "../assets/work_training_concept.png";
 import aiImg from "../assets/work_ai_concept.png";
 import billingImg from "../assets/work_billing.png";
-
+import trainingImg from "../assets/work_training.png";
 
 export const PostgreSQLIcon = () => (
   <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none">
@@ -759,26 +759,28 @@ export const Homecontent3 = [
     tags: ["React.js", "Express", "MongoDB", "ChartJS"],
   },
   {
-    title: "CRM Solution",
-    category: "SaaS Dashboard",
-    desc: "Complete client communication tracking, automated pipelines, and conversion visualizers.",
-    image: emsImg,
-    tags: ["TypeScript", "Next.js", "Firebase", "Framer Motion"],
+    title: "Employement Management System",
+    category: "HR Tech",
+    desc: "Comprehensive HR platform covering employee onboarding, attendance tracking, payroll automation, leave management and performance reviews.",
+    image: employmentImg,
+    tags: ["React.js", "Node.js", "MongoDB"],
+  },
+  {
+    title: "Inventory Management System",
+    category: "Logistics",
+    desc: "Monitor inventory, suppliers and warehouse operations in real time with smart stock management.",
+    image: inventoryImg ,
+    tags: ["React", "Express", "MongoDB"],
+
   },
   {
     title: "Internship Management Portal",
     category: "Education Tech",
     desc: "Tracking metrics, automated certifications, and course delivery timelines for students.",
-    image: emsImg,
+    image: trainingImg,
     tags: ["React.js", "TailwindCSS", "Node.js", "MySQL"],
   },
-  {
-    title: "Custom Business Automation",
-    category: "Business Intelligence",
-    desc: "Scrape, structure, analyze, and automate manual administrative tasks into clean background cron pipelines.",
-    image: inventryImg,
-    tags: ["Python", "FastAPI", "Docker", "AWS Lambda"],
-  },
+
 ];
 
 export const Homecontent4 = [

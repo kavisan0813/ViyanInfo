@@ -64,18 +64,20 @@
     flex-wrap: wrap !important;
   }
 
-  /* 8. CTA buttons — 52px height, equal width side by side */
   .home-hero-actions .hero-cta {
     flex: 1 !important;
-    min-width: 140px !important;
+    min-width: 130px !important;
     max-width: 200px !important;
   }
 
-  .home-hero-actions .hero-cta button {
-    height: 52px !important;
+  .home-hero-actions .hero-cta button,
+  .home-hero-actions .hero-cta a {
+    height: 44px !important;
     width: 100% !important;
-    font-size: 15px !important;
+    font-size: 13px !important;
     font-weight: 600 !important;
+    white-space: nowrap !important;
+    padding: 0 8px !important;
   }
 
   /* 9. Illustration — 90% width, centered, below buttons */

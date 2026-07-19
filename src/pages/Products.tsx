@@ -604,13 +604,13 @@ function ProductsWhyChoose() {
         </div>
 
         {/* 3 columns, 2 rows grid container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-[1024px] lg:max-w-none mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8 justify-items-center max-w-[1024px] lg:max-w-none mx-auto">
           {ProductContent3.map((feature, i) => {
             const Icon = feature.icon;
             return (
               <motion.div
                 key={i}
-                className="group relative flex flex-col justify-between w-[300px] h-[190px] p-5 rounded-[18px] bg-white/75 backdrop-blur-md border border-purple-100/80 transition-all duration-300 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] hover:border-purple-300 cursor-pointer overflow-hidden select-none"
+                className="group relative flex flex-col justify-between w-full sm:w-[300px] h-auto min-h-[180px] sm:h-[190px] p-4 sm:p-5 rounded-[18px] bg-white/75 backdrop-blur-md border border-purple-100/80 transition-all duration-300 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] hover:border-purple-300 cursor-pointer overflow-hidden select-none"
                 initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -620,18 +620,18 @@ function ProductsWhyChoose() {
                 {/* Animated border effect */}
                 <div className="absolute inset-0 rounded-[18px] border-2 border-transparent group-hover:border-purple-300/40 pointer-events-none transition-all duration-300" />
 
-                <div className="flex items-start gap-4">
+                <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
                   {/* Gradient Icon Circle */}
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
-                    <Icon className={`w-6 h-6 ${feature.iconColor} group-hover:scale-110 transition-transform duration-300`} strokeWidth={1.5} />
+                  <div className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
+                    <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${feature.iconColor} group-hover:scale-110 transition-transform duration-300`} strokeWidth={1.5} />
                   </div>
 
                   {/* Heading & description */}
                   <div className="flex-grow min-w-0 text-left">
-                    <h3 className="text-base font-bold text-slate-800 tracking-tight mb-1">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-800 tracking-tight mb-1">
                       {feature.title}
                     </h3>
-                    <p className="text-xs text-slate-500 leading-normal line-clamp-3">
+                    <p className="text-[11px] sm:text-xs text-slate-500 leading-normal line-clamp-3">
                       {feature.desc}
                     </p>
                   </div>

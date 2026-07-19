@@ -22,7 +22,6 @@ const serviceLinks = [
 const companyLinks = [
   { label: "About Us", path: "/about" },
   { label: "Careers", path: "/careers" },
-  { label: "Blog", path: "/blog" },
 ];
 
 export function Menu({ isOpen, onClose }: MenuProps) {

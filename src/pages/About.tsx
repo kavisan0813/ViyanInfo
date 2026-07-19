@@ -17,7 +17,7 @@ import {
   Rocket,
   Clock,
 } from "lucide-react";
-import { FiLinkedin, FiGithub, FiInstagram } from "react-icons/fi";
+import { FiLinkedin, FiGithub } from "react-icons/fi";
 import { SectionDivider } from "../components/SectionDivider";
 import { founders } from "../components/Founders";
 import aboutImg from "../assets/aboutus.webp";
@@ -555,17 +555,17 @@ export default function About() {
             experiences that help businesses innovate faster.
           </p>
 
-          <div className="hero-buttons flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <Link to="/contact" className="hero-cta">
+          <div className="hero-buttons flex flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <Link to="/contact" className="hero-cta flex-1 sm:flex-none">
               <button
                 onMouseEnter={onHoverBurst}
-                className="magnetic-button bg-[#6D28D9] text-white font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+                className="magnetic-button bg-[#6D28D9] text-white font-semibold text-[13px] sm:text-[14px] px-4 sm:px-8 py-3.5 sm:py-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(109,40,217,0.3)] hover:bg-[#5B21B6] transition-all duration-300 flex items-center justify-center gap-2 w-full cursor-pointer"
               >
                 Start Project
               </button>
             </Link>
-            <Link to="/portfolio" className="hero-cta">
-              <button className="magnetic-button bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[14px] px-8 py-4 rounded-2xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer">
+            <Link to="/portfolio" className="hero-cta flex-1 sm:flex-none">
+              <button className="magnetic-button bg-white/80 backdrop-blur-xs border border-[#E9D5FF] text-[#1F1430] font-semibold text-[13px] sm:text-[14px] px-4 sm:px-8 py-3.5 sm:py-4 rounded-2xl shadow-xs hover:bg-white hover:border-[#C084FC] transition-all duration-300 w-full flex items-center justify-center cursor-pointer">
                 Our Work
               </button>
             </Link>
@@ -1072,19 +1072,7 @@ export default function About() {
                         >
                           <Mail className="w-4.5 h-4.5" />
                         </motion.a>
-                        <motion.a
-                          whileHover={{ scale: 1.1, y: -2 }}
-                          href={founder.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-md border border-white/60 shadow-xs flex items-center justify-center hover:shadow-md transition-all text-white"
-                          style={{
-                            background:
-                              "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)",
-                          }}
-                        >
-                          <FiInstagram className="w-4 h-4" />
-                        </motion.a>
+
                       </div>
                     </div>
                   </div>
@@ -1098,12 +1086,11 @@ export default function About() {
       {/* MOBILE FOUNDERS SECTION */}
       <section className="relative lg:hidden overflow-hidden bg-[#FAF7FF] px-5 py-20">
         {/* Mobile background artwork */}
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.05] pointer-events-none">
           <img
             src={logoBgImg}
-            alt=""
-            aria-hidden="true"
-            className="sticky top-20 mx-auto h-[70vh] w-full object-contain opacity-[0.07]"
+            alt="Viyan Info Tech Logo Background"
+            className="w-[150%] h-auto object-cover transform -rotate-12"
           />
         </div>
 
@@ -1135,17 +1122,48 @@ export default function About() {
                 />
 
                 {/* Founder image */}
-                <div className="relative z-10 mx-auto mb-7 flex h-[220px] w-[220px] items-center justify-center">
-                  <FounderHalo accentColor={founder.accent}>
-                    <div className="h-[200px] w-[200px] overflow-hidden rounded-full bg-purple-50 shadow-lg flex items-center justify-center">
-                      <img
-                        src={founder.image}
-                        alt={founder.name}
-                        loading="lazy"
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  </FounderHalo>
+                <div className="relative z-10 mx-auto mb-7 flex items-center justify-center">
+                  <motion.div
+                    animate={{ y: [-4, 4, -4] }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="relative w-[220px] h-[220px] rounded-full p-2 flex items-center justify-center"
+                  >
+                    {/* Animated rotating outer gradient ring */}
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 12,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: `linear-gradient(135deg, ${founder.accent}, #9333EA)`,
+                        padding: "3px",
+                      }}
+                    >
+                      <div className="w-full h-full bg-[#FAF7FF] rounded-full" />
+                    </motion.div>
+
+                    {/* Glass Layer Inner Ring */}
+                    <div className="absolute inset-2 bg-white/20 backdrop-blur-md rounded-full border border-white/40 shadow-inner z-10 pointer-events-none" />
+
+                    {/* Founder Portrait Image */}
+                    <FounderHalo accentColor={founder.accent}>
+                      <div className="w-[88%] h-[88%] rounded-full overflow-hidden z-0 bg-purple-50 shadow-md flex items-center justify-center">
+                        <img
+                          src={founder.image}
+                          alt={founder.name}
+                          loading="lazy"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                    </FounderHalo>
+                  </motion.div>
                 </div>
 
                 <div className="relative z-10">
@@ -1197,15 +1215,7 @@ export default function About() {
                       <FiGithub className="h-4 w-4 text-slate-800" />
                     </a>
 
-                    <a
-                      href={founder.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${founder.name} Instagram`}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/70 shadow-sm"
-                    >
-                      <FiInstagram className="h-4 w-4 text-pink-600" />
-                    </a>
+
 
                     <a
                       href={founder.email}

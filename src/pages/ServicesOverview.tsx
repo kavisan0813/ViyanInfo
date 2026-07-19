@@ -424,7 +424,7 @@ export default function ServicesPage() {
   return (
     <div style={{ background: "#F8F7FF", minHeight: "100vh" }}>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden pt-28 pb-20">
+      <section className="relative overflow-hidden pt-28 pb-20 max-lg:!bg-[linear-gradient(160deg,#050E1A_0%,#0A1628_55%,#060D1C_100%)]">
         {/* Liquid morphism blobs */}
         <LiquidBlob
           color="#7B2FF7"
@@ -452,7 +452,7 @@ export default function ServicesPage() {
         />
         {/* Glass card overlay on blobs */}
         <div
-          className="absolute inset-0 backdrop-blur-[2px]"
+          className="absolute inset-0 backdrop-blur-[2px] max-lg:!bg-transparent"
           style={{ background: "rgba(248,247,255,.82)" }}
         />
 
@@ -464,28 +464,20 @@ export default function ServicesPage() {
               transition={{ duration: 0.8 }}
             >
               <span
-                className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-widest mb-6 text-purple-600 font-mono"
-                style={{
-                  background: "rgba(123,47,247,.1)",
-                  border: "1px solid rgba(123,47,247,.2)",
-                }}
+                className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-widest mb-6 font-mono text-purple-600 bg-[rgba(123,47,247,.1)] border border-[rgba(123,47,247,.2)] max-lg:!text-[#67E8F9] max-lg:!bg-[rgba(6,182,212,.1)] max-lg:!border-[rgba(6,182,212,.3)]"
               >
                 Services
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold leading-[1.08] tracking-tight mb-5 text-slate-900">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold leading-[1.08] tracking-tight mb-5 text-slate-900 max-lg:!text-[#3B82F6]">
                 Engineering{" "}
                 <span
-                  style={{
-                    background: "linear-gradient(135deg, #7B2FF7, #9D5CFF)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
+                  className="bg-clip-text text-transparent bg-[linear-gradient(135deg,#7B2FF7,#9D5CFF)] max-lg:!bg-none max-lg:!text-white max-lg:[-webkit-text-fill-color:white]"
                 >
                   Digital Solutions
                 </span>{" "}
                 for Every Stage of Business
               </h1>
-              <p className="text-slate-500 leading-relaxed mb-8 text-base sm:text-lg max-w-xl">
+              <p className="text-slate-500 leading-relaxed mb-8 text-base sm:text-lg max-w-xl max-lg:text-slate-400">
                 From MVP development to enterprise-scale digital transformation,
                 ViyanInfo designs, builds, deploys, and supports modern software
                 that helps businesses operate more efficiently and grow faster.
@@ -499,7 +491,7 @@ export default function ServicesPage() {
                 ].map(({ I, l }) => (
                   <div
                     key={l}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-slate-500 bg-white border border-slate-100"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-white max-lg:bg-[#ffffff10] rounded-lg border border-slate-200 max-lg:border-white/10 text-slate-600 max-lg:text-slate-300 text-[13px] font-medium shadow-sm"
                   >
                     <I size={10} className="text-purple-500" />
                     {l}
@@ -518,6 +510,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
+              className="max-lg:scale-110 max-lg:origin-center max-lg:mt-8"
             >
               <OrbitalHero />
             </motion.div>

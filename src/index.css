@@ -109,12 +109,12 @@ body {
 }
 
 main {
-  padding-top: 95px;
+  padding-top: 0;
 }
 
 @media (max-width: 768px) {
   main {
-    padding-top: 80px;
+    padding-top: 0;
   }
 }
 section {

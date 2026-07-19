@@ -378,7 +378,7 @@ export default function Careers() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 text-left">
             {[
               {
                 title: "Growth",
@@ -415,16 +415,16 @@ export default function Careers() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-xs transition-all duration-300 ${benefit.colorClass}`}
+                className={`p-5 md:p-8 rounded-3xl bg-white/40 backdrop-blur-md border border-white/60 shadow-xs transition-all duration-300 ${benefit.colorClass}`}
               >
                 <BenefitFloatIcon benefitKey={benefit.title} />
                 <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-6 shadow-2xs">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-display font-bold text-[#0F172A] mb-3">
+                <h3 className="text-lg md:text-xl font-display font-bold text-[#0F172A] mb-3 break-words">
                   {benefit.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-[#475569]">
+                <p className="text-[13px] md:text-sm leading-relaxed text-[#475569]">
                   {benefit.desc}
                 </p>
               </motion.div>

@@ -1257,7 +1257,7 @@
   }
 
   .work-hero__content {
-    padding-top: 120px;
+    padding-top: 50px;
     text-align: center;
     align-items: center;
   }
@@ -1280,7 +1280,7 @@
   }
 
   .work-hero {
-    height: 80vh;
+    height: auto;
     min-height: 500px;
   }
 
@@ -1318,14 +1318,14 @@
    RESPONSIVE — Mobile (≤640px)
    ============================================================ */
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .work-hero {
     height: 85vh;
     min-height: 480px;
   }
 
   .work-hero__content {
-    padding-top: 100px;
+    padding-top: 50px;
     gap: 14px;
   }
 
@@ -1337,6 +1337,10 @@
   .work-hero__btn {
     justify-content: center;
     width: 100%;
+  }
+
+  .work-hero__visual {
+    display: none;
   }
 
   .work-hero__indicators {
