@@ -20,7 +20,6 @@ import {
   GraduationCap,
   Info,
   Briefcase,
-  FileText,
 } from "lucide-react";
 import { Menu } from "./Menu";
 import logo1 from "../assets/logo.webp";
@@ -123,7 +122,7 @@ export function Navbar() {
   const isActive = (path: string) => location.pathname === path;
   const isServicesActive = () => location.pathname.startsWith("/services");
   const isCompanyActive = () =>
-    ["/about", "/process", "/careers", "/blog"].includes(location.pathname);
+    ["/about", "/process", "/careers"].includes(location.pathname);
 
   return (
     <>
@@ -305,11 +304,11 @@ export function Navbar() {
                     path: "/careers",
                     icon: <Briefcase className="w-4 h-4 text-[#7B2FF7]" />,
                   },
-                  {
-                    label: "Blog",
-                    path: "/blog",
-                    icon: <FileText className="w-4 h-4 text-[#7B2FF7]" />,
-                  },
+                  // {
+                  //   label: "Blog",
+                  //   path: "/blog",
+                  //   icon: <FileText className="w-4 h-4 text-[#7B2FF7]" />,
+                  // },
                 ].map(({ label, path, icon }) => (
                   <Link
                     key={path}

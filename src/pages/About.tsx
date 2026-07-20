@@ -1027,7 +1027,7 @@ export default function About() {
                       </p>
 
                       {/* Highlight Badges */}
-                      <div className="flex flex-wrap gap-3 mb-8">
+                      {/* <div className="flex flex-wrap gap-3 mb-8">
                         {founder.badges.map((badge, bIdx) => (
                           <div
                             key={bIdx}
@@ -1040,7 +1040,7 @@ export default function About() {
                             {badge}
                           </div>
                         ))}
-                      </div>
+                      </div> */}
 
                       {/* Social handles */}
                       <div className="flex gap-4">
@@ -1182,7 +1182,7 @@ export default function About() {
                     {founder.bio}
                   </p>
 
-                  <div className="mb-7 flex flex-wrap justify-center gap-2">
+                  {/* <div className="mb-7 flex flex-wrap justify-center gap-2">
                     {founder.badges.map((badge) => (
                       <span
                         key={badge}
@@ -1192,7 +1192,7 @@ export default function About() {
                         {badge}
                       </span>
                     ))}
-                  </div>
+                  </div> */}
 
                   <div className="flex justify-center gap-4">
                     <a

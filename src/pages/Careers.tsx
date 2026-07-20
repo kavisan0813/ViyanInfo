@@ -517,13 +517,13 @@ export default function Careers() {
             {[
               {
                 role: "Frontend Developer",
-                exp: "2-4 Years Exp",
+                exp: "1-2 Years Exp",
                 loc: "Chennai / Hybrid",
                 desc: "Build highly responsive React/TypeScript interfaces, manage state components, and coordinate with API endpoints.",
               },
               {
                 role: "Backend Developer",
-                exp: "3-5 Years Exp",
+                exp: "1-3 Years Exp",
                 loc: "Chennai / Hybrid",
                 desc: "Design and implement scalable REST APIs in Java/SpringBoot, map database schemas, and configure container deployments.",
               },
@@ -535,7 +535,7 @@ export default function Careers() {
               },
               {
                 role: "UI/UX Designer",
-                exp: "2-4 Years Exp",
+                exp: "1-3 Years Exp",
                 loc: "Chennai / Hybrid",
                 desc: "Conduct user research, design wireframes and visual UI assets in Figma, and build interactive high-fidelity web prototypes.",
               },

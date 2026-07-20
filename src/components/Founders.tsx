@@ -15,7 +15,7 @@ export const founders = [
     accent: "#7B2FF7",
     glowColor: "rgba(123, 47, 247, 0.15)",
     bgLight: "bg-purple-500/5 border-purple-500/10",
-    badges: ["2+ Years Exp", "5+ Projects", "3+ Clients"],
+    // badges: ["2+ Years Exp", "5+ Projects", "3+ Clients"],
   },
   {
     name: "Peter",
@@ -29,7 +29,7 @@ export const founders = [
     accent: "#3B82F6",
     glowColor: "rgba(59, 130, 246, 0.15)",
     bgLight: "bg-blue-500/5 border-blue-500/10",
-    badges: ["3+ Years Exp", "8+ Projects", "3+ Clients"],
+    // badges: ["3+ Years Exp", "8+ Projects", "3+ Clients"],
   },
   {
     name: "Narendhiran",
@@ -43,6 +43,6 @@ export const founders = [
     accent: "#06B6D4",
     glowColor: "rgba(6, 182, 212, 0.15)",
     bgLight: "bg-cyan-500/5 border-cyan-500/10",
-    badges: ["2+ Years Exp", "20+ Projects", "10+ Clients"],
+    // badges: ["2+ Years Exp", "20+ Projects", "10+ Clients"],
   },
 ];
