@@ -425,7 +425,8 @@ export function HomeVisuals({
   }, []);
 
   return (
-    <section className="bg-black relative z-20 pb-1">
+    <section className="bg-black relative z-20 pb-1 overflow-hidden">
+      <CTAParticles />
       <div className="container-fluid mx-auto relative z-10">
         <motion.div
           ref={ctaContainerRef}
@@ -434,14 +435,12 @@ export function HomeVisuals({
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="pt-16 pb-0 md:pt-20 md:pb-0 bg-black text-center text-white relative shadow-2xl"
+          className="pt-16 pb-0 md:pt-20 md:pb-0 text-center text-white relative shadow-2xl bg-transparent"
         >
           {/* Glowing particle blobs */}
           <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-400/20 blur-3xl animate-[float-y_15s_ease-in-out_infinite] pointer-events-none"></div>
           <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-400/20 blur-3xl animate-[float-y_12s_ease-in-out_infinite] pointer-events-none"></div>
 
-          {/* Floating CSS particles with mouse repulsion */}
-          <CTAParticles />
           <div className="hidden lg:block absolute left-[2%] opacity-70 pointer-events-none z-10 drop-shadow-2xl animate-[float-y_7s_ease-in-out_infinite] saturnimage  top-[20%]">
             {/* Saturn image floating in top left */}
             <img

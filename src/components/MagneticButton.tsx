@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import { gsap } from "gsap";
+
 export function MagneticButton({
   children,
   className,
